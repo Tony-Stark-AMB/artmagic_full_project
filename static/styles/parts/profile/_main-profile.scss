@@ -17,5 +17,26 @@
             margin-left: 40px;
             font-size: 28px;
         }
+        &__input{
+            width: 70%;
+            outline: none;
+            border: 1px solid $c5;
+            border-radius: 8px;
+            padding-left: 8px;
+            &:disabled{
+                background-color: $c6;
+                border: 1px solid $c6;
+                color: $c9;
+            }
+        }
+        &__btn{
+            padding: 4px 8px;
+            &-icon{
+                width: 20px;
+                height: 25px;
+                color: $c5;
+            }
+        }
     }
+    
 }

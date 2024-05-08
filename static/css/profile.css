@@ -716,6 +716,26 @@
   margin-left: 40px;
   font-size: 28px;
 }
+.profile-page__user-info__input {
+  width: 70%;
+  outline: none;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding-left: 8px;
+}
+.profile-page__user-info__input:disabled {
+  background-color: #fff;
+  border: 1px solid #fff;
+  color: #000;
+}
+.profile-page__user-info__btn {
+  padding: 4px 8px;
+}
+.profile-page__user-info__btn-icon {
+  width: 20px;
+  height: 25px;
+  color: #ddd;
+}
 
 .footer {
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.08), 0 -2px 4px 0 rgba(0, 0, 0, 0.12);
