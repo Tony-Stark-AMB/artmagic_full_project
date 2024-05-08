@@ -1,0 +1,64 @@
+//aside-index
+
+.aside-index{
+    padding: 10px 0; 
+    border-right: 1px solid $c5;
+    min-height: inherit;
+    &__wrap{
+        width: 100%;    
+        grid-area: aside;
+        min-height: 195vh;
+    }
+    & > hr{
+        margin: 0 auto;
+    }
+
+    &__list{
+       padding: 16px 24px;
+       min-height: 60vh;
+       display: flex;
+       flex-direction: column;
+       justify-content: space-around;
+    }
+    &__item{
+        accent-color: $c17;
+    }
+    &__link{
+        color: $c9;
+        transition: color .3s ease;
+        font-weight: 600;
+        font-size: 24px;
+        &:hover{
+            color: $c17;
+        }
+    }
+
+    
+    &__login{
+        padding: 16px 24px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        min-height: 15vh;
+        &__title{
+            font-size: 20px;
+            font-weight: 700;
+        }
+        &__btn{
+            color: $c6;
+            width: 80%;
+            margin: 0 auto;
+            border: none;
+            outline: none;
+            border-radius: 16x;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: 8px;
+            transition: background-color .3s ease;
+            &:hover{
+                background-color: #3b688f;
+            }
+        }
+    }
+}

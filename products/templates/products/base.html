@@ -1,0 +1,368 @@
+{% load static %}
+{% load mptt_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'node_modules/@popperjs/core/lib/popper.js' %}">
+    <link rel="stylesheet" href="{% static 'node_modules/@popperjs/core/dist/esm/popper.js' %}">
+    <link rel="stylesheet" href="{% static 'node_modules/swiper/swiper.js' %}">
+    <link rel="stylesheet" href="{% static 'node_modules/swiper/modules/index.mjs' %}">
+    <link rel="stylesheet" href="{% static 'node_modules/swiper/swiper-bundle.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link rel="stylesheet" href="{% static 'node_modules/aos/dist/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    {% block css %} {% endblock %}
+    <title>Document</title>
+</head>
+<body>
+    <div class="full-content">
+{% block header %}
+<header class="header">
+            <div class="header-main">
+                <div class="container__custom">
+                    <div class="header-main__content">
+                        <div class="logo__wrap">
+                            <a class="logo__link" href="/">
+                                <img class="logo" src="{% static 'assets/logo/artmagic.png' %}" alt="">
+                                <p class="logo__text">
+                                    <span class="text-wrapper">
+                                        <span class="letters">Артмагія</span>
+                                        <span class="line"></span>
+                                    </span>
+                                </p>
+                            </a>
+                        </div>
+                        <div class="header-catalog">
+                            <button class="header-catalog__btn bg15" onclick="openNav()">
+                                <svg class="header-catalog__btn__icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 576 512">
+                                    <path d="M264.5 5.2c14.9-6.9 32.1-6.9 47 0l218.6 101c8.5 3.9 13.9 12.4 13.9 21.8s-5.4
+                                     17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 149.8C37.4 145.8 32 137.3 32
+                                      128s5.4-17.9 13.9-21.8L264.5 5.2zM476.9 209.6l53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4
+                                       17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 277.8C37.4 273.8 32 265.3 32
+                                        256s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0l152-70.2zm-152
+                                         198.2l152-70.2 53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9
+                                          6.9-32.1 6.9-47 0L45.9 405.8C37.4 401.8 32 393.3 32 384s5.4-17.9 13.9-21.8l53.2-24.6 152
+                                           70.2c23.4 10.8 50.4 10.8 73.8 0z"/></svg>
+                                <p class="header-catalog__btn__text d-inline text-uppercase font__raleway fw-bold c6">Каталог</p>
+                            </button>
+                        </div>
+                        <div class="header-search">
+                            <div class="header-search__input__wrap">
+                                <input class="header-search__input" placeholder="Пошук"/>
+                                <svg class="header-search__input__icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 512 512">
+                                    <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="nav__burger" onclick="showBurgerMenu()">
+                            <div class="nav__burger-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 448 512">
+                                    <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3
+                                     128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32
+                                      32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32
+                                       32-32H416c17.7 0 32 14.3 32 32z"/></svg>
+                            </div>
+                        </div>
+                        <div class="header-call__top">
+                            {% if user.is_authenticated %}
+                            <div class="user__info">
+                                <p>Привет, {{ user.username }}!</p>
+                                <a class="header-call__top__link" href="{% url 'user:profile'%}"><i class="fa fa-user user-small" aria-hidden="true"></i>Особистий кабінет</a>
+                                <a href="{% url 'user:logout' %}">Logout</a>
+                            </div>
+                            {% else %}
+                                <button class="header-call__top__link" type="button" data-bs-toggle="modal" data-bs-target="#login__modal"><i class="fa fa-lock lock-small" aria-hidden="true"></i>Авторизація</button>
+                            {% endif %}
+                            <!--- Проверка на ошибки  -->
+                            {% if messages %}
+                                <ul class="messages">
+                                    {% for message in messages %}
+                                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                        <div class="header-call__wrap">
+                            <div class="header-call__main">
+                                <div class="header-call">
+                                    <button class="header-call__btn" type="button" data-bs-toggle="modal" data-bs-target="#call__modal">
+                                        <img src="{% static 'assets/icon-phone.png' %}" alt="">
+                                    </button>
+                                </div>
+                                <div>
+                                    <p class="header-call__text">Зателефонуйте нам: <a class="header-call__link" type="button" data-bs-toggle="modal" data-bs-target="#call__modal">(068) 017-40-75</a></p>
+                                    <p class="header-call__text">e-mail: <a class="header-call__link" type="button" data-bs-toggle="modal" data-bs-target="#call__modal">artmagicinetrnet@gmail.com</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header-basket__wrap" type="button" data-bs-toggle="modal" data-bs-target="#basket__modal">
+                            <div class="header-basket__icon__wrap">
+                                <svg class="header-basket__icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 576 512"><path d="M253.3 35.1c6.1-11.8 1.5-26.3-10.2-32.4s-26.3-1.5-32.4
+                                    10.2L117.6 192H32c-17.7 0-32 14.3-32 32s14.3 32 32 32L83.9 463.5C91 492 116.6 512 146 512H430c29.4 0 55-20 62.1-48.5L544
+                                    256c17.7 0 32-14.3 32-32s-14.3-32-32-32H458.4L365.3 12.9C359.2 1.2 344.7-3.4 332.9 2.7s-16.3 20.6-10.2 32.4L404.3 192H171.7L253.3
+                                    35.1zM192 304v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16zm96-16c8.8 0 16 7.2 16 16v96c0 8.8-7.2 16-16
+                                    16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16zm128 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+{% endblock %}
+{% block content %}
+{% endblock %}
+{% block footer %}
+<footer class="footer">
+            <div class="footer__list container__custom">
+                <div class="footer__info">
+                    <h6 class="footer__info__title">Інформація про компанію</h6>
+                    <ul class="footer__info__list">
+                        <li class="footer__info__item">
+                            <a class="footer__info__link" href="">Про нас</a>
+                        </li>
+                        <li class="footer__info__item">
+                            <a class="footer__info__link" href="">Контакти</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer__help">
+                    <h6 class="footer__help__title">Допомога</h6>
+                    <ul class="footer__help__list">
+                        <li class="footer__help__item">
+                            <a class="footer__help__link" href="">Оплата і доставка</a>
+                        </li>
+                        <li class="footer__help__item">
+                            <a class="footer__help__link" href="">Гарантії</a>
+                        </li>
+                        <li class="footer__help__item">
+                            <a class="footer__help__link" href="">Повернення товару</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer__payment">
+                    <h6 class="footer__payment__title">
+                        Ми приймаємо
+                    </h6>
+                    <div class="footer__payment__img__wrap">
+                        <img class="footer__payment__img" src="{% static 'assets/payment.png' %}" alt="">
+                    </div>
+                </div>
+                <div class="footer__social">
+                    <h6 class="footer__social__title">
+                        Ми у соцмережах
+                    </h6>
+                    <div class="footer__social__list">
+                        <a class="footer__social__link bg18" href="">
+                            <svg class="footer__social__svg" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512">
+                                <path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4
+                                    37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"/></svg>
+                        </a>
+                        <a class="footer__social__link bg18" href="">
+                            <svg class="footer__social__svg" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 448 512">
+                                <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9
+                                        287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7
+                                        74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8
+                                        26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9
+                                        0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9
+                                            36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8
+                                            388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7
+                                            2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7
+                                            9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1
+                                            9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                        </a>
+                        <a class="footer__social__link bg18" href="">
+                            <svg class="footer__social__svg" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
+                                <path d="M248 8C111 8 0 119 0 256S111 504 248 504 496 393 496 256 385 8 248 8zM363 176.7c-3.7 39.2-19.9 134.4-28.1
+                                178.3-3.5 18.6-10.3 24.8-16.9 25.4-14.4 1.3-25.3-9.5-39.3-18.7-21.8-14.3-34.2-23.2-55.3-37.2-24.5-16.1-8.6-25 5.3-39.5
+                                3.7-3.8 67.1-61.5 68.3-66.7 .2-.7 .3-3.1-1.2-4.4s-3.6-.8-5.1-.5q-3.3 .7-104.6 69.1-14.8 10.2-26.9
+                                9.9c-8.9-.2-25.9-5-38.6-9.1-15.5-5-27.9-7.7-26.8-16.3q.8-6.7 18.5-13.7 108.4-47.2 144.6-62.3c68.9-28.6
+                                83.2-33.6 92.5-33.8 2.1 0 6.6 .5 9.6 2.9a10.5 10.5 0 0 1 3.5 6.7A43.8 43.8 0 0 1 363 176.7z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom container__custom">
+                <div class="footer__approve">
+                    <div class="footer__approve__img__wrap">
+                        <img src="{% static 'assets/mastercard-logo.svg' %}" alt="" class="footer__img">
+                    </div>
+                    <div class="footer__approve__img__wrap">
+                        <img src="{% static 'assets/visa-logo.svg' %}" alt="" class="footer__img">
+                    </div>
+                </div>
+                <div class="footer__underground">
+                    <p class="footer__underground__text">
+                        Artmagic - товари для художників та творчості © 2010 - 2024.
+                    </p>
+                </div>
+            </div>
+        </footer>
+        {% endblock %}
+    </div>
+    <div class="modal fade modal__login" id="login__modal" tabindex="-1" aria-labelledby="login__modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Авторизация и Регистрация</h5>
+                <button tabindex="-1" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="swiper login__registration">
+                <div class="swiper-wrapper">
+                    <!-- Форма для входа -->
+                    <div class="swiper-slide">
+                        <div class="modal-body">
+                            <form class="login__modal__form" method="post" action="{% url 'user:login' %}">
+                                {% csrf_token %}
+                                
+                                <input class="login__modal__input" type="text" name="username" placeholder="Логин">
+                                <input class="login__modal__input" type="password" name="password" placeholder="Пароль">
+                                <div class="login__modal__link__wrap">
+                                    <a class="login__modal__link" href="#">Забыли пароль?</a>
+                                    <div class="login__modal__link swiper-btn-next">Регистрация</div>
+                                </div>
+                                <button class="btn btn-primary" type="submit">Войти</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Форма для регистрации -->
+                    <div class="swiper-slide">
+                        <div class="modal-body">
+                            <form class="registration__modal__form" method="post" action="{% url 'user:register' %}">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <input class="registration__modal__input" type="text" name="username" placeholder="Логин">
+                                <input class="registration__modal__input" type="text" name="email" placeholder="Email">
+                                <input class="registration__modal__input" type="text" name="phone_number" placeholder="Номер телефону">
+                                <input class="registration__modal__input" type="password" name="password1" placeholder="Пароль">
+                                <input class="registration__modal__input" type="password" name="password2" placeholder="Подтверждение пароля">
+                                <div class="login__modal__link__wrap">
+                                    <div class="registration__modal__link swiper-btn-prev">Авторизация</div>
+                                    <button class="btn btn-primary" type="submit">Зарегистрироваться</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!--- Проверка на ошибки  -->
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="modal fade modal__call" id="call__modal" tabindex="-1" aria-labelledby="call__modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Зворотній зв'язок</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form class="call__modal__form" action="">
+                <h3 class="text-center">Контактні дані</h3>
+                <div class="call__modal__input__wrap">
+                    <input class="call__modal__input" type="text" placeholder="Ім'я">
+                    <input class="call__modal__input" type="text" placeholder="Прізвище">
+                </div>
+                <input class="call__modal__input" type="telephone" placeholder="Телефон">
+                <textarea placeholder="Ваше питання"></textarea>
+                <button class="btn btn-primary" type="submit">Залишити заявку</button>
+            </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    {% include 'carts/includes/included_cart.html' %}
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <ul class="header-sidemenu">
+        <li class="header-sidemenu__item" >
+            Блокноти, папір, картон
+            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512">
+                <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7
+                 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+        </li>
+        <li class="header-sidemenu__item" >
+            Графіка
+            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512">
+                <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7
+                 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+        </li>
+        <li class="header-sidemenu__item" >
+            Живопис
+            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512">
+                <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7
+                 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+        </li>
+        <li class="header-sidemenu__item" >
+            Канцтовари
+            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512">
+                <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7
+                 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+        </li>
+        <li class="header-sidemenu__item" > 
+            Мольберти та Етюдники
+            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512">
+                <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7
+                 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+        </li>
+        <li class="header-sidemenu__item" >
+            Полотна та Планшети
+            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512">
+                <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7
+                 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+        </li>
+        <li class="header-sidemenu__item" >
+            Реставрація
+            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512">
+                <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7
+                 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+        </li>
+        <li class="header-sidemenu__item" >
+            Скульптура і Гравюра
+            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512">
+                <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7
+                 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+        </li>
+        <li class="header-sidemenu__item" >
+            Хоббі і Декор
+            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512">
+                <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7
+                 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+        </li>
+        <li class="header-sidemenu__item" >
+            Творчість для Дітей
+            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512">
+                <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7
+                 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+        </li>
+    </ul>
+</div>
+
+    <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script src="{% static 'node_modules/aos/dist/aos.js' %}"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script type="module" src="{% static 'js/index-carousel.js' %}"></script>
+    {% block js %}{% endblock %}
+    <script type="module" src="{% static 'js/header.js' %}"></script>
+    <script type="module" src="{% static 'js/basket.js' %}"></script>
+    <script type="module" src="{% static 'js/classes/product.js' %}"></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,237 @@
+models.py
+from django.db import models
+from django.contrib.auth.models import AbstractUser
+
+
+class CustomUser(AbstractUser):
+    phone_number = models.CharField(max_length=15, unique=True)
+    # Решение конфликта имен обратных связей
+    groups = models.ManyToManyField(
+        'auth.Group',
+        verbose_name='groups',
+        blank=True,
+        related_name='custom_user_set',  # Задаем кастомное имя обратной связи
+        related_query_name='user'
+    )
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        verbose_name='user permissions',
+        blank=True,
+        related_name='custom_user_set',  # Задаем кастомное имя обратной связи
+        related_query_name='user'
+    )
+
+
+class Address(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    address_line1 = models.CharField(max_length=255)
+    address_line2 = models.CharField(max_length=255, blank=True, null=True)
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
+    postal_code = models.CharField(max_length=20)
+
+
+class PurchaseHistory(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    # продукты
+    date = models.DateTimeField(auto_now_add=True)
+views.py
+from django.contrib import auth
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
+from .models import Address
+from .forms import UserLoginForm
+from .forms import ProfileForm
+from .forms import RegistrationForm
+from .forms import ChangePasswordForm
+from .models import PurchaseHistory
+from django.contrib.auth import update_session_auth_hash
+
+def index(request):
+    return render(request, 'users/index.html')
+
+def register(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = RegistrationForm()
+    return render(request, 'users/register.html', {'form': form})
+
+
+def user_login(request):
+    print('Auth')
+    form = UserLoginForm(data=request.POST)
+    print(form.is_valid())
+    print(request.POST['username'])
+    print(request.POST['password'])
+    if form.is_valid():
+        print('===============')
+        username = request.POST['username']
+        password = request.POST['password']
+        user = auth.authenticate(username=username, password=password)
+        print(user)
+        if user is not None:
+            login(request, user)
+            print(user)
+            return redirect('index')
+    else:
+        form = UserLoginForm()
+    return render(request, 'users/login.html', {'form': form})
+
+
+def user_logout(request):
+    logout(request)
+    return redirect('home')
+
+
+def profile(request):
+    user = request.user
+    addresses = Address.objects.all()
+    # addresses = user.addresses.all()  # Получаем все адреса пользователя
+    purchase_history = PurchaseHistory.objects.filter(user=user)  # Получаем историю покупок пользователя
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')  # После сохранения данных перенаправляем пользователя на страницу профиля
+    else:
+        form = ProfileForm(instance=user)
+    context = {'user': user, 'addresses': addresses, 'form': form, 'purchase_history': purchase_history}
+    return render(request, 'users/profile.html', context)
+
+
+
+def change_password(request):
+    if request.method == 'POST':
+        form = ChangePasswordForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Важно, чтобы пользователь оставался аутентифицированным после смены пароля
+            return redirect('profile')  # Перенаправляем пользователя на страницу профиля после успешного изменения пароля
+    else:
+        form = ChangePasswordForm(request.user)
+    return render(request, 'account/change_password.html', {'form': form})
+forms.py
+from django import forms
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
+from .models import CustomUser, Address
+
+
+class RegistrationForm(UserCreationForm):
+    email = forms.EmailField(max_length=254, help_text='Required. Enter a valid email address.')
+    phone_number = forms.CharField(max_length=15, help_text='Required.')
+
+    class Meta:
+        model = CustomUser
+        fields = ('username', 'email', 'phone_number', 'password1', 'password2')
+
+
+class UserLoginForm(AuthenticationForm):
+    class Meta:
+        model = CustomUser
+        fields = ['username', 'password']
+
+    username = forms.CharField(
+        label = 'Имя',
+        widget=forms.TextInput(attrs={"autofocus": True,
+                                      'class': 'form-control',
+                                      'placeholder': 'Введите ваше имя пользователя'})
+    )
+    password = forms.CharField(
+        label = 'Пароль',
+        widget=forms.PasswordInput(attrs={"autocomplete": "current-password",
+                                          'class': 'form-control',
+                                          'placeholder': 'Введите ваш пароль'})
+    )
+
+
+class ChangePasswordForm(PasswordChangeForm):
+    class Meta:
+        model = CustomUser
+        fields = ('old_password', 'new_password1', 'new_password2')
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ('first_name', 'last_name', 'email', 'phone_number')
+
+
+        first_name = forms.CharField()
+        last_name = forms.CharField()
+        phone_number = forms.CharField()
+        email = forms.CharField()
+
+class AddressForm(forms.ModelForm):
+    class Meta:
+        model = Address
+        fields = ('address_line1', 'address_line2', 'city', 'state', 'country', 'postal_code')
+urls.py
+from django.urls import path
+from .views import register, user_login, user_logout, profile, change_password, index
+
+
+urlpatterns = [
+    path('', index, name='index'),
+    path('register/', register, name='register'),
+    path('login/', user_login, name='login'),
+    path('logout/', user_logout, name='logout'),
+    path('profile/', profile, name='profile'),
+    path('change_password/', change_password, name='change_password'),
+]
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Welcome to our website!</h1>
+    <a href="{% url 'login' %}">Login</a>
+    <a href="{% url 'register' %}">Register</a>
+    <a href="{% url 'profile' %}">Profile</a>
+</body>
+</html>
+profile.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+</head>
+<body>
+    <h2>Welcome, {{ user.username }}</h2>
+    <h3>Your Profile</h3>
+    <p>First Name: {{ user.first_name }}</p>
+    <p>Last Name: {{ user.last_name }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Phone Number: {{ user.phone_number }}</p>
+
+    <h3>Addresses</h3>
+    <ul>
+        {% for address in addresses %}
+            <li>{{ address.address_line1 }}, {{ address.city }}, {{ address.country }}</li>
+        {% empty %}
+            <li>No addresses added yet.</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Purchase History</h3>
+    <ul>
+        {% for purchase in purchase_history %}
+            <li>{{ purchase.date }} - <!-- Добавьте здесь другие поля истории покупок --></li>
+        {% empty %}
+            <li>No purchase history available.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'change_password' %}">Change Password</a>
+    <a href="{% url 'logout' %}">Logout</a>
+</body>
+</html>

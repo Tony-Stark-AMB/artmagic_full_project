@@ -1,0 +1,802 @@
+[
+    {
+        "model": "products.manufacturer",
+        "pk": 16,
+        "fields": {
+            "name": "Fabriano",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 12,
+        "fields": {
+            "name": "Daler-Rowney",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 13,
+        "fields": {
+            "name": "ЗХК",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 14,
+        "fields": {
+            "name": "GAMMA",
+            "image": "Renesans(2).jpg"
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 15,
+        "fields": {
+            "name": "Lana",
+            "image": "Marabu(2).jpg"
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 11,
+        "fields": {
+            "name": "ROSA START",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 17,
+        "fields": {
+            "name": "Sakura",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 18,
+        "fields": {
+            "name": "Strathmore",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 19,
+        "fields": {
+            "name": "Корея",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 20,
+        "fields": {
+            "name": "KOLOS",
+            "image": "catalog/Kolos.png"
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 21,
+        "fields": {
+            "name": "Clairefontaine",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 22,
+        "fields": {
+            "name": "Royal Talens",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 23,
+        "fields": {
+            "name": "DAFA",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 24,
+        "fields": {
+            "name": "Китай",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 25,
+        "fields": {
+            "name": "Cretacolor",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 26,
+        "fields": {
+            "name": "GOZNAK",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 27,
+        "fields": {
+            "name": "Luch",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 28,
+        "fields": {
+            "name": "ГАММА",
+            "image": "catalog/GAMMA.png"
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 29,
+        "fields": {
+            "name": "Чехія",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 30,
+        "fields": {
+            "name": "Roubloff",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 31,
+        "fields": {
+            "name": "Испания",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 32,
+        "fields": {
+            "name": "Smiltainis",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 33,
+        "fields": {
+            "name": "Голландия",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 34,
+        "fields": {
+            "name": "Liliya Holding",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 35,
+        "fields": {
+            "name": "TAIR",
+            "image": "catalog/tair.png"
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 36,
+        "fields": {
+            "name": "ROSA",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 37,
+        "fields": {
+            "name": "Canson",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 38,
+        "fields": {
+            "name": "ROYAL Talens",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 39,
+        "fields": {
+            "name": "ROSA TALENT",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 40,
+        "fields": {
+            "name": "D.K.ART & CRAFT",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 41,
+        "fields": {
+            "name": "Derwent",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 42,
+        "fields": {
+            "name": "HEYDA",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 43,
+        "fields": {
+            "name": "FABRIANO",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 44,
+        "fields": {
+            "name": "Leo",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 45,
+        "fields": {
+            "name": "Nazionale",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 46,
+        "fields": {
+            "name": "Венгрия",
+            "image": "catalog/HU.JPG"
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 47,
+        "fields": {
+            "name": "ROSA Gallery",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 48,
+        "fields": {
+            "name": "ROSA Studio",
+            "image": "catalog/275f6816dc249ea4c04b61933559f76e_studio.jpg"
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 49,
+        "fields": {
+            "name": "SaKura",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 50,
+        "fields": {
+            "name": "SANTI",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 51,
+        "fields": {
+            "name": "St. Cuthberts Mill",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 96,
+        "fields": {
+            "name": "Bic",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 62,
+        "fields": {
+            "name": "Ukraine",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 54,
+        "fields": {
+            "name": "Sinar Spectra",
+            "image": "catalog/Sinar Spectra.png"
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 58,
+        "fields": {
+            "name": "Brunnen",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 59,
+        "fields": {
+            "name": "Renesans",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 60,
+        "fields": {
+            "name": "Pentart",
+            "image": "catalog/Pentart_300x300.jpg"
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 61,
+        "fields": {
+            "name": "Winsor & Newton",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 92,
+        "fields": {
+            "name": "SCHIZZI",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 93,
+        "fields": {
+            "name": "Bruna",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 94,
+        "fields": {
+            "name": "Axent",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 63,
+        "fields": {
+            "name": "TART",
+            "image": "catalog/tart.png"
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 64,
+        "fields": {
+            "name": "Primo",
+            "image": "catalog/primo.png"
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 65,
+        "fields": {
+            "name": "Marvy",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 66,
+        "fields": {
+            "name": "Maimeri",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 67,
+        "fields": {
+            "name": "Manuscript",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 95,
+        "fields": {
+            "name": "Buromax",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 69,
+        "fields": {
+            "name": "Bruynzeel",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 70,
+        "fields": {
+            "name": "Winsor &amp; Pure",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 71,
+        "fields": {
+            "name": "Трек",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 72,
+        "fields": {
+            "name": "Graphit",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 73,
+        "fields": {
+            "name": "ArtWork",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 74,
+        "fields": {
+            "name": "ROSA CLASSIC",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 75,
+        "fields": {
+            "name": "RОSА MODERN",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 76,
+        "fields": {
+            "name": "ROSA NEW AGE ART",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 81,
+        "fields": {
+            "name": "Unico",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 80,
+        "fields": {
+            "name": "4Art",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 79,
+        "fields": {
+            "name": "P.E.R. Belle Arti",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 82,
+        "fields": {
+            "name": "Van Pure",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 83,
+        "fields": {
+            "name": "Masterkisti",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 84,
+        "fields": {
+            "name": "Centropen",
+            "image": "catalog/Centropen.png"
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 85,
+        "fields": {
+            "name": "Folia",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 86,
+        "fields": {
+            "name": "REMBRANDT",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 87,
+        "fields": {
+            "name": "Koh-I-Noor",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 88,
+        "fields": {
+            "name": "Marco",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 89,
+        "fields": {
+            "name": "ESSDEE",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 107,
+        "fields": {
+            "name": "Leo Art",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 91,
+        "fields": {
+            "name": "Classico",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 97,
+        "fields": {
+            "name": "Pilot",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 103,
+        "fields": {
+            "name": "NPA",
+            "image": "catalog/NPA.png"
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 99,
+        "fields": {
+            "name": "1 Вересня",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 100,
+        "fields": {
+            "name": "YES",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 101,
+        "fields": {
+            "name": "Factis",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 102,
+        "fields": {
+            "name": "Mungyo",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 104,
+        "fields": {
+            "name": "PINTYPLUS",
+            "image": "catalog/PINTYPLUS.png"
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 105,
+        "fields": {
+            "name": "Intertool",
+            "image": "catalog/Intertool.png"
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 106,
+        "fields": {
+            "name": "Kreska",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 108,
+        "fields": {
+            "name": "Knorr Prandell",
+            "image": "catalog/knorrprandell.png"
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 109,
+        "fields": {
+            "name": "Van Gogh",
+            "image": "catalog/vangohg.png"
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 110,
+        "fields": {
+            "name": "Matiss",
+            "image": "catalog/matiss.png"
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 111,
+        "fields": {
+            "name": "Marabu",
+            "image": "catalog/marabu.png"
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 112,
+        "fields": {
+            "name": "Kremer",
+            "image": "catalog/Kremer.png"
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 113,
+        "fields": {
+            "name": "Fimo",
+            "image": "catalog/FIMO.png"
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 114,
+        "fields": {
+            "name": "Kancler",
+            "image": "catalog/Kancler.png"
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 115,
+        "fields": {
+            "name": "Expert",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 116,
+        "fields": {
+            "name": "ROSA STREAM",
+            "image": null
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 117,
+        "fields": {
+            "name": "UHU",
+            "image": "catalog/UHU.png"
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 118,
+        "fields": {
+            "name": "Kissточка",
+            "image": "catalog/kiss.png"
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 119,
+        "fields": {
+            "name": "KUM",
+            "image": "catalog/KUM1.png"
+        }
+    },
+    {
+        "model": "products.manufacturer",
+        "pk": 120,
+        "fields": {
+            "name": "Finetec",
+            "image": "catalog/finetec.png"
+        }
+    }
+]

@@ -1,0 +1,128 @@
+[
+    {
+        "model": "products.attributegroup",
+        "pk": 7,
+        "fields": {
+            "name": "Пензлі"
+        }
+    },
+    {
+        "model": "products.attributegroup",
+        "pk": 8,
+        "fields": {
+            "name": "Папір"
+        }
+    },
+    {
+        "model": "products.attributegroup",
+        "pk": 9,
+        "fields": {
+            "name": "Фарба"
+        }
+    },
+    {
+        "model": "products.attributegroup",
+        "pk": 10,
+        "fields": {
+            "name": "Олівці"
+        }
+    },
+    {
+        "model": "products.attributegroup",
+        "pk": 11,
+        "fields": {
+            "name": "Пасти. Гелі. Грунти. Проклейкі"
+        }
+    },
+    {
+        "model": "products.attributegroup",
+        "pk": 12,
+        "fields": {
+            "name": "Полотно на підрамнику"
+        }
+    },
+    {
+        "model": "products.attributegroup",
+        "pk": 13,
+        "fields": {
+            "name": "Графіка"
+        }
+    },
+    {
+        "model": "products.attributegroup",
+        "pk": 14,
+        "fields": {
+            "name": "Живопис"
+        }
+    },
+    {
+        "model": "products.attributegroup",
+        "pk": 15,
+        "fields": {
+            "name": "Заготовки"
+        }
+    },
+    {
+        "model": "products.attributegroup",
+        "pk": 16,
+        "fields": {
+            "name": "Пастель"
+        }
+    },
+    {
+        "model": "products.attributegroup",
+        "pk": 17,
+        "fields": {
+            "name": "Бренд"
+        }
+    },
+    {
+        "model": "products.attributegroup",
+        "pk": 18,
+        "fields": {
+            "name": "Каліграфія"
+        }
+    },
+    {
+        "model": "products.attributegroup",
+        "pk": 19,
+        "fields": {
+            "name": "Основа"
+        }
+    },
+    {
+        "model": "products.attributegroup",
+        "pk": 20,
+        "fields": {
+            "name": "Моделювання"
+        }
+    },
+    {
+        "model": "products.attributegroup",
+        "pk": 21,
+        "fields": {
+            "name": "Декор"
+        }
+    },
+    {
+        "model": "products.attributegroup",
+        "pk": 23,
+        "fields": {
+            "name": "Творчість для дітей"
+        }
+    },
+    {
+        "model": "products.attributegroup",
+        "pk": 24,
+        "fields": {
+            "name": "Скульптура"
+        }
+    },
+    {
+        "model": "products.attributegroup",
+        "pk": 26,
+        "fields": {
+            "name": "Ліногравюра"
+        }
+    }
+]

@@ -1,0 +1,38 @@
+@import "./products-index", 
+        "./promotion-index";
+
+
+// Гриды для index.html страницы + настройки банера
+.main-index{
+    grid-area: main;
+    margin: 0 0 0 40px;
+    &__wrap{
+        padding: 91px 15px 0px 15px;
+        flex-grow: 1;
+        display: grid;
+        grid-template-columns: 25% calc(100% / 4 * 3);
+        grid-template-areas: "aside main";
+    }
+    &__banner{
+        min-height: 500px;
+        &__list{
+            min-height: 500px;
+        }
+        &__slide{
+            height: 500px;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            &__img{
+                width: 100%;
+                object-fit: cover;
+                &__wrap{
+                    width: 600px;
+                }
+            }
+        }
+    }
+}
+
+
+

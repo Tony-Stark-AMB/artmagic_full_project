@@ -1,0 +1,35 @@
+@import "./banner-category", // Левый банер с фото
+        "./brands-category", // Правый банер с брендами
+        "./others-category", // Блок підкатегорії
+        "./products-category"; // Блок с продуктами
+        
+// Основные стили к странице category.html
+.main-category{
+    margin: 40px 0 0 0;
+    &__wrap{
+        display: block;
+        padding: 100px 0 40px 0;
+        flex-grow: 1;
+    }
+    &__title{
+        margin: 40px 0 0 0;
+    }
+    &__content{
+        display: flex;
+        justify-content: space-between;
+        margin: 40px 0 80px 0;
+    }
+}
+
+// Недочеты каруселей
+.swiper{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+
+
+
+
+

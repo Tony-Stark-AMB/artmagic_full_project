@@ -1,0 +1,498 @@
+[
+    {
+        "model": "products.filter",
+        "pk": 64,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "Lana"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 50,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "Cretacolor"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 49,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "Bic"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 14,
+        "fields": {
+            "filter_group_id": 3,
+            "name": "75х105"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 48,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "Buromax"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 47,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "Pilot"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 9,
+        "fields": {
+            "filter_group_id": 3,
+            "name": "56х76"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 8,
+        "fields": {
+            "filter_group_id": 3,
+            "name": "70х100"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 46,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "Axent"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 13,
+        "fields": {
+            "filter_group_id": 3,
+            "name": "50х70"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 16,
+        "fields": {
+            "filter_group_id": 3,
+            "name": "21х29,7"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 43,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "Koh-I-Noor"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 25,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "Нідерланди"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 23,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "SANTI"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 21,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "Японія"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 20,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "D.K.ART & CRAFT"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 11,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "Польща"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 1,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "FABRIANO"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 2,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "Canson"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 3,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "ГОЗНАК"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 18,
+        "fields": {
+            "filter_group_id": 3,
+            "name": "29,7х42"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 19,
+        "fields": {
+            "filter_group_id": 3,
+            "name": "60х84"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 29,
+        "fields": {
+            "filter_group_id": 3,
+            "name": "14,8х21"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 30,
+        "fields": {
+            "filter_group_id": 3,
+            "name": "23х30"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 4,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "Smiltainis"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 5,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "Лилия-Холдинг"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 31,
+        "fields": {
+            "filter_group_id": 4,
+            "name": "Бренд"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 53,
+        "fields": {
+            "filter_group_id": 5,
+            "name": "Гелі"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 52,
+        "fields": {
+            "filter_group_id": 5,
+            "name": "Пасти"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 40,
+        "fields": {
+            "filter_group_id": 5,
+            "name": "Моноліт"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 39,
+        "fields": {
+            "filter_group_id": 5,
+            "name": "Олійні"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 38,
+        "fields": {
+            "filter_group_id": 5,
+            "name": "Чорнильні"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 37,
+        "fields": {
+            "filter_group_id": 5,
+            "name": "Кольорові"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 41,
+        "fields": {
+            "filter_group_id": 6,
+            "name": "Поштучно"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 42,
+        "fields": {
+            "filter_group_id": 6,
+            "name": "В наборі"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 6,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "St. Cuthberts Mill"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 10,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "ROSA"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 12,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "Франція"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 36,
+        "fields": {
+            "filter_group_id": 5,
+            "name": "Пастельні"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 22,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "Україна"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 24,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "Італія"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 26,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "ЗХК"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 27,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "США"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 32,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "SCHIZZI"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 44,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "Bruna"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 35,
+        "fields": {
+            "filter_group_id": 5,
+            "name": "Для малюнку"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 34,
+        "fields": {
+            "filter_group_id": 5,
+            "name": "Акварельні"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 33,
+        "fields": {
+            "filter_group_id": 5,
+            "name": "Графітні"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 45,
+        "fields": {
+            "filter_group_id": 5,
+            "name": "Механічні"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 57,
+        "fields": {
+            "filter_group_id": 7,
+            "name": "Бавовна"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 56,
+        "fields": {
+            "filter_group_id": 7,
+            "name": "Льон"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 54,
+        "fields": {
+            "filter_group_id": 5,
+            "name": "Грунти"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 55,
+        "fields": {
+            "filter_group_id": 5,
+            "name": "Проклейки"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 59,
+        "fields": {
+            "filter_group_id": 7,
+            "name": "Дрібне зерно"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 60,
+        "fields": {
+            "filter_group_id": 7,
+            "name": "Середнє зерно"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 61,
+        "fields": {
+            "filter_group_id": 7,
+            "name": "Крупне зерно"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 62,
+        "fields": {
+            "filter_group_id": 7,
+            "name": "Джут"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 63,
+        "fields": {
+            "filter_group_id": 8,
+            "name": "160 г/м2"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 51,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "Pentart"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 58,
+        "fields": {
+            "filter_group_id": 5,
+            "name": "Економ"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 65,
+        "fields": {
+            "filter_group_id": 5,
+            "name": "Для пастелі"
+        }
+    },
+    {
+        "model": "products.filter",
+        "pk": 66,
+        "fields": {
+            "filter_group_id": 1,
+            "name": "Derwent"
+        }
+    }
+]

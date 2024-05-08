@@ -1,0 +1,46 @@
+import { Swiper, Navigation, Pagination } from "./import.js";
+
+const {categoryBanner, brandsBanner, productsCarousel} = {
+ 
+    categoryBanner: {
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      speed: 2000,
+      loop: true,
+    },
+
+    brandsBanner: {
+      autoplay: {
+        delay: 4000,
+      },
+      direction: "vertical",
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      speed: 2000,
+      loop: true,
+    },
+
+    productsCarousel: {
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        renderBullet: function (index, className) {
+          return '<span class="' + className + '">' + (index + 1) + "</span>";
+        },
+      },
+    },
+
+    modules: [Navigation, Pagination]
+}
+
+new Swiper(".category-banner", categoryBanner);
+new Swiper(".category-brands", brandsBanner);
+new Swiper(".category-products__carousel", productsCarousel); 

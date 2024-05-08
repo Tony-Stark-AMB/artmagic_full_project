@@ -1,0 +1,176 @@
+{% load static %}
+
+<!--<div class="card mb-3 text-bg-light shadow-lg">-->
+<!--    {% for cart in carts %}-->
+<!--        <div class="card-header">-->
+<!--            <h5 class="card-title">{{ cart.product.name }}</h5>-->
+<!--        </div>-->
+<!--        <ul class="list-group list-group-flush">-->
+<!--            <li class="list-group-item">-->
+<!--                <div class="row text-center">-->
+<!--                    <div class="col p-0">-->
+<!--                        <div class="input-group">-->
+<!--                            <span class="input-group-btn">-->
+<!--                                <button type="button" class="btn btn-dark btn-sm decrement"-->
+<!--                                    data-cart-id="{{ cart.id }}"-->
+<!--                                    data-cart-change-url="{% url "cart:cart_change" %}">-->
+<!--                                    {% csrf_token %}-->
+<!--                                    -</button>-->
+<!--                            </span>-->
+<!--                            <input type="text" class="form-control number" value="{{ cart.quantity }}"-->
+<!--                                readonly>-->
+<!--                            <span class="input-group-btn">-->
+<!--                                <button type="button" class="btn btn-dark btn-sm increment"-->
+<!--                                    data-cart-id="{{ cart.id }}"-->
+<!--                                    data-cart-change-url="{% url "cart:cart_change" %}">-->
+<!--                                    {% csrf_token %}-->
+<!--                                    +</button>-->
+<!--                            </span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col p-0">-->
+<!--                        <p>x {{ cart.product.sell_price }} = </p>-->
+<!--                    </div>-->
+<!--                    <div class="col p-0"><strong> {{cart.products_price}} $</strong></div>-->
+<!--                    <div class="col p-0">-->
+<!--                        <a href="{% url "cart:cart_remove" %}" class="remove-from-cart"-->
+<!--                        data-cart-id="{{ cart.id }}">-->
+<!--                            {% csrf_token %}-->
+<!--                            <img class="mx-1" src="{% static "deps/icons/trash3-fill.svg" %}"-->
+<!--                                alt="Catalog Icon" width="16" height="16">-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    {% endfor %}-->
+<!--</div>-->
+<!--<div class="card mb-3 shadow-lg">-->
+<!--    <div class="card-footer">-->
+<!--        <p class="float-left">Итого <strong>{{ carts.total_quantity }}</strong> товар(а) на сумму</p>-->
+<!--        <h4 class="float-left"><strong>{{ carts.total_price }} $</strong></h4>-->
+<!--    </div>-->
+<!--</div>-->
+<!--{% if carts and not orders%}-->
+<!--<a class="btn btn-dark" href="{% url "orders:create_order" %}">-->
+<!--    Оформить заказ-->
+<!--</a>-->
+<!--{% endif %}-->
+
+<!--_____________________--------------_______________________-->
+<div class="modal fade modal__basket" id="basket__modal" tabindex="-1" aria-labelledby="basket__modal" aria-hidden="true">
+        <div class="modal-dialog basket__modal">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Кошик</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body basket__modal__body">
+                <div class="swiper basket__modal__swiper">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide">
+                        <div class="basket__modal__cart" id="basket-products">
+                            <!-- <div class="cart__product">
+                                <div class="cart__product__overlook">
+                                    <div class="overlook__img__wrap">
+                                        <img class="overlook__img" src="./assets/products/product-1.png" alt="">
+                                    </div>
+                                    <p class="overlook__name">
+                                        product 1
+                                    </p>
+                                </div>
+                                <div class="cart__product__btns">
+                                    <button class="btns__btn" data-value="-">-</button>
+                                    <input class="btns__count" value="1"/>
+                                    <button class="btns__btn" data-value="+">+</button>
+                                </div>
+                                <div class="cart__product__price">500.00 грн</div>
+                                <button class="cart__product__garbage__wrap">
+                                    <svg class="cart__product__garbage" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
+                                        <path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320
+                                        32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32
+                                        128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0
+                                        8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16
+                                        16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2
+                                        16-16V208c0-8.8-7.2-16-16-16z"/>
+                                    </svg>
+                                </button>
+                            </div> -->
+                            <!-- <div class="cart__product" >
+                                <div class="cart__product__overlook">
+                                    <div class="overlook__img__wrap">
+                                        <img class="overlook__img" src="./assets/products/product-1.png" alt="">
+                                    </div>
+                                    <p class="overlook__name">
+                                        product 1
+                                    </p>
+
+                                </div>
+                                <div class="cart__product__btns">
+                                    <button class="btns__btn">-</button>
+                                    <input class="btns__count" value="1"/>
+                                    <button class="btns__btn">+</button>
+                                </div>
+                                <div class="cart__product__price">500.00 грн</div>
+                            </div>
+                            <button class="btn btn-primary basket__modal__btn" onclick="window.location.href = 'catalog.html'">
+                                Повернутись до покупок
+                            </button> -->
+                        </div>
+                      </div>
+                      <div class="swiper-slide">
+                        <div class="order-choose">
+                            <h4 class="order-choose__title">Оберіть спосіб платежу</h4>
+                            <div class="order-choose__content">
+                                <input class="card-input" id="card" name="payment" checked="true" type="radio">
+                                <label for="card">
+                                    <svg class="card-img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor">
+                                        <path d="M64 32C28.7 32 0 60.7 0 96v32H576V96c0-35.3-28.7-64-64-64H64zM576 224H0V416c0 35.3
+                                         28.7 64 64 64H512c35.3 0 64-28.7 64-64V224zM112 352h64c8.8 0 16 7.2 16 16s-7.2 16-16
+                                          16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm112 16c0-8.8 7.2-16 16-16H368c8.8 0 16 7.2 16
+                                           16s-7.2 16-16 16H240c-8.8 0-16-7.2-16-16z"/></svg>
+                                </label>
+                                <input class="wallet-input" id="wallet" name="payment"  type="radio">
+                                <label for="wallet">
+                                    <svg class="wallet-img" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 576 512">
+                                        <path d="M312 24V34.5c6.4 1.2 12.6 2.7 18.2 4.2c12.8 3.4 20.4 16.6 17 29.4s-16.6 20.4-29.4
+                                         17c-10.9-2.9-21.1-4.9-30.2-5c-7.3-.1-14.7 1.7-19.4 4.4c-2.1 1.3-3.1 2.4-3.5 3c-.3 .5-.7
+                                          1.2-.7 2.8c0 .3 0 .5 0 .6c.2 .2 .9 1.2 3.3 2.6c5.8 3.5 14.4 6.2 27.4 10.1l.9 .3c11.1 3.3
+                                           25.9 7.8 37.9 15.3c13.7 8.6 26.1 22.9 26.4 44.9c.3 22.5-11.4 38.9-26.7 48.5c-6.7 4.1-13.9
+                                        7-21.3 8.8V232c0 13.3-10.7 24-24 24s-24-10.7-24-24V220.6c-9.5-2.3-18.2-5.3-25.6-7.8c-2.1-.7-4.1-1.4-6-2c-12.6-4.2-19.4-17.8-15.2-30.4s17.8-19.4
+                                         30.4-15.2c2.6
+                                         .9 5 1.7 7.3 2.5c13.6 4.6 23.4 7.9 33.9 8.3c8 .3 15.1-1.6 19.2-4.1c1.9-1.2 2.8-2.2 3.2-2.9c.4-.6
+                                          .9-1.8 .8-4.1l0-.2c0-1 0-2.1-4-4.6c-5.7-3.6-14.3-6.4-27.1-10.3l-1.9-.6c-10.8-3.2-25-7.5-36.4-14.4c-13.5-8.1-26.5-22-26.6-44.1c-.1-22.9
+                                           12.9-38.6 27.7-47.4c6.4-3.8 13.3-6.4 20.2-8.2V24c0-13.3 10.7-24 24-24s24 10.7 24 24zM568.2 336.3c13.1 17.8 9.3 42.8-8.5 55.9L433.1
+                                            485.5c-23.4 17.2-51.6 26.5-80.7 26.5H192 32c-17.7 0-32-14.3-32-32V416c0-17.7 14.3-32 32-32H68.8l44.9-36c22.7-18.2 50.9-28 80-28H272h16
+                                             64c17.7 0 32 14.3 32 32s-14.3 32-32 32H288 272c-8.8 0-16 7.2-16 16s7.2 16 16 16H392.6l119.7-88.2c17.8-13.1 42.8-9.3 55.9 8.5zM193.6
+                                              384l0 0-.9 0c.3 0 .6 0 .9 0z"/>
+                                        </svg>
+                                </label>
+                            </div>
+                            <div class="order-choose__form">
+                                <input id="card-input" class="order-choose__input" type="tel" placeholder="Номер картки">
+                                <input class="order-choose__input" type="text" placeholder="ФІО">
+                                <input class="order-choose__input" type="tel" placeholder="Номер телефону">
+                                <input class="order-choose__input" type="text" placeholder="Адрес">
+                                <button type="submit" class="btn btn-primary">Замовити</button>
+                            </div>
+                        </div>
+
+                      </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer basket__modal-ooter">
+                <div class="modal-footer__btns">
+                    <div class="btn btn-primary swiper-btn-next">Перейти до оформлення</div>
+                    <div class="btn btn-primary swiper-btn-prev">Повернутись до кошика</div>
+                    <button class="btn btn-primary basket__modal__btn" onclick="window.location.href = 'catalog.html'">
+                        Повернутись до покупок
+                    </button>
+                </div>
+                <p class="modal-footer__text"></p>
+            </div>
+        </div>
+        </div>

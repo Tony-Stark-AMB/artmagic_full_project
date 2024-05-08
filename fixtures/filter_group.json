@@ -1,0 +1,51 @@
+[
+    {
+        "model": "products.filtergroup",
+        "pk": 1,
+        "fields": {
+            "name": "Виробник"
+        }
+    },
+    {
+        "model": "products.filtergroup",
+        "pk": 3,
+        "fields": {
+            "name": "Формат"
+        }
+    },
+    {
+        "model": "products.filtergroup",
+        "pk": 4,
+        "fields": {
+            "name": "Бренд"
+        }
+    },
+    {
+        "model": "products.filtergroup",
+        "pk": 5,
+        "fields": {
+            "name": "Призначення"
+        }
+    },
+    {
+        "model": "products.filtergroup",
+        "pk": 6,
+        "fields": {
+            "name": "Пакування"
+        }
+    },
+    {
+        "model": "products.filtergroup",
+        "pk": 7,
+        "fields": {
+            "name": "Матеріал"
+        }
+    },
+    {
+        "model": "products.filtergroup",
+        "pk": 8,
+        "fields": {
+            "name": "Щільність"
+        }
+    }
+]

@@ -1,0 +1,599 @@
+@import "./colors";
+
+.header{
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1001;
+    background-color: #fff;
+    width: 100%;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.08), 0 2px 4px 0 rgba(0, 0, 0, 0.12);
+}
+
+.header-main{
+   
+    &__content{
+        padding: 8px;
+        width: 96%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+ 
+}
+
+.header-catalog{
+    width: 8%;
+    margin: 0 10px;
+    &__btn{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    padding: 8px;
+    &__icon{
+        width: 30px;
+        height: 30px;
+        color: $c6;
+    }
+    &__text{
+
+    }
+    }
+}
+
+.header-call{
+    margin-right: 20px;
+    &__wrap{
+        width: 22%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        @media (max-width: 1200px) {
+            width: 50%;
+            justify-content: center;
+        }
+        @media (max-width: 768px) {
+            width: 70%;
+        }
+        
+    }
+    &__top{
+        width: 22%;
+        margin-bottom: 5px;
+        &__content{
+            padding: 8px 0;   
+            display: flex;
+            justify-content: flex-end; 
+         
+    
+        }
+        &__link{
+            border: none;
+            outline: none;
+            background-color: $c6;
+            padding: 0 13px;
+            color: $c1;
+            border-right: 1px solid $c5;
+        }
+    }
+    &__main{
+        display: flex;
+        align-items: center;
+    }
+   
+    &__text,
+    &__link{
+        @media (max-width: 576px){
+            font-size: 12px;
+        }
+    }
+    &__btn{
+        border: none;
+        outline: none;
+        background: $c6;
+        padding: 0;
+
+    }
+}
+
+    
+.header-basket{
+    &__icon{
+        width: 30px;
+        color: $c6;
+        &__wrap{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background-color: $c17; 
+            cursor: pointer;
+            & .header-basket__icon{
+                transition: transform .3s ease;
+                
+            }
+            &:hover .header-basket__icon{
+                transform: scale(1.1);
+            }
+        }
+    }  
+
+    &__wrap{
+        margin-left: 10px;
+        width: 5%;
+    }
+}
+
+
+
+.mobile-menu{
+    position: absolute;
+    width: 100%;
+    height: 0;
+    top: 0;
+    left: 0;
+    transition: height 1s ease, z-index 1.2s ease;
+    z-index: -1;
+    &.show{
+        height: 100vh;
+        z-index: 1000;
+    }
+    &__container{
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 60px 15px 0 15px;
+    }
+    &__list{
+        opacity: 0;
+        font-size: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        transition: opacity 1.3s ease;
+        height: 25vh;
+        &.show{
+            margin: 40px 0;
+            opacity: 1;
+        }
+    }
+    &__item{
+        margin: 15px 0;
+        transition: translate 1.5s ease;
+        color: $c8;
+        &.show{
+            transform: translateY(-100px);
+        }
+    }
+    &__link{
+        color: $c9;
+    }
+    &__icon-close{
+        width: 30px;
+        height: 30px;
+        visibility: hidden;
+        &.show{
+            visibility: visible;
+        }
+        &__wrap{
+            display: flex;
+            justify-content: flex-end;
+            margin: 40px 0;
+        }
+    }
+}
+
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: $c8; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+  
+  /* The navigation menu links */
+  .sidenav{
+    & > a,
+    & > li{
+        text-decoration: none;
+        font-size: 15px;
+        color: $c2;
+        display: inline-block;
+        transition: 0.3s;
+        padding: 4px 0;
+    }
+
+  } 
+  
+  /* When you mouse over the navigation links, change their color */
+  .sidenav > li:hover > a,
+  .sidenav > li:hover > img{
+    color: #f1f1f1;
+  }
+  
+  /* Position and style the close button (top right corner) */
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+  .full-content {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: margin-left .5s;
+  }
+  
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+.header-sidemenu{
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    &-item{
+        word-wrap: break-word;
+        cursor: pointer;
+        transition: color .3s ease;
+        &:hover,
+        &:hover > svg{
+            color: $c6;
+        }
+        
+    }
+    &-item > svg{
+        width: 15px;
+        height: 15px;
+    }
+    &-submenu{
+        position: relative;
+        & ul{
+            position: relative;
+            display: none;
+            left: 5%;
+            &.show{
+                display: block;
+                & li > a{
+                    color: $c9;
+                    transition: color .3s ease;
+                    
+                }
+                & li > a:hover{
+                    color: $c6;
+                }
+            }
+            
+        }
+    }
+}
+
+.header-search{
+    width: 30%;
+  
+    &__input{
+        width: 100%;
+        height: 35px;
+        border-radius: 8px;
+        outline: none;
+        border: 1px solid $c5;
+        padding-left: 10px;
+        &__wrap{
+            position: relative;
+        }
+        &:focus{
+            border: 1px solid $c9;
+        }
+        &__icon{
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 20%;
+            right: 5%;
+        }
+    }
+}
+
+.login__modal,
+.registration__modal{
+    &__form{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        height: 30vh;
+        & input[type="text"],
+        & input[type="password"]{
+            width: 80%;
+            padding: 5px 0 5px 10px;
+            border-radius: 8px;
+            outline: none;
+            border: 1px solid $c5;
+        }
+       
+    }
+    &__link{
+        transition: color .3s ease;
+        &:hover{
+            color: $c9;
+        }
+        &__wrap{
+            display: flex;
+            width: 60%;
+            justify-content: space-between;
+        }   
+    }
+}
+
+.swiper{
+    margin: 0;
+}
+
+.login__registration{
+    height: 350px;
+}
+
+.call__modal{
+    &__form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        height: 30vh;
+        & input[type="text"],
+        & input[type="telephone"]{
+            width: 80%;
+            padding: 5px 0 5px 10px;
+            border-radius: 8px;
+            outline: none;
+            border: 1px solid $c5;
+        }
+        
+    }
+    &__input__wrap{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        & input[type="text"]{
+            width: 45%;
+            padding: 5px 0 5px 10px;
+            border-radius: 8px;
+            outline: none;
+            border: 1px solid $c5;
+        }
+    }
+}
+
+
+
+.basket__modal{
+    max-width: 700px;
+    overflow-y: initial !important;
+    &__body{
+        overflow-y: auto;
+        height: 340px;
+    }
+    &__swiper{
+
+    }
+    &__cart{
+        // overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        &__text{
+            font-size: 24px;
+            font-weight: 700;
+        }
+    }
+    &__footer{
+        display: flex;
+        justify-content: space-between;
+        font-size: 24px;
+        font-weight: 700;
+    }
+    &__swiper .swiper-slide{
+        max-width: 700px;
+    }
+    &__swiper .swiper-btn-next,
+    &__swiper .swiper-btn-prev{
+        background-color: $c17;
+    }
+
+    &__btn{
+        align-self: flex-end;
+    }
+
+}
+
+.cart__product{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+
+    &__overlook{
+        width: 30%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__btns{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__price{
+        font-size: 20px;
+    }
+    &__garbage{
+        width: 25px;
+        height: 25px;
+        color: $c6;
+        &__wrap{
+            padding: 5px;
+            border: none;
+            outline: none;
+            background-color: $c17;
+            border-radius: 8px;
+            & .cart__product__garbage{
+                transition: color .3s ease;   
+            }
+            &:hover .cart__product__garbage{
+                color: $c9;
+            }
+        }
+    }
+}
+
+.overlook{
+    &__img{
+        width: 100%;
+        object-fit: cover;
+        &__wrap{
+            width: 100px;
+            height: 100px;
+        }
+    }
+}
+
+.modal-footer{
+    &__btns{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__text{
+        font-weight: 700;
+        font-size: 24px;
+    }
+}
+
+.btns{
+    &__btn,
+    &__count{
+        width: 30px;
+        height: 30px;
+    }
+    &__btn{
+        display: grid;
+        place-items: center;
+        border: none;
+        outline: none;
+        border: 1px solid $c15;
+        background-color: $c5;
+        transition: background-color .3s ease;
+        &:hover{
+            background-color: #9b9b9b;
+        }
+    }
+    &__count{
+        text-align: center;
+        border-right: none;
+        border-left: none;
+        border-top: 1px solid $c15;
+        border-bottom: 1px solid $c15;
+    }
+}
+
+.order-choose{
+    &__content{
+        width: 40%;
+        margin: 20px auto;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        & input{
+            display: none;
+        }
+    }
+    &__title{
+        text-align: center;
+    }
+    &__form{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        min-height: 28vh;
+    }
+    &__input{
+        width: 60%;
+        padding: 4px 4px 4px 8px;
+        border-radius: 8px;
+        outline: none;
+        border: none;
+        border: 1px solid $c5;
+    }
+}
+
+.card{
+    &-img{
+    width: 50px;
+    color: $c5;
+    cursor: pointer;
+    }
+}
+
+.wallet{
+    &-img{
+        width: 45px;
+        height: 55px;
+        color: $c5;
+        cursor: pointer;
+    }
+}
+
+
+
+.lock-small,
+.user-small{
+    font-size: 12px;
+    margin-right: 7px;
+}
+
+.arrow-icon{
+    width: 35px;
+    height: 35px;
+}
+
+
+.catalog-icon{
+    width: 25px;
+}
+
+.swiper-pagination-bullet {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+    color: #000;
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.swiper-pagination-bullet-active {
+color: #fff;
+background: #007aff;
+}

@@ -1,0 +1,127 @@
+.main{
+    &__wrap{
+        padding: 151px 15px 0px 15px;
+        flex-grow: 1;
+    }
+}
+
+.product-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.product-image {
+    width: 100%;
+    object-fit: cover;
+    &__content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-right: 1px solid $c5;
+        border-bottom: 1px solid $c5;
+        padding: 10px;
+        border-radius: 0 0 16px 0;
+        box-shadow: inset -3px -3px 4px rgba(0, 0, 0, 0.1); /* Adjust the values as needed */
+    }
+    &__wrap{
+        width: 250px;
+        margin: 50px 0;
+        position: relative;
+    }
+}
+
+.product-thumbnails{
+    width: 100%;
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.main-image {
+    width: 100%;
+    height: auto;
+}
+
+
+
+.thumbnail {
+    width: 100%;
+    object-fit: cover;
+    height: auto;
+    &__wrap{
+        width: 120px;
+        border: 1px solid $c5;
+        padding: 20px;
+        border-radius: 8px;
+    }    
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    &__buttons{
+        width: 50%;
+        display: flex;
+        justify-content: space-evenly;
+        margin: 20px 0;
+    }
+    &__btn{
+        &__add-to-cart,
+        &__continue-shopping{
+            background-color: $c17;
+            padding: 5px 10px;
+            color: $c6;
+            border: none;
+            cursor: pointer;
+            &:hover{
+                
+            }
+        }
+
+    }
+}
+
+.product-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.product-description {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+
+
+
+
+.product-specs {
+    margin: 80px 0;
+}
+
+.product-specs h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.product-specs table {
+    width: 100%;
+}
+
+.product-specs table td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.product-specs table td:first-child {
+    font-weight: bold;
+}

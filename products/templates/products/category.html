@@ -1,0 +1,179 @@
+{% extends 'products/base.html' %}
+{% load static %}
+{% load mptt_tags %}
+
+    {% block css %}
+    <link rel="stylesheet" href="{% static 'css/category.css' %}">{% endblock %}
+
+        {% block content %}
+        <div class="main-category__wrap container__custom">
+            <main class="main-category">
+                <h1 class="main-category__title">
+                    {{ node.name }}
+                </h1>
+                <div class="main-category__content">
+                    <section data-aos="fade-left" class="swiper category-banner">
+                        <div class="swiper-wrapper category-banner__list">
+                          <div class="swiper-slide category-banner__item">
+                            <img class="category-banner__img" src="{% static 'assets/category-carousel/slide-1.jpg' %}" alt="">
+                          </div>
+                          <div class="swiper-slide category-banner__item">
+                            <img class="category-banner__img" src="{% static 'assets/category-carousel/slide-2.jpg' %}" alt="">
+                          </div>
+                          <div class="swiper-slide category-banner__item">
+                            <img class="category-banner__img" src="{% static 'assets/category-carousel/slide-3.jpg' %}" alt="">
+                          </div>
+                          <div class="swiper-slide category-banner__item">
+                            <img class="category-banner__img" src="{% static 'assets/category-carousel/slide-4.jpg' %}" alt="">
+                          </div>
+                          <div class="swiper-slide category-banner__item">
+                            <img class="category-banner__img" src="{% static 'assets/category-carousel/slide-5.jpg' %}" alt="">
+                          </div>
+                          <div class="swiper-slide category-banner__item">
+                            <img class="category-banner__img" src="{% static 'assets/category-carousel/slide-6.jpg' %}" alt="">
+                          </div>
+                          <div class="swiper-slide category-banner__item">
+                            <img class="category-banner__img" src="{% static 'assets/category-carousel/slide-7.jpg' %}" alt="">
+                          </div>
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </section>
+                    <section data-aos="fade-right" class="swiper category-brands">
+                        <div class="swiper-wrapper">
+                          <div class="swiper-slide">
+                            <div class="category-brands__item">
+                                <p class="category-brands__title">
+                                    Папір "Назва бренду"
+                                </p>
+                                <img class="category-brands__img" src="{% static 'assets/category-brand/brand-1.jpg' %}" alt="">
+                            </div>
+                          </div>
+                          <div class="swiper-slide">
+                            <div class="category-brands__item">
+                                <p class="category-brands__title">
+                                    Папір "Назва бренду"
+                                </p>
+                                <img class="category-brands__img" src="{% static 'assets/category-brand/brand-2.jpg' %}" alt="">
+                            </div>
+                          </div>
+                          <div class="swiper-slide">
+                            <div class="category-brands__item">
+                                <p class="category-brands__title">
+                                    Папір "Назва бренду"
+                                </p>
+                                <img class="category-brands__img" src="{% static 'assets/category-brand/brand-4.jpg' %}" alt="">
+                            </div>
+                          </div>
+                          <div class="swiper-slide">
+                            <div class="category-brands__item">
+                                <p class="category-brands__title">
+                                    Папір "Назва бренду"
+                                </p>
+                                <img class="category-brands__img" src="{% static 'assets/category-brand/brand-5.avif' %}" alt="">
+                            </div>
+                          </div>
+                          <div class="swiper-slide">
+                            <div class="category-brands__item">
+                                <p class="category-brands__title">
+                                    Папір "Назва бренду"
+                                </p>
+                                <img class="category-brands__img" src="{% static 'assets/category-brand/brand-5.webp' %}" alt="">
+                            </div>
+                          </div>
+                          <div class="swiper-slide">
+                            <div class="category-brands__item">
+                                <p class="category-brands__title">
+                                    Блокноти "Назва бренду"
+                                </p>
+                                <img class="category-brands__img" src="{% static 'assets/category-brand/brand-6.jpg' %}" alt="">
+                            </div>
+                          </div>
+                          <div class="swiper-slide">
+                            <div class="category-brands__item">
+                                <p class="category-brands__title">
+                                    Блокноти "Назва бренду"
+                                </p>
+                                <img class="category-brands__img" src="{% static 'assets/category-brand/brand-7.webp' %}" alt="">
+                            </div>
+                          </div>
+                          <div class="swiper-slide">
+                            <div class="category-brands__item">
+                                <p class="category-brands__title">
+                                    Блокноти "Назва бренду"
+                                </p>
+                                <img class="category-brands__img" src="{% static 'assets/category-brand/brand-8.webp' %}" alt="">
+                            </div>
+                          </div>
+                          <div class="swiper-slide">
+                            <div class="category-brands__item">
+                                <p class="category-brands__title">
+                                    Картон "Назва бренду"
+                                </p>
+                                <img class="category-brands__img" src="{% static 'assets/category-brand/brand-9.webp' %}" alt="">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </section>
+                </div>
+                <section data-aos="fade-down" class="category-others">
+                    <div class="category-others">
+                        <h3 class="category-others__title">Підкатегорії</h3>
+                        <ul class="category-others__list">
+                            {% for sub_category in sub_categories %}
+                            <li class="category-others__item">
+                                <a class="category-others__link" href="{% url 'sub_product' slug=sub_category.slug %}">
+                                    <div class="category-others__img__wrap">
+                                        {% if sub_category.image %}
+                                        <img class="category-others__img" src="{{ sub_category.image.url }}" alt="{{ sub_category.name }}">
+                                        {% else %}
+                                        <!-- Если изображение отсутствует, вы можете добавить здесь замену или оставить пустым -->
+                                        <img class="category-others__img" src="{% static 'placeholder_image.jpg' %}" alt="No Image">
+                                        {% endif %}
+                                    </div>
+                                    <span class="category-others__link__text">{{ sub_category.name }}</span>
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </section>
+                <section class="products-category">
+                    <h2 class="products-category__title">Каталог</h2>
+                    <div class="products-category__list">
+                        {% for product in page_obj %}
+                            <div class="products-category__item">
+                                <div class="products-category__item__img__wrap">
+                                    {% if product.image %}
+                                        <img class="products-category__item__img" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                    {% else %}
+                                        <img class="products-category__item__img" src="{% static 'placeholder_image.jpg' %}" alt="No Image">
+                                    {% endif %}
+                                </div>
+                                <p class="products-category__item__title">{{ product.name }}</p>
+                                <span class="products-category__item__price">{{ product.price }} грн</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Пагинация -->
+                    <div class="pagination">
+                        {% if page_obj.has_previous %}
+                            <a href="?page=1"><<</a>
+                            <a href="?page={{ page_obj.previous_page_number }}">Попередня</a>
+                        {% endif %}
+                        <span class="current">
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                        </span>
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">Наступна</a>
+                            <a href="?page={{ page_obj.paginator.num_pages }}">>></a>
+                        {% endif %}
+                    </div>
+                </section>
+        
+            </main>
+        </div>
+        </div>
+
+      {% endblock %}

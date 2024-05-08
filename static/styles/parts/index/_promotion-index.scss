@@ -1,0 +1,33 @@
+// Нижние 4 фото "Акційні пропозиції"
+
+.promotion{
+    &__title{
+        text-align: center;
+        margin: 40px 0;
+    }
+    &__list{
+        width: 70%;
+        margin: 0 auto;
+        display: grid;
+        gap: 40px;
+        grid-template-columns: 50% 50%;
+        grid-row: auto auto;
+    }
+
+    &__img{
+        width: 400px;
+        height: 300px;
+        object-fit: cover;
+        transition: transform .3s ease-in;
+        cursor: pointer;
+        &:hover{
+            transform: scale(1.1);
+        }
+        &__wrap{
+            width: 400px;
+            height: 300px;  
+            overflow: hidden;
+        }
+    }
+
+}

@@ -1,0 +1,16 @@
+// Блок левого банера на category.html (горизонтальная карусель с картинками)
+.category-banner{ 
+    width: 45%;
+    height: 400px;
+    margin: 20px 0 0 0;
+    &__list{
+        width: 100%;
+    }
+    &__item{
+        width: 100%;
+    }
+    &__img{
+        width: 100%;
+        object-fit: cover;
+    }
+}
