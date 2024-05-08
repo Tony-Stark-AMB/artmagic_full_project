@@ -1,37 +1,61 @@
+{% extends "products/base.html" %}
+{% load static %}
+{% load mptt_tags %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block css %}<link rel="stylesheet" href="{% static 'css/profile.css' %}">{% endblock %}
+    
+
     <title>Profile</title>
 </head>
 <body>
-    <h2>Welcome, {{ user.username }}</h2>
-    <h3>Your Profile</h3>
-    <p>First Name: {{ user.first_name }}</p>
-    <p>Last Name: {{ user.last_name }}</p>
-    <p>Email: {{ user.email }}</p>
-    <p>Phone Number: {{ user.phone_number }}</p>
-
-    <h3>Addresses</h3>
-    <ul>
-        {% for address in addresses %}
-            <li>{{ address.address_line1 }}, {{ address.city }}, {{ address.country }}</li>
-        {% empty %}
-            <li>No addresses added yet.</li>
-        {% endfor %}
-    </ul>
-
-    <h3>Purchase History</h3>
-    <ul>
-        {% for purchase in purchase_history %}
-            <li>{{ purchase.date }} - <!-- Добавьте здесь другие поля истории покупок --></li>
-        {% empty %}
-            <li>No purchase history available.</li>
-        {% endfor %}
-    </ul>
-
-    <a href="{% url 'user:change_password' %}">Change Password</a>
-    <a href="{% url 'user:logout' %}">Logout</a>
+    <div class="full-content">
+        {% block content %}
+        <main class="profile-page">
+            <div class="profile-page__container container__small">
+                <div class="profile-page__content">
+                    <h2 class="profile-page__title">Welcome, {{ user.username }}</h2>
+                    <div class="profile-page__user-info">
+                       <h1 class="profile-page__user-info__title">Інформація вашого профілю</h1> 
+                       <label for="" class="profile-page__user-info__label">
+                            First Name:<input type="text" value="{{ user.first_name }}" placeholder="{{user.first_name}}"/>
+                       </label>
+                    </div>
+                </div>
+                <p></p>
+                <p>Last Name: {{ user.last_name }}</p>
+                <p>Email: {{ user.email }}</p>
+                <p>Phone Number: {{ user.phone_number }}</p>
+            
+                <h3>Addresses</h3>
+                <ul>
+                    {% for address in addresses %}
+                        <li>{{ address.address_line1 }}, {{ address.city }}, {{ address.country }}</li>
+                    {% empty %}
+                        <li>No addresses added yet.</li>
+                    {% endfor %}
+                </ul>
+            
+                <h3>Purchase History</h3>
+                <ul>
+                    {% for purchase in purchase_history %}
+                        <li>{{ purchase.date }} - <!-- Добавьте здесь другие поля истории покупок --></li>
+                    {% empty %}
+                        <li>No purchase history available.</li>
+                    {% endfor %}
+                </ul>
+            
+                <a href="{% url 'user:change_password' %}">Change Password</a>
+                <a href="{% url 'user:logout' %}">Logout</a>
+            </div>
+            
+        </main>
+        {% endblock %}
+    </div>
 </body>
 </html>

@@ -29,6 +29,13 @@ export class Product {
         }
         return;
     }
+
+    setQuantity(value){
+        if(value < 1){
+            return 
+        }
+        this.quantity = value;
+    }
 }
 
 // страница, id  контейнера, и отрисовка относительно обьекта (Product)

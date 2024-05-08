@@ -11,9 +11,8 @@ from .models import (Products,
                      Filter,
                      Manufacturer)
 
-
 def parent_categories(request):
-    products = Products.objects.all()
+    products = Products.objects.order_by('-date_added')[:20].values('name', 'image', 'price')
     categories = Category.objects.filter(parent=None)
     return render(request, 'products/index.html', {'categories': categories, 'products': products})
 

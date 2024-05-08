@@ -1,0 +1,21 @@
+
+.profile-page{
+    flex-grow: 1;
+    min-height: 100vh;
+    &__container{
+        padding-top: 130px;
+    }
+    &__content{
+
+    }
+    &__title{
+        text-align: center;
+        font-size: 32px;
+    }
+    &__user-info{
+        &__title{
+            margin-left: 40px;
+            font-size: 28px;
+        }
+    }
+}

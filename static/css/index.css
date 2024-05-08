@@ -821,13 +821,16 @@
 .promotion__list {
   width: 70%;
   margin: 0 auto;
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
   gap: 40px;
-  grid-template-columns: 50% 50%;
-  grid-row: auto auto;
+}
+.promotion__item {
+  width: 46%;
 }
 .promotion__img {
-  width: 400px;
+  width: 100%;
   height: 300px;
   -o-object-fit: cover;
      object-fit: cover;
@@ -838,7 +841,7 @@
   transform: scale(1.1);
 }
 .promotion__img__wrap {
-  width: 400px;
+  width: 100%;
   height: 300px;
   overflow: hidden;
 }

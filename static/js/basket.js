@@ -53,6 +53,8 @@ const createProducts = (products) => {
         buttonCount.setAttribute("type", "text");
         buttonCount.setAttribute("id", `btn_count_${product.id}`)
         buttonCount.setAttribute("value", `${product.quantity}`);
+        buttonCount.setAttribute("data-value", "count")
+        buttonCount.addEventListener("input", (e) => changeProductQuantity(e, product.id))
         cartProductBtns.appendChild(buttonCount);
         // <button class="btns__btn">+</button>
         const buttonPlus = document.createElement("button");
@@ -104,18 +106,31 @@ function changeProductQuantity(e, id){
     const changedProduct = productsArr.find((product) => product.id === id);
     const btnInput = document.getElementById(`btn_count_${id}`);
     const totalPrice = document.getElementById(`product_price_${id}`);
-   
-    if(e.target.dataset.value == "+"){
-        changedProduct.addOne();
-        btnInput.value = +changedProduct.quantity;
-        totalPrice.textContent = `${changedProduct.quantity * changedProduct.price}.00 грн`;        
-    } else {
-        changedProduct.minusOne();
-        btnInput.value = +changedProduct.quantity;
-        totalPrice.textContent = `${changedProduct.quantity * changedProduct.price}.00 грн`;
+    
+    switch(e.target.dataset.value){
+        case "+":{
+            changedProduct.addOne();
+            break;
+        }
+        case "-": {
+            changedProduct.minusOne();
+            break;
+        }
+        case "count": {
+            changedProduct.setQuantity(+btnInput.value);
+            break;
+        }
+        default: 
+            return
     }
+    changeProductQuantityData(btnInput, totalPrice, changedProduct);
 
     getAllTotal(productsArr);
+}
+
+const changeProductQuantityData = (btnInput, totalPrice, changedProduct) => {
+    btnInput.value = +changedProduct.quantity;
+    totalPrice.textContent = `${changedProduct.quantity * changedProduct.price}.00 грн`; 
 }
 
 const getAllTotal = (productsArr) => {
