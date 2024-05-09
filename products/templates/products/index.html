@@ -49,13 +49,15 @@
                     <div class="swiper products-index__list__wrap">
                         <div class="swiper-wrapper products-index__list">
                             {% for product in products %}
-                                <div class="swiper-slide products-index__item">
+                                <div class="swiper-slide products-index__item" >
                                     <div class="products-index__item__img__wrap">
-                                        <img class="products-index__item__img" src="./assets/products/product-2.png" alt="">
+                                        <img class="products-index__item__img" src="/media/{{ product.image }}" alt="">
                                     </div>
                                     <p class="products-index__item__title">{{ product.name }}</p>
                                     <span class="products-index__item__price">{{ product.price }}</span>
+                                    <button class="btn btn-primary products-index__item__btn" id="{{ product.pk }}">Купить</button>
                                 </div>
+                                
                             {% endfor %}
                             </div>
                         <div class="swiper-pagination"></div>  

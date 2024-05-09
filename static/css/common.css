@@ -225,6 +225,13 @@ p {
   box-sizing: border-box;
 }
 
+.container__extra__small {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
 .logo {
   width: 50px;
   height: 80px;

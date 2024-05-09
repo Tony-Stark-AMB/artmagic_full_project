@@ -551,7 +551,8 @@
   padding: 10px 0;
 }
 .cart__product__overlook {
-  width: 30%;
+  width: 50%;
+  height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -589,8 +590,18 @@
      object-fit: cover;
 }
 .overlook__img__wrap {
-  width: 100px;
+  width: 60px;
   height: 100px;
+  display: grid;
+  place-items: center;
+}
+.overlook__img__container {
+  width: 40%;
+  display: grid;
+  place-items: center;
+}
+.overlook__name {
+  width: 50%;
 }
 
 .modal-footer__btns {
@@ -703,7 +714,7 @@
 
 .profile-page {
   flex-grow: 1;
-  min-height: 100vh;
+  min-height: calc(100vh - 96px - 192px);
 }
 .profile-page__container {
   padding-top: 130px;
@@ -712,12 +723,24 @@
   text-align: center;
   font-size: 32px;
 }
+.profile-page__user-info {
+  margin: 0 auto;
+  width: 80%;
+  min-height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
 .profile-page__user-info__title {
-  margin-left: 40px;
+  text-align: center;
   font-size: 28px;
 }
+.profile-page__user-info__label {
+  width: 20%;
+}
 .profile-page__user-info__input {
-  width: 70%;
+  width: 60%;
   outline: none;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -727,6 +750,12 @@
   background-color: #fff;
   border: 1px solid #fff;
   color: #000;
+}
+.profile-page__user-info__input-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .profile-page__user-info__btn {
   padding: 4px 8px;

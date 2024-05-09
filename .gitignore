@@ -1,3 +1,4 @@
 #ignore
 /static/node_modules
 /venv
+/media/catalog

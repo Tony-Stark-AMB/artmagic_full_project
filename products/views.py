@@ -1,6 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
+from django.views.decorators.http import require_POST
+from urllib.parse import urlparse, parse_qs
+from django.core.serializers import serialize
 
 from .models import (Products,
                      Category,
@@ -11,8 +14,20 @@ from .models import (Products,
                      Filter,
                      Manufacturer)
 
+def add_to_cart(request):
+
+    product_id = int(request.GET["id"])
+    try:
+        product = Products.objects.filter(pk=product_id)
+        json_data = list(product.values('id', 'name', 'image', 'price'))[0]
+
+        return JsonResponse(json_data, safe=False)
+    except Products.DoesNotExist:
+        return JsonResponse(status=404)
+
+
 def parent_categories(request):
-    products = Products.objects.order_by('-date_added')[:20].values('name', 'image', 'price')
+    products = Products.objects.order_by('-date_added')[:20].values('name', 'image', 'price', "pk")
     categories = Category.objects.filter(parent=None)
     return render(request, 'products/index.html', {'categories': categories, 'products': products})
 

@@ -1,6 +1,3 @@
-import { createProducts, Product } from "./classes/product.js";
-import { HOST, PROTOCOL, PORT } from "./common/index.js";
-
 const cardInput = document.querySelector(".card-input");
 const walletInput = document.querySelector(".wallet-input");
 
@@ -27,13 +24,6 @@ function handleInputChange() {
 cardInput.addEventListener('change', handleInputChange);
 walletInput.addEventListener('change', handleInputChange);
 
-// Для продуктів
 
 
-fetch(`${PROTOCOL}://${HOST}:${PORT}/products/`)
-.then((data) => data.json())
-.then((products) => products.map(({name, price, image}) => new Product(name, price, image)))
-.then((productsArr) => createProducts("index", productsArr, productsContainer))
-
-const productsContainer = document.getElementById("productsContainerIndex");
 

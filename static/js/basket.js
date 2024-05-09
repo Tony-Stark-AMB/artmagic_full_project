@@ -1,38 +1,39 @@
 import { Product } from "./classes/product.js";
+import { HOST, PROTOCOL, PORT } from "./common/index.js";
 
 
-let productsArr = [
-    new Product("product 1", 500, "./assets/products/product-1.png"),
-    new Product("product 2", 600, "./assets/products/product-2.png"),
-    new Product("product 3", 700, "./assets/products/product-3.png"),
-    new Product("product 3", 700, "./assets/products/product-3.png"),
-]
-
-
+export const products = {
+    arr: []
+}
+    
 const productsContainer = document.getElementById("basket-products");
 
 
-const createProducts = (products) => {
-    products.forEach( (product, index) => {
+export const createProducts = (products) => {
+    products.forEach( (product) => {
         // <div class="cart__product"></div>
         const cartProduct = document.createElement("div");
         cartProduct.classList.add("cart__product");
-        cartProduct.setAttribute("id", `cart__product__${index + 1}`);
+        cartProduct.setAttribute("id", `cart__product__${product.id}`);
         // <div class="cart__product__overlook"></div>
         const cartProductOverlook = document.createElement("div");
         cartProductOverlook.classList.add("cart__product__overlook");
         cartProduct.appendChild(cartProductOverlook);
+        // <div class="overlook__img__container">
+        const overlookImgContainer = document.createElement("div");
+        overlookImgContainer.classList.add("overlook__img__container");
+        cartProductOverlook.appendChild(overlookImgContainer);
         // <div class="overlook__img__wrap"></div>
         const overlookImgWrap = document.createElement("div");
         overlookImgWrap.classList.add("overlook__img__wrap");
-        cartProductOverlook.appendChild(overlookImgWrap);
+        overlookImgContainer.appendChild(overlookImgWrap);
         // <img class="overlook__img"/>
         const overlookImg = document.createElement("img");
         overlookImg.classList.add("overlook__img");
-        overlookImg.setAttribute("src", product.imageSrc);
+        overlookImg.setAttribute("src", `/media/${product.imageSrc}`);
         overlookImgWrap.appendChild(overlookImg);
         // <p class="overlook__name"></p>
-        const overlookName = document.createElement("p");
+        const overlookName = document.createElement("div");
         overlookName.classList.add("overlook__name");
         overlookName.textContent = product.name;
         cartProductOverlook.appendChild(overlookName);
@@ -100,10 +101,10 @@ const createProducts = (products) => {
     // productsContainer.append(btnBackToShopping);
 }
 
-createProducts(productsArr);
+createProducts(products.arr);
 
 function changeProductQuantity(e, id){
-    const changedProduct = productsArr.find((product) => product.id === id);
+    const changedProduct = products.arr.find((product) => product.id === id);
     const btnInput = document.getElementById(`btn_count_${id}`);
     const totalPrice = document.getElementById(`product_price_${id}`);
     
@@ -125,7 +126,7 @@ function changeProductQuantity(e, id){
     }
     changeProductQuantityData(btnInput, totalPrice, changedProduct);
 
-    getAllTotal(productsArr);
+    getAllTotal(products.arr);
 }
 
 const changeProductQuantityData = (btnInput, totalPrice, changedProduct) => {
@@ -140,12 +141,13 @@ const getAllTotal = (productsArr) => {
     : `${Product.allTotalCost(productsArr)}.00 грн`;
 }
 
-getAllTotal(productsArr);
+getAllTotal(products.arr);
 
 const deleteProduct = (id) => {
-    productsArr = Product.deleteProduct(productsArr, id);
+    console.log(id)
+    products.arr = Product.deleteProduct(products.arr, id);
     document.getElementById(`cart__product__${id}`).remove();
-    if(productsArr.length <= 3){
+    if(products.arr.length <= 3){
         productsContainer.style.overflowY = "hidden";
     }
     productsContainer.style.overflowY = "auto";
@@ -153,11 +155,35 @@ const deleteProduct = (id) => {
     const text = document.createElement("p")
     text.textContent = "Ваш кошик пустий";
     text.classList.add("basket__modal__cart__text");
-    if(productsArr.length == 0){
+    if(products.arr.length == 0){
         productsContainer.appendChild(text);
     } 
     
 
-    getAllTotal(productsArr);
+    getAllTotal(products.arr);
 }
 
+const addToCart = async (id) => {
+    return fetch(`${PROTOCOL}://${HOST}:${PORT}/add-to-cart/?id=${id}`, {
+        method: "GET",
+        mode: "cors"
+    }).then((data) => data.json())
+}
+
+
+const cardsContainer = document.querySelector("div.products-index__list");
+
+cardsContainer.addEventListener("click", async (e) => {
+    const el = e.target;
+    if(el.hasAttribute("id")){
+        const {id, name, price, image} = await addToCart(el.getAttribute("id"));
+        if(id){
+            products.arr = [new Product(id, name, +price, image), ...products.arr];
+            console.log(products.arr);
+            productsContainer.replaceChildren();
+            createProducts(products.arr);
+            getAllTotal(products.arr);
+        }
+    }
+    return;
+})

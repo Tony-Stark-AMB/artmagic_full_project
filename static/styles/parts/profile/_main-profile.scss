@@ -1,7 +1,7 @@
 
 .profile-page{
     flex-grow: 1;
-    min-height: 100vh;
+    min-height: calc(100vh - 96px - 192px);
     &__container{
         padding-top: 130px;
     }
@@ -13,12 +13,22 @@
         font-size: 32px;
     }
     &__user-info{
+        margin: 0 auto;
+        width: 80%;
+        min-height: 30vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
         &__title{
-            margin-left: 40px;
+            text-align: center;
             font-size: 28px;
         }
+        &__label{
+            width: 20%;
+        }
         &__input{
-            width: 70%;
+            width: 60%;
             outline: none;
             border: 1px solid $c5;
             border-radius: 8px;
@@ -27,6 +37,12 @@
                 background-color: $c6;
                 border: 1px solid $c6;
                 color: $c9;
+            }
+            &-wrap{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
             }
         }
         &__btn{
