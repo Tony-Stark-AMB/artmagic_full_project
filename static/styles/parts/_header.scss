@@ -122,12 +122,27 @@
                 transform: scale(1.1);
             }
         }
+        &__badge{
+            top: 10%;
+            left: 100%;
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            display: grid;
+            place-items: center;
+            transition: top .3s ease;
+            transform: translate(-50%, -50%);
+        }
     }  
 
     &__wrap{
         margin-left: 10px;
         width: 5%;
     }
+}
+
+.add__product__animation{
+    top: -10%;
 }
 
 

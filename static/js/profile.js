@@ -12,11 +12,13 @@ const form = () => {
     const validateField = (fieldName, errorElem, pattern, errorText) => {
         if(!pattern.test(getField(fieldName).value)){
             getField(fieldName).classList.add("invalid-input");
-            errorElem.style.display = "block";
+            errorElem.style.visibility = "visible";
+            errorElem.style.height = "0";
             errorElem.textContent = errorText;
         } else {
             getField(fieldName).classList.remove("invalid-input");
-            errorElem.style.display = "none";
+            errorElem.style.visibility = "hidden";
+            errorElem.style.height = "30px";
             errorElem.textContent = errorText;
         }
         return;

@@ -1,7 +1,6 @@
 import { Product } from "./classes/product.js";
 import { HOST, PROTOCOL, PORT } from "./common/index.js";
 
-
 export const products = {
     arr: []
 }
@@ -9,8 +8,8 @@ export const products = {
 const productsContainer = document.getElementById("basket-products");
 
 
-export const createProducts = (products) => {
-    products.forEach( (product) => {
+export const renderProducts = (productsArr) => {
+    productsArr.forEach( (product) => {
         // <div class="cart__product"></div>
         const cartProduct = document.createElement("div");
         cartProduct.classList.add("cart__product");
@@ -44,8 +43,7 @@ export const createProducts = (products) => {
         // <button class="btns__btn">-</button>
         const buttonMinus = document.createElement("button");
         buttonMinus.classList.add("btns__btn");
-        buttonMinus.setAttribute("data-value", "-");
-        buttonMinus.addEventListener("click", (e) => changeProductQuantity(e, product.id))
+        buttonMinus.addEventListener("click", () => changeProductQuantity("-", product.id))
         buttonMinus.textContent = "-";
         cartProductBtns.appendChild(buttonMinus);
         // <input class="btns__count"/>
@@ -54,14 +52,12 @@ export const createProducts = (products) => {
         buttonCount.setAttribute("type", "text");
         buttonCount.setAttribute("id", `btn_count_${product.id}`)
         buttonCount.setAttribute("value", `${product.quantity}`);
-        buttonCount.setAttribute("data-value", "count")
-        buttonCount.addEventListener("input", (e) => changeProductQuantity(e, product.id))
+        buttonCount.addEventListener("input", () => changeProductQuantity("count", product.id))
         cartProductBtns.appendChild(buttonCount);
         // <button class="btns__btn">+</button>
         const buttonPlus = document.createElement("button");
         buttonPlus.classList.add("btns__btn");
-        buttonPlus.setAttribute("data-value", "+");
-        buttonPlus.addEventListener("click", (e) => changeProductQuantity(e, product.id));
+        buttonPlus.addEventListener("click", () => changeProductQuantity("+", product.id));
         buttonPlus.textContent = "+";
         cartProductBtns.appendChild(buttonPlus);
         // <div class="cart__product__price"></div>
@@ -73,7 +69,7 @@ export const createProducts = (products) => {
         // <button class="cart__product__garbage__wrap"></button>
         const cartProductGarbageWrap = document.createElement("button");
         cartProductGarbageWrap.classList.add("cart__product__garbage__wrap");
-        cartProductGarbageWrap.addEventListener("click", (e) => deleteProduct(product.id));
+        cartProductGarbageWrap.addEventListener("click", () => deleteProduct(product.id));
         cartProduct.appendChild(cartProductGarbageWrap);
         // <svg class="cart__product__garbage">
         const cartProductGarbageIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -93,22 +89,17 @@ export const createProducts = (products) => {
         // Додаванння продуктів до контейнеру
         productsContainer.append(cartProduct);       
     });
-    // <button class="btn btn-primary basket__modal__btn"></button>
-    // const btnBackToShopping = document.createElement("button");
-    // btnBackToShopping.classList.add("btn", "btn-primary", "basket__modal__btn");
-    // btnBackToShopping.setAttribute("onclick", "window.location.href = 'catalog.html'");
-    // btnBackToShopping.textContent = "Повернутись до покупок";
-    // productsContainer.append(btnBackToShopping);
 }
 
-createProducts(products.arr);
+renderProducts(products.arr);
 
-function changeProductQuantity(e, id){
+const changeProductQuantity = (type, id) => {
+    // console.log(productsArr, "productsArr", products, "products");
     const changedProduct = products.arr.find((product) => product.id === id);
     const btnInput = document.getElementById(`btn_count_${id}`);
     const totalPrice = document.getElementById(`product_price_${id}`);
     
-    switch(e.target.dataset.value){
+    switch(type){
         case "+":{
             changedProduct.addOne();
             break;
@@ -122,68 +113,97 @@ function changeProductQuantity(e, id){
             break;
         }
         default: 
-            return
+            return;
     }
     changeProductQuantityData(btnInput, totalPrice, changedProduct);
-
     getAllTotal(products.arr);
 }
 
 const changeProductQuantityData = (btnInput, totalPrice, changedProduct) => {
+    badgeCounter(Product.allProductsQuantity(products.arr));
     btnInput.value = +changedProduct.quantity;
     totalPrice.textContent = `${changedProduct.quantity * changedProduct.price}.00 грн`; 
 }
 
-const getAllTotal = (productsArr) => {
-    const target = document.querySelector(".modal-footer__text");
-    target.textContent = Product.allTotalCost(productsArr) == 0 
+const modalFooterGetAllTotal = document.querySelector(".modal-footer__text");
+
+const getAllTotal = () => {
+    modalFooterGetAllTotal.textContent = Product.allTotalCost(products.arr) == 0 
     ? `0.00 грн` 
-    : `${Product.allTotalCost(productsArr)}.00 грн`;
+    : `${Product.allTotalCost(products.arr)}.00 грн`;
 }
 
 getAllTotal(products.arr);
 
 const deleteProduct = (id) => {
-    console.log(id)
-    products.arr = Product.deleteProduct(products.arr, id);
+    products.arr = Product.deleteProduct(products.arr, id)
     document.getElementById(`cart__product__${id}`).remove();
-    if(products.arr.length <= 3){
-        productsContainer.style.overflowY = "hidden";
+    if(products.length == 0){
+        emptyBasket("Ваш кошик порожній");
     }
-    productsContainer.style.overflowY = "auto";
-    // text for empty basket
+    getAllTotal(products.arr);
+    badgeCounter(Product.allProductsQuantity(products.arr));
+  
+}
+
+const emptyBasket = (emptyBasketText) => {
     const text = document.createElement("p")
-    text.textContent = "Ваш кошик пустий";
+    text.textContent = emptyBasketText;
     text.classList.add("basket__modal__cart__text");
     if(products.arr.length == 0){
         productsContainer.appendChild(text);
     } 
-    
-
-    getAllTotal(products.arr);
 }
+
+emptyBasket("Ваш кошик порожній");  
 
 const addToCart = async (id) => {
     return fetch(`${PROTOCOL}://${HOST}:${PORT}/add-to-cart/?id=${id}`, {
         method: "GET",
         mode: "cors"
-    }).then((data) => data.json())
+    }).then((data) => data.json());
 }
-
 
 const cardsContainer = document.querySelector("div.products-index__list");
 
-cardsContainer.addEventListener("click", async (e) => {
+
+cardsContainer.addEventListener("click", (e) => addToCartLogic(e))
+
+const addToCartLogic = async (e) => {
     const el = e.target;
     if(el.hasAttribute("id")){
         const {id, name, price, image} = await addToCart(el.getAttribute("id"));
-        if(id){
-            products.arr = [new Product(id, name, +price, image), ...products.arr];
-            console.log(products.arr);
+        const newProduct = new Product(id, name, +price, image);
+        if(id && (products.arr.findIndex((product) => product.id === newProduct.id)) == -1){
+            products.arr = [newProduct, ...products.arr];
             productsContainer.replaceChildren();
-            createProducts(products.arr);
+            renderProducts(products.arr);
+        } else {
+            const changedProduct = products.arr.find((product) => product.id === newProduct.id);
+            const btnInput = document.getElementById(`btn_count_${id}`);
+            const totalPrice = document.getElementById(`product_price_${id}`);
+            changedProduct.addOne();
+            changeProductQuantityData(btnInput, totalPrice, changedProduct);
             getAllTotal(products.arr);
         }
+        getAllTotal(products.arr);
+        // badgeCounter(products.arr.length);
+        badgeCounter(Product.allProductsQuantity(products.arr));
+        badgeAnimation();
     }
     return;
-})
+    
+}
+
+const badge = document.querySelector(".header-basket__icon__badge");
+const badgeContent = document.querySelector(".header-basket__icon__badge__number");
+
+const badgeAnimation = () => {
+    badge.classList.add("add__product__animation");
+    setTimeout(() => badge.classList.remove("add__product__animation"), 200)
+}
+
+const badgeCounter = (amount) => {
+    badgeContent.textContent = amount;
+}
+

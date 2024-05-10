@@ -21,6 +21,9 @@ export class Product {
         return productsArr.filter((product) => product.id != id);
     }
 
+    static allProductsQuantity(productsArr){
+        return productsArr.reduce((acc, cur) => acc + cur.quantity, 0);
+    }
     addOne(){this.quantity++};
 
     minusOne(){

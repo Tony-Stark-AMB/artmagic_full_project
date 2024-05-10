@@ -264,9 +264,24 @@
 .header-basket__icon__wrap:hover .header-basket__icon {
   transform: scale(1.1);
 }
+.header-basket__icon__badge {
+  top: 10%;
+  left: 100%;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  transition: top 0.3s ease;
+  transform: translate(-50%, -50%);
+}
 .header-basket__wrap {
   margin-left: 10px;
   width: 5%;
+}
+
+.add__product__animation {
+  top: -10%;
 }
 
 .mobile-menu {
