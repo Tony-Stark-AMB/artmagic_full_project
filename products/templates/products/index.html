@@ -1,9 +1,10 @@
-{% extends "products/base.html" %}
+{% extends "./base.html" %}
 {% load static %}
 {% load mptt_tags %}
 
-
-
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'css/index.css' %}"> 
+    {% endblock %}
     {% block content %}
         <div class="main-index__wrap container__custom__sidebar">
             <main class="main-index">
@@ -138,7 +139,9 @@
     </div>
     
       {% endblock %}
-    {% block js %}
-        <script type="module" src="{% static 'js/index.js' %}"></script>
-    {% endblock %}
+  {% block js %}
+      <script type="module" src="{% static 'js/index.js' %}"></script>
+      <script type="module" src="{% static 'js/index-carousel.js' %}"></script>
+  {% endblock %}
+    
     

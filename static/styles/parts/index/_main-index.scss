@@ -6,11 +6,12 @@
 .main-index{
     grid-area: main;
     margin: 0 0 0 40px;
+    grid-column: span 3;
     &__wrap{
         padding: 91px 15px 0px 15px;
         flex-grow: 1;
         display: grid;
-        grid-template-columns: 25% calc(100% / 4 * 3);
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
         grid-template-areas: "aside main";
     }
     &__banner{

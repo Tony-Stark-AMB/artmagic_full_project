@@ -26,33 +26,42 @@
 .header-catalog{
     width: 8%;
     margin: 0 10px;
-    &__btn{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: none;
-    outline: none;
-    border-radius: 8px;
-    padding: 8px;
-    &__icon{
-        width: 30px;
-        height: 30px;
-        color: $c6;
+    @media (max-width: 1600px) {
+        width: 9%;
     }
-    &__text{
+        &__btn{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: none;
+            outline: none;
+            border-radius: 8px;
+            padding: 8px;
+        &__icon{
+            width: 30px;
+            height: 30px;
+            color: $c6;
+        }
+        &__text{
 
-    }
+        }
     }
 }
 
 .header-call{
     margin-right: 20px;
+    @media (max-width: 1600px){
+        margin-right: 0;
+    }
     &__wrap{
         width: 22%;
         display: flex;
         flex-direction: column;
         align-items: center;
+        @media (max-width: 1600px){
+            width: 4%;
+        }
         @media (max-width: 1200px) {
             width: 50%;
             justify-content: center;
@@ -88,6 +97,9 @@
    
     &__text,
     &__link{
+        @media (max-width: 1600px){
+            display: none;
+        }
         @media (max-width: 576px){
             font-size: 12px;
         }

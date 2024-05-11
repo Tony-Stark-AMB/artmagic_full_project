@@ -187,6 +187,10 @@
   color: inherit;
 }
 
+* {
+  transition: all 0.3s ease;
+}
+
 html, body {
   overflow-x: hidden;
 }
@@ -244,6 +248,11 @@ p {
 }
 .logo__wrap {
   width: 12%;
+}
+@media (max-width: 1600px) {
+  .logo__wrap {
+    width: 15%;
+  }
 }
 .logo__link {
   display: flex;

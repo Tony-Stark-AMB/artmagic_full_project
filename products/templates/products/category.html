@@ -3,7 +3,8 @@
 {% load mptt_tags %}
 
     {% block css %}
-    <link rel="stylesheet" href="{% static 'css/category.css' %}">{% endblock %}
+        <link rel="stylesheet" href="{% static 'css/category.css' %}">
+    {% endblock %}
 
         {% block content %}
         <div class="main-category__wrap container__custom">
@@ -140,8 +141,8 @@
                     </div>
                 </section>
                 <section class="products-category">
-                    <h2 class="products-category__title">Каталог</h2>
-                    <div class="products-category__list">
+                    <h2 class="products-category__title" data-aos="fade-down">Каталог</h2>
+                    <div class="products-category__list" data-aos="fade-down" data-aos-delay="300">
                         {% for product in page_obj %}
                             <div class="products-category__item">
                                 <div class="products-category__item__img__wrap">
@@ -176,4 +177,7 @@
         </div>
         </div>
 
+      {% endblock %}
+      {% block js %}
+        <script type="module" src="{% static 'js/category-carousel.js' %}"></script>
       {% endblock %}

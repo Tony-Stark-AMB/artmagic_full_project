@@ -3,7 +3,7 @@
 .aside-index{
     padding: 10px 0; 
     border-right: 1px solid $c5;
-    min-height: inherit;
+    min-height: 100%;
     &__wrap{
         width: 100%;    
         grid-area: aside;

@@ -1,5 +1,9 @@
 @import "./parts/fonts", "./parts/colors";
 
+*{
+    transition: all .3s ease;
+}
+
 html, body{
     overflow-x: hidden;
 }
@@ -56,6 +60,9 @@ p{
     }
     &__wrap{
         width: 12%;
+        @media (max-width: 1600px) {
+            width: 15%;
+        }
     }
     &__link{
         display: flex;

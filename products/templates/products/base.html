@@ -16,9 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <link rel="stylesheet" href="{% static 'node_modules/aos/dist/aos.css' %}">
     <link rel="stylesheet" href="{% static 'css/common.css' %}">
-    {% block css %}
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
-    {% endblock %}
+    {% block css %}{% endblock %}    
     <title>Document</title>
 </head>
 <body>
@@ -96,7 +94,7 @@
                                         <img src="{% static 'assets/icon-phone.png' %}" alt="">
                                     </button>
                                 </div>
-                                <div>
+                                <div class="header-call__text__wrap">
                                     <p class="header-call__text">Зателефонуйте нам: <a class="header-call__link" type="button" data-bs-toggle="modal" data-bs-target="#call__modal">(068) 017-40-75</a></p>
                                     <p class="header-call__text">e-mail: <a class="header-call__link" type="button" data-bs-toggle="modal" data-bs-target="#call__modal">artmagicinetrnet@gmail.com</a></p>
                                 </div>
@@ -355,18 +353,16 @@
         </li>
     </ul>
 </div>
-
     <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
     <script src="{% static 'node_modules/aos/dist/aos.js' %}"></script>
     <script>
         AOS.init();
     </script>
-    <script type="module" src="{% static 'js/index-carousel.js' %}"></script>
     <script type="module" src="{% static 'js/basket.js' %}"></script>
-    {% block js %}{% endblock %}
     <script type="module" src="{% static 'js/header.js' %}"></script>
     <script type="module" src="{% static 'js/classes/product.js' %}"></script>
+    {% block js %}{% endblock %}
 </div>
 </body>
 </html>
