@@ -53,9 +53,12 @@
                                     <div class="products-index__item__img__wrap">
                                         <img class="products-index__item__img" src="/media/{{ product.image }}" alt="">
                                     </div>
-                                    <p class="products-index__item__title">{{ product.name }}</p>
-                                    <span class="products-index__item__price">{{ product.price }}</span>
-                                    <button class="btn btn-primary products-index__item__btn" id="{{ product.pk }}">Купить</button>
+                                    <div class="products-index__item__content">
+                                        <p class="products-index__item__title">{{ product.name }}</p>
+                                        <span class="products-index__item__price">{{ product.price }} грн</span>
+                                        <button class="btn btn-primary products-index__item__btn" id="{{ product.pk }}">Купить</button>
+                                    </div>
+
                                 </div>
                                 
                             {% endfor %}

@@ -5,13 +5,13 @@
         margin: 20px 0;
     }
     &__list{
-        height: 300px;
+        height: 350px;
         padding: 50px 0;
         margin: 0 0 0 20px; 
     }
     &__item{
         width: calc(100% / 5);
-        height: 300px;
+        height: 350px;
         padding: 16px;
         display: flex;
         flex-direction: column;
@@ -30,23 +30,31 @@
             object-fit: cover;
             &__wrap{
                 width: 85px;
-                height: 200px;
+                height: 60%;
                 display: grid;
                 place-items: center;
+                justify-self: center;
             }
+        }
+        &__content{
+            height: 40%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
         }
         &__title{
             display: inline-block;
-            width: 120px;
-            white-space: nowrap;
+            width: 100%;
+            white-space: wrap;
+            height: 50px;
             overflow: hidden !important;
             text-overflow: ellipsis;
             text-align: center;
             font-weight: 600;
         }
         &__price{
-            align-self: flex-start;
-            margin-bottom: 20px;
+            align-self: center;
             color: $c19;
             font-weight: 600;
         }

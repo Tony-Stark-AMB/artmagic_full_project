@@ -741,7 +741,7 @@
 .profile-page__user-info {
   margin: 0 auto;
   width: 80%;
-  min-height: 30vh;
+  min-height: 45vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -779,6 +779,23 @@
   width: 20px;
   height: 25px;
   color: #ddd;
+}
+
+.error-message {
+  visibility: visible;
+  transition: height 0.3s ease;
+  height: 20px;
+  margin: 3px 0;
+  color: #E63125;
+}
+.error-message-hidden {
+  visibility: hidden;
+  transition: height 0.3s ease;
+  height: 0;
+}
+
+.invalid-input {
+  border-color: #E63125;
 }
 
 .footer {

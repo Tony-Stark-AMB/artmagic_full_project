@@ -54,8 +54,8 @@ def profile(request):
     addresses = Address.objects.all()
     # addresses = user.addresses.all()  # Получаем все адреса пользователя
     purchase_history = PurchaseHistory.objects.filter(user=user)  # Получаем историю покупок пользователя
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, instance=user)
+    if request.method == 'PUT':
+        form = ProfileForm(request.PUT, instance=user)
         if form.is_valid():
             form.save()
             return redirect('profile')  # После сохранения данных перенаправляем пользователя на страницу профиля
@@ -76,3 +76,24 @@ def change_password(request):
     else:
         form = ChangePasswordForm(request.user)
     return render(request, 'account/change_password.html', {'form': form})
+
+def profile_field(request):
+    user_profile = request.user
+    print(request.user);
+    try:
+        addresses_query = user_profile.address_set.all().values('address_line1', 'city', 'country')
+        for address_data in addresses_query:
+            address = ", ".join([str(value) for value in address_data.values()])
+
+        user = {
+            'username': user_profile.username,
+            'email': user_profile.email,
+            'first_name': user_profile.first_name,
+            'last_name': user_profile.last_name,
+            'phone_number': user_profile.phone_number,
+            'addresses': address,
+        }
+
+        return JsonResponse(user, safe=False)
+    except ObjectDoesNotExist:
+        return JsonResponse({'error': 'Продукт с указанным идентификатором не найден.'}, status=404)
