@@ -27,9 +27,18 @@ def add_to_cart(request):
 
 
 def parent_categories(request):
-    products = Products.objects.order_by('-date_added')[:20].values('name', 'image', 'price', "pk")
+    # products = Products.objects.order_by('-date_added')[:20].values('name', 'image', 'price', "pk")
+    products = list(Products.objects.order_by('-date_added')[:20].values('name', 'image', 'price', 'pk'))
+
+    first_half = products[:10]
+    second_half = products[10:]
+    split_products = {
+        'first_half': first_half,
+        'second_half': second_half
+    }
+
     categories = Category.objects.filter(parent=None)
-    return render(request, 'products/index.html', {'categories': categories, 'products': products})
+    return render(request, 'products/index.html', {'categories': categories, 'products': split_products})
 
 
 def products_view(request):
