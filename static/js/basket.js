@@ -1,12 +1,11 @@
 import { Product } from "./classes/product.js";
-import { HOST, PROTOCOL, PORT } from "./common/index.js";
+import { HOST, PROTOCOL, PORT, rerenderImage  } from "./common/index.js";
 
 export const products = {
     arr: []
 }
     
 const productsContainer = document.getElementById("basket-products");
-
 
 export const renderProducts = (productsArr) => {
     productsArr.forEach( (product) => {
@@ -87,7 +86,9 @@ export const renderProducts = (productsArr) => {
         cartProductGarbageWrap.appendChild(cartProductGarbageIcon);
        
         // Додаванння продуктів до контейнеру
-        productsContainer.append(cartProduct);       
+        productsContainer.append(cartProduct); 
+        const images = document.querySelectorAll('.overlook__img');
+        rerenderImage(images);
     });
 }
 
@@ -207,3 +208,31 @@ const badgeCounter = (amount) => {
     badgeContent.textContent = amount;
 }
 
+
+//for form 
+
+const cardInput = document.querySelector(".card-input");
+const walletInput = document.querySelector(".wallet-input");
+
+const cardSvg = document.querySelector('.card-img');
+const walletSvg = document.querySelector('.wallet-img');
+
+const cardNumberInput = document.getElementById("card-input")
+
+cardSvg.style.color = '#3e77aa'; // Change color for card SVG
+walletSvg.style.color = '#7d7d7d'; // Reset color for wallet SVG
+
+function handleInputChange() {
+    if (cardInput.checked) {
+        cardNumberInput.style.display = "block";
+        cardSvg.style.color = '#3e77aa'; // Change color for card SVG
+        walletSvg.style.color = '#7d7d7d'; // Reset color for wallet SVG
+    } else if (walletInput.checked) {
+        cardNumberInput.style.display = "none";
+        walletSvg.style.color = '#3e77aa'; // Change color for wallet SVG
+        cardSvg.style.color = '7d7d7d'; // Reset color for card SVG
+    }
+}
+
+cardInput.addEventListener('change', handleInputChange);
+walletInput.addEventListener('change', handleInputChange);

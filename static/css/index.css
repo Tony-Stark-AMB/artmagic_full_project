@@ -854,7 +854,7 @@
      object-fit: cover;
 }
 .products-index__item__img__wrap {
-  width: 100px;
+  width: 160px;
   height: 60%;
   display: grid;
   place-items: center;
