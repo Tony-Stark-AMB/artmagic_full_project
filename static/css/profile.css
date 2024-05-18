@@ -165,8 +165,9 @@
 }
 
 .header-divider {
-  -o-object-fit: cover;
-     object-fit: cover;
+  margin-top: 96px;
+  background-image: url("/static/assets/artmagic-background-header.jpg");
+  width: 100%;
   height: 50px;
 }
 

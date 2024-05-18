@@ -165,10 +165,11 @@ const addToCart = async (id) => {
     }).then((data) => data.json());
 }
 
-const cardsContainer = document.querySelector("div.products-index__list");
+const cardsContainers = document.querySelectorAll("div.products-index__list");
 
 
-cardsContainer.addEventListener("click", (e) => addToCartLogic(e))
+Array.from(cardsContainers).forEach(arr => arr.addEventListener("click", (e) => addToCartLogic(e)));
+
 
 const addToCartLogic = async (e) => {
     const el = e.target;

@@ -165,8 +165,9 @@
 }
 
 .header-divider {
-  -o-object-fit: cover;
-     object-fit: cover;
+  margin-top: 96px;
+  background-image: url("/static/assets/artmagic-background-header.jpg");
+  width: 100%;
   height: 50px;
 }
 
@@ -833,7 +834,7 @@
 }
 .products-index__item {
   width: 20%;
-  height: 350px;
+  height: 375px;
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -879,20 +880,21 @@
 }
 .products-index__item__price {
   align-self: center;
-  color: #f84147;
+  color: #000;
   font-weight: 600;
+  font-size: 22px;
 }
 .promotion__title {
   text-align: center;
   margin: 40px 0;
 }
 .promotion__content {
-  min-height: 45vh;
+  min-height: 55vh;
   display: grid;
   place-items: center;
 }
 .promotion__card {
-  width: 650px;
+  width: 980px;
   display: flex;
   gap: 60px;
   border: 1px solid #ddd;
@@ -911,7 +913,7 @@
   grid-column: span 3;
 }
 .main-index__wrap {
-  padding: 91px 15px 0px 15px;
+  padding: 0 15px 0px 15px;
   flex-grow: 1;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));

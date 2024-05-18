@@ -6,12 +6,12 @@
         margin: 40px 0;
     }
     &__content{
-        min-height: 45vh;
+        min-height: 55vh;
         display: grid;
         place-items: center;
     }
     &__card{
-        width: 650px;
+        width: 980px;
         display: flex;
         gap: 60px;
         border: 1px solid $c5;

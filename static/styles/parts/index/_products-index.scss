@@ -17,7 +17,7 @@
     }  
     &__item{
         width: calc(100% / 5);
-        height: 350px;
+        height: 375px;
         padding: 16px;
         display: flex;
         flex-direction: column;
@@ -61,8 +61,9 @@
         }
         &__price{
             align-self: center;
-            color: $c19;
+            color: $c9;
             font-weight: 600;
+            font-size: 22px;
         }
         &__btn{
 
