@@ -1,13 +1,10 @@
-// Блок продуктів для сторінки category.html
-.products-category{
-    &__title{
-        text-align: center;
-    }
+.products-catalog{
     &__list{
+        width: 100%;
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
         gap: 60px;
-        margin: 40px 0;
+        padding: 20px;
     }
     &__item{
         padding: 16px;
@@ -30,6 +27,8 @@
             &__wrap{
                 width: 200px;
                 height: 200px;
+                display: grid;
+                place-items: center;
             }
         }
         &__title{

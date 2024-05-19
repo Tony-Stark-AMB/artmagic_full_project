@@ -30,3 +30,6 @@ export const rerenderImage = function(images) {
     });
 }
 
+export const isFloat = (value) => (typeof value === 'number' && value % 1 !== 0);
+
+

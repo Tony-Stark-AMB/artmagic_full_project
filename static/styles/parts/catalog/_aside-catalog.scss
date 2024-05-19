@@ -1,12 +1,14 @@
 // Бокова панель catalog.html
 .aside-catalog{
+    border-top: 1px solid $c5;
     padding: 40px 0; 
     min-height: inherit;
     width: 100%;
     border: none;
     min-height: 100vh;
-    & > hr{
-        margin: 0 auto;
+    &__wrap{
+        border-top: 1px solid $c5;
+        grid-area: aside;
     }
 
     &__list{

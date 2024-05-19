@@ -1,5 +1,5 @@
 import { Product } from "./classes/product.js";
-import { HOST, PROTOCOL, PORT, rerenderImage  } from "./common/index.js";
+import { HOST, PROTOCOL, PORT, rerenderImage, isFloat  } from "./common/index.js";
 
 export const products = {
     arr: []
@@ -8,11 +8,11 @@ export const products = {
 const productsContainer = document.getElementById("basket-products");
 
 export const renderProducts = (productsArr) => {
-    productsArr.forEach( (product) => {
+    productsArr.forEach( ({id, price, quantity, imageSrc, name}) => {
         // <div class="cart__product"></div>
         const cartProduct = document.createElement("div");
         cartProduct.classList.add("cart__product");
-        cartProduct.setAttribute("id", `cart__product__${product.id}`);
+        cartProduct.setAttribute("id", `cart__product__${id}`);
         // <div class="cart__product__overlook"></div>
         const cartProductOverlook = document.createElement("div");
         cartProductOverlook.classList.add("cart__product__overlook");
@@ -28,12 +28,12 @@ export const renderProducts = (productsArr) => {
         // <img class="overlook__img"/>
         const overlookImg = document.createElement("img");
         overlookImg.classList.add("overlook__img");
-        overlookImg.setAttribute("src", `/media/${product.imageSrc}`);
+        overlookImg.setAttribute("src", `/media/${ imageSrc}`);
         overlookImgWrap.appendChild(overlookImg);
         // <p class="overlook__name"></p>
         const overlookName = document.createElement("div");
         overlookName.classList.add("overlook__name");
-        overlookName.textContent = product.name;
+        overlookName.textContent = name;
         cartProductOverlook.appendChild(overlookName);
         // <div class="cart__product__btns"></div>
         const cartProductBtns = document.createElement("div");
@@ -42,33 +42,33 @@ export const renderProducts = (productsArr) => {
         // <button class="btns__btn">-</button>
         const buttonMinus = document.createElement("button");
         buttonMinus.classList.add("btns__btn");
-        buttonMinus.addEventListener("click", () => changeProductQuantity("-", product.id))
+        buttonMinus.addEventListener("click", () => changeProductQuantity("-", id))
         buttonMinus.textContent = "-";
         cartProductBtns.appendChild(buttonMinus);
         // <input class="btns__count"/>
         const buttonCount = document.createElement("input");
         buttonCount.classList.add("btns__count");
         buttonCount.setAttribute("type", "text");
-        buttonCount.setAttribute("id", `btn_count_${product.id}`)
-        buttonCount.setAttribute("value", `${product.quantity}`);
-        buttonCount.addEventListener("input", () => changeProductQuantity("count", product.id))
+        buttonCount.setAttribute("id", `btn_count_${id}`)
+        buttonCount.setAttribute("value", `${quantity}`);
+        buttonCount.addEventListener("input", () => changeProductQuantity("count", id))
         cartProductBtns.appendChild(buttonCount);
         // <button class="btns__btn">+</button>
         const buttonPlus = document.createElement("button");
         buttonPlus.classList.add("btns__btn");
-        buttonPlus.addEventListener("click", () => changeProductQuantity("+", product.id));
+        buttonPlus.addEventListener("click", () => changeProductQuantity("+", id));
         buttonPlus.textContent = "+";
         cartProductBtns.appendChild(buttonPlus);
         // <div class="cart__product__price"></div>
         const cartProductPrice = document.createElement("div");
         cartProductPrice.classList.add("cart__product__price");
-        cartProductPrice.setAttribute("id", `product_price_${product.id}`);
-        cartProductPrice.textContent = `${product.quantity * product.price}.00 грн`;
+        cartProductPrice.setAttribute("id", `product_price_${id}`);
+        cartProductPrice.textContent = priceCorrectOutput(price, quantity);
         cartProduct.appendChild(cartProductPrice);
         // <button class="cart__product__garbage__wrap"></button>
         const cartProductGarbageWrap = document.createElement("button");
         cartProductGarbageWrap.classList.add("cart__product__garbage__wrap");
-        cartProductGarbageWrap.addEventListener("click", () => deleteProduct(product.id));
+        cartProductGarbageWrap.addEventListener("click", () => deleteProduct(id));
         cartProduct.appendChild(cartProductGarbageWrap);
         // <svg class="cart__product__garbage">
         const cartProductGarbageIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -123,15 +123,24 @@ const changeProductQuantity = (type, id) => {
 const changeProductQuantityData = (btnInput, totalPrice, changedProduct) => {
     badgeCounter(Product.allProductsQuantity(products.arr));
     btnInput.value = +changedProduct.quantity;
-    totalPrice.textContent = `${changedProduct.quantity * changedProduct.price}.00 грн`; 
+    totalPrice.textContent =  priceCorrectOutput(changedProduct.price, +changedProduct.quantity); 
+}
+
+const priceCorrectOutput = (price, ...quantity) => {
+    if(quantity){
+        quantity[0] = 1;
+    }
+    return isFloat(price) 
+    ?   `${(quantity[0] * price).toFixed(2)} грн`
+    :   `${quantity[0] * price}.00 грн`;
 }
 
 const modalFooterGetAllTotal = document.querySelector(".modal-footer__text");
 
 const getAllTotal = () => {
     modalFooterGetAllTotal.textContent = Product.allTotalCost(products.arr) == 0 
-    ? `0.00 грн` 
-    : `${Product.allTotalCost(products.arr)}.00 грн`;
+    ? priceCorrectOutput(Product.allTotalCost(products.arr))
+    : priceCorrectOutput(Product.allTotalCost(products.arr));
 }
 
 getAllTotal(products.arr);
@@ -165,13 +174,13 @@ const addToCart = async (id) => {
     }).then((data) => data.json());
 }
 
-const cardsContainers = document.querySelectorAll("div.products-index__list");
+export const initBasket = (page) => {
+   const cardsContainers = document.querySelectorAll(`div.products-${page}__list`);
 
+   Array.from(cardsContainers).forEach(arr => arr.addEventListener("click", (e) => addToCartLogic(e)));
+}
 
-Array.from(cardsContainers).forEach(arr => arr.addEventListener("click", (e) => addToCartLogic(e)));
-
-
-const addToCartLogic = async (e) => {
+export const addToCartLogic = async (e) => {
     const el = e.target;
     if(el.hasAttribute("id")){
         const {id, name, price, image} = await addToCart(el.getAttribute("id"));

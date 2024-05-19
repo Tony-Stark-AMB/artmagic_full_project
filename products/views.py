@@ -87,7 +87,7 @@ def sub_product(request, slug):
         pk__in=filters.values_list("filter_group_id", flat=True))  # group_filters это выборка групп
 
     """Пагинация"""
-    paginator = Paginator(product, 15)
+    paginator = Paginator(products, 15)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     manufacturer = Manufacturer.objects.filter(products__category=parent_category).distinct()

@@ -141,7 +141,7 @@
                     </div>
                 </section>
                 <section class="products-category">
-                    <h2 class="products-category__title" data-aos="fade-down">Каталог</h2>
+                    <div class="divider"></div>
                     <div class="products-category__list" data-aos="fade-down" data-aos-delay="300">
                         {% for product in page_obj %}
                             <div class="products-category__item">
@@ -154,6 +154,7 @@
                                 </div>
                                 <p class="products-category__item__title">{{ product.name }}</p>
                                 <span class="products-category__item__price">{{ product.price }} грн</span>
+                                <button class="btn btn-primary" id="{{ product.pk }}">Купити</button>
                             </div>
                         {% endfor %}
                     </div>
@@ -179,5 +180,6 @@
 
       {% endblock %}
       {% block js %}
+        <script type="module" src="{% static 'js/category.js' %}"></script>
         <script type="module" src="{% static 'js/category-carousel.js' %}"></script>
       {% endblock %}
