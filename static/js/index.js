@@ -1,9 +1,8 @@
-import { rerenderImage } from "./common/index.js";
-import {initBasket} from "./basket.js"
+import { initImagesRation } from "./common/index.js";
+import { initBasket } from "./basket.js"
+import { INDEX } from "./common/constants.js";
 // for images ratio
-const images = document.querySelectorAll(".products-index__item__img")
-
-document.addEventListener('DOMContentLoaded', () => rerenderImage(images));
+initImagesRation(INDEX);
 // for products working
-initBasket("index");
+initBasket(INDEX);
 

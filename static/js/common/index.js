@@ -1,11 +1,4 @@
-export const {HOST, PORT, PROTOCOL} = {
-    HOST: "127.0.0.1",
-    PORT: "8000",
-    PROTOCOL: "http"
-}
-
 export const rerenderImage = function(images) {
-    console.log("rerender")
     images.forEach(img => {
         img.onload = function () {
             
@@ -32,4 +25,20 @@ export const rerenderImage = function(images) {
 
 export const isFloat = (value) => (typeof value === 'number' && value % 1 !== 0);
 
+export const initImagesRation = (page) => {
+    try{
+        const images = document.querySelectorAll(`.products-${page}__item__img`)
+
+        document.addEventListener('DOMContentLoaded', () => rerenderImage(images));
+    }
+    catch (err) {
+        const newErr = new Error(err);
+        console.log(newErr);
+        throw newErr;
+        
+    }
+}
+
+
+    
 

@@ -66,6 +66,25 @@ def sub_categories(request, slug):
 
     return render(request, 'products/category.html', {'parent_category': parent_category, 'sub_categories': sub_categories, 'page_obj': page_obj})
 
+def add_filters(request):
+    products = Products.objects.all()
+    num = 10
+    paginator = Paginator(products, num)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    try:
+        products_data = list(page_obj.object_list.values('id', 'name', 'image', 'price', 'manufacturer'))
+        json_data = {
+            'products': products_data,
+            'productsPerPage': num,
+            'productsAmount': paginator.count,
+            'currentPage': page_obj.number
+            }
+
+        return JsonResponse(json_data, safe=False)
+    except Products.DoesNotExist:
+        return JsonResponse(status=404)
+
 
 def sub_product(request, slug):
     count = 0
@@ -112,3 +131,4 @@ def sub_product(request, slug):
     manufacturer = Manufacturer.objects.filter(products__category=parent_category).distinct()
     # attributes = product.productattribute_set.all()  # Получаем все атрибуты для конкретного продукта
     retur""""""n render(request, 'products/catalog.html', {'group_filters': group_filters, 'filters': filters, 'products': products, 'product': product, 'parent_category': parent_category, 'page_obj':page_obj, 'manufacturer': manufacturer})"""
+

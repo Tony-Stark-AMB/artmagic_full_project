@@ -11,43 +11,13 @@
         {% block content %}
         <div class="main-catalog__wrap container__custom">
             <h1 data-aos="fade-right" class="main-catalog__title">{{ parent_category.name }}</h1>
-            <main data-aos="fade-left" data-aos-delay="200" class="main-catalog">
+                <main data-aos="fade-left" data-aos-delay="200" class="main-catalog">
                     <div class="swiper main-catalog__carousel">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="products-catalog__list">
-                                  {% for prod in page_obj %}
-                                    <div class="products-catalog__item">
-                                        <div class="products-catalog__item__img__wrap">
-                                          {% if prod.image %}
-                                            <img class="products-catalog__item__img" src="{{ prod.image.url }}" alt="">
-                                            {% else %}
-                                            <img class="products-catalog__item__img" src="{% static 'placeholder_image.jpg' %}" alt="No Image">
-                                          {% endif %}
-                                        </div>
-                                        <p class="products-catalog__item__title">{{ prod.name }}</p>
-                                        <span class="products-catalog__item__price">{{ prod.price }}</span>
-                                        <button class="btn btn-primary" id="{{ prod.pk }}">Купити</button>
-                                    </div>
-                                  {% endfor %}  
-                                </div>
-                            </div>
+                        <div class="swiper-wrapper" id="productsCatalogContainer">
                         </div>
-                        <div class="pagination">
-                          {% if page_obj.has_previous %}
-                              <a href="?page=1"><<</a>
-                              <a href="?page={{ page_obj.previous_page_number }}">Попередня</a>
-                          {% endif %}
-                          <span class="current">
-                              Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                          </span>
-                          {% if page_obj.has_next %}
-                              <a href="?page={{ page_obj.next_page_number }}">Наступна</a>
-                              <a href="?page={{ page_obj.paginator.num_pages }}">>></a>
-                          {% endif %}
-                      </div>
+                        <div class="swiper-pagination"></div>
                     </div>
-            </main>
+                </main>
             <aside data-aos="fade-right" data-aos-delay="100" class="aside-catalog__wrap">
                 <section class="aside">
                     <div class="aside-catalog__content">

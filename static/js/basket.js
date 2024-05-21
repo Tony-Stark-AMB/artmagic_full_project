@@ -1,5 +1,6 @@
 import { Product } from "./classes/product.js";
-import { HOST, PROTOCOL, PORT, rerenderImage, isFloat  } from "./common/index.js";
+import { rerenderImage, isFloat  } from "./common/index.js";
+import { HOST, PROTOCOL, PORT } from "./common/constants.js";
 
 export const products = {
     arr: []
