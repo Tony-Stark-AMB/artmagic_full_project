@@ -12,7 +12,7 @@
         overflow-x: hidden;
         flex-grow: 1;
         display: grid;
-        grid-template-columns: minmax(200px, 1fr) 11fr;
+        grid-template-columns: minmax(300px, 2fr) 11fr;
         grid-template-rows: 60px 20px calc(100% - 40px);
         grid-template-areas: 
         "title title"
@@ -26,7 +26,9 @@
     }
 }
 
-
+#productsCatalogContainer{
+    width: 1300px !important;
+}
 
 .swiper-pagination-bullet{
     background-color: $c4;

@@ -748,10 +748,10 @@
 }
 
 .products-catalog__list {
-  width: 1400px;
+  width: 1300px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 60px;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 20px;
   padding: 40px;
 }
 .products-catalog__item {
@@ -802,7 +802,7 @@
   overflow-x: hidden;
   flex-grow: 1;
   display: grid;
-  grid-template-columns: minmax(200px, 1fr) 11fr;
+  grid-template-columns: minmax(300px, 2fr) 11fr;
   grid-template-rows: 60px 20px calc(100% - 40px);
   grid-template-areas: "title title" ". ." "aside catalog";
 }
@@ -810,6 +810,10 @@
   grid-area: title;
   margin-top: 10px;
   padding-bottom: 70px;
+}
+
+#productsCatalogContainer {
+  width: 1300px !important;
 }
 
 .swiper-pagination-bullet {

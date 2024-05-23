@@ -1,6 +1,6 @@
 import {Swiper, Pagination, Navigation} from "./import.js";
 
-const {catalogCarousel} = {
+export const {catalogCarousel} = {
     catalogCarousel: {
         pagination: {
             el: ".swiper-pagination",
@@ -13,4 +13,6 @@ const {catalogCarousel} = {
     modules: [Pagination, Navigation]
 }   
 
-new Swiper(".main-catalog__carousel", catalogCarousel);
+export const initCarousel = (className, config) => (new Swiper(className, config));
+
+

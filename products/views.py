@@ -74,13 +74,12 @@ class SubProductView(View):
         products = Products.objects.filter(category_id__in=category_ids)   
 
         products = products.values('id', 'name', 'image', 'price', 'manufacturer')
-        print(len(products))
         # Пагинация
         paginator = Paginator(products, self.paginate_by)
-        page_number = request.GET.get('page')
+        page_number = request.GET.get('page', 1)
         page_obj = paginator.get_page(page_number)
         
-        
+
         if request.path == f'/add-filters/{slug}/':
             products_data = list(page_obj)
             json_data = {
