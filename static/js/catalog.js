@@ -27,7 +27,7 @@ const productsRendering = (products) => {
             // <div class="products-catalog__item__img"></div>
             const productsCatalogItemImg = document.createElement("img");
             productsCatalogItemImg.classList.add("products-catalog__item__img");
-            productsCatalogItemImg.setAttribute("src", imageSrc);
+            productsCatalogItemImg.setAttribute("src", `/media/${imageSrc}`);
             productsCatalogItemImgWrap.appendChild(productsCatalogItemImg);
             // <div class="products-catalog__item__title"></div>
             const productsCatalogItemTitle = document.createElement("p");
@@ -53,7 +53,15 @@ const productsRendering = (products) => {
     
 }
 
-fetch("http://localhost:8000/add-filters", {
+const pageUrl = window.location.href.split("/").filter((part) => part != "");
+const slug = pageUrl[pageUrl.length - 1]
+// .replace("%D1%96r", "ir");
+console.log(slug)
+// Example usage:
+
+const url = `http://localhost:8000/add-filters/${slug}`;
+
+fetch(url, {
     method: "GET",
     mode: "cors"
 })

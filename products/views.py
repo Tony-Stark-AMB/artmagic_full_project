@@ -4,6 +4,8 @@ from django.http import JsonResponse, HttpResponse
 from django.views.decorators.http import require_POST
 from urllib.parse import urlparse, parse_qs
 from django.core.serializers import serialize
+from django.views import View
+from django.db.models import Q
 
 from .models import (Products,
                      Category,
@@ -27,7 +29,6 @@ def add_to_cart(request):
 
 
 def parent_categories(request):
-    # products = Products.objects.order_by('-date_added')[:20].values('name', 'image', 'price', "pk")
     products = list(Products.objects.order_by('-date_added')[:20].values('name', 'image', 'price', 'pk'))
 
     first_half = products[:10]
@@ -49,13 +50,6 @@ def products_view(request):
     return JsonResponse(products_list, safe=False)
 
 
-
-
-# def parent_categories(request):
-#     parent_categories = Category.objects.filter(parent=None)
-#     return render(request, 'parent_categories.html', {'parent_categories': parent_categories})
-
-
 def sub_categories(request, slug):
     parent_category = get_object_or_404(Category, slug=slug)
     sub_categories = parent_category.children.all()
@@ -66,69 +60,62 @@ def sub_categories(request, slug):
 
     return render(request, 'products/category.html', {'parent_category': parent_category, 'sub_categories': sub_categories, 'page_obj': page_obj})
 
-def add_filters(request):
-    products = Products.objects.all()
-    num = 10
-    paginator = Paginator(products, num)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    try:
-        products_data = list(page_obj.object_list.values('id', 'name', 'image', 'price', 'manufacturer'))
-        json_data = {
-            'products': products_data,
-            'productsPerPage': num,
-            'productsAmount': paginator.count,
-            'currentPage': page_obj.number
+class SubProductView(View):
+    template_name = 'products/catalog.html'
+    paginate_by = 10
+
+    def get(self, request, slug):
+        parent_category = get_object_or_404(Category, slug=slug)
+        sub_categories = parent_category.children.all()
+        
+        descendants = parent_category.get_descendants(include_self=True)
+        category_ids = [descendant.pk for descendant in descendants]
+        
+        products = Products.objects.filter(category_id__in=category_ids)   
+
+        products = products.values('id', 'name', 'image', 'price', 'manufacturer')
+        print(len(products))
+        # Пагинация
+        paginator = Paginator(products, self.paginate_by)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        
+        
+        if request.path == f'/add-filters/{slug}/':
+            products_data = list(page_obj)
+            json_data = {
+                'products': products_data,
+                'productsPerPage': paginator.per_page,
+                'productsAmount': paginator.count,
+                'currentPage': page_obj.number,
             }
+            return JsonResponse(json_data)
 
-        return JsonResponse(json_data, safe=False)
-    except Products.DoesNotExist:
-        return JsonResponse(status=404)
+        filters = self.build_filters(products, parent_category, sub_categories)
 
+        return render(request, self.template_name, {
+            'parent_category': parent_category,
+            'filters': filters,
+        })
 
-def sub_product(request, slug):
-    count = 0
-    parent_category = get_object_or_404(Category, slug=slug)
+    def build_filters(self, products, parent_category, sub_categories):
+        products_ids = products.values_list("pk", flat=True)
+        product_filters = ProductAttribute.objects.filter(product__in=products_ids)
+        
+        attributes_dict = {}
+        for attr in product_filters:
+            attr_name = attr.attribute.name
+            if attr_name not in attributes_dict:
+                attributes_dict[attr_name] = set()
+            attributes_dict[attr_name].add(attr.text if attr.text is not None else "None")
 
-    """products это все товары выбранной категории включительно"""
-    descendants = parent_category.get_descendants(include_self=True)
-    category_ids = [descendant.pk for descendant in descendants]
-    products = Products.objects.filter(category_id__in=category_ids)
-    product = Products.objects.filter(category_id=Category.objects.get(slug=slug).pk)
+        filters = [{'name': name.upper(), 'text': list(texts)} for name, texts in attributes_dict.items()]
+        
+        manufacturer = Manufacturer.objects.filter(products__category=parent_category).distinct()
+        if manufacturer.exists():
+            filters.insert(0, {'name': 'ВИРОБНИК', 'text': list(manufacturer.values_list('name', flat=True))})
 
-    """Блок фильтров"""
-    products_ids = products.values_list("pk", flat=True)
-    product_filters = ProductFilter.objects.filter(
-        product_id__in=products_ids)  # product_filters это все отфильтрованые продукты у которых есть фильтра
-    product_filters_ids = product_filters.values_list("filter_id", flat=True)
-    filters = Filter.objects.filter(pk__in=product_filters_ids)  # filters это фильтра всех выведенных продуктов
-    group_filters = FilterGroup.objects.filter(
-        pk__in=filters.values_list("filter_group_id", flat=True))  # group_filters это выборка групп
+        if sub_categories.exists():
+            filters.insert(0, {'name': 'ПІДКАТЕГІЯ', 'text': list(sub_categories.values_list('name', flat=True))})
 
-    """Пагинация"""
-    paginator = Paginator(products, 15)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    manufacturer = Manufacturer.objects.filter(products__category=parent_category).distinct()
-    return render(request, 'products/catalog.html', {'group_filters': group_filters, 'filters': filters, 'products': products, 'product': product, 'parent_category': parent_category, 'page_obj':page_obj, 'manufacturer': manufacturer})
-
-"""def sub_product(request, slug):
-    parent_category = get_object_or_404(Category, slug=slug)
-    products = Products.objects.all()
-    product = Products.objects.filter(category_id = Category.objects.get(slug=slug).pk)
-
-    products_ids = products.values_list("pk", flat=True)
-    product_filters = ProductFilter.objects.filter(
-        product_id__in=products_ids)  # product_filters это все отфильтрованые продукты у которых есть фильтра
-    product_filters_ids = product_filters.values_list("filter_id", flat=True)
-    filters = Filter.objects.filter(pk__in=product_filters_ids)  # filters это фильтра всех выведенных продуктов
-    group_filters = FilterGroup.objects.filter(
-        pk__in=filters.values_list("filter_group_id", flat=True))  # group_filters это выборка групп
-
-    paginator = Paginator(product, 15)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    manufacturer = Manufacturer.objects.filter(products__category=parent_category).distinct()
-    # attributes = product.productattribute_set.all()  # Получаем все атрибуты для конкретного продукта
-    retur""""""n render(request, 'products/catalog.html', {'group_filters': group_filters, 'filters': filters, 'products': products, 'product': product, 'parent_category': parent_category, 'page_obj':page_obj, 'manufacturer': manufacturer})"""
-
+        return filters
