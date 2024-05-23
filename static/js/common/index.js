@@ -1,4 +1,5 @@
 export const rerenderImage = function(images) {
+    console.log("rerender")
     images.forEach(img => {
         img.onload = function () {
             
@@ -26,6 +27,7 @@ export const rerenderImage = function(images) {
 export const isFloat = (value) => (typeof value === 'number' && value % 1 !== 0);
 
 export const initImagesRation = (page) => {
+    console.log("initImagesRation")
     try{
         const images = document.querySelectorAll(`.products-${page}__item__img`)
 

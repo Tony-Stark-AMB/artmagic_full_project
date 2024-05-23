@@ -62,7 +62,7 @@ def sub_categories(request, slug):
 
 class SubProductView(View):
     template_name = 'products/catalog.html'
-    paginate_by = 10
+    paginate_by = 12
 
     def get(self, request, slug):
         parent_category = get_object_or_404(Category, slug=slug)

@@ -1,5 +1,5 @@
 import { initBasket } from "./basket.js";
-import { initImagesRation } from "./common/index.js";
+import { initImagesRation, rerenderImage } from "./common/index.js";
 import { CATALOG } from "./common/constants.js";
 import { Product } from "./classes/product.js";
 import { catalogCarousel, initCarousel } from "./catalog-carousel.js";
@@ -44,13 +44,13 @@ const productsRendering = (products, productsAmount, productsPerPage, page) => {
         swiperSlide.classList.add("swiper-slide");
         //<div class="products-catalog__list"></div>
         const productsCatalogList = document.createElement("div");
-        productsCatalogList.setAttribute("id", index + 1);
+        productsCatalogList.setAttribute("data-page", index + 1);
         productsCatalogList.classList.add("products-catalog__list");
         swiperSlide.appendChild(productsCatalogList);
         productsContainer.appendChild(swiperSlide);
     }
 
-    const productsCatalogList = document.getElementById(page);
+    const productsCatalogList = document.querySelectorAll(`.products-${CATALOG}__list`)[page - 1];
     products.forEach((product) => renderProductItem(product, productsCatalogList));
 
 }
@@ -70,7 +70,6 @@ const initFetchProducts = (page = 1) => {
     fetchProducts(page)
     .then(({products, productsAmount, productsPerPage}) => {
         const changedProducts = mapedProducts(products)
-        console.log(changedProducts, productsAmount, productsPerPage, page)
         productsRendering(changedProducts, productsAmount, productsPerPage, page);
         initBasket(CATALOG);
         const catalogCarouselInit = initCarousel(".main-catalog__carousel", catalogCarousel);
@@ -85,7 +84,7 @@ const fetchProducts = (page) => {
     const pageUrl = window.location.href.split("/").filter((part) => part != "");
     const slug = pageUrl[pageUrl.length - 1]
     // .replace("%D1%96r", "ir");
-    console.log(slug)
+
     // Example usage:
 
     const url = `http://localhost:8000/add-filters/${slug}?page=${page}`;
@@ -101,15 +100,18 @@ const fetchProducts = (page) => {
 initFetchProducts();
 
 const changePageFetchProducts = (page) => {
-    const productsCatalogList = document.getElementById(page);
+    const productsCatalogList = document.querySelectorAll(`.products-${CATALOG}__list`)[page - 1];
     if(productsCatalogList.hasChildNodes())
         return;
 
     fetchProducts(page)
     .then(({products}) => {
-        const changedProducts = mapedProducts(products)
+        const changedProducts = mapedProducts(products);
         changedProducts.forEach((product) => 
             renderProductItem(product, productsCatalogList));
+
+        const images = document.querySelectorAll(`.products-${CATALOG}__item__img`);
+        rerenderImage(images);
     })
 }
 

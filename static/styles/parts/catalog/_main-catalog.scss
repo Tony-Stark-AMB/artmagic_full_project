@@ -4,7 +4,7 @@
     margin: 0;
     padding-top: 20px;
     grid-area: catalog;
-    min-height: 140vh;
+    height: inherit;
     border-left: 1px solid $c5;
     border-top: 1px solid $c5;
     &__wrap{
@@ -13,7 +13,7 @@
         flex-grow: 1;
         display: grid;
         grid-template-columns: minmax(300px, 2fr) 11fr;
-        grid-template-rows: 60px 20px calc(100% - 40px);
+        // grid-template-rows: 60px 20px minmax(300px, 2fr);
         grid-template-areas: 
         "title title"
         ". ."

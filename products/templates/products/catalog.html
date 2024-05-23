@@ -20,18 +20,30 @@
                 </main>
             <aside data-aos="fade-right" data-aos-delay="100" class="aside-catalog__wrap">
                 <section class="aside">
+                    
                     <div class="aside-catalog__content">
                         {% for filter in  filters  %}
-                            <h5 class="aside-maintitle">{{ filter.name }}</h5>
-                            <ul class="aside-mainlist">
-                                {% for value in filter.text %}
-                                  <li class="aside-main__item">
-                                      <input id="ZOOM" type="checkbox" />
-                                      <label for="ZOOM">{{ value }}</label>
-                                  </li>
-                            {% endfor %}
-                            </ul>
-                            <hr size="1px" color="#ddd" width="90%" style="margin: 10px auto;">
+                        <div class="accordion" id="accordionFilters">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{forloop.counter}}" aria-expanded="true" aria-controls="{{forloop.counter}}">
+                                    {{ filter.name }}
+                                  </button>
+                                </h2>
+                                <div id="{{forloop.counter}}" class="accordion-collapse collapse show" data-bs-parent="#accordionFilters">
+                                  <div class="accordion-body">
+                                    <ul class="aside-mainlist">
+                                        {% for value in filter.text %}
+                                          <li class="aside-main__item">
+                                              <input id="{{value}}" type="checkbox" />
+                                              <label class="aside-main__item__label" for="{{value}}">{{ value }}</label>
+                                          </li>
+                                    {% endfor %}
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
                         {% endfor %}
                             <div class="aside-catalog__search">
                                 <input placeholder="Пошук" type="search">
