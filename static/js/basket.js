@@ -2,9 +2,32 @@ import { Product } from "./classes/product.js";
 import { rerenderImage, isFloat  } from "./common/index.js";
 import { HOST, PROTOCOL, PORT } from "./common/constants.js";
 
-export const products = {
-    arr: []
+const initProducts = () => {
+    const products = {
+        arr: [
+            new Product(1, "apple 1", 100, "none", 0),
+            new Product(2, "apple 2", 200, "none", 0)
+        ]
+    }
+    localStorage.setItem("products", JSON.stringify(products));
+    return {
+        getProducts: () => {
+            try{
+                return JSON.parse(localStorage.getItem("products", products));
+            } catch (err) {
+                throw new Error("no products obj");
+            }
+        },
+        setProducts: (products) => localStorage.setItem("products", products)
+    }
 }
+
+const products = initProducts();
+console.log(Product.allTotalCost(products.getProducts()))
+
+// export const products = {
+//     arr: []
+// }
     
 const productsContainer = document.getElementById("basket-products");
 
@@ -43,7 +66,7 @@ export const renderProducts = (productsArr) => {
         // <button class="btns__btn">-</button>
         const buttonMinus = document.createElement("button");
         buttonMinus.classList.add("btns__btn");
-        buttonMinus.addEventListener("click", () => changeProductQuantity("-", id))
+        // buttonMinus.addEventListener("click", () => changeProductQuantity("-", id))
         buttonMinus.textContent = "-";
         cartProductBtns.appendChild(buttonMinus);
         // <input class="btns__count"/>
@@ -52,19 +75,20 @@ export const renderProducts = (productsArr) => {
         buttonCount.setAttribute("type", "text");
         buttonCount.setAttribute("id", `btn_count_${id}`)
         buttonCount.setAttribute("value", `${quantity}`);
-        buttonCount.addEventListener("input", () => changeProductQuantity("count", id))
+        // buttonCount.addEventListener("input", () => changeProductQuantity("count", id))
         cartProductBtns.appendChild(buttonCount);
         // <button class="btns__btn">+</button>
         const buttonPlus = document.createElement("button");
         buttonPlus.classList.add("btns__btn");
-        buttonPlus.addEventListener("click", () => changeProductQuantity("+", id));
+        // buttonPlus.addEventListener("click", () => changeProductQuantity("+", id));
         buttonPlus.textContent = "+";
         cartProductBtns.appendChild(buttonPlus);
         // <div class="cart__product__price"></div>
         const cartProductPrice = document.createElement("div");
         cartProductPrice.classList.add("cart__product__price");
         cartProductPrice.setAttribute("id", `product_price_${id}`);
-        cartProductPrice.textContent = priceCorrectOutput(price, quantity);
+        // cartProductPrice.textContent = priceCorrectOutput(price, quantity);
+        cartProductPrice.textContent = "0";
         cartProduct.appendChild(cartProductPrice);
         // <button class="cart__product__garbage__wrap"></button>
         const cartProductGarbageWrap = document.createElement("button");
@@ -93,157 +117,159 @@ export const renderProducts = (productsArr) => {
     });
 }
 
-renderProducts(products.arr);
+renderProducts(products.getProducts().arr);
 
-const changeProductQuantity = (type, id) => {
-    // console.log(productsArr, "productsArr", products, "products");
-    const changedProduct = products.arr.find((product) => product.id === id);
-    const btnInput = document.getElementById(`btn_count_${id}`);
-    const totalPrice = document.getElementById(`product_price_${id}`);
+// const changeProductQuantity = (type, id) => {
+//     // console.log(productsArr, "productsArr", products, "products");
+//     const changedProduct = products.arr.find((product) => product.id === id);
+//     const btnInput = document.getElementById(`btn_count_${id}`);
+//     const totalPrice = document.getElementById(`product_price_${id}`);
     
-    switch(type){
-        case "+":{
-            changedProduct.addOne();
-            break;
-        }
-        case "-": {
-            changedProduct.minusOne();
-            break;
-        }
-        case "count": {
-            changedProduct.setQuantity(+btnInput.value);
-            break;
-        }
-        default: 
-            return;
-    }
-    changeProductQuantityData(btnInput, totalPrice, changedProduct);
-    getAllTotal(products.arr);
-}
+//     switch(type){
+//         case "+":{
+//             changedProduct.addOne();
+//             break;
+//         }
+//         case "-": {
+//             changedProduct.minusOne();
+//             break;
+//         }
+//         case "count": {
+//             changedProduct.setQuantity(+btnInput.value);
+//             break;
+//         }
+//         default: 
+//             return;
+//     }
+//     changeProductQuantityData(btnInput, totalPrice, changedProduct);
+//     getAllTotal(products.arr);
+// }
 
-const changeProductQuantityData = (btnInput, totalPrice, changedProduct) => {
-    badgeCounter(Product.allProductsQuantity(products.arr));
-    btnInput.value = +changedProduct.quantity;
-    totalPrice.textContent =  priceCorrectOutput(changedProduct.price, +changedProduct.quantity); 
-}
+// const changeProductQuantityData = (btnInput, totalPrice, changedProduct) => {
+//     badgeCounter(Product.allProductsQuantity(products.arr));
+//     btnInput.value = +changedProduct.quantity;
+//     totalPrice.textContent =  priceCorrectOutput(changedProduct.price, +changedProduct.quantity); 
+// }
 
-const priceCorrectOutput = (price, ...quantity) => {
-    if(quantity){
-        quantity[0] = 1;
-    }
-    return isFloat(price) 
-    ?   `${(quantity[0] * price).toFixed(2)} грн`
-    :   `${quantity[0] * price}.00 грн`;
-}
+// const priceCorrectOutput = (price, ...quantity) => {
+//     if(quantity){
+//         quantity[0] = 1;
+//     }
+//     return isFloat(price) 
+//     ?   `${(quantity[0] * price).toFixed(2)} грн`
+//     :   `${quantity[0] * price}.00 грн`;
+// }
 
-const modalFooterGetAllTotal = document.querySelector(".modal-footer__text");
+// const modalFooterGetAllTotal = document.querySelector(".modal-footer__text");
 
-const getAllTotal = () => {
-    modalFooterGetAllTotal.textContent = Product.allTotalCost(products.arr) == 0 
-    ? priceCorrectOutput(Product.allTotalCost(products.arr))
-    : priceCorrectOutput(Product.allTotalCost(products.arr));
-}
+// const getAllTotal = () => {
+//     modalFooterGetAllTotal.textContent = Product.allTotalCost(products.arr) == 0 
+//     ? priceCorrectOutput(Product.allTotalCost(products.arr))
+//     : priceCorrectOutput(Product.allTotalCost(products.arr));
+// }
 
-getAllTotal(products.arr);
+// getAllTotal(products.getProducts().arr);
 
-const deleteProduct = (id) => {
-    products.arr = Product.deleteProduct(products.arr, id)
-    document.getElementById(`cart__product__${id}`).remove();
-    if(products.length == 0){
-        emptyBasket("Ваш кошик порожній");
-    }
-    getAllTotal(products.arr);
-    badgeCounter(Product.allProductsQuantity(products.arr));
+// const deleteProduct = (id) => {
+//     products.arr = Product.deleteProduct(products.arr, id)
+//     document.getElementById(`cart__product__${id}`).remove();
+//     if(products.length == 0){
+//         emptyBasket("Ваш кошик порожній");
+//     }
+//     getAllTotal(products.arr);
+//     badgeCounter(Product.allProductsQuantity(products.arr));
   
-}
+// }
 
-const emptyBasket = (emptyBasketText) => {
-    const text = document.createElement("p")
-    text.textContent = emptyBasketText;
-    text.classList.add("basket__modal__cart__text");
-    if(products.arr.length == 0){
-        productsContainer.appendChild(text);
-    } 
-}
+// const emptyBasket = (emptyBasketText) => {
+//     const text = document.createElement("p")
+//     text.textContent = emptyBasketText;
+//     text.classList.add("basket__modal__cart__text");
+//     if(products.arr.length == 0){
+//         productsContainer.appendChild(text);
+//     } 
+// }
 
-emptyBasket("Ваш кошик порожній");  
+// emptyBasket("Ваш кошик порожній");  
 
-const addToCart = async (id) => {
-    return fetch(`${PROTOCOL}://${HOST}:${PORT}/add-to-cart/?id=${id}`, {
-        method: "GET",
-        mode: "cors"
-    }).then((data) => data.json());
-}
+// const addToCart = async (id) => {
+//     return fetch(`${PROTOCOL}://${HOST}:${PORT}/add-to-cart/?id=${id}`, {
+//         method: "GET",
+//         mode: "cors"
+//     }).then((data) => data.json());
+// }
 
-export const initBasket = (page) => {
-   const cardsContainers = document.querySelectorAll(`div.products-${page}__list`);
+// export const initBasket = (page) => {
+//    const cardsContainers = document.querySelectorAll(`div.products-${page}__list`);
 
-   Array.from(cardsContainers).forEach(arr => arr.addEventListener("click", (e) => addToCartLogic(e)));
-}
+//    Array.from(cardsContainers).forEach(arr => arr.addEventListener("click", (e) => addToCartLogic(e)));
+// }
 
-export const addToCartLogic = async (e) => {
-    const el = e.target;
-    if(el.hasAttribute("id")){
-        const {id, name, price, image} = await addToCart(el.getAttribute("id"));
-        const newProduct = new Product(id, name, +price, image);
-        if(id && (products.arr.findIndex((product) => product.id === newProduct.id)) == -1){
-            products.arr = [newProduct, ...products.arr];
-            productsContainer.replaceChildren();
-            renderProducts(products.arr);
-        } else {
-            const changedProduct = products.arr.find((product) => product.id === newProduct.id);
-            const btnInput = document.getElementById(`btn_count_${id}`);
-            const totalPrice = document.getElementById(`product_price_${id}`);
-            changedProduct.addOne();
-            changeProductQuantityData(btnInput, totalPrice, changedProduct);
-            getAllTotal(products.arr);
-        }
-        getAllTotal(products.arr);
-        // badgeCounter(products.arr.length);
-        badgeCounter(Product.allProductsQuantity(products.arr));
-        badgeAnimation();
-    }
-    return;
+// export const addToCartLogic = async (e) => {
+//     const el = e.target;
+//     if(el.hasAttribute("id")){
+//         const {id, name, price, image} = await addToCart(el.getAttribute("id"));
+//         const newProduct = new Product(id, name, +price, image);
+//         if(id && (products.arr.findIndex((product) => product.id === newProduct.id)) == -1){
+//             products.arr = [newProduct, ...products.arr];
+//             productsContainer.replaceChildren();
+//             renderProducts(products.arr);
+//         } else {
+//             const changedProduct = products.arr.find((product) => product.id === newProduct.id);
+//             const btnInput = document.getElementById(`btn_count_${id}`);
+//             const totalPrice = document.getElementById(`product_price_${id}`);
+//             changedProduct.addOne();
+//             changeProductQuantityData(btnInput, totalPrice, changedProduct);
+//             getAllTotal(products.arr);
+//         }
+//         getAllTotal(products.arr);
+//         // badgeCounter(products.arr.length);
+//         badgeCounter(Product.allProductsQuantity(products.arr));
+//         badgeAnimation();
+//     }
+//     return;
     
-}
+// }
 
-const badge = document.querySelector(".header-basket__icon__badge");
-const badgeContent = document.querySelector(".header-basket__icon__badge__number");
+// const badge = document.querySelector(".header-basket__icon__badge");
+// const badgeContent = document.querySelector(".header-basket__icon__badge__number");
 
-const badgeAnimation = () => {
-    badge.classList.add("add__product__animation");
-    setTimeout(() => badge.classList.remove("add__product__animation"), 200)
-}
+// const badgeAnimation = () => {
+//     badge.classList.add("add__product__animation");
+//     setTimeout(() => badge.classList.remove("add__product__animation"), 200)
+// }
 
-const badgeCounter = (amount) => {
-    badgeContent.textContent = amount;
-}
+// const badgeCounter = (amount) => {
+//     badgeContent.textContent = amount;
+// }
 
 
-//for form 
+// //for form 
 
-const cardInput = document.querySelector(".card-input");
-const walletInput = document.querySelector(".wallet-input");
+// const cardInput = document.querySelector(".card-input");
+// const walletInput = document.querySelector(".wallet-input");
 
-const cardSvg = document.querySelector('.card-img');
-const walletSvg = document.querySelector('.wallet-img');
+// const cardSvg = document.querySelector('.card-img');
+// const walletSvg = document.querySelector('.wallet-img');
 
-const cardNumberInput = document.getElementById("card-input")
+// const cardNumberInput = document.getElementById("card-input")
 
-cardSvg.style.color = '#3e77aa'; // Change color for card SVG
-walletSvg.style.color = '#7d7d7d'; // Reset color for wallet SVG
+// cardSvg.style.color = '#3e77aa'; // Change color for card SVG
+// walletSvg.style.color = '#7d7d7d'; // Reset color for wallet SVG
 
-function handleInputChange() {
-    if (cardInput.checked) {
-        cardNumberInput.style.display = "block";
-        cardSvg.style.color = '#3e77aa'; // Change color for card SVG
-        walletSvg.style.color = '#7d7d7d'; // Reset color for wallet SVG
-    } else if (walletInput.checked) {
-        cardNumberInput.style.display = "none";
-        walletSvg.style.color = '#3e77aa'; // Change color for wallet SVG
-        cardSvg.style.color = '7d7d7d'; // Reset color for card SVG
-    }
-}
+// function handleInputChange() {
+//     if (cardInput.checked) {
+//         cardNumberInput.style.display = "block";
+//         cardSvg.style.color = '#3e77aa'; // Change color for card SVG
+//         walletSvg.style.color = '#7d7d7d'; // Reset color for wallet SVG
+//     } else if (walletInput.checked) {
+//         cardNumberInput.style.display = "none";
+//         walletSvg.style.color = '#3e77aa'; // Change color for wallet SVG
+//         cardSvg.style.color = '7d7d7d'; // Reset color for card SVG
+//     }
+// }
 
-cardInput.addEventListener('change', handleInputChange);
-walletInput.addEventListener('change', handleInputChange);
+// cardInput.addEventListener('change', handleInputChange);
+// walletInput.addEventListener('change', handleInputChange);
+
+

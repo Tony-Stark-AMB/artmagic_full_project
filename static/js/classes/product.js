@@ -14,16 +14,17 @@ export class Product {
         return Product.currentId++;
     }
 
-    static allTotalCost(productsArr){
-        return productsArr.reduce((acc, curr) => +acc + (curr.quantity * curr.price) , [])
+    static allTotalCost(products){
+        const {arr} = products;
+        return arr.reduce((acc, curr) => +acc + (curr.quantity * curr.price) , 0)
     }
 
-    static deleteProduct(productsArr, id){
-        return productsArr.filter((product) => product.id != id);
+    static deleteProduct(products, id){
+        return arr.filter((product) => product.id != id); //доработать
     }
 
-    static allProductsQuantity(productsArr){
-        return productsArr.reduce((acc, cur) => acc + cur.quantity, 0);
+    static allProductsQuantity(products){ 
+        return arr.reduce((acc, cur) => acc + cur.quantity, 0); //доработать
     }
     addOne(){this.quantity++};
 
@@ -41,5 +42,7 @@ export class Product {
         this.quantity = value;
     }
 }
+
+
 
 
