@@ -60,6 +60,13 @@ def sub_categories(request, slug):
 
     return render(request, 'products/category.html', {'parent_category': parent_category, 'sub_categories': sub_categories, 'page_obj': page_obj})
 
+def detail(request, pk):
+    product = Products.objects.filter(pk=pk).first()
+    att = ProductAttribute.objects.filter(product_id=product.pk)
+    print(att, '||||||||||')
+
+    return render(request, 'products/product.html', {'product': product, 'att': att})
+
 class SubProductView(View):
     template_name = 'products/catalog.html'
     paginate_by = 12

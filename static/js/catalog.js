@@ -1,6 +1,6 @@
 import { initBasket } from "./basket.js";
 import { initImagesRation, rerenderImage } from "./common/index.js";
-import { CATALOG } from "./common/constants.js";
+import { CATALOG, HOST, PORT, PROTOCOL } from "./common/constants.js";
 import { Product } from "./classes/product.js";
 import { catalogCarousel, initCarousel } from "./catalog-carousel.js";
 
@@ -10,6 +10,9 @@ const renderProductItem = ({name, id, imageSrc, price}, container) => {
     //<div class="products-catalog__item"></div>
     const productsCatalogItem = document.createElement("div");
     productsCatalogItem.classList.add("products-catalog__item");
+    productsCatalogItem.addEventListener("click", () => {
+        location.href = `${PROTOCOL}://${HOST}:${PORT}/detail/${id}`
+    })
     // <div class="products-catalog__item__img__wrap"></div>
     const productsCatalogItemImgWrap = document.createElement("div");
     productsCatalogItemImgWrap.classList.add("products-catalog__item__img__wrap");
