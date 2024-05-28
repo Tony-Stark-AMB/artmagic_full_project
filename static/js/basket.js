@@ -2,102 +2,102 @@ import { Product } from "./classes/product.js";
 import { rerenderImage, isFloat  } from "./common/index.js";
 import { HOST, PROTOCOL, PORT } from "./common/constants.js";
 
-const initProducts = () => {
-    const products = {
-        arr: [
-        ]
-    }
-
-    const outputAllTotalView = document.querySelector(".modal-footer__text");
-
-    // localStorage.setItem("products", JSON.stringify(products));
-    return {
-        getProducts: function (){
-            try{
-                const storageProducts = JSON.parse(localStorage.getItem("products", products));
-                // console.log(storageProducts)
-                if(storageProducts){
-                    const mapedStorageProducts = this.convertProducts(storageProducts);
-                    return mapedStorageProducts
-                }
-                return {arr: []}
-            } catch (err) {
-                console.log(err)
-                throw new Error("Не ініціалізовано об'єкт продуктів");
-            }
-        },
-        setProducts: function (products) {localStorage.setItem("products", JSON.stringify(products))},
-        addProduct: function (newProduct) {
-            const products = this.getProducts();  // Get the current products object
-            products.arr = [newProduct, ...products.arr];  // Update the array
-            this.setProducts(products);  // Save the updated products object back to local storage
-        }, 
-        allProductsQuantity: (products) => products.arr.reduce((acc, cur) => acc + cur.quantity, 0),
-        allTotalCost: (products) => products.arr.reduce((acc, curr) => +acc + (curr.quantity * curr.price) , 0),
-        deleteProduct: (products, id) => products.arr.filter((product) => product.id != id),
-        addToCart: async (id) => (fetch(`${PROTOCOL}://${HOST}:${PORT}/add-to-cart/?id=${id}`, {
-                method: "GET",
-                mode: "cors"
-            }).then(data => data.json())
-        ),
-        convertProducts: (products) => {
-            return {arr: products.arr.map(({id, name, price, quantity, manufacturerId, imageSrc}) => 
-                new Product(id, name, price, imageSrc, manufacturerId, quantity))}
-        },
-        updateProductInProducts: (products, id, updatedProduct) => {
-            const index = products.arr.findIndex(product => product.id === id);
-
-            if (index !== -1) {
-                products.arr[index] = updatedProduct    ;
-                // Save the updated products object back to local storage
-                localStorage.setItem("products", JSON.stringify(products));
-            }
-
-            return products;
-        },
-        
-//     if(el.hasAttribute("id")){
-//         const {id, name, price, image} = await addToCart(el.getAttribute("id"));
-//         const newProduct = new Product(id, name, +price, image);
-//         if(id && (products.arr.findIndex((product) => product.id === newProduct.id)) == -1){
-//             products.arr = [newProduct, ...products.arr];
-//             productsContainer.replaceChildren();
-//             renderProducts(products.arr);
-//         } else {
-//             const changedProduct = products.arr.find((product) => product.id === newProduct.id);
-//             const btnInput = document.getElementById(`btn_count_${id}`);
-//             const totalPrice = document.getElementById(`product_price_${id}`);
-//             changedProduct.addOne();
-//             changeProductQuantityData(btnInput, totalPrice, changedProduct);
-//             getAllTotal(products.arr);
-//         }
-//         getAllTotal(products.arr);
-//         // badgeCounter(products.arr.length);
-//         badgeCounter(Product.allProductsQuantity(products.arr));
-//         badgeAnimation();
+// const initProducts = () => {
+//     const products = {
+//         arr: [
+//         ]
 //     }
-//     return;
-        getChangedProductData: function (id) {
-            console.log(id)
-            return {
-                changedProduct: this.getProducts().arr.find((product) => product.id === id),
-                btnInput: document.getElementById(`btn_count_${id}`),
-                totalPriceInput: document.getElementById(`product_price_${id}`)
-            }
-        },
-        changeProductQuantity: function (btnInput, totalPriceInput, changedProduct){
-            console.log(btnInput, totalPriceInput, changedProduct)
-            // badgeCounter(this.allProductsQuantity(products));
-            btnInput.value = +changedProduct.quantity;
+
+//     const outputAllTotalView = document.querySelector(".modal-footer__text");
+
+//     // localStorage.setItem("products", JSON.stringify(products));
+//     return {
+//         getProducts: function (){
+//             try{
+//                 const storageProducts = JSON.parse(localStorage.getItem("products", products));
+//                 // console.log(storageProducts)
+//                 if(storageProducts){
+//                     const mapedStorageProducts = this.convertProducts(storageProducts);
+//                     return mapedStorageProducts
+//                 }
+//                 return {arr: []}
+//             } catch (err) {
+//                 console.log(err)
+//                 throw new Error("Не ініціалізовано об'єкт продуктів");
+//             }
+//         },
+//         setProducts: function (products) {localStorage.setItem("products", JSON.stringify(products))},
+//         addProduct: function (newProduct) {
+//             const products = this.getProducts();  // Get the current products object
+//             products.arr = [newProduct, ...products.arr];  // Update the array
+//             this.setProducts(products);  // Save the updated products object back to local storage
+//         }, 
+//         allProductsQuantity: (products) => products.arr.reduce((acc, cur) => acc + cur.quantity, 0),
+//         allTotalCost: (products) => products.arr.reduce((acc, curr) => +acc + (curr.quantity * curr.price) , 0),
+//         deleteProduct: (products, id) => products.arr.filter((product) => product.id != id),
+//         addToCart: async (id) => (fetch(`${PROTOCOL}://${HOST}:${PORT}/add-to-cart/?id=${id}`, {
+//                 method: "GET",
+//                 mode: "cors"
+//             }).then(data => data.json())
+//         ),
+//         convertProducts: (products) => {
+//             return {arr: products.arr.map(({id, name, price, quantity, manufacturerId, imageSrc}) => 
+//                 new Product(id, name, price, imageSrc, manufacturerId, quantity))}
+//         },
+//         updateProductInProducts: (products, id, updatedProduct) => {
+//             const index = products.arr.findIndex(product => product.id === id);
+
+//             if (index !== -1) {
+//                 products.arr[index] = updatedProduct    ;
+//                 // Save the updated products object back to local storage
+//                 localStorage.setItem("products", JSON.stringify(products));
+//             }
+
+//             return products;
+//         },
+        
+// //     if(el.hasAttribute("id")){
+// //         const {id, name, price, image} = await addToCart(el.getAttribute("id"));
+// //         const newProduct = new Product(id, name, +price, image);
+// //         if(id && (products.arr.findIndex((product) => product.id === newProduct.id)) == -1){
+// //             products.arr = [newProduct, ...products.arr];
+// //             productsContainer.replaceChildren();
+// //             renderProducts(products.arr);
+// //         } else {
+// //             const changedProduct = products.arr.find((product) => product.id === newProduct.id);
+// //             const btnInput = document.getElementById(`btn_count_${id}`);
+// //             const totalPrice = document.getElementById(`product_price_${id}`);
+// //             changedProduct.addOne();
+// //             changeProductQuantityData(btnInput, totalPrice, changedProduct);
+// //             getAllTotal(products.arr);
+// //         }
+// //         getAllTotal(products.arr);
+// //         // badgeCounter(products.arr.length);
+// //         badgeCounter(Product.allProductsQuantity(products.arr));
+// //         badgeAnimation();
+// //     }
+// //     return;
+//         getChangedProductData: function (id) {
+//             console.log(id)
+//             return {
+//                 changedProduct: this.getProducts().arr.find((product) => product.id === id),
+//                 btnInput: document.getElementById(`btn_count_${id}`),
+//                 totalPriceInput: document.getElementById(`product_price_${id}`)
+//             }
+//         },
+//         changeProductQuantity: function (btnInput, totalPriceInput, changedProduct){
+//             console.log(btnInput, totalPriceInput, changedProduct)
+//             // badgeCounter(this.allProductsQuantity(products));
+//             btnInput.value = +changedProduct.quantity;
             
-            // totalPriceInput.textContent = priceCorrectOutput(changedProduct.price, +changedProduct.quantity); 
-        },
-        productExists: function (id) {
-            const products = this.getProducts();
-            return products.arr.findIndex((product) => product.id === id) === -1 ? false : true
-        },
-    }
-}
+//             // totalPriceInput.textContent = priceCorrectOutput(changedProduct.price, +changedProduct.quantity); 
+//         },
+//         productExists: function (id) {
+//             const products = this.getProducts();
+//             return products.arr.findIndex((product) => product.id === id) === -1 ? false : true
+//         },
+//     }
+// }
 
 export const basket = (page) => {
     const cardsContainers = document.querySelectorAll(`div.products-${page}__list`);
@@ -400,3 +400,33 @@ export const basket = (page) => {
 // walletInput.addEventListener('change', handleInputChange);
 
 
+const initProducts = () => {
+
+    const products = {
+        arr: []
+    }
+
+    return {
+        getProducts: () => products ?? [],
+        getStorageProducts: () => JSON.parse(localStorage.getItem("products")) ?? [],
+        setProducts: (obj) => products = {...obj},
+        setStorageProducts: (products) => JSON.stringify(localStorage.setItem("products", products)),
+        addProduct: ({id, name, price, quantity, imageSrc, manufacturer}) => 
+            (products.arr = [...products.arr, new Product(id, name, price, imageSrc, manufacturer, quantity)]),
+        mapObjectsInProducts: (products) => 
+            products.arr = products.arr.map(({id, name, price, quantity, imageSrc, manufacturer}) => 
+                new Product(id, name, price, imageSrc, manufacturer, quantity)),
+        fetchNewProduct: async function (id){
+            return (fetch(`${PROTOCOL}://${HOST}:${PORT}/add-to-cart/?id=${id}`, {
+                    method: "GET",
+                    mode: "cors"
+                }).then(data => data.json())
+            )
+        },
+    }
+}
+
+const products = initProducts();
+
+products.addProduct({id: 1, name: "apple 1", quantity: 1, price: 100, imageSrc: "ok", manufacturer: 2});
+console.log(products.getProducts());
