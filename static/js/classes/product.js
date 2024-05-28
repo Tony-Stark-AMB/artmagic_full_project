@@ -1,8 +1,8 @@
 export class Product {
-    constructor(id, name, price, imageSrc, manufacturer) {
+    constructor(id, name, price, imageSrc, manufacturer, quantity) {
       this.name = name;
       this.price = price;
-      this.quantity = 1;
+      this.quantity = quantity ? quantity : 1;
       this.imageSrc = imageSrc
       this.id = id; // Assigning a unique ID to each object
       this.manufacturerId = manufacturer
@@ -14,18 +14,6 @@ export class Product {
         return Product.currentId++;
     }
 
-    static allTotalCost(products){
-        const {arr} = products;
-        return arr.reduce((acc, curr) => +acc + (curr.quantity * curr.price) , 0)
-    }
-
-    static deleteProduct(products, id){
-        return arr.filter((product) => product.id != id); //доработать
-    }
-
-    static allProductsQuantity(products){ 
-        return arr.reduce((acc, cur) => acc + cur.quantity, 0); //доработать
-    }
     addOne(){this.quantity++};
 
     minusOne(){
