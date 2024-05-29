@@ -25,22 +25,44 @@
                         <div class="accordion" id="accordionFilters">
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
-                                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{forloop.counter}}" aria-expanded="true" aria-controls="{{forloop.counter}}">
-                                    {{ filter.name }}
-                                  </button>
+                                  {% if forloop.counter == 1 %}    
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{forloop.counter}}" aria-expanded="true" aria-controls="{{forloop.counter}}">
+                                        {{ filter.name }}
+                                    </button>
+                                  {% else %}
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{forloop.counter}}" aria-expanded="true" aria-controls="{{forloop.counter}}">
+                                        {{ filter.name }}
+                                    </button>
+                                  {% endif %}
                                 </h2>
-                                <div id="{{forloop.counter}}" class="accordion-collapse collapse show" data-bs-parent="#accordionFilters">
-                                  <div class="accordion-body">
-                                    <ul class="aside-mainlist">
-                                        {% for value in filter.text %}
-                                          <li class="aside-main__item">
-                                              <input id="{{value}}" type="checkbox" />
-                                              <label class="aside-main__item__label" for="{{value}}">{{ value }}</label>
-                                          </li>
-                                    {% endfor %}
-                                    </ul>
-                                  </div>
-                                </div>
+                                {% if forloop.counter == 1 %}
+                                    <div id="{{forloop.counter}}" class="accordion-collapse collapse show" data-bs-parent="#accordionFilters">
+                                        <div class="accordion-body">
+                                        <ul class="aside-mainlist">
+                                            {% for value in filter.text %}
+                                                <li class="aside-main__item">
+                                                    <input id="{{value}}" type="checkbox" />
+                                                    <label class="aside-main__item__label" for="{{value}}">{{ value }}</label>
+                                                </li>
+                                        {% endfor %}
+                                        </ul>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div id="{{forloop.counter}}" class="accordion-collapse collapse" data-bs-parent="#accordionFilters">
+                                        <div class="accordion-body">
+                                        <ul class="aside-mainlist">
+                                            {% for value in filter.text %}
+                                                <li class="aside-main__item">
+                                                    <input id="{{value}}" type="checkbox" />
+                                                    <label class="aside-main__item__label" for="{{value}}">{{ value }}</label>
+                                                </li>
+                                        {% endfor %}
+                                        </ul>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                
                               </div>
                         </div>
                         {% endfor %}
