@@ -144,7 +144,7 @@
                     <div class="divider"></div>
                     <div class="products-category__list" data-aos="fade-down" data-aos-delay="300">
                         {% for product in page_obj %}
-                            <div class="products-category__item">
+                            <div class="products-category__item" id="{{ product.pk }}">
                                 <div class="products-category__item__img__wrap">
                                     {% if product.image %}
                                         <img class="products-category__item__img" src="{{ product.image.url }}" alt="{{ product.name }}">
@@ -154,7 +154,7 @@
                                 </div>
                                 <p class="products-category__item__title">{{ product.name }}</p>
                                 <span class="products-category__item__price">{{ product.price }} грн</span>
-                                <button class="btn btn-primary" id="{{ product.pk }}">Купити</button>
+                                <button class="btn btn-primary products-category__item__btn" id="{{ product.pk }}">Купити</button>
                             </div>
                         {% endfor %}
                     </div>

@@ -5,7 +5,7 @@ export class Product {
       this.quantity = quantity ? quantity : 1;
       this.imageSrc = imageSrc
       this.id = id; // Assigning a unique ID to each object
-      this.manufacturerId = manufacturer
+      this.manufacturerId = manufacturer ? manufacturer : null;
     }
   
     static currentId = 1; // Static variable to keep track of the IDs
@@ -14,20 +14,19 @@ export class Product {
         return Product.currentId++;
     }
 
-    addOne(){this.quantity++};
+    addOne(){
+        this.quantity += 1;
+        return this;
+    };
 
     minusOne(){
-        if(this.quantity > 1){
-            this.quantity--;
-        }
-        return;
+        this.quantity -= 1;
+        return this;
     }
 
     setQuantity(value){
-        if(value < 1){
-            return 
-        }
         this.quantity = value;
+        return this;
     }
 }
 

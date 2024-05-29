@@ -51,28 +51,28 @@
                         <div class="swiper-wrapper products-index__content">
                             <div class="swiper-slide products-index__list">
                                 {% for product in products.first_half %}
-                                <div class="products-index__item" >
+                                <div class="products-index__item" id="{{ product.pk }}">
                                     <div class="products-index__item__img__wrap">
                                         <img class="products-index__item__img" src="/media/{{ product.image }}" alt="">
                                     </div>
                                     <div class="products-index__item__content">
                                         <p class="products-index__item__title">{{ product.name }}</p>
                                         <span class="products-index__item__price">{{ product.price }} грн</span>
-                                        <button class="btn btn-primary products-index__item__btn" id="{{ product.pk }}">Купити</button>
+                                        <button class="btn btn-primary products-index__item__btn">Купити</button>
                                     </div>
                                 </div>
                                 {% endfor %}
                             </div>
                             <div class="swiper-slide products-index__list">
                                 {% for product in products.second_half %}
-                                <div class="products-index__item" >
+                                <div class="products-index__item" id="{{ product.pk }}">
                                     <div class="products-index__item__img__wrap">
                                         <img class="products-index__item__img" src="/media/{{ product.image }}" alt="">
                                     </div>
                                     <div class="products-index__item__content">
                                         <p class="products-index__item__title">{{ product.name }}</p>
                                         <span class="products-index__item__price">{{ product.price }} грн</span>
-                                        <button class="btn btn-primary products-index__item__btn" id="{{ product.pk }}">Купить</button>
+                                        <button class="btn btn-primary products-index__item__btn" >Купить</button>
                                     </div>
                                 </div>
                                 {% endfor %}
