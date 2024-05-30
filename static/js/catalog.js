@@ -1,8 +1,10 @@
-import { initBasket } from "./basket.js";
+import { basket } from "./basket.js";
 import { initImagesRation, rerenderImage } from "./common/index.js";
 import { CATALOG } from "./common/constants.js";
 import { Product } from "./classes/product.js";
 import { catalogCarousel, initCarousel } from "./catalog-carousel.js";
+
+
 
 initImagesRation(CATALOG);
 
@@ -10,6 +12,7 @@ const renderProductItem = ({name, id, imageSrc, price}, container) => {
     //<div class="products-catalog__item"></div>
     const productsCatalogItem = document.createElement("div");
     productsCatalogItem.classList.add("products-catalog__item");
+    productsCatalogItem.setAttribute("id", id);
     // <div class="products-catalog__item__img__wrap"></div>
     const productsCatalogItemImgWrap = document.createElement("div");
     productsCatalogItemImgWrap.classList.add("products-catalog__item__img__wrap");
@@ -29,8 +32,7 @@ const renderProductItem = ({name, id, imageSrc, price}, container) => {
     productsCatalogItemPrice.textContent = price;
     productsCatalogItem.appendChild(productsCatalogItemPrice);
     const btn = document.createElement("button");
-    btn.classList.add("btn", "btn-primary");
-    btn.setAttribute("id", id);
+    btn.classList.add("btn", "btn-primary", `products-catalog__item__btn`);
     btn.textContent = "Купити";
     productsCatalogItem.appendChild(btn);
 
@@ -66,12 +68,11 @@ const mapedProducts = (arr) =>
         new Product(id, name, price, image, manufacturer));
 
 
-const initFetchProducts = (page = 1) => {
-    fetchProducts(page)
+const initFetchProducts = async (page = 1) => {
+    await fetchProducts(page)
     .then(({products, productsAmount, productsPerPage}) => {
         const changedProducts = mapedProducts(products)
         productsRendering(changedProducts, productsAmount, productsPerPage, page);
-        initBasket(CATALOG);
         const catalogCarouselInit = initCarousel(".main-catalog__carousel", catalogCarousel);
         catalogCarouselInit.on('slideChange', () => {
             const currentPage = catalogCarouselInit.activeIndex + 1;
@@ -80,7 +81,7 @@ const initFetchProducts = (page = 1) => {
     });
 }
 
-const fetchProducts = (page) => {
+const fetchProducts = async (page) => {
     const pageUrl = window.location.href.split("/").filter((part) => part != "");
     const slug = pageUrl[pageUrl.length - 1]
     // .replace("%D1%96r", "ir");
@@ -89,15 +90,16 @@ const fetchProducts = (page) => {
 
     const url = `http://localhost:8000/add-filters/${slug}?page=${page}`;
 
-    return fetch(url, {
+    const data = await fetch(url, {
         method: "GET",
         mode: "cors"
-    }).then((data)=> data.json())
+    });
+    return await data.json();
 } 
 
 
 
-initFetchProducts();
+await initFetchProducts().then(() => basket(CATALOG));
 
 const changePageFetchProducts = (page) => {
     const productsCatalogList = document.querySelectorAll(`.products-${CATALOG}__list`)[page - 1];

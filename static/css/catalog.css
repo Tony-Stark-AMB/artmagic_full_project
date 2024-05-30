@@ -631,7 +631,7 @@
   place-items: center;
 }
 .overlook__name {
-  width: 50%;
+  width: 60%;
 }
 
 .modal-footer__btns {
@@ -749,6 +749,7 @@
 
 .products-catalog__list {
   width: 1300px;
+  height: auto;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
   gap: 20px;
@@ -793,7 +794,7 @@
   margin: 0;
   padding-top: 20px;
   grid-area: catalog;
-  min-height: 140vh;
+  height: inherit;
   border-left: 1px solid #ddd;
   border-top: 1px solid #ddd;
 }
@@ -803,7 +804,6 @@
   flex-grow: 1;
   display: grid;
   grid-template-columns: minmax(300px, 2fr) 11fr;
-  grid-template-rows: 60px 20px calc(100% - 40px);
   grid-template-areas: "title title" ". ." "aside catalog";
 }
 .main-catalog__title {

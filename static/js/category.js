@@ -1,7 +1,8 @@
-import { initBasket } from "./basket.js";
+// import { basket } from "./basket.js";
 import { initImagesRation } from "./common/index.js";
 import { CATEGORY } from "./common/constants.js";
+import { basket } from "./basket.js";
 
-initBasket(CATEGORY);
+basket(CATEGORY);
 
 initImagesRation(CATEGORY);
