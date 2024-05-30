@@ -2,7 +2,7 @@ export class Product {
     constructor(id, name, price, imageSrc, manufacturer, quantity) {
       this.name = name;
       this.price = price;
-      this.quantity = quantity ? quantity : 1;
+      this.quantity = quantity ? quantity : quantity === 0 ? quantity : 1;
       this.imageSrc = imageSrc
       this.id = id; // Assigning a unique ID to each object
       this.manufacturerId = manufacturer ? manufacturer : null;
