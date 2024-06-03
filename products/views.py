@@ -6,6 +6,7 @@ from urllib.parse import urlparse, parse_qs
 from django.core.serializers import serialize
 from django.views import View
 from django.db.models import Q
+from itertools import islice
 
 from .models import (Products,
                      Category,
@@ -50,15 +51,22 @@ def products_view(request):
     return JsonResponse(products_list, safe=False)
 
 
+def chunk_queryset(queryset, chunk_size):
+    """Разбивает QuerySet на вложенные списки фиксированного размера."""
+    iterator = iter(queryset)
+    for first in iterator:
+        chunk = [first] + list(islice(iterator, chunk_size - 1))
+        yield chunk
+
+
 def sub_categories(request, slug):
     parent_category = get_object_or_404(Category, slug=slug)
     sub_categories = parent_category.children.all()
-    products = Products.objects.filter(category_id=parent_category.pk)
-    paginator = Paginator(products, 15)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+    products = Products.objects.filter(category_id=parent_category)[:64]
 
-    return render(request, 'products/category.html', {'parent_category': parent_category, 'sub_categories': sub_categories, 'page_obj': page_obj})
+    products_by_sub_category = list(chunk_queryset(products, 8))
+
+    return render(request, 'products/category.html', {'parent_category': parent_category, 'sub_categories': sub_categories, 'products_by_sub_category': products_by_sub_category})
 
 class SubProductView(View):
     template_name = 'products/catalog.html'

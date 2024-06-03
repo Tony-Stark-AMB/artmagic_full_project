@@ -29,6 +29,8 @@ const {categoryBanner, brandsBanner, productsCarousel} = {
     },
 
     productsCarousel: {
+      slidesPerView: 1,
+      slidesPerGroup: 1,
       pagination: {
         el: ".swiper-pagination",
         clickable: true,
@@ -43,4 +45,4 @@ const {categoryBanner, brandsBanner, productsCarousel} = {
 
 new Swiper(".category-banner", categoryBanner);
 new Swiper(".category-brands", brandsBanner);
-new Swiper(".category-products__carousel", productsCarousel); 
+new Swiper(".products-category__carousel", productsCarousel); 

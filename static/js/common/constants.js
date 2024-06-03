@@ -4,8 +4,9 @@ export const {HOST, PORT, PROTOCOL} = {
     PROTOCOL: "http"
 }
 
-export const {INDEX, CATEGORY, CATALOG} = {
+export const {INDEX, CATEGORY, CATALOG, PROFILE} = {
     INDEX: "index",
     CATEGORY: "category",
-    CATALOG: "catalog"
+    CATALOG: "catalog",
+    PROFILE: "profile",
 }

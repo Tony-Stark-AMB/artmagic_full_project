@@ -6,8 +6,9 @@
     &__list{
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-        gap: 60px;
+        gap: 40px;
         margin: 40px 0;
+        padding: 0 40px;
     }
     &__item{
         padding: 16px;
