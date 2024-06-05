@@ -1,3 +1,13 @@
+// import { initImagesRation } from "./common/index.js";
+// import { basket } from "./basket.js"
+// import { PROFILE } from "./common/constants.js";
+// for images ratio
+initImagesRation(PROFILE);
+// for products working
+basket(PROFILE);
+// basket(PROFILE).initBasket();
+
+
 const { MIN_2_LETTERS_UA, FIRST_LETTER_CAPITALISE_UA, EMAIL, PHONE_UA, REQUIRED }  = regexp;
 
 const formData = {
@@ -29,13 +39,6 @@ const patterns = {
     ]
 };
 
-// fetch("http://localhost:8000/users/profile-field", {
-//     method: "GET",
-//     mode: "cors"
-// }).then((data) => data.json())
-// .then((data) => console.log(data));
-
-
 const userForm = form(formData, patterns);
 
 userForm.initForm({
@@ -44,5 +47,4 @@ userForm.initForm({
     email: "user_email",
     phoneNumber: "user_pnone",
     address: "address",
-});
-
+}, "user/profile-field/");

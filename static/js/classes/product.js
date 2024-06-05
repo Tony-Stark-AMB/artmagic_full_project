@@ -1,4 +1,4 @@
-export class Product {
+class Product {
     constructor(id, name, price, imageSrc, manufacturer, quantity) {
       this.name = name;
       this.price = price;

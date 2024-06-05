@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block css %}<link rel="stylesheet" href="{% static 'css/profile.css' %}">{% endblock %}
     
-
+    
     <title>Profile</title>
 </head>
 <body>
@@ -23,7 +23,7 @@
                         <btn class="btn btn-primary me-1" data-bs-toggle="modal" data-bs-target="#changePassword" href="{% url 'user:change_password' %}">Change Password</btn>
                         <btn class="btn btn-primary" href="{% url 'user:logout' %}">Logout</btn>
                     </div>
-                    <h2 class="profile-page__title my-4">Welcome, {{ user.username }}</h2>
+                    <!-- <h2 class="profile-page__title my-4">Welcome, {{ user.username }}</h2> -->
                     
                     <form class="profile-page__user-info">
                        <h1 class="profile-page__user-info__title">Інформація вашого профілю</h1> 
@@ -158,10 +158,8 @@
         </div>
       </div>
     {% block js %}
-        <script type="module" src="{% static 'js/basket.js' %}"></script>
-        <script src="{% static 'js/common/regexp.js' %}"></script>
-        <script src="{% static 'js/common/form.js' %}"></script>
         <script src="{% static 'js/profile.js' %}"></script>
     {% endblock %}
 </body>
 </html>
+ 

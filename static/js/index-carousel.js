@@ -41,7 +41,7 @@ import {Swiper, Navigation, Pagination} from "./import.js";
 
 // window.addEventListener("resize", debouncedResizeHandler);
 
-export const {mainBanner, productsCarousel} = {
+const {mainBanner, productsCarousel} = {
  
   mainBanner: {
     autoplay: {

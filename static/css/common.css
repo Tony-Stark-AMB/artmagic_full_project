@@ -316,3 +316,40 @@ body.modal-open {
   width: 100%;
   height: 50px;
 }
+
+.alert {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  z-index: 15000;
+  font-weight: 500;
+  display: none;
+}
+
+.alert_anim {
+  display: flex;
+  align-items: center;
+  animation: alert_anim 3s ease;
+}
+
+@keyframes alert_anim {
+  0% {
+    display: flex;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+  }
+  10% {
+    opacity: 1;
+    transform: translate(-50%, -55%);
+  }
+  90% {
+    opacity: 1;
+    transform: translate(-50%, -55%);
+  }
+  100% {
+    display: none;
+    opacity: 0;
+    transform: translate(-50%, -55%);
+  }
+}

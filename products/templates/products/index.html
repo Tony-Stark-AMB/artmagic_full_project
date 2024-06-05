@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="{% static 'css/index.css' %}"> 
     {% endblock %}
     {% block content %}
+
         <div class="main-index__wrap container__custom__sidebar">
             <main class="main-index">
                 <section class="swiper main-index__banner">
@@ -170,9 +171,8 @@
     
       {% endblock %}
   {% block js %}
-      <script type="module" src="{% static 'js/index.js' %}"></script>
-      <script type="module" src="{% static 'js/index-carousel.js' %}"></script>
-
+    <script src="{% static 'js/index.js' %}"></script>
+    <script type="module" src="{% static 'js/index-carousel.js' %}"></script>
   {% endblock %}
     
     

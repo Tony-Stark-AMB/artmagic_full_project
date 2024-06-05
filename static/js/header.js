@@ -109,34 +109,3 @@ new Swiper(".basket__modal__swiper", {
   modules: [Navigation]
 });
 
-// price, name, description, img
-
-// const productsArr = [
-//   {
-//     name: "product 1",
-//     price: 500,
-//     description: "lorem description",
-//     img: "./assets/products/product-1.png"
-//   },
-//   {
-//     name: "product 2",
-//     price: 600,
-//     description: "lorem description",
-//     img: "./assets/products/product-2.png"
-//   },
-//   {
-//     name: "product 3",
-//     price: 700,
-//     description: "lorem description",
-//     img: "./assets/products/product-3.png"
-//   }
-// ];
-
-const changeCurProductValue = (e) => {
-  const quantity = +e.target.value;
-  
-}
-
-// const countTotal = () => {
-
-// }

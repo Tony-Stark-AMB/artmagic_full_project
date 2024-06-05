@@ -1,10 +1,4 @@
 
-// fetch("http://localhost:8000/users/profile-field", {
-//     method: "GET",
-//     mode: "cors"
-// }).then((data) => data.json())
-// .then((data) => console.log(data));
-
 const form = function (obj, patterns)  {
 
     const formData = Object.fromEntries(
@@ -24,6 +18,9 @@ const form = function (obj, patterns)  {
     const errorMessageElement = (fieldName) => document.querySelector(`p[data-error="${fieldName}"]`);
     const dataSubmitBtn = document.querySelector(`button[data-submit="btn"]`);
 
+    const successLabel = document.querySelector("div#successMessage");
+    
+
     return {
         editField: (fieldName) => {
             const target = getField(fieldName);
@@ -34,10 +31,15 @@ const form = function (obj, patterns)  {
             target.focus();
             target.setSelectionRange(target.value.length, target.value.length);
         },
-        clearField: (fieldName) => { getField(fieldName).value = "";},
+        clearField: function(fieldName) { 
+            getField(fieldName).value = "";
+            this.triggerInput(fieldName);
+        },
         triggerInput: function (fieldName)  {
             const errorElem = errorMessageElement(fieldName);
-            this.validateField(fieldName, errorElem);
+            this.validateField(fieldName, errorElem)
+            formData[fieldName].value = getField(fieldName).value;
+
         },
         validateField: (fieldName, errorElem) => {
             const field = getField(fieldName);
@@ -61,18 +63,48 @@ const form = function (obj, patterns)  {
             errorElem.textContent = '';
             return true;
         },
-        initForm: function (obj) {
-            dataSubmitBtn.addEventListener("click", (e) => {
+        initForm: function (obj, path) {
+            dataSubmitBtn.addEventListener("click", async (e) => {
                 e.preventDefault();
                 for(const [key] of Object.entries(formData)){
-                    this.triggerInput(key);
+                    this.triggerInput(key)
                 }
+
                 const submitedFormData = this.mapedFormData(obj);
                 console.log(submitedFormData)
-                // fetch("http://localhost:8000")
+                Object.values(submitedFormData).forEach((value) => {
+                    if(value === ""){
+                        console.log('err')
+                        return;
+                    }
+                })
+                const request = await this.fetchNewUserData(path);
+                console.log(request, "request");
+                this.showAlert("success", "Інформацію профілю успішно змінено", 3000);
             })
         },
+        fetchNewUserData: async (path) => {
+            return fetch(`${PROTOCOL}://${HOST}:${PORT}/${path}`, {
+                method: "PUT",
+                mode: "cors"      
+            }).then((data) => data.json());
+        },
         mapedFormData: (obj) => (Object.fromEntries(Object.entries(formData).map(([key, { value }]) => [obj[key] || key, value]))),
+        showAlert: (type, text, animDuration) => {
+            switch(type){
+                case "success":
+                    successLabel.classList.add("alert_anim");
+                    successLabel.querySelector("div.alert-text").textContent = text;
+                        setTimeout(() => {
+                            successLabel.classList.remove("alert_anim");
+ 
+                        }, animDuration);
+                    break;
+                case "err":
+                    
+            }
+                
+        } 
     }
 }
 

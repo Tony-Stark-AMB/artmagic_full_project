@@ -1,6 +1,6 @@
-import { Product } from "./classes/product.js";
-import { rerenderImage, isFloat  } from "./common/index.js";
-import { HOST, PROTOCOL, PORT } from "./common/constants.js";
+// import { Product } from "./classes/product.js";
+// import { rerenderImage, isFloat  } from "./common/index.js";
+// import { HOST, PROTOCOL, PORT } from "./common/constants.js";
 
 const initProducts = () => {
 
@@ -201,7 +201,8 @@ const initBasket = (page) => {
         
         const {curProduct, curProductInput, curProductPriceOutput} = getCurProductItemsForRerendering(id);
         const curProductInputValue = +curProductInput.value;
-        if (!/^-?\d*$/.test(curProductInputValue) || isNaN(curProductInputValue)) {
+        const regExp = new RegExp(/^-?\d*$/);
+        if (!regExp.test(curProductInputValue) || isNaN(curProductInputValue)) {
             curProductInput.value = 0;
             return;
         } 
@@ -253,7 +254,7 @@ const initBasket = (page) => {
 
 const products = initProducts();
 
-export const basket = (page) => initBasket(page);
+const basket = (page) => initBasket(page);
 
 
 
