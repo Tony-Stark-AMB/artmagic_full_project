@@ -12,6 +12,7 @@ from products.models import Category
 from django.core.exceptions import ObjectDoesNotExist
 from django.views import View
 from django.http import JsonResponse
+import json
 
 def index(request):
     return render(request, 'users/index.html')
@@ -139,10 +140,6 @@ class ProfileView(View):
 class FeedbackView(View):
     def post(self, request):
         try:
-            print(request)
-            print(request.body)
-            # body_unicode = request.body.decode('utf-8')
-            # print(body_unicode)
             data = json.loads(request.body)
             first_name = data.get('first_name')
             last_name = data.get('last_name')
