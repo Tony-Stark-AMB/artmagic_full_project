@@ -1,5 +1,5 @@
 const {HOST, PORT, PROTOCOL} = {
-    HOST: "127.0.0.1",
+    HOST: "localhost",
     PORT: "8000",
     PROTOCOL: "http"
 }

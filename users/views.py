@@ -9,7 +9,9 @@ from .forms import ChangePasswordForm
 from django.contrib.auth import update_session_auth_hash
 from .models import PurchaseHistory, Address
 from products.models import Category
-
+from django.core.exceptions import ObjectDoesNotExist
+from django.views import View
+from django.http import JsonResponse
 
 def index(request):
     return render(request, 'users/index.html')
@@ -50,20 +52,20 @@ def user_logout(request):
     return redirect('parent_categories')
 
 
-def profile(request):
-    user = request.user
-    addresses = Address.objects.all()
-    # addresses = user.addresses.all()  # Получаем все адреса пользователя
-    purchase_history = PurchaseHistory.objects.filter(user=user)  # Получаем историю покупок пользователя
-    if request.method == 'PUT':
-        form = ProfileForm(request.PUT, instance=user)
-        if form.is_valid():
-            form.save()
-            return redirect('profile')  # После сохранения данных перенаправляем пользователя на страницу профиля
-    else:
-        form = ProfileForm(instance=user)
-    context = {'user': user, 'addresses': addresses, 'form': form, 'purchase_history': purchase_history}
-    return render(request, 'users/profile.html', context)
+# def profile(request):
+#     user = request.user
+#     addresses = Address.objects.all()
+#     # addresses = user.addresses.all()  # Получаем все адреса пользователя
+#     purchase_history = PurchaseHistory.objects.filter(user=user)  # Получаем историю покупок пользователя
+#     if request.method == 'PUT':
+#         form = ProfileForm(request.PUT, instance=user)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('profile')  # После сохранения данных перенаправляем пользователя на страницу профиля
+#     else:
+#         form = ProfileForm(instance=user)
+#     context = {'user': user, 'addresses': addresses, 'form': form, 'purchase_history': purchase_history}
+#     return render(request, 'users/profile.html', context)
 
 
 
@@ -84,6 +86,16 @@ def profile_field(request):
     if not request.user.is_authenticated:
         return JsonResponse({'error': 'Пользователь не аутентифицирован.'}, status=401)
     User = get_user_model()
+
+    if request.method == 'PUT':
+        print('------------------------------------------------------------------------------------')
+        try:
+            print(request.body.decode('utf-8'))
+            body_data = request.read()
+            return JsonResponse({'message': 'Data received successfully'}, status=200)
+        except json.JSONDecodeError as e:
+            return JsonResponse({'error': 'Invalid JSON data'}, status=400)
+
     try:
         user_profile = User.objects.get(id=request.user.id)
 
@@ -97,7 +109,29 @@ def profile_field(request):
             'last_name': user_profile.last_name,
             'phone_number': user_profile.phone_number,
             'addresses': address,
+            'postal_code': postal_code,
         }
         return JsonResponse(user_data, safe=False)
     except ObjectDoesNotExist:
         return JsonResponse({'error': 'Продукт с указанным идентификатором не найден.'}, status=404)
+
+class ProfileView(View):
+    def get(self, request):
+        if not request.user.is_authenticated:
+            return redirect('user:login')  # Перенаправляем анонимных пользователей на страницу входа
+
+        return render(request, 'users/profile.html')
+
+    # def put(self, request):
+    #     print('--------------------------------------------------------------------------')
+    #     if not request.user.is_authenticated:
+    #         return JsonResponse({'error': 'Пользователь не аутентифицирован.'}, status=401)
+
+    #     user = request.body
+    #     form = ProfileForm(request.PUT, instance=user)  # Здесь изменено на request.body
+    #     if form.is_valid():
+    #         form.save()
+    #         return redirect('user:profile')
+    #     else:
+    #         # Handle invalid form
+    #         pass

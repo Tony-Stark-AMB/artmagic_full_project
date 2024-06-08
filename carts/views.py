@@ -92,3 +92,28 @@ def cart_remove(request):
     }
 
     return JsonResponse(response_data)
+
+def process_order(request):
+    print(request.method == "POST")
+    if request.method == "POST":
+        form = OrderForm(request.POST)
+        print(request.POST)
+        if form.is_valid():
+            order_data = {
+                'products': form.cleaned_data['products'],
+                'name': form.cleaned_data['name'],
+                'phone': form.cleaned_data['phone'],
+                'address': form.cleaned_data['address'],
+                'email': form.cleaned_data['email'],
+                'total_price': sum(item['price'] * item['quantity'] for item in form.cleaned_data['products'])
+            }
+            print(order_data)
+            # Сохранение данных в JSON файл
+            with open('order_data.json', 'w') as f:
+                json.dump(order_data, f, ensure_ascii=False, indent=4)
+
+            return JsonResponse({"status": "success", "message": "Order processed successfully"})
+        else:
+            return JsonResponse({"status": "error", "errors": form.errors})
+
+    return JsonResponse({"status": "error", "message": "Invalid request method"})

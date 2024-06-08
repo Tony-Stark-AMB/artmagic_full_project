@@ -254,6 +254,7 @@ const initBasket = (page) => {
 
 const products = initProducts();
 
+
 const basket = (page) => initBasket(page);
 
 

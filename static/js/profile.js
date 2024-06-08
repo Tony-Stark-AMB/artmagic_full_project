@@ -8,7 +8,7 @@ basket(PROFILE);
 // basket(PROFILE).initBasket();
 
 
-const { MIN_2_LETTERS_UA, FIRST_LETTER_CAPITALISE_UA, EMAIL, PHONE_UA, REQUIRED }  = regexp;
+const { MIN_2_LETTERS_UA, FIRST_LETTER_CAPITALISE_UA, EMAIL, PHONE_UA, REQUIRED, POSTAL_INDEX }  = regexp;
 
 const formData = {
     firstName: "",
@@ -16,17 +16,18 @@ const formData = {
     email: "",
     phoneNumber: "",
     address: "",
+    postalCode: "",
 }
 
 // Не забувати, що патерни можуть перекривати один одного
 const patterns = {
     firstName: [
-        { rule:  MIN_2_LETTERS_UA, errorMsg: "Мінімум 2 літери UA"},
-        { rule:  FIRST_LETTER_CAPITALISE_UA, errorMsg: "1-рша - велика літера в імені"},
+        // { rule:  MIN_2_LETTERS_UA, errorMsg: "Мінімум 2 літери UA"},
+        // { rule:  FIRST_LETTER_CAPITALISE_UA, errorMsg: "1-рша - велика літера в імені"},
     ],
     lastName: [
-        { rule:  MIN_2_LETTERS_UA, errorMsg: "Мінімум 2 літери UA"},
-        { rule:  FIRST_LETTER_CAPITALISE_UA, errorMsg: "1-рша - велика літера в прізвищі"},
+        // { rule:  MIN_2_LETTERS_UA, errorMsg: "Мінімум 2 літери UA"},
+        // { rule:  FIRST_LETTER_CAPITALISE_UA, errorMsg: "1-рша - велика літера в прізвищі"},
     ],
     email: [
         { rule: EMAIL, errorMsg: "Неправильний email" }
@@ -36,6 +37,9 @@ const patterns = {
     ],
     address: [
         { rule:  MIN_2_LETTERS_UA, errorMsg: "Мінімум 2 літери UA"},
+    ],
+    postalCode: [
+        { rule: POSTAL_INDEX, errorMsg: "Вкажіть поштовий індекс (49000)"}
     ]
 };
 
@@ -47,4 +51,8 @@ userForm.initForm({
     email: "user_email",
     phoneNumber: "user_pnone",
     address: "address",
-}, "user/profile-field/");
+    postalCode: "postal_code",
+}, "user/profile-field/", "PUT", 
+    {successMessage: "Інформацію профілю успішно змінено", errorMessage: "Якась помилка"},
+    3000
+);
