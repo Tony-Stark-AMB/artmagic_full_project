@@ -520,24 +520,23 @@
   justify-content: space-around;
   height: 30vh;
 }
-.call__modal__form input[type=text], .call__modal__form input[type=telephone] {
-  width: 80%;
+.call__modal__input {
+  width: 90%;
   padding: 5px 0 5px 10px;
   border-radius: 8px;
   outline: none;
   border: 1px solid #ddd;
 }
-.call__modal__input__wrap {
+.call__modal__input__content {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.call__modal__input__wrap input[type=text] {
-  width: 45%;
-  padding: 5px 0 5px 10px;
-  border-radius: 8px;
-  outline: none;
-  border: 1px solid #ddd;
+.call__modal__input__wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .basket__modal {

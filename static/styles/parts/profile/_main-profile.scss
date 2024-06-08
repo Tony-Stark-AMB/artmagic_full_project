@@ -57,19 +57,3 @@
     
 }
 
-.error-message{
-    visibility: visible;
-    transition: height .3s ease;
-    height: 20px;
-    margin: 3px 0;
-    color: $c11;
-    &-hidden{
-        visibility: hidden;
-        transition: height .3s ease;
-        height: 0;
-    }
-}
-
-.invalid-input{
-    border-color: $c11;
-}

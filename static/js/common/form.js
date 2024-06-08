@@ -14,7 +14,7 @@ const form = function (obj, patterns)  {
     
     console.log(formData)
 
-    const getField = (fieldName) => document.querySelector(`input[data-field="${fieldName}"]`);
+    const getField = (fieldName) => document.querySelector(`input[data-field="${fieldName}"]`) ?? document.querySelector(`textarea[data-field="${fieldName}"]`);
     const errorMessageElement = (fieldName) => document.querySelector(`p[data-error="${fieldName}"]`);
     const dataSubmitBtn = document.querySelector(`button[data-submit="btn"]`);
 
@@ -43,7 +43,9 @@ const form = function (obj, patterns)  {
         },
         validateField: (fieldName, errorElem) => {
             const field = getField(fieldName);
+           
             const fieldValue = field.value;
+            console.log(fieldValue)
             const patterns = formData[fieldName].patterns;
         
             for (let patternObj of patterns) {
@@ -56,11 +58,12 @@ const form = function (obj, patterns)  {
                     return false;
                 }
             }
-        
-            field.classList.remove("invalid-input");
-            errorElem.classList.remove("error-message");
-            errorElem.classList.add("error-message-hidden");
-            errorElem.textContent = '';
+            if(errorElem){
+                field.classList.remove("invalid-input");
+                errorElem.classList.remove("error-message");
+                errorElem.classList.add("error-message-hidden");
+                errorElem.textContent = '';
+            }
             return true;
         },
         initForm: function (obj, path, methodType, msgObj, animDuration) {

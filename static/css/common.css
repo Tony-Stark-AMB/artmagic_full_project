@@ -353,3 +353,19 @@ body.modal-open {
     transform: translate(-50%, -55%);
   }
 }
+.error-message {
+  visibility: visible;
+  transition: height 0.3s ease;
+  height: 20px;
+  margin: 3px 0;
+  color: #E63125;
+}
+.error-message-hidden {
+  visibility: hidden;
+  transition: height 0.3s ease;
+  height: 0;
+}
+
+.invalid-input {
+  border-color: #E63125 !important;
+}

@@ -135,3 +135,24 @@ class ProfileView(View):
     #     else:
     #         # Handle invalid form
     #         pass
+
+class FeedbackView(View):
+    def post(self, request):
+        try:
+            print(request)
+            print(request.body)
+            # body_unicode = request.body.decode('utf-8')
+            # print(body_unicode)
+            data = json.loads(request.body)
+            first_name = data.get('first_name')
+            last_name = data.get('last_name')
+            phone_number = data.get('phone_number')
+            message = data.get('message')
+
+            print('first_name:', first_name)
+            print('last_name:', last_name)
+            print('phone_number:', phone_number)
+            print('message:', message)
+            return JsonResponse({'status': 'success', 'message': 'Feedback received'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=403)

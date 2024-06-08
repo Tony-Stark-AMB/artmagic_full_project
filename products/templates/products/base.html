@@ -303,15 +303,43 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form class="call__modal__form" action="">
+            <form class="call__modal__form">
                 <h3 class="text-center">Контактні дані</h3>
-                <div class="call__modal__input__wrap">
-                    <input class="call__modal__input" type="text" placeholder="Ім'я">
-                    <input class="call__modal__input" type="text" placeholder="Прізвище">
+                <div class="call__modal__input__content">
+                    <div class="call__modal__input__wrap">
+                        <input class="call__modal__input" 
+                        oninput="userForm.triggerInput('firstName')"
+                        data-field="firstName"
+                        type="text"
+                        placeholder="Ім'я"
+                        />
+                        <p data-error="firstName" class="error-message-hidden"></p>
+                    </div>
+                    <div class="call__modal__input__wrap">
+                        <input class="call__modal__input" 
+                        oninput="userForm.triggerInput('lastName')"
+                        data-field="lastName"
+                        type="text"
+                        placeholder="Прізвище"
+                        />
+                        <p data-error="lastName" class="error-message-hidden"></p>
+                    </div>
                 </div>
-                <input class="call__modal__input" type="telephone" placeholder="Телефон">
-                <textarea placeholder="Ваше питання"></textarea>
-                <button class="btn btn-primary" type="submit">Залишити заявку</button>
+                <div class="call__modal__input__wrap">
+                    <input class="call__modal__input" 
+                    oninput="userForm.triggerInput('phone')"
+                    data-field="phone"
+                    type="text"
+                    placeholder="Телефон"
+                    />
+                    <p data-error="phone" class="error-message-hidden"></p>
+                </div>
+                <textarea 
+                    oninput="userForm.triggerInput('text')" 
+                    placeholder="Ваше питання"
+                    data-field="text"
+                ></textarea>
+                <button class="btn btn-primary" data-submit="btn">Залишити заявку</button>
             </form>
             </div>
         </div>
@@ -390,6 +418,7 @@
     <script>
         AOS.init();
     </script>
+    <script src="{% static 'js/common/bone.js' %}"></script>
     <script src="{% static 'js/classes/product.js' %}"></script>
     <script src="{% static 'js/common/index.js' %}"></script>
     <script src="{% static 'js/common/constants.js' %}"></script>
