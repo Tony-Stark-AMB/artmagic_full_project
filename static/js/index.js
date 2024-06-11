@@ -39,7 +39,7 @@ userForm.initForm({
     text: "message",
 }, "user/feedback/", "POST", 
     {successMessage: "Ваша заявка успішно відправлена!", errorMessage: "Якась помилка"},
-    3000
+    3000, true
 );
 
 

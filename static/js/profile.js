@@ -1,6 +1,3 @@
-// import { initImagesRation } from "./common/index.js";
-// import { basket } from "./basket.js"
-// import { PROFILE } from "./common/constants.js";
 // for images ratio
 initImagesRation(PROFILE);
 // for products working

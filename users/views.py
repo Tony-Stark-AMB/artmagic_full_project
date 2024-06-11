@@ -81,7 +81,7 @@ def change_password(request):
         form = ChangePasswordForm(request.user)
     return render(request, 'account/change_password.html', {'form': form})
 
-@login_required()
+# @login_required()
 def profile_field(request):
     
     if not request.user.is_authenticated:

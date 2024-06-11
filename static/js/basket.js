@@ -1,6 +1,3 @@
-// import { Product } from "./classes/product.js";
-// import { rerenderImage, isFloat  } from "./common/index.js";
-// import { HOST, PROTOCOL, PORT } from "./common/constants.js";
 
 const initProducts = () => {
 
@@ -20,6 +17,10 @@ const initProducts = () => {
             return localStorage.setItem("products",  JSON.stringify(products))
         },
         deleteProduct: (id) => products.arr = products.arr.filter((product) => product.id !== id),
+        clearProducts: () => products.arr = [],
+        clearStorageProducts: () => localStorage.setItem('products', JSON.stringify({
+            arr: []
+        })),
         _addProduct: function ({id, name, price, quantity, image, manufacturer}) {
             const existProduct = this._existProduct(id);
             if(existProduct)

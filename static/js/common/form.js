@@ -31,9 +31,10 @@ const form = function (obj, patterns)  {
             target.focus();
             target.setSelectionRange(target.value.length, target.value.length);
         },
-        clearField: function(fieldName) { 
+        clearField: function(fieldName, triggerInpCond = true) { 
             getField(fieldName).value = "";
-            this.triggerInput(fieldName);
+            if(triggerInpCond)
+                this.triggerInput(fieldName);
         },
         triggerInput: function (fieldName)  {
             const errorElem = errorMessageElement(fieldName);
@@ -66,7 +67,7 @@ const form = function (obj, patterns)  {
             }
             return true;
         },
-        initForm: function (obj, path, methodType, msgObj, animDuration) {
+        initForm: function (obj, path, methodType, msgObj, animDuration, clearCond, clearStorage) {
             dataSubmitBtn.addEventListener("click", async (e) => {
                 e.preventDefault();
                 for(const [key] of Object.entries(formData)){
@@ -79,6 +80,10 @@ const form = function (obj, patterns)  {
                     const request = await this.fetchNewUserData(path, methodType, submitedFormData);
                     console.log(request, "request");
                     this.showAlert("success", msgObj.successMessage, animDuration);
+                    if(clearCond){
+                        this.clearForm(obj);
+                        clearStorage();
+                    }
                 } catch (err){
                     console.log(err.message);
                     this.showAlert("err", msgObj.errorMessage, animDuration);
@@ -115,6 +120,7 @@ const form = function (obj, patterns)  {
         },
         mapedFormData: (obj) => (Object.fromEntries(Object.entries(formData).map(([key, { value }]) => [obj[key] || key, value]))),
         showAlert: (type, text, animDuration) => {
+            console.log('show alert')
             switch(type){
                 case "success":
                     successLabel.classList.add("alert_anim");
@@ -132,7 +138,8 @@ const form = function (obj, patterns)  {
                     }, animDuration);
             }
                 
-        } 
+        },
+        clearForm: function (obj) { Object.entries(obj).forEach(([key]) => this.clearField(key, false))}
     }
 }
 
