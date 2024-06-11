@@ -3,9 +3,11 @@ initImagesRation(INDEX);
 // for products working
 basket(INDEX);
 
-const { MIN_2_LETTERS_UA, FIRST_LETTER_CAPITALISE_UA, EMAIL, PHONE_UA, REQUIRED, POSTAL_INDEX }  = regexp;
+// const { MIN_2_LETTERS_UA, FIRST_LETTER_CAPITALISE_UA, EMAIL, PHONE_UA, REQUIRED, POSTAL_INDEX }  = regexp;
 
-const formData = {
+// FORM INIT DATA MUST HAVE UNIC KEYS
+
+const formDataFeedback = {
     firstName: "",
     lastName: "",
     phone: "",
@@ -13,7 +15,7 @@ const formData = {
 }
 
 // Не забувати, що патерни можуть перекривати один одного
-const patterns = {
+const patternsFeedback = {
     firstName: [
         { rule:  MIN_2_LETTERS_UA, errorMsg: "Мінімум 2 літери UA"},
         // { rule:  FIRST_LETTER_CAPITALISE_UA, errorMsg: "1-рша - велика літера в імені"},
@@ -30,9 +32,9 @@ const patterns = {
     ],
 };
 
-const userForm = form(formData, patterns);
+const formFeedback = form(formDataFeedback, patternsFeedback, "Feedback");
 
-userForm.initForm({
+formFeedback.initForm({
     firstName: "first_name",
     lastName: "last_name",
     phone: "phone_number",

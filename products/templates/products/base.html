@@ -308,7 +308,7 @@
                 <div class="call__modal__input__content">
                     <div class="call__modal__input__wrap">
                         <input class="call__modal__input" 
-                        oninput="userForm.triggerInput('firstName')"
+                        oninput="formFeedback.triggerInput('firstName')"
                         data-field="firstName"
                         type="text"
                         placeholder="Ім'я"
@@ -317,7 +317,7 @@
                     </div>
                     <div class="call__modal__input__wrap">
                         <input class="call__modal__input" 
-                        oninput="userForm.triggerInput('lastName')"
+                        oninput="formFeedback.triggerInput('lastName')"
                         data-field="lastName"
                         type="text"
                         placeholder="Прізвище"
@@ -327,7 +327,7 @@
                 </div>
                 <div class="call__modal__input__wrap">
                     <input class="call__modal__input" 
-                    oninput="userForm.triggerInput('phone')"
+                    oninput="formFeedback.triggerInput('phone')"
                     data-field="phone"
                     type="text"
                     placeholder="Телефон"
@@ -335,11 +335,11 @@
                     <p data-error="phone" class="error-message-hidden"></p>
                 </div>
                 <textarea 
-                    oninput="userForm.triggerInput('text')" 
+                    oninput="formFeedback.triggerInput('text')" 
                     placeholder="Ваше питання"
                     data-field="text"
                 ></textarea>
-                <button class="btn btn-primary" data-submit="btn">Залишити заявку</button>
+                <button class="btn btn-primary" data-submit="btn_Feedback">Залишити заявку</button>
             </form>
             </div>
         </div>
@@ -422,9 +422,10 @@
     <script src="{% static 'js/classes/product.js' %}"></script>
     <script src="{% static 'js/common/index.js' %}"></script>
     <script src="{% static 'js/common/constants.js' %}"></script>
-    <script src="{% static 'js/basket.js' %}"></script>
     <script src="{% static 'js/common/regexp.js' %}"></script>
     <script src="{% static 'js/common/form.js' %}"></script>
+    <script src="{% static 'js/basket.js' %}"></script>
+    <script src="{% static 'js/order.js' %}"></script>
     <script type="module" src="{% static 'js/header.js' %}"></script>
     {% block js %}{% endblock %}
 </div>

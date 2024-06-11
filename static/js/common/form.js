@@ -1,5 +1,5 @@
 
-const form = function (obj, patterns)  {
+const form = function (obj, patterns, formName)  {
 
     const formData = Object.fromEntries(
         Object.keys(obj).map(key => [
@@ -12,11 +12,11 @@ const form = function (obj, patterns)  {
     );
     
     
-    console.log(formData)
+    const initObj = obj;
 
     const getField = (fieldName) => document.querySelector(`input[data-field="${fieldName}"]`) ?? document.querySelector(`textarea[data-field="${fieldName}"]`);
     const errorMessageElement = (fieldName) => document.querySelector(`p[data-error="${fieldName}"]`);
-    const dataSubmitBtn = document.querySelector(`button[data-submit="btn"]`);
+    const dataSubmitBtn = document.querySelector(`button[data-submit="btn_${formName}"]`);
 
     const successLabel = document.querySelector("div#successMessage");
     const errorLabel = document.querySelector("div#errorMessage");
@@ -32,6 +32,8 @@ const form = function (obj, patterns)  {
             target.setSelectionRange(target.value.length, target.value.length);
         },
         clearField: function(fieldName, triggerInpCond = true) { 
+            console.log(fieldName, "fieldname clearFieldFN");
+            console.log(getField(fieldName), "fieldname clearFieldFN.value");
             getField(fieldName).value = "";
             if(triggerInpCond)
                 this.triggerInput(fieldName);
@@ -67,24 +69,30 @@ const form = function (obj, patterns)  {
             }
             return true;
         },
-        initForm: function (obj, path, methodType, msgObj, animDuration, clearCond, clearStorage) {
+        initForm: function (obj, path, methodType, msgObj, animDuration, clearCond = true, 
+            ...[getProducts, clearStorageProducts, clearProducts, basketRerender ]) {
             dataSubmitBtn.addEventListener("click", async (e) => {
                 e.preventDefault();
                 for(const [key] of Object.entries(formData)){
                     this.triggerInput(key)
                 }
-
+                console.log("FORM BTN SUBMOT CLICK")
                 const submitedFormData = this.mapedFormData(obj);
-                console.log(submitedFormData)
+                if(getProducts)
+                    submitedFormData.products = getProducts();
+                console.log(submitedFormData, "submitedData")
                 try{
-                    const request = await this.fetchNewUserData(path, methodType, submitedFormData);
+                    const request = await this.fetchData(path, methodType, submitedFormData);
                     console.log(request, "request");
                     this.showAlert("success", msgObj.successMessage, animDuration);
                     if(clearCond){
-                        this.clearForm(obj);
-                        clearStorage();
+                        this.clearForm(initObj);
+                        clearStorageProducts();
+                        clearProducts();
+                        basketRerender();
                     }
                 } catch (err){
+                    console.log(err);
                     console.log(err.message);
                     this.showAlert("err", msgObj.errorMessage, animDuration);
                 }
@@ -94,7 +102,7 @@ const form = function (obj, patterns)  {
                
             })
         },
-        fetchNewUserData: async function (path, methodType, data)  {
+        fetchData: async function (path, methodType, data)  {
             return fetch(`${PROTOCOL}://${HOST}:${PORT}/${path}`, {
                 method: methodType,
                 mode: "cors",      
@@ -139,7 +147,7 @@ const form = function (obj, patterns)  {
             }
                 
         },
-        clearForm: function (obj) { Object.entries(obj).forEach(([key]) => this.clearField(key, false))}
+        clearForm: function (obj) { Object.keys(obj).forEach((key) =>  this.clearField(key, false))}
     }
 }
 

@@ -250,7 +250,7 @@ const initBasket = (page) => {
         products.setStorageProducts(products.getProducts());
     })
 
-  
+    return renderProductsView;
 }
 
 const products = initProducts();

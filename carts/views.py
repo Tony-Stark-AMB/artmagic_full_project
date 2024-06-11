@@ -3,8 +3,8 @@ from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
 from carts.models import Cart
 from carts.utils import get_user_carts
-
 from products.models import Products
+import json
 
 
 def cart_add(request):
@@ -94,26 +94,41 @@ def cart_remove(request):
     return JsonResponse(response_data)
 
 def process_order(request):
-    print(request.method == "POST")
-    if request.method == "POST":
-        form = OrderForm(request.POST)
-        print(request.POST)
-        if form.is_valid():
-            order_data = {
-                'products': form.cleaned_data['products'],
-                'name': form.cleaned_data['name'],
-                'phone': form.cleaned_data['phone'],
-                'address': form.cleaned_data['address'],
-                'email': form.cleaned_data['email'],
-                'total_price': sum(item['price'] * item['quantity'] for item in form.cleaned_data['products'])
-            }
-            print(order_data)
-            # Сохранение данных в JSON файл
-            with open('order_data.json', 'w') as f:
-                json.dump(order_data, f, ensure_ascii=False, indent=4)
+    # print(request.method == "POST")
+    # if request.method == "POST":
+    body_unicode = request.body.decode('utf-8')
+    data = json.loads(body_unicode)
+    # form = OrderForm(data)
+    # print(request.POST)
+    # if form.is_valid():
+    #     order_data = {
+    #         'products': form.cleaned_data['products'],
+    #         'name': form.cleaned_data['name'],
+    #         'phone': form.cleaned_data['phone'],
+    #         'address': form.cleaned_data['address'],
+    #         'email': form.cleaned_data['email'],
+    #         'total_price': sum(item['price'] * item['quantity'] for item in form.cleaned_data['products'])
+    #     }
+    try:
+        order_data = {
+            'name': data.get('name'),
+            'phone': data.get('phone'),
+            'address': data.get('address'),
+            'email': data.get('email'),
+            'products': data.get('products')['arr'],
+        }
+        print(order_data)
+        return JsonResponse({"statuc": "success", "message": "Заказ сохранен"})
+    except Exception as e:
+        return JsonResponse({"status": "error", "message": "Invalid request method"})
+   
+    
+        # # Сохранение данных в JSON файл
+        # with open('order_data.json', 'w') as f:
+        #     json.dump(order_data, f, ensure_ascii=False, indent=4)
 
-            return JsonResponse({"status": "success", "message": "Order processed successfully"})
-        else:
-            return JsonResponse({"status": "error", "errors": form.errors})
+        # return JsonResponse({"status": "success", "message": "Order processed successfully"})
+        
+        # return JsonResponse({"status": "error", "errors": form.errors})
 
-    return JsonResponse({"status": "error", "message": "Invalid request method"})
+   
