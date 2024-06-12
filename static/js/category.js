@@ -1,4 +1,4 @@
 
-basket(CATEGORY);
+basket;
 
 initImagesRation(CATEGORY);

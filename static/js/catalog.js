@@ -1,4 +1,4 @@
 
 initImagesRation(CATALOG);
 
-basket(CATALOG);
+basket;

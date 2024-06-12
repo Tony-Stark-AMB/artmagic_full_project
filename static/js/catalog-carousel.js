@@ -19,7 +19,7 @@ const initCarousel = (className, config) => (new Swiper(className, config));
 const renderProductItem = ({name, id, imageSrc, price}, container) => {
     //<div class="products-catalog__item"></div>
     const productsCatalogItem = document.createElement("div");
-    productsCatalogItem.classList.add("products-catalog__item");
+    productsCatalogItem.classList.add("products-catalog__item", "product-item");
     productsCatalogItem.setAttribute("id", id);
     // <div class="products-catalog__item__img__wrap"></div>
     const productsCatalogItemImgWrap = document.createElement("div");
@@ -41,6 +41,7 @@ const renderProductItem = ({name, id, imageSrc, price}, container) => {
     productsCatalogItem.appendChild(productsCatalogItemPrice);
     const btn = document.createElement("button");
     btn.classList.add("btn", "btn-primary", `products-catalog__item__btn`);
+    btn.setAttribute("data-item", "product_btn");
     btn.textContent = "Купити";
     productsCatalogItem.appendChild(btn);
 

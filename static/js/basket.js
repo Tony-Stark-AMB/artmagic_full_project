@@ -9,7 +9,7 @@ const initProducts = () => {
         getProducts: () => products ?? [],
         getStorageProducts: function() {
             const products = JSON.parse(localStorage.getItem("products"))
-            console.log(this.mapObjectsInProducts(products))
+            // console.log(this.mapObjectsInProducts(products))
             return  this.mapObjectsInProducts(products) ?? [];
         },
         setProducts: (obj) => (products.arr = obj),
@@ -63,15 +63,16 @@ const initProducts = () => {
     }
 }
 
-const initBasket = (page) => {
+const initBasket = () => {
 
-    const btns = document.querySelectorAll(`.products-${page}__item__btn`);
+    const btns = document.querySelectorAll(`button[data-item="product_btn"]`);
     const productsContainer = document.getElementById("basket-products");
     
     // Ініціалізація кнопок
     (() => {
         btns.forEach((btn) => btn.addEventListener("click", async (e) =>  {
-            const item = e.target.closest(`div.products-${page}__item`);
+            const item = e.target.closest(`div.product-item`);
+            
             if(item){
                 await products.fetchNewProduct(item.getAttribute("id"));
                 badgeAnimation();
@@ -250,13 +251,17 @@ const initBasket = (page) => {
         products.setStorageProducts(products.getProducts());
     })
 
-    return renderProductsView;
+    return {commonRerenderingLogic}
 }
+
+
 
 const products = initProducts();
 
 
-const basket = (page) => initBasket(page);
+const basket = initBasket();
+
+
 
 
 

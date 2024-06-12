@@ -1,7 +1,7 @@
 // for images ratio
 initImagesRation(INDEX);
 // for products working
-basket(INDEX);
+basket;
 
 // const { MIN_2_LETTERS_UA, FIRST_LETTER_CAPITALISE_UA, EMAIL, PHONE_UA, REQUIRED, POSTAL_INDEX }  = regexp;
 

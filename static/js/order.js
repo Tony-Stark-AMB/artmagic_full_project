@@ -33,6 +33,6 @@ formOrder.initForm({
     products: "products",
 }, "cart/process-order/", "POST", 
     {successMessage: "Ваше замовлення успішно прийняте", errorMessage: "Якась помилка"},
-    3000, true,  products.getProducts, products.clearStorageProducts, products.clearProducts, 
+    3000, true,  products.getProducts, products.clearStorageProducts, products.clearProducts, basket.commonRerenderingLogic,
 );
 

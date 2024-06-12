@@ -32,8 +32,6 @@ const form = function (obj, patterns, formName)  {
             target.setSelectionRange(target.value.length, target.value.length);
         },
         clearField: function(fieldName, triggerInpCond = true) { 
-            console.log(fieldName, "fieldname clearFieldFN");
-            console.log(getField(fieldName), "fieldname clearFieldFN.value");
             getField(fieldName).value = "";
             if(triggerInpCond)
                 this.triggerInput(fieldName);
@@ -48,7 +46,7 @@ const form = function (obj, patterns, formName)  {
             const field = getField(fieldName);
            
             const fieldValue = field.value;
-            console.log(fieldValue)
+ 
             const patterns = formData[fieldName].patterns;
         
             for (let patternObj of patterns) {
@@ -70,31 +68,45 @@ const form = function (obj, patterns, formName)  {
             return true;
         },
         initForm: function (obj, path, methodType, msgObj, animDuration, clearCond = true, 
-            ...[getProducts, clearStorageProducts, clearProducts, basketRerender ]) {
+            ...args) {
             dataSubmitBtn.addEventListener("click", async (e) => {
                 e.preventDefault();
+                const [getProducts, clearStorageProducts, clearProducts, basketRerender ] = args;
                 for(const [key] of Object.entries(formData)){
                     this.triggerInput(key)
                 }
-                console.log("FORM BTN SUBMOT CLICK")
+
                 const submitedFormData = this.mapedFormData(obj);
-                if(getProducts)
+                if(args.length > 0)
                     submitedFormData.products = getProducts();
-                console.log(submitedFormData, "submitedData")
+
+                
+                    
                 try{
-                    const request = await this.fetchData(path, methodType, submitedFormData);
-                    console.log(request, "request");
+                    if(submitedFormData.products.arr.length === 0){
+                        throw Error()
+                    }
+
+                    await this.fetchData(path, methodType, submitedFormData);
+
                     this.showAlert("success", msgObj.successMessage, animDuration);
+    
                     if(clearCond){
                         this.clearForm(initObj);
-                        clearStorageProducts();
-                        clearProducts();
-                        basketRerender();
+                        if(args.length > 0){
+                            clearStorageProducts();
+                            clearProducts();
+                            basketRerender();
+                        }
+                        
                     }
                 } catch (err){
-                    console.log(err);
-                    console.log(err.message);
-                    this.showAlert("err", msgObj.errorMessage, animDuration);
+                    if(submitedFormData.products.arr.length === 0){
+                        this.showAlert("err", "Неможливо зробити замовлення без обраного товару", animDuration);
+                    } else {
+                        this.showAlert("err", msgObj.errorMessage, animDuration);
+                    }
+                    
                 }
          
                
@@ -128,7 +140,7 @@ const form = function (obj, patterns, formName)  {
         },
         mapedFormData: (obj) => (Object.fromEntries(Object.entries(formData).map(([key, { value }]) => [obj[key] || key, value]))),
         showAlert: (type, text, animDuration) => {
-            console.log('show alert')
+            console.log("show alert")
             switch(type){
                 case "success":
                     successLabel.classList.add("alert_anim");
