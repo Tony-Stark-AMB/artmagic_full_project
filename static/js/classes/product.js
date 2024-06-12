@@ -19,7 +19,7 @@ class Product {
         return this;
     };
 
-    minusOne(){
+    removeOne(){
         this.quantity -= 1;
         return this;
     }

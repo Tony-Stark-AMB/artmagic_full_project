@@ -1,7 +1,7 @@
 // for images ratio
 initImagesRation(INDEX);
 // for products working
-basket;
+
 
 // const { MIN_2_LETTERS_UA, FIRST_LETTER_CAPITALISE_UA, EMAIL, PHONE_UA, REQUIRED, POSTAL_INDEX }  = regexp;
 
@@ -32,7 +32,7 @@ const patternsFeedback = {
     ],
 };
 
-const formFeedback = form(formDataFeedback, patternsFeedback, "Feedback");
+const formFeedback = new Form(formDataFeedback, patternsFeedback, "Feedback");
 
 formFeedback.initForm({
     firstName: "first_name",

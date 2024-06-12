@@ -1,7 +1,7 @@
 // for images ratio
 initImagesRation(PROFILE);
 // for products working
-basket(PROFILE);
+// basket(PROFILE);
 // basket(PROFILE).initBasket();
 
 
@@ -38,7 +38,7 @@ const patternsProfile = {
     ]
 };
 
-const formProfile = form(formDataProfile, patternsProfile, "Profile");
+const formProfile = new Form(formDataProfile, patternsProfile, "Profile");
 
 formProfile.initForm({
     firstName: "first_name",
