@@ -62,7 +62,7 @@ class Basket {
                 </div>
                 <div class="cart__product__btns">
                     <button class="btns__btn" data-id="${product.id}" data-action="decrease">-</button>
-                    <input class="btns__count" type="text" id="btn_count_${product.id}" value="${product.quantity}" />
+                    <input class="btns__count" data-action="quantity" type="text" id="btn_count_${product.id}" value="${product.quantity}" />
                     <button class="btns__btn" data-id="${product.id}" data-action="increase">+</button>
                 </div>
                 <div class="cart__product__price">${this.productManager.priceOutputFn(product.price * product.quantity, 2)} грн</div>
@@ -82,11 +82,8 @@ class Basket {
         `;
 
         // Сохраняем ссылку на input в переменной
-        let quantityInput = null;
-        if(productDiv.querySelector(`#btn_count_${+product.id}`)){
-            quantityInput = productDiv.querySelector(`#btn_count_${+product.id}`);
-        }
-        
+        // const quantityInput = productDiv.querySelector(`#btn_count_${+product.id}`);
+        // console.log(quantityInput);
 
         productDiv.querySelector(`[data-action="increase"]`).addEventListener("click", () => {
             product.addOne();
@@ -108,8 +105,7 @@ class Basket {
             this.productManager.deleteProduct(product.id);
             this.renderBasket();
         });
-        // Добавляем обработчик input после создания productDiv
-        quantityInput.addEventListener("input", (e) => {
+        productDiv.querySelector(`[data-action="quantity"]`).addEventListener("input", (e) => {
             let value = parseInt(e.target.value, 10);
             if (isNaN(value) || value < 0) {
                 value = 0; // Устанавливаем значение 0, если введено некорректное значение
@@ -118,6 +114,7 @@ class Basket {
             this.productManager.setProductQuantity(product.id, value);
             this.renderBasket();
         });
+
 
 
         return productDiv;
