@@ -1,9 +1,9 @@
 class Product {
-    constructor(id, name, price, imageSrc, manufacturer, quantity) {
+    constructor(id, name, price, image, manufacturer, quantity) {
       this.name = name;
       this.price = price;
       this.quantity = quantity ? quantity : quantity === 0 ? quantity : 1;
-      this.imageSrc = imageSrc
+      this.image = image
       this.id = id; // Assigning a unique ID to each object
       this.manufacturerId = manufacturer ? manufacturer : null;
     }

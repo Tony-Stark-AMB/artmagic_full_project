@@ -6,26 +6,38 @@ class Basket {
         this.badge = document.querySelector(".header-basket__icon__badge");
         this.badgeContent = document.querySelector(".header-basket__icon__badge__number");
         this.allProductCostElement = document.querySelector(".modal-footer__text");
-        this.loadProductsFromLocalStorage();
         this.initialize();
+        window.onbeforeunload = () => {
+            console.log("save products")
+            this.productManager.setStorageProducts(this.productManager.getProducts());
+        };
     }
 
     initialize() {
         this.btns.forEach((btn) => {
             btn.addEventListener("click", async (e) => {
                 const id = +e.target.closest(`div.product-item`).getAttribute("id");
-                await this.productManager.fetchNewProduct(id);
+                const product = await this.productManager.fetchNewProduct(id);
+                this.productManager.addProduct(product);
                 this.renderBasket();
             });
         });
         this.renderBasket();
+
     }
 
     renderBasket() {
         // Очистка контейнера перед новым рендером
         this.productsContainer.innerHTML = '';
 
-        const products = this.productManager.getProducts().arr;
+        // const products = this.productManager.getStorageProducts();
+
+        window.addEventListener("DOMContentLoaded", () => {
+            this.productManager.setProducts(this.productManager.getStorageProducts());
+        })
+
+        const products = this.productManager.getProducts();
+        
         if (products.length === 0) {
             this.productsContainer.innerHTML = '<p>Корзина пуста</p>';
         } else {
@@ -40,9 +52,7 @@ class Basket {
 
         // Обновление общей стоимости товаров
         this.allProductCostElement.textContent = `${this.productManager.allProductsTotalPrice(this.productManager.priceOutputFn, 2)} грн`;
-
-        // Сохранение продуктов в localStorage
-        this.saveProductsToLocalStorage();
+        
     }
 
     renderProduct(product) {
@@ -53,7 +63,7 @@ class Basket {
             <div class="cart__product__overlook">
                 <div class="overlook__img__container">
                     <div class="overlook__img__wrap">
-                        <img class="overlook__img" src="/media/${product.imageSrc}" alt="${product.name}" />
+                        <img class="overlook__img" src="/media/${product.image}" alt="${product.name}" />
                     </div>
                 </div>
                 <div class="overlook__name__wrap">
@@ -81,9 +91,7 @@ class Basket {
             
         `;
 
-        // Сохраняем ссылку на input в переменной
-        // const quantityInput = productDiv.querySelector(`#btn_count_${+product.id}`);
-        // console.log(quantityInput);
+
 
         productDiv.querySelector(`[data-action="increase"]`).addEventListener("click", () => {
             product.addOne();
@@ -112,7 +120,7 @@ class Basket {
             }
             e.target.value = value;
             this.productManager.setProductQuantity(product.id, value);
-            this.renderBasket();
+            updateProductQuantityAndPrice(product.id, productDiv.querySelector(`[data-action="quantity"]`), productDiv.querySelector(".cart__product__price"))
         });
 
 
@@ -120,23 +128,16 @@ class Basket {
         return productDiv;
     }
 
-    saveProductsToLocalStorage() {
-        const products = this.productManager.getProducts().arr.map(product => ({
-            id: product.id,
-            name: product.name,
-            imageSrc: product.imageSrc,
-            price: product.price,
-            quantity: product.quantity
-        }));
-        console.log(products)
-        localStorage.setItem('products', JSON.stringify({arr: products}));
+    updateProductQuantityAndPrice(productId, quantityInput, totalPriceElement) {
+        const product = this.productManager.existProduct(productId);
+        if (product) {
+            quantityInput.value = product.quantity;
+            totalPriceElement.textContent = `${this.productManager.priceOutputFn(product.price * product.quantity, 2)} грн`;
+            this.updateTotalPrice();
+        }
     }
 
-    loadProductsFromLocalStorage() {
-        const savedProducts = localStorage.getItem('products');
-        if (savedProducts) {
-            const products = JSON.parse(savedProducts);
-            products.arr.forEach(product => this.productManager.addProduct(new Product(product)));
-        }
+    updateTotalPrice() {
+        this.allProductCostElement.textContent = `${this.productManager.allProductsTotalPrice(this.productManager.priceOutputFn, 2)} грн`;
     }
 }

@@ -1,6 +1,6 @@
 class ProductManager {
     constructor() {
-        this.products = { arr: [] };
+        this.products = [];
         this.loadProductsFromStorage();
     }
 
@@ -13,8 +13,8 @@ class ProductManager {
         return this.mapObjectsInProducts(products) ?? [];
     }
 
-    setProducts(obj) {
-        this.products.arr = obj;
+    setProducts(products) {
+        this.products = products;
     }
 
     setStorageProducts(products) {
@@ -22,28 +22,33 @@ class ProductManager {
     }
 
     deleteProduct(id) {
-        this.products.arr = this.products.arr.filter((product) => product.id !== id);
+        this.products = this.products.filter((product) => product.id !== id);
     }
 
     clearProducts() {
-        this.products.arr = [];
+        this.products = [];
     }
 
     clearStorageProducts() {
-        localStorage.setItem('products', JSON.stringify({ arr: [] }));
+        localStorage.setItem('products', JSON.stringify([]));
     }
 
     addProduct({ id, name, price, quantity, image, manufacturer }) {
         const existProduct = this.existProduct(id);
         if (existProduct) existProduct.addOne();
-        else this.products.arr = [...this.products.arr, new Product(id, name, price, image, manufacturer, quantity)];
+        else this.products = [...this.products, new Product(id, name, price, image, manufacturer, quantity)];
     }
 
     mapObjectsInProducts(products) {
-        console.log(products)
-        return products.arr.map(({ id, name, price, quantity, imageSrc, manufacturerId }) =>
-            new Product(id, name, price, imageSrc, manufacturerId, quantity)
+        if (!products) return [];
+        return products.map(({ id, name, price, quantity, image, manufacturerId }) =>
+            new Product(id, name, price, image, manufacturerId, quantity)
         );
+    }
+
+    mapObjectInProduct({id, name, price, image, manufacturerId, quantity}) {
+        if (!id) return null;
+        return new Product(id, name, price, image, manufacturerId, quantity);
     }
 
     async fetchNewProduct(id) {
@@ -52,25 +57,25 @@ class ProductManager {
             mode: "cors"
         });
         const product = await response.json();
-        this.addProduct(product);
+        return product;
     }
 
     existProduct(id) {
-        return this.products.arr.find((product) => product.id === id) ?? null;
+        return this.products.find((product) => product.id === id) ?? null;
     }
 
     productsTotalCount() {
-        return this.products.arr.reduce((acc, cur) => acc + cur.quantity, 0);
+        return this.products.reduce((acc, cur) => acc + cur.quantity, 0);
     }
 
     currentProductTotalPrice(id, priceOutputFn, amountAfterQuote) {
-        const curProduct = this.products.arr.find((product) => product.id === id);
+        const curProduct = this.products.find((product) => product.id === id);
         return priceOutputFn(curProduct.quantity * curProduct.price, amountAfterQuote);
     }
 
     allProductsTotalPrice(priceOutputFn, amountAfterQuote) {
         return priceOutputFn(
-            this.products.arr.reduce((acc, cur) => acc + +this.currentProductTotalPrice(cur.id, priceOutputFn, amountAfterQuote), 0),
+            this.products.reduce((acc, cur) => acc + +this.currentProductTotalPrice(cur.id, priceOutputFn, amountAfterQuote), 0),
             amountAfterQuote
         );
     }
