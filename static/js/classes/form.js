@@ -1,5 +1,5 @@
 class Form {
-    constructor(obj, patterns, formName) {
+    constructor(obj, patterns, formName, ...args) {
         this.formData = Object.fromEntries(
             Object.keys(obj).map(key => [
                 key,
@@ -9,7 +9,9 @@ class Form {
                 }
             ])
         );
-
+        const [productManager, basket] = args;
+        this.productManager = productManager ?? null;
+        this.basket = basket ?? null;
         this.initObj = obj;
         this.formName = formName;
         this.dataSubmitBtn = document.querySelector(`button[data-submit="btn_${formName}"]`);
@@ -39,8 +41,8 @@ class Form {
 
     triggerInput(fieldName) {
         const errorElem = this.errorMessageElement(fieldName);
-        this.validateField(fieldName, errorElem);
         this.formData[fieldName].value = this.getField(fieldName).value;
+        return !this.validateField(fieldName, errorElem);
     }
 
     validateField(fieldName, errorElem) {
@@ -68,33 +70,33 @@ class Form {
         return true;
     }
 
-    async initForm(obj, path, methodType, msgObj, animDuration, clearCond = true, ...args) {
+    async initForm(obj, path, methodType, msgObj, animDuration, clearCond = true) {
         this.dataSubmitBtn.addEventListener("click", async (e) => {
             e.preventDefault();
-            const [getProducts, clearStorageProducts, clearProducts, basketRerender] = args;
+  
 
             Object.keys(this.formData).forEach(key => this.triggerInput(key));
             const submitedFormData = this.mapedFormData(obj);
-            if (args.length > 0) submitedFormData.products = getProducts();
-
+            if (this.productManager !== null) submitedFormData.products = this.productManager.getProducts();
+            const productsExistCondition = submitedFormData.products && submitedFormData.products.length === 0 
             try {
-                if (submitedFormData.products && submitedFormData.products.arr.length === 0) throw Error();
+                if (productsExistCondition) throw Error();           
                 await this.fetchData(path, methodType, submitedFormData);
                 this.showAlert("success", msgObj.successMessage, animDuration);
 
                 if (clearCond) {
                     this.clearForm(this.initObj);
-                    if (args.length > 0) {
-                        clearStorageProducts();
-                        clearProducts();
-                        basketRerender();
+                    if (this.productManager !== null) {
+                        this.productManager.clearStorageProducts();
+                        this.productManager.clearProducts();
+                        this.basket.renderBasket();
                     }
                 }
             } catch (err) {
-                console.log(submitedFormData, "94")
-                if (submitedFormData.products && submitedFormData.products.arr.length === 0) {
+                if (productsExistCondition) {
                     this.showAlert("err", "Неможливо зробити замовлення без обраного товару", animDuration);
                 } else {
+                    console.log('here')
                     this.showAlert("err", msgObj.errorMessage, animDuration);
                 }
             }

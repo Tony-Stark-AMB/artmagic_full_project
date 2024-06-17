@@ -1,0 +1,25 @@
+.header-catalog{
+    width: 8%;
+    margin: 0 10px;
+    @media (max-width: 1600px) {
+        width: 9%;
+    }
+        &__btn{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: none;
+            outline: none;
+            border-radius: 8px;
+            padding: 8px;
+        &__icon{
+            width: 30px;
+            height: 30px;
+            color: $c6;
+        }
+        &__text{
+
+        }
+    }
+}

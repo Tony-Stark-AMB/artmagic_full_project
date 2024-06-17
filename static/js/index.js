@@ -17,17 +17,17 @@ const formDataFeedback = {
 // Не забувати, що патерни можуть перекривати один одного
 const patternsFeedback = {
     firstName: [
+        { rule: REQUIRED, errorMsg: "Обов'язкове поле" },
         { rule:  MIN_2_LETTERS_UA, errorMsg: "Мінімум 2 літери UA"},
         // { rule:  FIRST_LETTER_CAPITALISE_UA, errorMsg: "1-рша - велика літера в імені"},
     ],
     lastName: [
+        { rule: REQUIRED, errorMsg: "Обов'язкове поле" },
         { rule:  MIN_2_LETTERS_UA, errorMsg: "Мінімум 2 літери UA"},
         // { rule:  FIRST_LETTER_CAPITALISE_UA, errorMsg: "1-рша - велика літера в прізвищі"},
     ],
-    email: [
-        { rule: EMAIL, errorMsg: "Неправильний email" }
-    ],
     phone: [
+        { rule: REQUIRED, errorMsg: "Обов'язкове поле" },
         { rule: PHONE_UA, errorMsg: "Неправильний номер телефону" }
     ],
 };

@@ -6,6 +6,7 @@ class Basket {
         this.badge = document.querySelector(".header-basket__icon__badge");
         this.badgeContent = document.querySelector(".header-basket__icon__badge__number");
         this.allProductCostElement = document.querySelector(".modal-footer__text");
+        this.shouldAnimateBadge = false; // Flag to control badge animation
         this.initialize();
         window.onbeforeunload = () => {
             console.log("save products")
@@ -53,6 +54,13 @@ class Basket {
         // Обновление общей стоимости товаров
         this.allProductCostElement.textContent = `${this.productManager.allProductsTotalPrice(this.productManager.priceOutputFn, 2)} грн`;
         
+        // Анимация бейджа
+
+
+        this.shouldAnimateBadge 
+        ? this.animateBadge()
+        : this.shouldAnimateBadge = true;
+
     }
 
     renderProduct(product) {
@@ -139,5 +147,12 @@ class Basket {
 
     updateTotalPrice() {
         this.allProductCostElement.textContent = `${this.productManager.allProductsTotalPrice(this.productManager.priceOutputFn, 2)} грн`;
+    }
+
+    animateBadge() {
+        this.badge.classList.add("animated");
+        this.badge.addEventListener("animationend", () => {
+            this.badge.classList.remove("animated");
+        }, { once: true });
     }
 }

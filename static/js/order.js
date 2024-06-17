@@ -23,7 +23,7 @@ const patternsOrder = {
     ],
 };
 
-const formOrder = new Form(formDataOrder, patternsOrder, "Order");
+const formOrder = new Form(formDataOrder, patternsOrder, "Order", productManager, basket );
 
 formOrder.initForm({
     fullName: "name",
@@ -33,6 +33,6 @@ formOrder.initForm({
     products: "products",
 }, "cart/process-order/", "POST", 
     {successMessage: "Ваше замовлення успішно прийняте", errorMessage: "Якась помилка"},
-    3000, true,  productManager.getProducts , productManager.clearStorageProducts, productManager.clearProducts, 
+    3000, true
 );
 
