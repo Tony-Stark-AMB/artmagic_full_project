@@ -6,7 +6,7 @@ class Basket {
         this.badge = document.querySelector(".header-basket__icon__badge");
         this.badgeContent = document.querySelector(".header-basket__icon__badge__number");
         this.allProductCostElement = document.querySelector(".modal-footer__text");
-        this.shouldAnimateBadge = false; // Flag to control badge animation
+        // this.shouldAnimateBadge = false; // Flag to control badge animation
         this.initialize();
         window.onbeforeunload = () => {
             console.log("save products")
@@ -21,9 +21,7 @@ class Basket {
                 const product = await this.productManager.fetchNewProduct(id);
                 this.productManager.addProduct(product);
                 this.renderBasket();
-                this.shouldAnimateBadge 
-                ? this.animateBadge()
-                : this.shouldAnimateBadge = true;
+                this.animateBadge();
             });
         });
         this.renderBasket();
