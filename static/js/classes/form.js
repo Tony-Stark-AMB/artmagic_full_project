@@ -77,7 +77,8 @@ class Form {
 
             Object.keys(this.formData).forEach(key => this.triggerInput(key));
             const submitedFormData = this.mapedFormData(obj);
-            if (this.productManager !== null) submitedFormData.products = this.productManager.getProducts();
+            if (this.productManager !== null) submitedFormData.products = 
+            this.productManager.filterProductsByQuantity(this.productManager.getProducts());
             const productsExistCondition = submitedFormData.products && submitedFormData.products.length === 0 
             try {
                 if (productsExistCondition) throw Error();           

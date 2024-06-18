@@ -92,4 +92,9 @@ class ProductManager {
     loadProductsFromStorage() {
         this.setProducts(this.getStorageProducts());
     }
+
+    
+    filterProductsByQuantity(products) {
+        return products.filter(product => product.quantity > 0);
+    }
 }

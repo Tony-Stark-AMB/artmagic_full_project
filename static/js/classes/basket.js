@@ -21,6 +21,9 @@ class Basket {
                 const product = await this.productManager.fetchNewProduct(id);
                 this.productManager.addProduct(product);
                 this.renderBasket();
+                this.shouldAnimateBadge 
+                ? this.animateBadge()
+                : this.shouldAnimateBadge = true;
             });
         });
         this.renderBasket();
@@ -56,10 +59,6 @@ class Basket {
         
         // Анимация бейджа
 
-
-        this.shouldAnimateBadge 
-        ? this.animateBadge()
-        : this.shouldAnimateBadge = true;
 
     }
 
@@ -155,4 +154,6 @@ class Basket {
             this.badge.classList.remove("animated");
         }, { once: true });
     }
+
+    
 }
