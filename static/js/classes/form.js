@@ -73,14 +73,25 @@ class Form {
     async initForm(obj, path, methodType, msgObj, animDuration, clearCond = true) {
         this.dataSubmitBtn.addEventListener("click", async (e) => {
             e.preventDefault();
-  
-
+           
+            let emptyForm = false;
             Object.keys(this.formData).forEach(key => this.triggerInput(key));
+            
+
             const submitedFormData = this.mapedFormData(obj);
             if (this.productManager !== null) submitedFormData.products = 
-            this.productManager.filterProductsByQuantity(this.productManager.getProducts());
-            const productsExistCondition = submitedFormData.products && submitedFormData.products.length === 0 
+                this.productManager.filterProductsByQuantity(this.productManager.getProducts());
+            const productsExistCondition = 
+                submitedFormData.products && submitedFormData.products.length === 0;
             try {
+                
+                Object.keys(this.formData).map(key => {
+                    if(this.formData[key].value === ""){
+                        emptyForm = true;
+                        throw Error();
+                    }
+                });
+
                 if (productsExistCondition) throw Error();           
                 await this.fetchData(path, methodType, submitedFormData);
                 this.showAlert("success", msgObj.successMessage, animDuration);
@@ -94,12 +105,19 @@ class Form {
                     }
                 }
             } catch (err) {
-                if (productsExistCondition) {
-                    this.showAlert("err", "Неможливо зробити замовлення без обраного товару", animDuration);
-                } else {
-                    console.log('here')
-                    this.showAlert("err", msgObj.errorMessage, animDuration);
+                switch(true){
+                    case productsExistCondition:
+                        this.showAlert("err", "Неможливо зробити замовлення без обраного товару", animDuration);
+                        break;
+                    case emptyForm:
+                        this.showAlert("err", "Будь ласка заповніть поля форми", animDuration);
+                        break;
+                    default :
+                        this.showAlert("err", msgObj.errorMessage, animDuration);
+                        break; 
                 }
+
+
             }
         });
     }
