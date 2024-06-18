@@ -247,12 +247,8 @@ p {
   }
 }
 .logo__wrap {
-  width: 12%;
-}
-@media (max-width: 1600px) {
-  .logo__wrap {
-    width: 15%;
-  }
+  flex-grow: 0.1;
+  flex-basis: auto;
 }
 .logo__link {
   display: flex;

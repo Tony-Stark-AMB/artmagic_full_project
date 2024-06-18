@@ -3,11 +3,16 @@
         "./header/header-catalog",
         "./header/header-call",
         "./header/header-search",
+        "./header/header-login",
+        "./header/header-nav-burger",
         // modals
         "./header/modal/modal-mobile-menu",
         "./header/modal/modal-login-registration",
         "./header/modal/modal-call",
-        "./header/modal/modal-basket";
+        "./header/modal/modal-basket",
+        "../breakpoints/variables",
+        "../breakpoints/response-fn";
+
 
 .header{
     top: 0;
@@ -26,6 +31,8 @@
         width: 96%;
         margin: 0 auto;
         display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
         justify-content: space-between;
         align-items: center;
     }
@@ -145,11 +152,15 @@
 
 .lock-small,
 .user-small{    
-    font-size: 12px;
     margin-right: 7px;
+    display: inline;
+    @include respond-to(tablet-large){
+        margin-right: 0
+    }
 }
 
-.left-small{
+.left-small,
+.user-small{
     width: 20px;
     height: 20px;
 }
@@ -176,6 +187,6 @@
 }
 
 .swiper-pagination-bullet-active {
-color: #fff;
-background: #007aff;
+    color: #fff;
+    background: #007aff;
 }

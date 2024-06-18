@@ -1,5 +1,7 @@
 @import "./parts/fonts", "./parts/colors";
 
+@import "./breakpoints/variables",
+        "./breakpoints/response-fn";
 *{
     transition: all .3s ease;
 }
@@ -59,10 +61,8 @@ p{
         height: 65px;
     }
     &__wrap{
-        width: 12%;
-        @media (max-width: 1600px) {
-            width: 15%;
-        }
+        flex-grow: 0.1;
+        flex-basis: auto;
     }
     &__link{
         display: flex;

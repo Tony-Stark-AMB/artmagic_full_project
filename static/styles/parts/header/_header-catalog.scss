@@ -1,11 +1,14 @@
+@import "../../breakpoints/variables",
+        "../../breakpoints/response-fn";
+
 .header-catalog{
-    width: 8%;
-    margin: 0 10px;
-    @media (max-width: 1600px) {
-        width: 9%;
+    flex-grow: 0.3;
+    place-items: center;
+    display: none;
+    @include respond-to(tablet-large){
+        display: grid;
     }
         &__btn{
-            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
