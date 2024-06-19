@@ -1,4 +1,7 @@
 // Продукти для index.html
+@import "../../breakpoints/variables",
+        "../../breakpoints/response-fn";
+
 .products-index{
     margin: 40px 0;
     &__title{
@@ -9,6 +12,9 @@
         height: auto;
         padding: 50px 0;
         margin: 0 0 0 20px; 
+        @include respond-to(laptop-small){
+            margin: 0;
+        }
     }
     &__list{
         display: flex;

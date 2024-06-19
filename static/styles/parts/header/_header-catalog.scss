@@ -5,7 +5,7 @@
     flex-grow: 0.3;
     place-items: center;
     display: none;
-    @include respond-to(tablet-large){
+    @include respond-to(laptop-small){
         display: grid;
     }
         &__btn{

@@ -352,6 +352,30 @@
     </div>
     </div>
     {% include 'carts/includes/included_cart.html' %}
+<div class="mobile-menu bg13">
+    <div class="mobile-menu__container">
+        <div class="mobile-menu__icon-close__wrap">
+            <div class="mobile-menu__icon-close" onclick="closeBurgerMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 384 512">
+                    <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5
+                        32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3
+                        0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+            </div>
+        </div>
+        <ul class="mobile-menu__list font__raleway">
+            <li class="mobile-menu__item">
+                <a class="mobile-menu__link" href="">Головна</a></li>
+            <li class="mobile-menu__item">
+                <a class="mobile-menu__link" href="">Оплата і доставка</a></li>
+            <li class="mobile-menu__item">
+                <a class="mobile-menu__link" href="">Новини</a></li>
+            <li class="mobile-menu__item">
+                <a class="mobile-menu__link" href="">Допомога</a></li>
+            <li class="mobile-menu__item">
+                <a class="mobile-menu__link" href="">Контакти</a></li>
+        </ul>
+    </div>
+</div>
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <ul class="header-sidemenu">
@@ -436,6 +460,7 @@
     <script src="{% static 'js/basket.js' %}"></script>
     <script src="{% static 'js/order.js' %}"></script>
     <script src="{% static 'js/burger-menu.js' %}"></script>
+    <script src="{% static 'js/sidenav.js' %}"></script>
     <script type="module" src="{% static 'js/header.js' %}"></script>
     {% block js %}{% endblock %}
 </div>

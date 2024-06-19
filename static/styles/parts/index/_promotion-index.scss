@@ -1,8 +1,14 @@
 // Нижния картока на index.html
+@import "../../breakpoints/variables",
+        "../../breakpoints/response-fn";
+
 .promotion{
     &__title{
         text-align: center;
         margin: 40px 0;
+        @include respond-to(laptop-small){
+            margin: 20px 0;
+        }
     }
     &__content{
         min-height: 55vh;

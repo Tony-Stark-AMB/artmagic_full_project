@@ -4,16 +4,16 @@
     height: 0;
     top: 0;
     left: 0;
-    transition: height 1s ease, z-index 1.2s ease;
+    transition: height 1s ease;
     z-index: -1;
     &.show{
-        height: 100vh;
-        z-index: 1000;
+        z-index: 1010;
+        height: 100%;
+        overflow: hidden;
     }
     &__container{
-        max-width: 400px;
-        margin: 0 auto;
-        padding: 60px 15px 0 15px;
+        width: 100%;
+        padding: 15px;
     }
     &__list{
         opacity: 0;
@@ -23,9 +23,10 @@
         align-items: center;
         justify-content: space-around;
         transition: opacity 1.3s ease;
-        height: 25vh;
+        height: 50vh;
+        margin: 40px 0;
         &.show{
-            margin: 40px 0;
+            // margin: 40px 0;
             opacity: 1;
         }
     }
@@ -50,7 +51,6 @@
         &__wrap{
             display: flex;
             justify-content: flex-end;
-            margin: 40px 0;
         }
     }
 }

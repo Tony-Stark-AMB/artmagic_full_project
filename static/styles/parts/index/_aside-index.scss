@@ -1,4 +1,6 @@
 //aside-index
+@import "../../breakpoints/variables",
+        "../../breakpoints/response-fn";
 
 .aside-index{
     padding: 10px 0; 
@@ -9,6 +11,9 @@
         width: 100%;    
         grid-area: aside;
         min-height: 195vh;
+        @include respond-to(laptop-small){
+            display: none;
+        }
     }
     & > hr{
         margin: 0 auto;

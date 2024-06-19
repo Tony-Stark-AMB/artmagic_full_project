@@ -35,17 +35,17 @@ const burgerMenuList = document.querySelector('.mobile-menu__list');
 
 
 
-const showBurgerMenu = () => {
-  burgerMenuEl.classList.add("show");
-  burgerMenuList.classList.add("show");
-  burgerMenuBtnClose.classList.add("show");
-}
+// const showBurgerMenu = () => {
+//   burgerMenuEl.classList.add("show");
+//   burgerMenuList.classList.add("show");
+//   burgerMenuBtnClose.classList.add("show");
+// }
 
-const closeBurgerMenu = () => {
-  burgerMenuEl.classList.remove("show");
-  burgerMenuList.classList.remove("show");
-  setTimeout( () => burgerMenuBtnClose.classList.remove("show"), 650);
-}
+// const closeBurgerMenu = () => {
+//   burgerMenuEl.classList.remove("show");
+//   burgerMenuList.classList.remove("show");
+//   setTimeout( () => burgerMenuBtnClose.classList.remove("show"), 650);
+// }
 
 //catalog header
 const [productsBtn, promotionBtn] = document.querySelectorAll('.catalog-header-btn');

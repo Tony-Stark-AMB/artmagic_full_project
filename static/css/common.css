@@ -365,3 +365,9 @@ body.modal-open {
 .invalid-input {
   border-color: #E63125 !important;
 }
+
+.no-scroll {
+  overflow: hidden;
+  position: fixed;
+  touch-action: none;
+}
