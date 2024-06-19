@@ -57,7 +57,7 @@
     padding: 0 20px;
     display: flex;
     flex-direction: column;
-    &-item{
+    &__item{
         word-wrap: break-word;
         cursor: pointer;
         transition: color .3s ease;
@@ -65,7 +65,9 @@
         &:hover > svg{
             color: $c6;
         }
-        
+        &-link{
+            color: $c9;
+        }
     }
     &-item > svg{
         width: 15px;

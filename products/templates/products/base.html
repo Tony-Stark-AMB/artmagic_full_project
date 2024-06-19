@@ -244,7 +244,8 @@
         </footer>
         {% endblock %}
     </div>
-    <div class="modal fade modal__login" id="login__modal" tabindex="-1" aria-labelledby="login__modal" aria-hidden="true">
+<!-- LOGIN MODAL -->
+<div class="modal fade modal__login" id="login__modal" tabindex="-1" aria-labelledby="login__modal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -300,8 +301,8 @@
         </div>
     </div>
 </div>
-
-    <div class="modal fade modal__call" id="call__modal" tabindex="-1" aria-labelledby="call__modal" aria-hidden="true">
+<!-- FEEDBACK -->
+<div class="modal fade modal__call" id="call__modal" tabindex="-1" aria-labelledby="call__modal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-header">
@@ -352,6 +353,7 @@
     </div>
     </div>
     {% include 'carts/includes/included_cart.html' %}
+<!-- MOBILE BURGER -->
 <div class="mobile-menu bg13">
     <div class="mobile-menu__container">
         <div class="mobile-menu__icon-close__wrap">
@@ -376,69 +378,20 @@
         </ul>
     </div>
 </div>
+<!-- SIDENAV MODAL -->
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <ul class="header-sidemenu">
-        <li class="header-sidemenu__item" >
-            Блокноти, папір, картон
-            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512">
-                <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7
-                 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
-        </li>
-        <li class="header-sidemenu__item" >
-            Графіка
-            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512">
-                <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7
-                 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
-        </li>
-        <li class="header-sidemenu__item" >
-            Живопис
-            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512">
-                <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7
-                 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
-        </li>
-        <li class="header-sidemenu__item" >
-            Канцтовари
-            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512">
-                <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7
-                 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
-        </li>
-        <li class="header-sidemenu__item" > 
-            Мольберти та Етюдники
-            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512">
-                <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7
-                 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
-        </li>
-        <li class="header-sidemenu__item" >
-            Полотна та Планшети
-            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512">
-                <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7
-                 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
-        </li>
-        <li class="header-sidemenu__item" >
-            Реставрація
-            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512">
-                <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7
-                 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
-        </li>
-        <li class="header-sidemenu__item" >
-            Скульптура і Гравюра
-            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512">
-                <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7
-                 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
-        </li>
-        <li class="header-sidemenu__item" >
-            Хоббі і Декор
-            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512">
-                <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7
-                 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
-        </li>
-        <li class="header-sidemenu__item" >
-            Творчість для Дітей
-            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512">
-                <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7
-                 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
-        </li>
+        {% recursetree categories %}
+            <li class="header-sidemenu__item" >
+                <a class="header-sidemenu__item-link" href="{% url 'sub_categories' node.slug %}">
+                    {{ node.name }}
+                </a>
+                <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512">
+                    <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7
+                    256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+            </li>
+        {% endrecursetree %}
     </ul>
 </div>
 
@@ -456,12 +409,11 @@
     <script src="{% static 'js/common/index.js' %}"></script>
     <script src="{% static 'js/common/constants.js' %}"></script>
     <script src="{% static 'js/common/regexp.js' %}"></script>
-    <script src="{% static 'js/common/form.js' %}"></script>
-    <script src="{% static 'js/basket.js' %}"></script>
-    <script src="{% static 'js/order.js' %}"></script>
-    <script src="{% static 'js/burger-menu.js' %}"></script>
-    <script src="{% static 'js/sidenav.js' %}"></script>
-    <script type="module" src="{% static 'js/header.js' %}"></script>
+    <script src="{% static 'js/header/basket/basket.js' %}"></script>
+    <script src="{% static 'js/header/basket/order.js' %}"></script>
+    <script src="{% static 'js/header/burger-menu/burger-menu.js' %}"></script>
+    <script src="{% static 'js/header/sidenav/sidenav.js' %}"></script>
+    <script type="module" src="{% static 'js/header/header.js' %}"></script>
     {% block js %}{% endblock %}
 </div>
 </body>

@@ -1,4 +1,4 @@
-import {Swiper, Pagination, Navigation} from "./import.js";
+import {Swiper, Pagination, Navigation} from "../import.js";
 
 const {catalogCarousel} = {
     catalogCarousel: {
@@ -108,7 +108,7 @@ const fetchProducts = async (page) => {
 
 
 
-await initFetchProducts().then(() => basket(CATALOG));
+await initFetchProducts().then(() => basket);
 
 const changePageFetchProducts = (page) => {
     const productsCatalogList = document.querySelectorAll(`.products-${CATALOG}__list`)[page - 1];

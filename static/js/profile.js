@@ -1,8 +1,6 @@
 // for images ratio
 initImagesRation(PROFILE);
 // for products working
-// basket(PROFILE);
-// basket(PROFILE).initBasket();
 
 
 const formDataProfile = {
