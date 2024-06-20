@@ -38,6 +38,12 @@
                 object-fit: cover;
                 &__wrap{
                     width: 600px;
+                    @include respond-to(tablet-small){
+                        width: 400px;
+                    }
+                    @include respond-to(phone-large){
+                        width: 350px;
+                    }
                 }
             }
         }

@@ -312,6 +312,21 @@ body.modal-open {
   width: 100%;
   height: 50px;
 }
+@media (max-width: 768px) {
+  .divider {
+    margin-top: 157px;
+  }
+}
+@media (max-width: 576px) {
+  .divider {
+    margin-top: 144px;
+  }
+}
+@media (max-width: 452px) {
+  .divider {
+    margin-top: 200px;
+  }
+}
 
 .alert {
   position: fixed;

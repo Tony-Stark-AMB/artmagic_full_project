@@ -125,6 +125,15 @@ body.modal-open {
     background-image: url("/static/assets/artmagic-background-header.jpg");
     width: 100%;
     height: 50px;
+    @include respond-to(tablet-small){
+        margin-top: 157px;
+    }
+    @include respond-to(phone-large){
+        margin-top: 144px;
+    }
+    @media(max-width: 452px){
+        margin-top: 200px;
+    }
 }
 
 .alert{

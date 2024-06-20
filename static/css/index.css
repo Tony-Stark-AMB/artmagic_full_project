@@ -986,6 +986,16 @@
 .main-index__banner__slide__img__wrap {
   width: 600px;
 }
+@media (max-width: 768px) {
+  .main-index__banner__slide__img__wrap {
+    width: 400px;
+  }
+}
+@media (max-width: 576px) {
+  .main-index__banner__slide__img__wrap {
+    width: 350px;
+  }
+}
 .main-index__promotion {
   display: grid;
   place-items: center;
