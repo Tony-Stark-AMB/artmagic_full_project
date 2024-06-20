@@ -126,3 +126,21 @@ class SubProductView(View):
             filters.insert(0, {'name': 'ПІДКАТЕГІЯ', 'text': list(sub_categories.values_list('name', flat=True))})
 
         return filters
+
+def get_new_arrivals(request):
+    products = list(Products.objects.order_by('-date_added')[:20].values('name', 'image', 'price', 'pk'))
+
+    paginate_by = request.GET.get('productsPerPage')
+    page_number = request.GET.get('page', 1)
+
+    paginator = Paginator(products, paginate_by)
+    page_obj = paginator.get_page(page_number)
+
+    products_data = list(page_obj)
+
+    json_data = {
+        'products': products_data,
+        'productsPerPage': paginator.per_page,
+    }
+    print(json_data)
+    return JsonResponse(json_data)

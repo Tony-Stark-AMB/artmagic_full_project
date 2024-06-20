@@ -2,9 +2,6 @@
 initImagesRation(INDEX);
 // for products working
 
-
-// const { MIN_2_LETTERS_UA, FIRST_LETTER_CAPITALISE_UA, EMAIL, PHONE_UA, REQUIRED, POSTAL_INDEX }  = regexp;
-
 // FORM INIT DATA MUST HAVE UNIC KEYS
 
 const formDataFeedback = {

@@ -1,4 +1,4 @@
-import {Swiper, Navigation, Pagination} from "./import.js";
+import {Swiper, Navigation, Pagination} from "../import.js";
 
 // function debounce(func, delay) {
 //   let timerId;
