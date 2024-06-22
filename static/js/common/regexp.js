@@ -1,4 +1,4 @@
-export const regexp = {
+const regexp = {
     MIN_2_LETTERS_UA: /[а-щьюяґєії]+/,
     FIRST_LETTER_CAPITALISE_UA: /^[А-ЩЬЮЯҐЄІЇ]/,
     MIN_2_LETTERS_RU: /[а-яё]+/,

@@ -130,17 +130,22 @@ class SubProductView(View):
 def get_new_arrivals(request):
     products = list(Products.objects.order_by('-date_added')[:20].values('name', 'image', 'price', 'pk'))
 
-    paginate_by = request.GET.get('productsPerPage')
+    paginate_by = request.GET.get('productsPerPage', 10)
     page_number = request.GET.get('page', 1)
 
     paginator = Paginator(products, paginate_by)
     page_obj = paginator.get_page(page_number)
 
-    products_data = list(page_obj)
+    # Переименовать ключ 'pk' на 'id'
+    products_data = [
+        {'name': product['name'], 'image': product['image'], 'price': product['price'], 'id': product['pk']}
+        for product in page_obj
+    ]
 
     json_data = {
         'products': products_data,
         'productsPerPage': paginator.per_page,
+        'productsAmount': paginator.count,  # Добавить общее количество продуктов
     }
     print(json_data)
     return JsonResponse(json_data)

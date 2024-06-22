@@ -1,5 +1,56 @@
 import {Swiper, Navigation, Pagination} from "../import.js";
+import { PageProducts } from "../classes/page-products.js";
+import { basket } from "../header/basket/basket.js";
 
+const pageName = "index";
+
+class IndexProducts extends PageProducts{
+  constructor(pageName, containerId, swiper, basket){
+    super(pageName, containerId, swiper, basket)
+  }
+
+  renderProductItem({ name, id, image, price }, container) {
+    const productHTML = `
+        <div class="products-${this.pageName}__item product-item" id="${id}">
+            <div class="products-${this.pageName}__item__img__wrap">
+                <img class="products-${this.pageName}__item__img" src="/media/${image}" />
+            </div>
+            <div class="products-index__item__content">
+                <p class="products-${this.pageName}__item__title">${name}</p>
+                <span class="products-${this.pageName}__item__price">${price}</span>
+                <button class="btn btn-primary products-${this.pageName}__item__btn" data-item="product_btn">Купити</button>
+            </div>
+        </div>
+    `;
+    container.insertAdjacentHTML('beforeend', productHTML);
+  }
+
+  productsRendering(products, productsAmount, productsPerPage, page) {
+    const totalPages = Math.ceil((productsAmount < 10 ? 10 : productsAmount) / productsPerPage);
+
+    for (let index = 0; index < totalPages; index++) {
+        const swiperSlideHTML = `
+            <div class="swiper-slide products-${this.pageName}__list" data-page="${index + 1}"></div>
+        `;
+        this.productsContainer.insertAdjacentHTML('beforeend', swiperSlideHTML);
+    }
+    console.log("productsRerendering", page)
+
+    const productsIndexList = document.querySelectorAll(`.products-${this.pageName}__list`)[page - 1];
+    products.forEach(product => this.renderProductItem(product, productsIndexList));
+  }
+
+  async fetchProducts(page) {
+    const url = `http://localhost:8000/get-new-arrivals/?page=${page}&productsPerPage=${10}`;
+
+    const response = await fetch(url, {
+        method: "GET",
+        mode: "cors"
+    });
+    return await response.json();
+  }
+  
+}
 // function debounce(func, delay) {
 //   let timerId;
   
@@ -76,8 +127,8 @@ const {mainBanner, productsCarousel} = {
   modules: [Navigation, Pagination]
 }
 
-new Swiper(".main-index__banner", mainBanner);
-new Swiper(".products-index__list__wrap", productsCarousel);
-
+new Swiper(`.main-${pageName}__banner`, mainBanner);
+const indexProductsSwiper = new Swiper(`.products-${pageName}__list__wrap`, productsCarousel);
+new IndexProducts(pageName, "productsIndexContainer", indexProductsSwiper, basket);
 
 

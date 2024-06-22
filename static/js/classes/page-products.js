@@ -1,11 +1,9 @@
-import {Swiper} from "../import.js";
-
 export class PageProducts {
-    constructor(pageName, containerId, carouselConfig, basket) {
+    constructor(pageName, containerId, swiper, basket) {
         this.pageName = pageName;
         this.basket = basket;
         this.productsContainer = document.getElementById(containerId);
-        this.carouselConfig = carouselConfig;
+        this.swiper = swiper;
         this.initFetchProducts();
     }
 
@@ -35,8 +33,8 @@ export class PageProducts {
             this.productsContainer.insertAdjacentHTML('beforeend', swiperSlideHTML);
         }
 
-        const productsCatalogList = document.querySelectorAll(`.products-${this.pageName}__list`)[page - 1];
-        products.forEach(product => this.renderProductItem(product, productsCatalogList));
+        const productsList = document.querySelectorAll(`.products-${this.pageName}__list`)[page - 1];
+        products.forEach(product => this.renderProductItem(product, productsList));
     }
 
     mapProducts(arr) {
@@ -57,35 +55,37 @@ export class PageProducts {
         });
         return await response.json();
     }
-
+    
     async initFetchProducts(page = 1) {
+
         const { products, productsAmount, productsPerPage } = await this.fetchProducts(page);
         const mappedProducts = this.mapProducts(products);
+        // this.productsRendering(mappedProducts, productsAmount ? +productsAmount : +products.length, +productsPerPage, page);
         this.productsRendering(mappedProducts, productsAmount, productsPerPage, page);
-
-        const catalogCarouselInit = this.initCarousel(`.main-${this.pageName}__carousel`, this.carouselConfig);
-        catalogCarouselInit.on('slideChange', () => {
-            const currentPage = catalogCarouselInit.activeIndex + 1;
+ 
+        this.swiper.on('slideChange', () => {
+            const currentPage = this.swiper.activeIndex + 1;
             this.changePageFetchProducts(currentPage);
         });
+        const images = document.querySelectorAll(`.products-${this.pageName}__item__img`);
+        rerenderImage(images);
         await this.basket.initialize();
     }
-
     async changePageFetchProducts(page) {
-        const productsCatalogList = document.querySelectorAll(`.products-${this.pageName}__list`)[page - 1];
-        if (productsCatalogList.hasChildNodes()) return;
-
+        
+        const productsList = document.querySelectorAll(`.products-${this.pageName}__list`)[page - 1];
+        if (productsList.hasChildNodes()) return;
+        
         const { products } = await this.fetchProducts(page);
+
+        
         const mappedProducts = this.mapProducts(products);
-        mappedProducts.forEach(product => this.renderProductItem(product, productsCatalogList));
+        mappedProducts.forEach(product => this.renderProductItem(product, productsList));
+
 
         const images = document.querySelectorAll(`.products-${this.pageName}__item__img`);
         rerenderImage(images);
         await this.basket.initialize();
     }
-
-    initCarousel(SwiperElClassName, config) {
-        return new Swiper(SwiperElClassName, config);
-    } 
 }
 
