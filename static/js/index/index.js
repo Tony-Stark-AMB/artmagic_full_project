@@ -1,8 +1,11 @@
+import { regexp } from "../common/regexp.js";
+
 // for images ratio
 initImagesRation(INDEX);
 // for products working
 
 // FORM INIT DATA MUST HAVE UNIC KEYS
+const {REQUIRED, MIN_2_LETTERS_UA, PHONE_UA } = regexp
 
 const formDataFeedback = {
     firstName: "",

@@ -1,4 +1,4 @@
-class Basket {
+export class Basket {
     constructor(productManager) {
         this.productManager = productManager;
         this.btns = document.querySelectorAll(`button[data-item="product_btn"]`);
@@ -6,22 +6,25 @@ class Basket {
         this.badge = document.querySelector(".header-basket__icon__badge");
         this.badgeContent = document.querySelector(".header-basket__icon__badge__number");
         this.allProductCostElement = document.querySelector(".modal-footer__text");
-        // this.shouldAnimateBadge = false; // Flag to control badge animation
+        this.images = document.querySelectorAll(".overlook__img");
+
         this.initialize();
         window.onbeforeunload = () => {
-            console.log("save products")
             this.productManager.setStorageProducts(this.productManager.getProducts());
         };
     }
 
     initialize() {
+        this.btns = document.querySelectorAll(`button[data-item="product_btn"]`);
         this.btns.forEach((btn) => {
             btn.addEventListener("click", async (e) => {
+                console.log("here");
                 const id = +e.target.closest(`div.product-item`).getAttribute("id");
                 const product = await this.productManager.fetchNewProduct(id);
                 this.productManager.addProduct(product);
                 this.renderBasket();
                 this.animateBadge();
+                console.log("initialized")
             });
         });
         this.renderBasket();
@@ -54,8 +57,8 @@ class Basket {
 
         // Обновление общей стоимости товаров
         this.allProductCostElement.textContent = `${this.productManager.allProductsTotalPrice(this.productManager.priceOutputFn, 2)} грн`;
-        
-        // Анимация бейджа
+        this.images = document.querySelectorAll(".overlook__img");
+        rerenderImage(this.images);
 
 
     }
@@ -127,10 +130,7 @@ class Basket {
             this.productManager.setProductQuantity(product.id, value);
             updateProductQuantityAndPrice(product.id, productDiv.querySelector(`[data-action="quantity"]`), productDiv.querySelector(".cart__product__price"))
         });
-
-
-
-        return productDiv;
+        return productDiv;        
     }
 
     updateProductQuantityAndPrice(productId, quantityInput, totalPriceElement) {
@@ -152,6 +152,8 @@ class Basket {
             this.badge.classList.remove("animated");
         }, { once: true });
     }
+
+
 
     
 }

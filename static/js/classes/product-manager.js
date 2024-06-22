@@ -1,4 +1,4 @@
-class ProductManager {
+export class ProductManager {
     constructor() {
         this.products = [];
         this.loadProductsFromStorage();
