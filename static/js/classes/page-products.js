@@ -3,8 +3,10 @@ export class PageProducts {
         this.pageName = pageName;
         this.basket = basket;
         this.productsContainer = document.getElementById(containerId);
+        this.productsLists = null;
+        this.defaultProductsAmount = 10;
         this.swiper = swiper;
-        this.initFetchProducts();
+        this.initialize();
     }
 
     renderProductItem({ name, id, image, price }, container) {
@@ -21,8 +23,13 @@ export class PageProducts {
         container.insertAdjacentHTML('beforeend', productHTML);
     }
 
-    productsRendering(products, productsAmount, productsPerPage, page) {
-        const totalPages = Math.ceil((productsAmount < 10 ? 10 : productsAmount) / productsPerPage);
+    renderProductsLists(productsAmount, productsPerPage) {
+        
+        const totalPages = Math.ceil(
+            (productsAmount < this.defaultProductsAmount ? 
+                this.defaultProductsAmount 
+                : productsAmount) / productsPerPage
+        );
 
         for (let index = 0; index < totalPages; index++) {
             const swiperSlideHTML = `
@@ -32,9 +39,16 @@ export class PageProducts {
             `;
             this.productsContainer.insertAdjacentHTML('beforeend', swiperSlideHTML);
         }
+    }
 
-        const productsList = document.querySelectorAll(`.products-${this.pageName}__list`)[page - 1];
+    renderProductsItems(products, page) {
+        const productsList = this.productsLists[page - 1];
+        if (page !== 1 && productsList.hasChildNodes()) return;
+        
         products.forEach(product => this.renderProductItem(product, productsList));
+
+        const images = document.querySelectorAll(`.products-${this.pageName}__item__img`);
+        rerenderImage(images);
     }
 
     mapProducts(arr) {
@@ -55,37 +69,36 @@ export class PageProducts {
         });
         return await response.json();
     }
-    
-    async initFetchProducts(page = 1) {
 
-        const { products, productsAmount, productsPerPage } = await this.fetchProducts(page);
+    async initialize() {
+        const { products, productsAmount, productsPerPage } = await this.fetchProducts(1);
+        this.renderProductsLists(productsAmount, productsPerPage);
+        this.productsLists = document.querySelectorAll(`.products-${this.pageName}__list`);
+        
         const mappedProducts = this.mapProducts(products);
-        // this.productsRendering(mappedProducts, productsAmount ? +productsAmount : +products.length, +productsPerPage, page);
-        this.productsRendering(mappedProducts, productsAmount, productsPerPage, page);
- 
+        this.renderProductsItems(mappedProducts, 1);  // Добавляем рендер продуктов для первой страницы
+
         this.swiper.on('slideChange', () => {
             const currentPage = this.swiper.activeIndex + 1;
             this.changePageFetchProducts(currentPage);
         });
-        const images = document.querySelectorAll(`.products-${this.pageName}__item__img`);
-        rerenderImage(images);
         await this.basket.initialize();
     }
-    async changePageFetchProducts(page) {
-        
-        const productsList = document.querySelectorAll(`.products-${this.pageName}__list`)[page - 1];
-        if (productsList.hasChildNodes()) return;
-        
+
+    async changePageFetchProducts(page = 1) {
+        if (!this.productsLists) {
+            const { productsAmount, productsPerPage } = await this.fetchProducts(1);
+            this.renderProductsLists(productsAmount, productsPerPage);
+            this.productsLists = document.querySelectorAll(`.products-${this.pageName}__list`);
+        }
+
+        const productsList = this.productsLists[page - 1];
+        if (productsList.hasChildNodes()) return; 
+
         const { products } = await this.fetchProducts(page);
-
-        
         const mappedProducts = this.mapProducts(products);
-        mappedProducts.forEach(product => this.renderProductItem(product, productsList));
+        this.renderProductsItems(mappedProducts, page);
 
-
-        const images = document.querySelectorAll(`.products-${this.pageName}__item__img`);
-        rerenderImage(images);
         await this.basket.initialize();
     }
 }
-

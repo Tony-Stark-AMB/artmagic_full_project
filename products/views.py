@@ -59,15 +59,44 @@ def chunk_queryset(queryset, chunk_size):
         yield chunk
 
 
-def sub_categories(request, slug):
-    parent_category = get_object_or_404(Category, slug=slug)
-    sub_categories = parent_category.children.all()
-    products = Products.objects.filter(category_id=parent_category)[:64]
+class SubCategoriesView(View):
+    template_name = 'products/category.html'
 
-    products_by_sub_category = list(chunk_queryset(products, 8))
+    def get(self, request, slug):
+        parent_category = get_object_or_404(Category, slug=slug)
+        sub_categories = parent_category.children.all()
+        
+        descendants = parent_category.get_descendants(include_self=True)
+        category_ids = [descendant.pk for descendant in descendants]
 
-    return render(request, 'products/category.html', {'parent_category': parent_category, 'sub_categories': sub_categories, 'products_by_sub_category': products_by_sub_category})
 
+        if request.headers['Content-Type'] == 'application/json':
+            # add-category/<str:slug>/
+
+            products = Products.objects.filter(category_id__in=category_ids)
+            products_values = products.values('id', 'name', 'image', 'price', 'manufacturer')
+
+            # Пагинация
+            paginate_by = request.GET.get('productsPerPage', 10)
+            paginator = Paginator(products_values, paginate_by)
+            page_number = request.GET.get('page', 1)
+            page_obj = paginator.get_page(page_number)
+
+            products_data = list(page_obj)
+            json_data = {
+                'products': products_data,
+                'productsPerPage': paginator.per_page,
+                'productsAmount': paginator.count,
+                'currentPage': page_obj.number,
+            }
+            return JsonResponse(json_data)
+
+
+        return render(request, self.template_name, {
+            'parent_category': parent_category,
+            'sub_categories': sub_categories
+        })
+        
 class SubProductView(View):
     template_name = 'products/catalog.html'
     paginate_by = 12

@@ -1,4 +1,46 @@
 import { Swiper, Navigation, Pagination } from "../import.js";
+import { PageProducts } from "../classes/page-products.js";
+import { basket } from "../header/basket/basket.js";
+
+const pageName = "category";
+
+class CategoryProducts extends PageProducts{
+  constructor(pageName, containerId, swiper, basket){
+    super(pageName, containerId, swiper, basket)
+    
+  }
+  
+  async fetchProducts(page) {
+    const pageUrl = window.location.href.split("/").filter(part => part !== "");
+    const slug = pageUrl[pageUrl.length - 1];
+    const url = `http://localhost:8000/add-category/${slug}?page=${page}&productsPerPage=${this.defaultProductsAmount}`;
+
+    const response = await fetch(url, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json"
+        }
+    });
+    return await response.json();
+  }
+  // для изменения дефолтного колва продуктов на страницу
+  async initialize() {
+    this.defaultProductsAmount = 12;
+    const { products, productsAmount, productsPerPage } = await this.fetchProducts(1);
+    this.renderProductsLists(productsAmount, productsPerPage);
+    this.productsLists = document.querySelectorAll(`.products-${this.pageName}__list`);
+    
+    const mappedProducts = this.mapProducts(products);
+    this.renderProductsItems(mappedProducts, 1);  // Добавляем рендер продуктов для первой страницы
+
+    this.swiper.on('slideChange', () => {
+        const currentPage = this.swiper.activeIndex + 1;
+        this.changePageFetchProducts(currentPage);
+    });
+    await this.basket.initialize();
+  }
+}
 
 const {categoryBanner, brandsBanner, productsCarousel} = {
  
@@ -43,6 +85,7 @@ const {categoryBanner, brandsBanner, productsCarousel} = {
     modules: [Navigation, Pagination]
 }
 
-new Swiper(".category-banner", categoryBanner);
-new Swiper(".category-brands", brandsBanner);
-new Swiper(".products-category__carousel", productsCarousel); 
+new Swiper(`.${pageName}-banner`, categoryBanner);
+new Swiper(`.${pageName}-brands`, brandsBanner);
+const categoryProductsSwiper = new Swiper(`.products-${pageName}__carousel`, productsCarousel); 
+new CategoryProducts(pageName, "productsCategoryContainer", categoryProductsSwiper, basket);

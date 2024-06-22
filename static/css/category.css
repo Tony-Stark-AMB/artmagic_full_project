@@ -890,6 +890,8 @@
 .products-category__item__img__wrap {
   width: 200px;
   height: 200px;
+  display: grid;
+  place-items: center;
 }
 .products-category__item__title {
   margin-top: 20px;

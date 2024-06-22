@@ -26,7 +26,10 @@ class IndexProducts extends PageProducts{
   }
 
   productsRendering(products, productsAmount, productsPerPage, page) {
-    const totalPages = Math.ceil((productsAmount < 10 ? 10 : productsAmount) / productsPerPage);
+    const totalPages = Math.ceil(
+      (productsAmount < this.defaultProductsAmount 
+        ? this.defaultProductsAmount 
+        : productsAmount) / productsPerPage);
 
     for (let index = 0; index < totalPages; index++) {
         const swiperSlideHTML = `
@@ -41,7 +44,8 @@ class IndexProducts extends PageProducts{
   }
 
   async fetchProducts(page) {
-    const url = `http://localhost:8000/get-new-arrivals/?page=${page}&productsPerPage=${10}`;
+    this.defaultProductsAmount = 10;
+    const url = `http://localhost:8000/get-new-arrivals/?page=${page}&productsPerPage=${this.defaultProductsAmount}`;
 
     const response = await fetch(url, {
         method: "GET",
@@ -115,7 +119,7 @@ const {mainBanner, productsCarousel} = {
       clickable: true,
       el: ".swiper-pagination",
       renderBullet: function (index, className) {
-        return '<span class="' + className + '">' + (index + 1) + "</span>";
+        return `<span class="${className}">${index + 1}</span>`;
       },
     },
     breakpoints: {

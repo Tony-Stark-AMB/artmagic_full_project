@@ -1,5 +1,4 @@
 const rerenderImage = function(images) {
-    console.log("rerender")
     images.forEach(img => {
         img.onload = function () {
             
