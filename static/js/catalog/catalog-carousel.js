@@ -19,5 +19,5 @@ const {catalogCarouselConfig} = {
 
 
 const catalogProductsSwiper = new Swiper( `.main-${pageName}__carousel`, catalogCarouselConfig)
-new PageProducts(pageName, "productsCatalogContainer", catalogProductsSwiper, basket).initialize();
+new PageProducts(pageName, "productsCatalogContainer", catalogProductsSwiper, basket);
 

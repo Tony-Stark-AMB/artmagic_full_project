@@ -196,3 +196,26 @@ body.modal-open {
     touch-action: none;
 }
 
+.swiper-pagination{
+    position: relative;
+    text-align: center;
+    transition: .3s opacity;
+    transform: translate3d(0,0,0);
+    z-index: 10;
+}
+
+.btn-prev-10,
+.btn-next-10{
+    position: absolute;
+    bottom: 0;
+    height: 40px;
+    z-index: 100;
+}
+
+.btn-prev-10{
+    left: 35%;
+}
+
+.btn-next-10{
+    right: 35%;
+}
