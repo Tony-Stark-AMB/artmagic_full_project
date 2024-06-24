@@ -33,11 +33,15 @@ class CategoryProducts extends PageProducts {
     const mappedProducts = this.mapProducts(products);
     this.renderProductsItems(mappedProducts, 1);  // Add render products for the first page
 
-    this.swiper.on('slideChange', () => {
+    this.swiper.on('slideChange', async () => {
       const currentPage = this.swiper.activeIndex + 1;
-      this.changePageFetchProducts(currentPage);
+      await this.changePageFetchProducts(currentPage);
     });
     await this.basket.initialize();
+  }
+
+  go10Next(){
+
   }
 }
 
@@ -56,19 +60,20 @@ const customPagination = {
 
 
     if (index >= startPage && index <= endPage) {
-      return `<span class="${className}">${index + 1}</span>`;
-    }
+      return `<span class="${className} d-block">${index + 1}</span>`;
+    } 
+      
+    return `<span class="${className} d-none">${index + 1}</span>`;
 
-    return '';
+
+
   }
 };
 
 async function updatePageGroup(newGroupIndex) {
-  numberOfPageGroup = newGroupIndex === 0 ? 0 : newGroupIndex;
+  numberOfPageGroup = newGroupIndex
   categoryProductsSwiper.pagination.render();
   categoryProductsSwiper.pagination.update();
-  // console.log(newGroupIndex);
-  // await categoryProducts.changePageFetchProducts(newGroupIndex * itemsPerGroup + 1);
 }
 
 const createBtnPrev10 = document.createElement("button");
@@ -79,8 +84,20 @@ const createBtnNext10 = document.createElement("button");
 createBtnNext10.classList.add("btn", "btn-primary", "btn-next-10");
 createBtnNext10.textContent = "10 next";
 
-createBtnPrev10.addEventListener("click", () => updatePageGroup(numberOfPageGroup - 1));
-createBtnNext10.addEventListener("click", () => updatePageGroup(numberOfPageGroup + 1));
+createBtnPrev10.addEventListener("click", async () => {
+  await updatePageGroup(numberOfPageGroup - 1);
+  console.log("prev 10")
+  const currentPage = categoryProducts.swiper.activeIndex -= 12;
+  categoryProducts.swiper.slideTo(currentPage + 2)
+  await categoryProducts.changePageFetchProducts(currentPage);
+});
+createBtnNext10.addEventListener("click", async () => {
+    await updatePageGroup(numberOfPageGroup + 1);
+    console.log("next 10")
+    const currentPage = categoryProducts.swiper.activeIndex += 11;
+    categoryProducts.swiper.slideTo(currentPage - 1)
+    await categoryProducts.changePageFetchProducts(currentPage);
+});
 
 swiperContainer.prepend(createBtnPrev10);
 swiperContainer.append(createBtnNext10);
