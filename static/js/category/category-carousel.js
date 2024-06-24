@@ -7,8 +7,23 @@ const pageName = "category";
 class CategoryProducts extends PageProducts{
   constructor(pageName, containerId, swiper, basket){
     super(pageName, containerId, swiper, basket)
-    
+    this.itemsPerGroup = 10;
+    this.numberOfPageGroup = 0; // Initialize to the first group (0-9)
   }
+
+  customPagination = {
+    el: ".swiper-pagination",
+    clickable: true,
+    renderBullet: (index, className) => {
+      const startPage = this.numberOfPageGroup * this.itemsPerGroup;
+      const endPage = startPage + this.itemsPerGroup;
+
+      if (index >= startPage && index <= endPage) {
+        return `<span class="${className}">${index + 1}</span>`;
+      } 
+      return '';
+    },
+  };
   
   async fetchProducts(page) {
     const pageUrl = window.location.href.split("/").filter(part => part !== "");
@@ -38,6 +53,13 @@ class CategoryProducts extends PageProducts{
         const currentPage = this.swiper.activeIndex + 1;
         this.changePageFetchProducts(currentPage);
     });
+    console.log(this.swiper.setConfig)
+    this.swiper.setConfig({
+      slidesPerView: 1,
+      slidesPerGroup: 1,
+      pagination: this.customPagination
+    })
+
     await this.basket.initialize();
   }
 }
