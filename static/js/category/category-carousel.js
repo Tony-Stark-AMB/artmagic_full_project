@@ -38,13 +38,7 @@ class CategoryProducts extends PageProducts {
       const currentPage = this.swiper.activeIndex + 1;
       await this.changePageFetchProducts(currentPage);
     });
-    console.log(this.swiper.setConfig)
-    this.swiper.setConfig({
-      slidesPerView: 1,
-      slidesPerGroup: 1,
-      pagination: this.customPagination
-    })
-
+    
     await this.basket.initialize();
   }
 }
