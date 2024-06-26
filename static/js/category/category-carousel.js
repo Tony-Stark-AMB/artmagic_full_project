@@ -26,7 +26,7 @@ class CategoryProducts extends PageProducts {
   }
 
   async initialize() {
-    this.defaultProductsAmount = 8; // кол-во продуктов на странице
+    this.defaultProductsAmount = 12; // кол-во продуктов на странице
     const { products, productsAmount, productsPerPage } = await this.fetchProducts(1);
     this.renderProductsLists(productsAmount, productsPerPage);
     this.productsLists = document.querySelectorAll(`.products-${this.pageName}__list`);
@@ -98,7 +98,7 @@ const createBtns = () => {
 
   createBtnNext10.addEventListener("click", async () => {
     await updatePageGroup(numberOfPageGroup + 1);
-    console.log("next 10");    const currentPage = categoryProducts.swiper.activeIndex += 11;
+    const currentPage = categoryProducts.swiper.activeIndex += 11;
     categoryProducts.swiper.slideTo(currentPage - 1);
     await categoryProducts.changePageFetchProducts(currentPage);
   });
@@ -161,3 +161,44 @@ const categoryProducts = new CategoryProducts(pageName, "productsCategoryContain
 
 // Initial check to set visibility of buttons
 toggleGroupButtonsVisibility(createBtnPrev10, createBtnNext10);
+
+function debounce(func, wait) {
+  let timeout;
+  return function(...args) {
+    const context = this;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(context, args), wait);
+  };
+}
+
+function handleResize() {
+  const currentBreakpoint = window.innerWidth;
+  
+  switch(true){
+    case currentBreakpoint >= 992 && currentBreakpoint <= 1200:{
+      categoryProducts.defaultProductsAmount = 4;
+      const currentPage = categoryProducts.swiper.activeIndex + 1;
+      categoryProducts.clearItemsOnPage(currentPage);
+      categoryProducts.changePageFetchProducts(currentPage);
+      break;
+    }
+    case currentBreakpoint >= 1200 && currentBreakpoint <= 1600:{
+      const currentPage = categoryProducts.swiper.activeIndex + 1;
+      categoryProducts.defaultProductsAmount = 9;
+      categoryProducts.clearItemsOnPage(currentPage);
+      categoryProducts.changePageFetchProducts(currentPage);
+      break;
+    }
+   
+  }
+}
+
+// Apply debounce to the resize handler
+const debouncedHandleResize = debounce(handleResize, 300);
+
+// Add the debounced resize event listener
+window.addEventListener('resize', debouncedHandleResize);
+
+// Initial check to set the correct breakpoint on page load
+handleResize();
+
