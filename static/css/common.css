@@ -398,7 +398,9 @@ body.modal-open {
 }
 
 .btn-prev-10,
-.btn-next-10 {
+.btn-next-10,
+.btn-next-catalog-10,
+.btn-prev-catalog-10 {
   position: absolute;
   bottom: 0;
   height: 40px;
@@ -418,4 +420,12 @@ body.modal-open {
   height: 30px !important;
   display: grid;
   place-items: center;
+}
+
+.btn-next-catalog-10 {
+  right: 29%;
+}
+
+.btn-prev-catalog-10 {
+  left: 29%;
 }

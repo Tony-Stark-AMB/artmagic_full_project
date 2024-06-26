@@ -10,7 +10,7 @@ class CategoryProducts extends PageProducts {
   }
 
   async fetchProducts(page) {
-    console.log("fetchProducts defaultProductsAmount", this.defaultProductsAmount)
+    // console.log("fetchProducts defaultProductsAmount", this.defaultProductsAmount)
     const pageUrl = window.location.href.split("/").filter(part => part !== "");
     const slug = pageUrl[pageUrl.length - 1];
     const url = `http://localhost:8000/add-category/${slug}?page=${page}&productsPerPage=${this.defaultProductsAmount}`;
@@ -169,43 +169,43 @@ const categoryProducts = new CategoryProducts(pageName, "productsCategoryContain
 // Initial check to set visibility of buttons
 toggleGroupButtonsVisibility(createBtnPrev10, createBtnNext10);
 
-function debounce(func, wait) {
-  let timeout;
-  return function(...args) {
-    const context = this;
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func.apply(context, args), wait);
-  };
-}
+// function debounce(func, wait) {
+//   let timeout;
+//   return function(...args) {
+//     const context = this;
+//     clearTimeout(timeout);
+//     timeout = setTimeout(() => func.apply(context, args), wait);
+//   };
+// }
 
-function handleResize() {
-  const currentBreakpoint = window.innerWidth;
+// function handleResize() {
+//   const currentBreakpoint = window.innerWidth;
   
-  switch(true){
-    case currentBreakpoint >= 992 && currentBreakpoint <= 1200:{
-      categoryProducts.defaultProductsAmount = 4;
-      const currentPage = categoryProducts.swiper.activeIndex + 1;
-      categoryProducts.clearItemsOnPage(currentPage);
-      categoryProducts.changePageFetchProducts(currentPage);
-      break;
-    }
-    case currentBreakpoint >= 1200 && currentBreakpoint <= 1600:{
-      const currentPage = categoryProducts.swiper.activeIndex + 1;
-      categoryProducts.defaultProductsAmount = 9;
-      categoryProducts.clearItemsOnPage(currentPage);
-      categoryProducts.changePageFetchProducts(currentPage);
-      break;
-    }
+//   switch(true){
+//     case currentBreakpoint >= 992 && currentBreakpoint <= 1200:{
+//       categoryProducts.defaultProductsAmount = 4;
+//       const currentPage = categoryProducts.swiper.activeIndex + 1;
+//       categoryProducts.clearItemsOnPage(currentPage);
+//       categoryProducts.changePageFetchProducts(currentPage);
+//       break;
+//     }
+//     case currentBreakpoint >= 1200 && currentBreakpoint <= 1600:{
+//       const currentPage = categoryProducts.swiper.activeIndex + 1;
+//       categoryProducts.defaultProductsAmount = 9;
+//       categoryProducts.clearItemsOnPage(currentPage);
+//       categoryProducts.changePageFetchProducts(currentPage);
+//       break;
+//     }
    
-  }
-}
+//   }
+// }
 
-// Apply debounce to the resize handler
-const debouncedHandleResize = debounce(handleResize, 300);
+// // Apply debounce to the resize handler
+// const debouncedHandleResize = debounce(handleResize, 300);
 
-// Add the debounced resize event listener
-window.addEventListener('resize', debouncedHandleResize);
+// // Add the debounced resize event listener
+// window.addEventListener('resize', debouncedHandleResize);
 
-// Initial check to set the correct breakpoint on page load
-handleResize();
+// // Initial check to set the correct breakpoint on page load
+// handleResize();
 
