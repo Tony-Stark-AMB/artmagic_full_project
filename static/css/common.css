@@ -386,3 +386,36 @@ body.modal-open {
   position: fixed;
   touch-action: none;
 }
+
+.swiper-pagination-rewrite {
+  position: relative;
+  text-align: center;
+  transition: 0.3s opacity;
+  transform: translate3d(0, 0, 0);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-prev-10,
+.btn-next-10 {
+  position: absolute;
+  bottom: 0;
+  height: 40px;
+  z-index: 100;
+}
+
+.btn-prev-10 {
+  left: 32.5%;
+}
+
+.btn-next-10 {
+  right: 32.5%;
+}
+
+.btn-pag {
+  width: 30px !important;
+  height: 30px !important;
+  display: grid;
+  place-items: center;
+}

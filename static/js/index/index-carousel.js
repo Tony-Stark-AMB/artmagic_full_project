@@ -119,7 +119,9 @@ const {mainBanner, productsCarousel} = {
       clickable: true,
       el: ".swiper-pagination",
       renderBullet: function (index, className) {
-        return `<span class="${className}">${index + 1}</span>`;
+        return `<div class="d-grid btn-pag ${className}">
+                <span>${index + 1}</span>
+              </div>`;
       },
     },
     breakpoints: {

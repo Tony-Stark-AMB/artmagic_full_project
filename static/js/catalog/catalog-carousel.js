@@ -10,7 +10,9 @@ const {catalogCarouselConfig} = {
             el: ".swiper-pagination",
             clickable: true,
             renderBullet: (index, className) => {
-                return `<span class="${className}">${index + 1}</span>`;
+                return `<div class="d-grid btn-pag ${className}">
+                            <span>${index + 1}</span>
+                        </div>`;
             },
         },
     },
@@ -19,5 +21,5 @@ const {catalogCarouselConfig} = {
 
 
 const catalogProductsSwiper = new Swiper( `.main-${pageName}__carousel`, catalogCarouselConfig)
-new PageProducts(pageName, "productsCatalogContainer", catalogProductsSwiper, basket).initialize();
+new PageProducts(pageName, "productsCatalogContainer", catalogProductsSwiper, basket);
 
