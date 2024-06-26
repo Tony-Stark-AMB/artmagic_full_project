@@ -10,6 +10,7 @@ class CategoryProducts extends PageProducts {
   }
 
   async fetchProducts(page) {
+    console.log("fetchProducts defaultProductsAmount", this.defaultProductsAmount)
     const pageUrl = window.location.href.split("/").filter(part => part !== "");
     const slug = pageUrl[pageUrl.length - 1];
     const url = `http://localhost:8000/add-category/${slug}?page=${page}&productsPerPage=${this.defaultProductsAmount}`;
@@ -25,7 +26,7 @@ class CategoryProducts extends PageProducts {
   }
 
   async initialize() {
-    this.defaultProductsAmount = 12;
+    this.defaultProductsAmount = 8; // кол-во продуктов на странице
     const { products, productsAmount, productsPerPage } = await this.fetchProducts(1);
     this.renderProductsLists(productsAmount, productsPerPage);
     this.productsLists = document.querySelectorAll(`.products-${this.pageName}__list`);
@@ -39,16 +40,13 @@ class CategoryProducts extends PageProducts {
     });
     await this.basket.initialize();
   }
-
-  go10Next(){
-
-  }
 }
 
-const swiperContainer = document.querySelector('.products-category__carousel');
+const swiperContainer = document.querySelector(`.products-${pageName}__carousel`);
 
 let numberOfPageGroup = 0; // Initialize the group index
 const itemsPerGroup = 10; // Number of items per group
+let totalPageGroups = 0; // Initialize the total number of page groups
 
 const customPagination = {
   el: ".swiper-pagination",
@@ -58,49 +56,63 @@ const customPagination = {
     const endPage = startPage + itemsPerGroup - 1;
     const totalSlides = this.slides.length;
 
+    totalPageGroups = Math.ceil(totalSlides / itemsPerGroup); // Calculate total page groups
 
     if (index >= startPage && index <= endPage) {
       return `<span class="${className} d-block">${index + 1}</span>`;
     } 
-      
     return `<span class="${className} d-none">${index + 1}</span>`;
-
-
-
   }
 };
 
 async function updatePageGroup(newGroupIndex) {
-  numberOfPageGroup = newGroupIndex
+  numberOfPageGroup = newGroupIndex;
   categoryProductsSwiper.pagination.render();
   categoryProductsSwiper.pagination.update();
+  toggleGroupButtonsVisibility(createBtnPrev10, createBtnNext10);
 }
 
-const createBtnPrev10 = document.createElement("button");
-createBtnPrev10.classList.add("btn", "btn-primary", "btn-prev-10");
-createBtnPrev10.textContent = "10 prev";
 
-const createBtnNext10 = document.createElement("button");
-createBtnNext10.classList.add("btn", "btn-primary", "btn-next-10");
-createBtnNext10.textContent = "10 next";
 
-createBtnPrev10.addEventListener("click", async () => {
-  await updatePageGroup(numberOfPageGroup - 1);
-  console.log("prev 10")
-  const currentPage = categoryProducts.swiper.activeIndex -= 12;
-  categoryProducts.swiper.slideTo(currentPage + 2)
-  await categoryProducts.changePageFetchProducts(currentPage);
-});
-createBtnNext10.addEventListener("click", async () => {
-    await updatePageGroup(numberOfPageGroup + 1);
-    console.log("next 10")
-    const currentPage = categoryProducts.swiper.activeIndex += 11;
-    categoryProducts.swiper.slideTo(currentPage - 1)
+const createBtns = () => {
+  const createBtnPrev10 = document.createElement("button");
+  createBtnPrev10.classList.add("btn", "btn-primary", "btn-prev-10");
+  createBtnPrev10.textContent = "10 prev";
+  
+  createBtnPrev10.addEventListener("click", async () => {
+    await updatePageGroup(numberOfPageGroup - 1);
+    const currentPage = categoryProducts.swiper.activeIndex -= 12;
+    categoryProducts.swiper.slideTo(currentPage + 2);
     await categoryProducts.changePageFetchProducts(currentPage);
-});
+  });
 
-swiperContainer.prepend(createBtnPrev10);
-swiperContainer.append(createBtnNext10);
+  const createBtnNext10 = document.createElement("button");
+  createBtnNext10.classList.add("btn", "btn-primary", "btn-next-10");
+  createBtnNext10.textContent = "10 next";
+
+  createBtnNext10.addEventListener("click", async () => {
+    await updatePageGroup(numberOfPageGroup + 1);
+    console.log("next 10");    const currentPage = categoryProducts.swiper.activeIndex += 11;
+    categoryProducts.swiper.slideTo(currentPage - 1);
+    await categoryProducts.changePageFetchProducts(currentPage);
+  });
+
+  swiperContainer.prepend(createBtnPrev10);
+  swiperContainer.append(createBtnNext10);
+  
+  return {createBtnPrev10, createBtnNext10};
+}
+
+const {createBtnPrev10, createBtnNext10} = createBtns();
+
+function toggleGroupButtonsVisibility(btnPrev10, btnNext10) {
+  btnPrev10.style.display = numberOfPageGroup === 0 ? 'none' : 'block';
+  btnNext10.style.display = numberOfPageGroup === totalPageGroups - 1 ? 'none' : 'block';
+}
+
+
+
+
 
 const categoryBanner = {
   autoplay: {
@@ -140,3 +152,6 @@ new Swiper(`.${pageName}-banner`, categoryBanner);
 new Swiper(`.${pageName}-brands`, brandsBanner);
 const categoryProductsSwiper = new Swiper(`.products-${pageName}__carousel`, productsCarousel);
 const categoryProducts = new CategoryProducts(pageName, "productsCategoryContainer", categoryProductsSwiper, basket);
+
+// Initial check to set visibility of buttons
+toggleGroupButtonsVisibility(createBtnPrev10, createBtnNext10);
