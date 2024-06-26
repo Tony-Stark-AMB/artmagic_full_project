@@ -59,9 +59,15 @@ const customPagination = {
     totalPageGroups = Math.ceil(totalSlides / itemsPerGroup); // Calculate total page groups
 
     if (index >= startPage && index <= endPage) {
-      return `<span class="${className} d-block">${index + 1}</span>`;
+      return `
+      <div class="d-grid btn-pag ${className}">
+        <span>${index + 1}</span>
+      </div>`;
     } 
-    return `<span class="${className} d-none">${index + 1}</span>`;
+    return `
+    <div class="d-none btn-pag ${className}">
+      <span >${index + 1}</span>
+    </div>`;
   }
 };
 

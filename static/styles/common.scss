@@ -215,9 +215,16 @@ body.modal-open {
 }
 
 .btn-prev-10{
-    left: 35%;
+    left: 32.5%;
 }
 
 .btn-next-10{
-    right: 35%;
+    right: 32.5%;
+}
+
+.btn-pag{
+    width: 30px !important;
+    height: 30px !important;
+    display: grid;
+    place-items: center;
 }
