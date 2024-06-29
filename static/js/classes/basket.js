@@ -1,34 +1,40 @@
-export class Basket {
+export class Basket{
     constructor(productManager) {
         this.productManager = productManager;
-        this.btns = document.querySelectorAll(`button[data-item="product_btn"]`);
         this.productsContainer = document.getElementById("basket-products");
         this.badge = document.querySelector(".header-basket__icon__badge");
         this.badgeContent = document.querySelector(".header-basket__icon__badge__number");
         this.allProductCostElement = document.querySelector(".modal-footer__text");
         this.images = document.querySelectorAll(".overlook__img");
-
-        this.initialize();
+        this.page = "catalog";
         window.onbeforeunload = () => {
             this.productManager.setStorageProducts(this.productManager.getProducts());
         };
     }
 
     initialize() {
-        this.btns = document.querySelectorAll(`button[data-item="product_btn"]`);
-        this.btns.forEach((btn) => {
+        this.initProductsBuyBtns();
+        this.renderBasket();
+    }
+
+    initProductsBuyBtns(page = 1){
+        const productLists = document.querySelectorAll(`.products-${this.pageName}__list`)[page - 1];
+        const btns = productLists.querySelectorAll(`button[data-item="product_btn"]`);
+        btns.forEach((btn) => {
             btn.addEventListener("click", async (e) => {
-                console.log("here");
                 const id = +e.target.closest(`div.product-item`).getAttribute("id");
                 const product = await this.productManager.fetchNewProduct(id);
                 this.productManager.addProduct(product);
                 this.renderBasket();
                 this.animateBadge();
-                console.log("initialized")
+                console.log('add-product')
             });
         });
-        this.renderBasket();
+        console.log("btns-init")
+    }
 
+    setPageName(pageName){
+        this.pageName = pageName;
     }
 
     renderBasket() {

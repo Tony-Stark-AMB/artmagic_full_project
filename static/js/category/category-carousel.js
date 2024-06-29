@@ -7,6 +7,7 @@ const pageName = "category";
 class CategoryProducts extends PageProducts {
   constructor(pageName, containerId, swiper, basket) {
     super(pageName, containerId, swiper, basket);
+    this.basket.setPageName(pageName);
   }
 
   async fetchProducts(page) {
@@ -38,10 +39,6 @@ class CategoryProducts extends PageProducts {
       await this.changePageFetchProducts(currentPage);
     });
     await this.basket.initialize();
-  }
-
-  go10Next(){
-
   }
 }
 
@@ -76,31 +73,56 @@ async function updatePageGroup(newGroupIndex) {
   categoryProductsSwiper.pagination.update();
 }
 
-const createBtnPrev10 = document.createElement("button");
-createBtnPrev10.classList.add("btn", "btn-primary", "btn-prev-10");
-createBtnPrev10.textContent = "10 prev";
+const render10MovesBtns = () => {
+  const createBtnPrev10 = document.createElement("button");
+  createBtnPrev10.classList.add("btn", "btn-primary", "btn-prev-10");
+  createBtnPrev10.textContent = "10 prev";
+  
+  const createBtnNext10 = document.createElement("button");
+  createBtnNext10.classList.add("btn", "btn-primary", "btn-next-10");
+  createBtnNext10.textContent = "10 next";
+  
+  createBtnPrev10.addEventListener("click", async () => {
+    // if(numberOfPageGroup <= 1)
+    //   createBtnPrev10.classList.add("d-none");
+    // else 
+    //   createBtnPrev10.classList.add("d-block");
+      await updatePageGroup(numberOfPageGroup - 1);
+      const currentPage = categoryProducts.swiper.activeIndex -= 12;
+      categoryProducts.swiper.slideTo(currentPage + 2)
+      updateButtonsVisibility();
+  });
+  createBtnNext10.addEventListener("click", async () => {
+      await updatePageGroup(numberOfPageGroup + 1);
+      const currentPage = categoryProducts.swiper.activeIndex += 11;
+      categoryProducts.swiper.slideTo(currentPage - 1)
+      updateButtonsVisibility();
+  });
+  swiperContainer.prepend(createBtnPrev10);
+  swiperContainer.append(createBtnNext10);
+}
 
-const createBtnNext10 = document.createElement("button");
-createBtnNext10.classList.add("btn", "btn-primary", "btn-next-10");
-createBtnNext10.textContent = "10 next";
+render10MovesBtns();
 
-createBtnPrev10.addEventListener("click", async () => {
-  await updatePageGroup(numberOfPageGroup - 1);
-  console.log("prev 10")
-  const currentPage = categoryProducts.swiper.activeIndex -= 12;
-  categoryProducts.swiper.slideTo(currentPage + 2)
-  await categoryProducts.changePageFetchProducts(currentPage);
-});
-createBtnNext10.addEventListener("click", async () => {
-    await updatePageGroup(numberOfPageGroup + 1);
-    console.log("next 10")
-    const currentPage = categoryProducts.swiper.activeIndex += 11;
-    categoryProducts.swiper.slideTo(currentPage - 1)
-    await categoryProducts.changePageFetchProducts(currentPage);
-});
+function updateButtonsVisibility() {
+  const totalGroups = Math.ceil(categoryProductsSwiper.slides.length / itemsPerGroup);
+  const prevBtn = document.querySelector('.btn-prev-10');
+  const nextBtn = document.querySelector('.btn-next-10');
 
-swiperContainer.prepend(createBtnPrev10);
-swiperContainer.append(createBtnNext10);
+  if (numberOfPageGroup <= 0) {
+    prevBtn.classList.add('d-none');
+  } else {
+    prevBtn.classList.remove('d-none');
+  }
+
+  if (numberOfPageGroup >= totalGroups - 1) {
+    nextBtn.classList.add('d-none');
+  } else {
+    nextBtn.classList.remove('d-none');
+  }
+}
+
+
 
 const categoryBanner = {
   autoplay: {

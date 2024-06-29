@@ -7,6 +7,7 @@ const pageName = "index";
 class IndexProducts extends PageProducts{
   constructor(pageName, containerId, swiper, basket){
     super(pageName, containerId, swiper, basket)
+    this.basket.setPageName(pageName);
   }
 
   renderProductItem({ name, id, image, price }, container) {

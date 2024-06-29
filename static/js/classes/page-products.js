@@ -99,6 +99,6 @@ export class PageProducts {
         const mappedProducts = this.mapProducts(products);
         this.renderProductsItems(mappedProducts, page);
 
-        await this.basket.initialize();
+        await this.basket.initProductsBuyBtns(page)
     }
 }
