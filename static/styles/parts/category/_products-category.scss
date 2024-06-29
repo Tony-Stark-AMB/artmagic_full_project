@@ -1,11 +1,16 @@
 // Блок продуктів для сторінки category.html
+
+@import "../../breakpoints/variables",
+        "../../breakpoints/response-fn";
+
 .products-category{
     &__title{
         text-align: center;
     }
     &__list{
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
         gap: 40px;
         margin: 40px 0;
         padding: 0 40px;
@@ -22,6 +27,8 @@
         border: 1px solid $c5;
         transition: border .3s ease,
                     box-shadow .3s ease;
+        box-sizing: border-box;
+        width: 22.8%;
         &:hover{
             border: 1px solid $c6;
             box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
@@ -45,4 +52,8 @@
             font-weight: 700;
         }
     }
+}
+
+#productsCategoryContainer{
+    width: 100vw;
 }

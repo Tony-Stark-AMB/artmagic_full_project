@@ -862,8 +862,9 @@
   text-align: center;
 }
 .products-category__list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
   gap: 40px;
   margin: 40px 0;
   padding: 0 40px;
@@ -879,6 +880,8 @@
   cursor: pointer;
   border: 1px solid #ddd;
   transition: border 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+  width: 22.8%;
 }
 .products-category__item:hover {
   border: 1px solid #fff;
@@ -901,6 +904,10 @@
 .products-category__item__price {
   font-size: 25px;
   font-weight: 700;
+}
+
+#productsCategoryContainer {
+  width: 100vw;
 }
 
 .main-category {

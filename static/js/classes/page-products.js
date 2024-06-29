@@ -33,10 +33,9 @@ export class PageProducts {
 
         for (let index = 0; index < totalPages; index++) {
             const swiperSlideHTML = `
-                <div class="swiper-slide">
-                    <div class="products-${this.pageName}__list" data-page="${index + 1}"></div>
-                </div>
+                <div class="swiper-slide products-${this.pageName}__list" data-page="${index + 1}"></div>
             `;
+
             this.productsContainer.insertAdjacentHTML('beforeend', swiperSlideHTML);
         }
     }
@@ -100,5 +99,11 @@ export class PageProducts {
         this.renderProductsItems(mappedProducts, page);
 
         await this.basket.initProductsBuyBtns(page)
+    }
+
+    clearItemsOnPage(page) {
+        const productsList = this.productsLists[page - 1];
+        if (productsList.hasChildNodes()) productsList.innerHTML = ""; 
+        return;
     }
 }
