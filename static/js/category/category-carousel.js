@@ -7,6 +7,7 @@ const pageName = "category";
 class CategoryProducts extends PageProducts {
   constructor(pageName, containerId, swiper, basket) {
     super(pageName, containerId, swiper, basket);
+    this.basket.setPageName(pageName);
   }
 
   async fetchProducts(page) {
@@ -90,7 +91,7 @@ const createBtns = () => {
     await updatePageGroup(numberOfPageGroup - 1);
     const currentPage = categoryProducts.swiper.activeIndex -= 12;
     categoryProducts.swiper.slideTo(currentPage + 2);
-    await categoryProducts.changePageFetchProducts(currentPage);
+    // await categoryProducts.changePageFetchProducts(currentPage);
   });
 
   const createBtnNext10 = document.createElement("button");
@@ -101,7 +102,7 @@ const createBtns = () => {
     await updatePageGroup(numberOfPageGroup + 1);
     const currentPage = categoryProducts.swiper.activeIndex += 11;
     categoryProducts.swiper.slideTo(currentPage - 1);
-    await categoryProducts.changePageFetchProducts(currentPage);
+    // await categoryProducts.changePageFetchProducts(currentPage);
   });
 
   swiperContainer.prepend(createBtnPrev10);

@@ -1,22 +1,26 @@
 export class Basket {
     constructor(productManager) {
         this.productManager = productManager;
-        this.btns = document.querySelectorAll(`button[data-item="product_btn"]`);
         this.productsContainer = document.getElementById("basket-products");
         this.badge = document.querySelector(".header-basket__icon__badge");
         this.badgeContent = document.querySelector(".header-basket__icon__badge__number");
         this.allProductCostElement = document.querySelector(".modal-footer__text");
         this.images = document.querySelectorAll(".overlook__img");
-
-        this.initialize();
+        this.pageName = "index";
         window.onbeforeunload = () => {
             this.productManager.setStorageProducts(this.productManager.getProducts());
         };
     }
 
     initialize() {
-        this.btns = document.querySelectorAll(`button[data-item="product_btn"]`);
-        this.btns.forEach((btn) => {
+        this.initProductsBuyBtns();
+        this.renderBasket();
+    }
+
+    initProductsBuyBtns(page = 1){
+        const productList = document.querySelectorAll(`.products-${this.pageName}__list`)[page - 1];
+        const btns = productList.querySelectorAll(`button[data-item="product_btn"]`);
+        btns.forEach((btn) => {
             btn.addEventListener("click", async (e) => {
                 console.log("here");
                 const id = +e.target.closest(`div.product-item`).getAttribute("id");
@@ -24,11 +28,12 @@ export class Basket {
                 this.productManager.addProduct(product);
                 this.renderBasket();
                 this.animateBadge();
-                console.log("initialized")
             });
         });
-        this.renderBasket();
+    }
 
+    setPageName(pageName){
+        this.pageName = pageName;
     }
 
     renderBasket() {

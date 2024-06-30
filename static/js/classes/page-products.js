@@ -7,6 +7,7 @@ export class PageProducts {
         this.defaultProductsAmount = 10;
         this.swiper = swiper;
         this.initialize();
+        this.basket.setPageName(pageName);
     }
 
     renderProductItem({ name, id, image, price }, container) {
@@ -98,7 +99,7 @@ export class PageProducts {
         const mappedProducts = this.mapProducts(products);
         this.renderProductsItems(mappedProducts, page);
 
-        await this.basket.initialize();
+        this.basket.initProductsBuyBtns(page);
     }
 
     clearItemsOnPage(page) {

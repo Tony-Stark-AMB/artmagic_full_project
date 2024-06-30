@@ -4,7 +4,6 @@ import { basket } from "../header/basket/basket.js";
 
 const pageName = "catalog";
 
-
 const swiperContainer = document.querySelector(`.main-${pageName}__carousel`);
 
 let numberOfPageGroup = 0; // Initialize the group index
@@ -13,27 +12,27 @@ let totalPageGroups = 0; // Initialize the total number of page groups
 
 
 const customPagination = {
-    el: ".swiper-pagination",
-    clickable: true,
-    renderBullet: function (index, className) {
-      const startPage = numberOfPageGroup * itemsPerGroup;
-      const endPage = startPage + itemsPerGroup - 1;
-      const totalSlides = this.slides.length;
-  
-      totalPageGroups = Math.ceil(totalSlides / itemsPerGroup); // Calculate total page groups
-  
-      if (index >= startPage && index <= endPage) {
-        return `
-        <div class="d-grid btn-pag ${className}">
-          <span>${index + 1}</span>
-        </div>`;
-      } 
+  el: ".swiper-pagination",
+  clickable: true,
+  renderBullet: function (index, className) {
+    const startPage = numberOfPageGroup * itemsPerGroup;
+    const endPage = startPage + itemsPerGroup - 1;
+    const totalSlides = this.slides.length;
+
+    totalPageGroups = Math.ceil(totalSlides / itemsPerGroup); // Calculate total page groups
+
+    if (index >= startPage && index <= endPage) {
       return `
-      <div class="d-none btn-pag ${className}">
-        <span >${index + 1}</span>
+      <div class="d-grid btn-pag ${className}">
+        <span>${index + 1}</span>
       </div>`;
-    }
-  };
+    } 
+    return `
+    <div class="d-none btn-pag ${className}">
+      <span >${index + 1}</span>
+    </div>`;
+  }
+};
 
   async function updatePageGroup(newGroupIndex) {
     numberOfPageGroup = newGroupIndex;
@@ -51,7 +50,6 @@ const customPagination = {
       await updatePageGroup(numberOfPageGroup - 1);
       const currentPage = catalogProducts.swiper.activeIndex -= 12;
       catalogProducts.swiper.slideTo(currentPage + 2);
-      await catalogProducts.changePageFetchProducts(currentPage);
     });
   
     const createBtnNext10 = document.createElement("button");
@@ -62,7 +60,6 @@ const customPagination = {
       await updatePageGroup(numberOfPageGroup + 1);
       const currentPage = catalogProducts.swiper.activeIndex += 11;
       catalogProducts.swiper.slideTo(currentPage - 1);
-      await catalogProducts.changePageFetchProducts(currentPage);
     });
   
     swiperContainer.prepend(createBtnPrev10);
