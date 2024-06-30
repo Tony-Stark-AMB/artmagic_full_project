@@ -80,7 +80,9 @@
                                 </a>
                             </div>
                             {% else %}
-                                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#login__modal"><i class="fa fa-lock lock-small" aria-hidden="true"></i>Авторизація</button>
+                                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#login__modal"><i class="fa fa-lock lock-small" aria-hidden="true"></i>
+                                    <p class="header-login__come-in">Авторизація</p>
+                                </button>
                             {% endif %}
                             <!--- Проверка на ошибки  -->
                             {% if messages %}
@@ -160,7 +162,7 @@
 <footer class="footer">
             <div class="footer__list container__custom">
                 <div class="footer__info">
-                    <h6 class="footer__info__title">Інформація про компанію</h6>
+                    <h4 class="footer__info__title">Інформація про компанію</h4>
                     <ul class="footer__info__list">
                         <li class="footer__info__item">
                             <a class="footer__info__link" href="">Про нас</a>
@@ -171,7 +173,7 @@
                     </ul>
                 </div>
                 <div class="footer__help">
-                    <h6 class="footer__help__title">Допомога</h6>
+                    <h4 class="footer__help__title">Допомога</h4>
                     <ul class="footer__help__list">
                         <li class="footer__help__item">
                             <a class="footer__help__link" href="">Оплата і доставка</a>
@@ -185,17 +187,17 @@
                     </ul>
                 </div>
                 <div class="footer__payment">
-                    <h6 class="footer__payment__title">
+                    <h4 class="footer__payment__title">
                         Ми приймаємо
-                    </h6>
+                    </h4>
                     <div class="footer__payment__img__wrap">
                         <img class="footer__payment__img" src="{% static 'assets/payment.png' %}" alt="">
                     </div>
                 </div>
                 <div class="footer__social">
-                    <h6 class="footer__social__title">
+                    <h4 class="footer__social__title">
                         Ми у соцмережах
-                    </h6>
+                    </h4>
                     <div class="footer__social__list">
                         <a class="footer__social__link bg18" href="">
                             <svg class="footer__social__svg" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512">

@@ -38,14 +38,12 @@ class IndexProducts extends PageProducts{
         `;
         this.productsContainer.insertAdjacentHTML('beforeend', swiperSlideHTML);
     }
-    console.log("productsRerendering", page)
 
     const productsIndexList = document.querySelectorAll(`.products-${this.pageName}__list`)[page - 1];
     products.forEach(product => this.renderProductItem(product, productsIndexList));
   }
 
   async fetchProducts(page) {
-    this.defaultProductsAmount = 10;
     const url = `http://localhost:8000/get-new-arrivals/?page=${page}&productsPerPage=${this.defaultProductsAmount}`;
 
     const response = await fetch(url, {
@@ -54,48 +52,42 @@ class IndexProducts extends PageProducts{
     });
     return await response.json();
   }
+
+  setResponsiveProductsAmount() {
+    const width = window.innerWidth;
+    console.log(width)
+    switch(true){
+      case width >= 1400:
+        this.defaultProductsAmount = 10;
+        break;
+      case width >= 1260:
+        this.defaultProductsAmount = 10;
+        break;
+      case width >= 992:
+        this.defaultProductsAmount = 10;
+        break;
+      case width >= 768:
+        this.defaultProductsAmount = 8;
+        break;
+      case width >= 576:
+        this.defaultProductsAmount = 6;
+        break;
+      case width >= 400:
+        this.defaultProductsAmount = 4;
+        break;
+    }
+  }
   
 }
-// function debounce(func, delay) {
-//   let timerId;
-  
-//   return function(...args) {
-//     clearTimeout(timerId);
-//     timerId = setTimeout(() => {
-//       func.apply(this, args);
-//     }, delay);
-//   };
-// }
 
-// // Your resize event handler function
-// function handleResize() {
-//   // Your code here
-//   console.log("here");
-//   productsCarousel.breakpoints = breakpointsProductsCarousel();
-//   new Swiper(".products-index__list__wrap", productsCarousel);
-// }
+let numberOfPageGroup = 0; // Initialize the group index
+const itemsPerGroup = 10; // Number of items per group
+let totalPageGroups = 0; // Initialize the total number of page groups
 
-// // Debounce the handleResize function with a delay of 300ms
-// const debouncedResizeHandler = debounce(handleResize, 300)
-
-// const breakpointsProductsCarousel = () => {
-//   return {
-//     1800: {
-//       slidesPerView: 5,
-//       slidesPerGroup: 5,
-//     },
-//     1400: {
-//       slidesPerView: 4,
-//       slidesPerGroup: 4,
-//     },
-//     1200: {
-//       slidesPerView: 3,
-//       slidesPerGroup: 3,
-//     },
-//   }
-// }
-
-// window.addEventListener("resize", debouncedResizeHandler);
+function updatePagination(totalSlides) {
+  const itemsPerGroup = indexProducts.defaultProductsAmount;
+  totalPageGroups = Math.ceil(totalSlides / itemsPerGroup);
+}
 
 const {mainBanner, productsCarousel} = {
  
@@ -136,6 +128,37 @@ const {mainBanner, productsCarousel} = {
 
 new Swiper(`.main-${pageName}__banner`, mainBanner);
 const indexProductsSwiper = new Swiper(`.products-${pageName}__list__wrap`, productsCarousel);
-new IndexProducts(pageName, "productsIndexContainer", indexProductsSwiper, basket);
+const indexProducts = new IndexProducts(pageName, "productsIndexContainer", indexProductsSwiper, basket);
 
 
+let resizeTimeout;
+
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(async () => await resizeLogic(), 300);
+});
+
+async function resizeLogic (){
+  indexProducts.setResponsiveProductsAmount();
+  indexProducts.productsContainer.replaceChildren();
+  const { products, productsAmount, productsPerPage } = await indexProducts.fetchProducts(1);
+  indexProducts.renderProductsLists(productsAmount, productsPerPage);
+  indexProducts.productsLists = document.querySelectorAll(`.products-${indexProducts.pageName}__list`);
+  
+  const mappedProducts = indexProducts.mapProducts(products);
+  indexProducts.renderProductsItems(mappedProducts, 1);  // Add render products for the first page
+
+  indexProducts.swiper.on('slideChange', async () => {
+    const currentPage = indexProducts.swiper.activeIndex + 1;
+    await indexProducts.changePageFetchProducts(currentPage);
+  });
+  
+  await indexProducts.basket.initialize();
+  indexProducts.swiper.slideTo(0);
+
+  updatePagination(indexProductsSwiper.slides.length);
+
+
+}
+
+document.addEventListener('DOMContentLoaded', async () => await resizeLogic());

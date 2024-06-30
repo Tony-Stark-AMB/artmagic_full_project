@@ -3,6 +3,8 @@
         "./others-category", // Блок підкатегорії
         "./products-category"; // Блок с продуктами
         
+@import "../../breakpoints/variables",
+        "../../breakpoints/response-fn";
 // Основные стили к странице category.html
 .main-category{
     margin: 40px 0 0 0;
@@ -16,9 +18,11 @@
     }
     &__content{
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        @include respond-to(phone-large){
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        }
         place-items: center;
-        margin: 40px 0 80px 0;
     }
 }
 

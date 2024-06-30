@@ -204,6 +204,9 @@ body.modal-open {
     z-index: 10;
     display: flex;
     justify-content: center;
+    @include respond-to(tablet-large){
+        height: 80px;
+    }
 }
 
 .btn-prev-10,
@@ -217,11 +220,23 @@ body.modal-open {
 }
 
 .btn-prev-10{
-    left: 32.5%;
+    left: 27.5%;
+    @include respond-to(laptop-large){
+        left: 17.5%;
+    }
+    @include respond-to(tablet-large){
+        left: 4.5%;
+    }
 }
 
 .btn-next-10{
-    right: 32.5%;
+    right: 27.5%;
+    @include respond-to(laptop-large){
+        right: 17.5%;
+    }
+    @include respond-to(tablet-large){
+        right: 4.5%;
+    }
 }
 
 .btn-pag{

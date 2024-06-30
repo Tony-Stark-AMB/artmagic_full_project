@@ -11,7 +11,6 @@ class CategoryProducts extends PageProducts {
   }
 
   async fetchProducts(page) {
-    // console.log("fetchProducts defaultProductsAmount", this.defaultProductsAmount)
     const pageUrl = window.location.href.split("/").filter(part => part !== "");
     const slug = pageUrl[pageUrl.length - 1];
     const url = `http://localhost:8000/add-category/${slug}?page=${page}&productsPerPage=${this.defaultProductsAmount}`;
@@ -27,7 +26,7 @@ class CategoryProducts extends PageProducts {
   }
 
   async initialize() {
-    this.defaultProductsAmount = 12; // кол-во продуктов на странице
+    this.setResponsiveProductsAmount();
     const { products, productsAmount, productsPerPage } = await this.fetchProducts(1);
     this.renderProductsLists(productsAmount, productsPerPage);
     this.productsLists = document.querySelectorAll(`.products-${this.pageName}__list`);
@@ -41,6 +40,27 @@ class CategoryProducts extends PageProducts {
     });
     
     await this.basket.initialize();
+  }
+
+  setResponsiveProductsAmount() {
+    const width = window.innerWidth;
+    switch(true){
+      case width >= 1400:
+        this.defaultProductsAmount = 12;
+        break;
+      case width >= 1260:
+        this.defaultProductsAmount = 9;
+        break;
+      case width >= 992:
+        this.defaultProductsAmount = 6;
+        break;
+      case width >= 576:
+        this.defaultProductsAmount = 4;
+        break;
+      case width >= 400:
+        this.defaultProductsAmount = 2;
+        break;
+    }
   }
 }
 
@@ -70,17 +90,20 @@ const customPagination = {
     <div class="d-none btn-pag ${className}">
       <span >${index + 1}</span>
     </div>`;
-  }
+  },
 };
 
-async function updatePageGroup(newGroupIndex) {
+function updatePageGroup(newGroupIndex) {
   numberOfPageGroup = newGroupIndex;
   categoryProductsSwiper.pagination.render();
   categoryProductsSwiper.pagination.update();
   toggleGroupButtonsVisibility(createBtnPrev10, createBtnNext10);
 }
 
-
+function updatePagination(totalSlides) {
+  const itemsPerGroup = categoryProducts.defaultProductsAmount;
+  totalPageGroups = Math.ceil(totalSlides / itemsPerGroup);
+}
 
 const createBtns = () => {
   const createBtnPrev10 = document.createElement("button");
@@ -88,10 +111,9 @@ const createBtns = () => {
   createBtnPrev10.textContent = "10 prev";
   
   createBtnPrev10.addEventListener("click", async () => {
-    await updatePageGroup(numberOfPageGroup - 1);
+    updatePageGroup(numberOfPageGroup - 1);
     const currentPage = categoryProducts.swiper.activeIndex -= 12;
     categoryProducts.swiper.slideTo(currentPage + 2);
-    // await categoryProducts.changePageFetchProducts(currentPage);
   });
 
   const createBtnNext10 = document.createElement("button");
@@ -99,10 +121,9 @@ const createBtns = () => {
   createBtnNext10.textContent = "10 next";
 
   createBtnNext10.addEventListener("click", async () => {
-    await updatePageGroup(numberOfPageGroup + 1);
+    updatePageGroup(numberOfPageGroup + 1);
     const currentPage = categoryProducts.swiper.activeIndex += 11;
     categoryProducts.swiper.slideTo(currentPage - 1);
-    // await categoryProducts.changePageFetchProducts(currentPage);
   });
 
   swiperContainer.prepend(createBtnPrev10);
@@ -149,7 +170,7 @@ const brandsBanner = {
 };
 
 const productsCarousel = {
-  slidesPerView: 1,
+  slidesPerView: 'auto',
   slidesPerGroup: 1,
   pagination: customPagination,
   modules: [Navigation, Pagination],
@@ -164,43 +185,31 @@ const categoryProducts = new CategoryProducts(pageName, "productsCategoryContain
 // Initial check to set visibility of buttons
 toggleGroupButtonsVisibility(createBtnPrev10, createBtnNext10);
 
-// function debounce(func, wait) {
-//   let timeout;
-//   return function(...args) {
-//     const context = this;
-//     clearTimeout(timeout);
-//     timeout = setTimeout(() => func.apply(context, args), wait);
-//   };
-// }
+let resizeTimeout;
 
-// function handleResize() {
-//   const currentBreakpoint = window.innerWidth;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(async () => await resizeLogic(), 300);
+});
+
+async function resizeLogic (){
+  categoryProducts.setResponsiveProductsAmount();
+  categoryProducts.productsContainer.replaceChildren();
+  const { products, productsAmount, productsPerPage } = await categoryProducts.fetchProducts(1);
+  categoryProducts.renderProductsLists(productsAmount, productsPerPage);
+  categoryProducts.productsLists = document.querySelectorAll(`.products-${categoryProducts.pageName}__list`);
   
-//   switch(true){
-//     case currentBreakpoint >= 992 && currentBreakpoint <= 1200:{
-//       categoryProducts.defaultProductsAmount = 4;
-//       const currentPage = categoryProducts.swiper.activeIndex + 1;
-//       categoryProducts.clearItemsOnPage(currentPage);
-//       categoryProducts.changePageFetchProducts(currentPage);
-//       break;
-//     }
-//     case currentBreakpoint >= 1200 && currentBreakpoint <= 1600:{
-//       const currentPage = categoryProducts.swiper.activeIndex + 1;
-//       categoryProducts.defaultProductsAmount = 9;
-//       categoryProducts.clearItemsOnPage(currentPage);
-//       categoryProducts.changePageFetchProducts(currentPage);
-//       break;
-//     }
-   
-//   }
-// }
+  const mappedProducts = categoryProducts.mapProducts(products);
+  categoryProducts.renderProductsItems(mappedProducts, 1);  // Add render products for the first page
 
-// // Apply debounce to the resize handler
-// const debouncedHandleResize = debounce(handleResize, 300);
+  categoryProducts.swiper.on('slideChange', async () => {
+    const currentPage = categoryProducts.swiper.activeIndex + 1;
+    await categoryProducts.changePageFetchProducts(currentPage);
+  });
+  
+  await categoryProducts.basket.initialize();
+  categoryProducts.swiper.slideTo(0);
+  updatePagination(categoryProductsSwiper.slides.length);
+}
 
-// // Add the debounced resize event listener
-// window.addEventListener('resize', debouncedHandleResize);
-
-// // Initial check to set the correct breakpoint on page load
-// handleResize();
-
+document.addEventListener('DOMContentLoaded', async () => await resizeLogic());

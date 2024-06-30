@@ -1,3 +1,11 @@
+@import "./footer/info-footer",
+        "./footer/help-footer",
+        "./footer/payment-footer",
+        "./footer/social-footer";
+
+@import "../breakpoints/variables",
+        "../breakpoints/response-fn";
+
 .footer{
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.08), 0 -2px 4px 0 rgba(0, 0, 0, 0.12);
     position: relative;
@@ -6,147 +14,28 @@
     width: 100%;
     z-index: 1000;
     background-color: $c6;
+    font-size: 1.2rem;
     &__list{
         display: flex;
         justify-content: space-around;
-    }
-    &__info{
-        padding: 16px 24px;
-        min-height: 10vh;
-        &__title{
-            margin-bottom: 15px;
-        }
-        &__list{
-            min-height: inherit;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-        }
-        &__item{}
-        &__link{
-            color: $c8;
-            transition: color .3s ease;
-            &:hover{
-                color: $c9;
-            }
-        }
-    }
-
-    &__help{
-        padding: 16px 24px;
-        min-height: 10vh;
-        &__title{
-            margin-bottom: 15px;
-        }
-        &__list{
-            min-height: inherit;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-        }
-        &__item{}
-        &__link{
-            color: $c8;
-            transition: color .3s ease;
-            &:hover{
-                color: $c9;
-            }
-        }
-    }
-
-    &__payment{
-        padding: 16px 24px;
-        &__title{
-            margin-bottom: 15px;
-        }
-        &__img{
-            width: 100%;
-            &__wrap{
-                width: 250px;
-            }
-        }
-    }  
-
-    &__social{
-        padding: 16px 24px;
-        &__title{
-            margin-bottom: 15px;
-        }
-        &__list{
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-        }
-        &__item{}
-        &__link{
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            padding: 5px;
-            transition: background-color .3s ease;
-            &:nth-child(3){
-                transition: background-color .3s ease, transform .3s ease;
-            }
-            &:nth-child(1){
-                &:hover{
-                    background-color: $c17;
-                }
-                & .footer__social__svg{
-                    transition: color .3s ease;
-                }
-                &:hover .footer__social__svg{
-                    color: $c6;
-                }
-            }
-            &:nth-child(2){
-                &:hover{
-                    background: radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%),
-                    radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%),
-                    radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%),
-                    radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%),
-                    radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%),
-                    radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%),
-                    radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent),
-                    linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
-                }
-                & .footer__social__svg{
-                    transition: color .3s ease;
-                }
-                &:hover .footer__social__svg{
-                    color: $c6;
-                }
-            }
-            &:last-child{
-                &:hover{
-                    background-color: $c6;
-                    transform: scale(1.5);
-                }
-                & .footer__social__svg{
-                    transition: color .3s ease;
-                }
-                &:hover .footer__social__svg{
-                    color: $c17;
-                }
-            }
-        }
-        &__svg{
-            color: $c9;
-            width:20px;
-            height: 20px;
-        }
+        flex-wrap: wrap;
     }
 
     &__bottom{
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap;
         align-items: center;
         border-top: 1px solid $c5;
-        
+        @include respond-to(tablet-small){
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+        }
     }
 
     &__approve{
-        width: 15%;
+        width: 25%;
         display: flex;
         justify-content: space-around;
         align-items: center;
@@ -154,8 +43,11 @@
     &__underground{
         padding: 10px 0;
         &__text{
-            font-size: 14px;
+            font-size: 16px;
             color: $c8;
+            @include respond-to(phone-large){
+                text-align: center;
+            }
         }
     }
 }

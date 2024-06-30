@@ -3,10 +3,10 @@ export class PageProducts {
         this.pageName = pageName;
         this.basket = basket;
         this.productsContainer = document.getElementById(containerId);
-        this.productsLists = null;
+        this.productsLists = document.querySelectorAll(`.products-${this.pageName}__list`);;
         this.defaultProductsAmount = 10;
         this.swiper = swiper;
-        this.initialize();
+        // this.initialize();
         this.basket.setPageName(pageName);
     }
 
@@ -95,16 +95,17 @@ export class PageProducts {
         const productsList = this.productsLists[page - 1];
         if (productsList.hasChildNodes()) return; 
 
-        const { products } = await this.fetchProducts(page);
+        const { products, productsAmount, productsPerPage } = await this.fetchProducts(page);
         const mappedProducts = this.mapProducts(products);
         this.renderProductsItems(mappedProducts, page);
 
         this.basket.initProductsBuyBtns(page);
+        return {productsAmount, productsPerPage}
     }
 
     clearItemsOnPage(page) {
-        const productsList = this.productsLists[page - 1];
-        if (productsList.hasChildNodes()) productsList.innerHTML = ""; 
+        const productList = this.productsLists[page - 1];
+        if (productList.hasChildNodes()) productList.innerHTML = ""; 
         return;
     }
 }

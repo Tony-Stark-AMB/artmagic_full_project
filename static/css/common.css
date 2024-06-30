@@ -396,6 +396,11 @@ body.modal-open {
   display: flex;
   justify-content: center;
 }
+@media (max-width: 992px) {
+  .swiper-pagination-rewrite {
+    height: 80px;
+  }
+}
 
 .btn-prev-10,
 .btn-next-10,
@@ -408,11 +413,31 @@ body.modal-open {
 }
 
 .btn-prev-10 {
-  left: 32.5%;
+  left: 27.5%;
+}
+@media (max-width: 1400px) {
+  .btn-prev-10 {
+    left: 17.5%;
+  }
+}
+@media (max-width: 992px) {
+  .btn-prev-10 {
+    left: 4.5%;
+  }
 }
 
 .btn-next-10 {
-  right: 32.5%;
+  right: 27.5%;
+}
+@media (max-width: 1400px) {
+  .btn-next-10 {
+    right: 17.5%;
+  }
+}
+@media (max-width: 992px) {
+  .btn-next-10 {
+    right: 4.5%;
+  }
 }
 
 .btn-pag {
