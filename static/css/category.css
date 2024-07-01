@@ -957,7 +957,17 @@
 }
 
 #productsCategoryContainer {
-  width: 100vw;
+  width: 87.5vw;
+}
+@media (max-width: 1700px) {
+  #productsCategoryContainer {
+    width: 92.5vw;
+  }
+}
+@media (max-width: 1600px) {
+  #productsCategoryContainer {
+    width: 100vw;
+  }
 }
 
 .main-category {

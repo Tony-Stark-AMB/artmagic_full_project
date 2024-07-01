@@ -144,6 +144,9 @@ body.modal-open {
     z-index: 15000;
     font-weight: 500;
     display: none;
+    @include respond-to(phone-large){
+        top: 10%;
+    }
 }
 
 .alert_anim{

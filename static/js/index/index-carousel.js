@@ -55,7 +55,6 @@ class IndexProducts extends PageProducts{
 
   setResponsiveProductsAmount() {
     const width = window.innerWidth;
-    console.log(width)
     switch(true){
       case width >= 1400:
         this.defaultProductsAmount = 10;

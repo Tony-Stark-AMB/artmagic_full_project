@@ -70,5 +70,11 @@
 }
 
 #productsCategoryContainer{
-    width: 100vw;
+    width: 87.5vw;
+    @media (max-width: 1700px){
+        width: 92.5vw;
+    }
+    @include respond-to(extra-large-screen){
+        width: 100vw;
+    }
 }

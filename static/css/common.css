@@ -337,6 +337,11 @@ body.modal-open {
   font-weight: 500;
   display: none;
 }
+@media (max-width: 576px) {
+  .alert {
+    top: 10%;
+  }
+}
 
 .alert_anim {
   display: flex;

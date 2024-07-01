@@ -45,6 +45,9 @@ class CategoryProducts extends PageProducts {
   setResponsiveProductsAmount() {
     const width = window.innerWidth;
     switch(true){
+      case width >= 1600:
+        this.defaultProductsAmount = 12;
+        break;
       case width >= 1400:
         this.defaultProductsAmount = 12;
         break;
