@@ -6,7 +6,7 @@ export class PageProducts {
         this.productsLists = document.querySelectorAll(`.products-${this.pageName}__list`);;
         this.defaultProductsAmount = 10;
         this.swiper = swiper;
-        // this.initialize();
+
         this.basket.setPageName(pageName);
     }
 
@@ -51,6 +51,38 @@ export class PageProducts {
         rerenderImage(images);
     }
 
+    setResponsiveProductsAmount() {
+        console.log("rerender count of products")
+        const width = window.innerWidth;
+        switch(true){
+        case width >= 1600:
+            this.defaultProductsAmount = 12;
+            break;
+        case width >= 1400:
+            this.defaultProductsAmount = 12;
+            break;
+        case width >= 1260:
+            this.defaultProductsAmount = 12;
+            break;
+          case width >= 992:
+            this.defaultProductsAmount = 9;
+            break;
+          case width >= 768:
+            this.defaultProductsAmount = 9;
+            break;
+          case width >= 576:
+            this.defaultProductsAmount = 6;
+            break;
+          case width >= 400:
+            this.defaultProductsAmount = 4;
+            break;
+          default: 
+            this.defaultProductsAmount = 12;
+            break;
+        }
+        console.log(this.defaultProductsAmount, "this.defaultProductsAmount")
+      }
+
     mapProducts(arr) {
         return arr.map(({ name, image, id, price, manufacturer }) =>
             new Product(id, name, price, image, manufacturer)
@@ -61,7 +93,7 @@ export class PageProducts {
         const pageUrl = window.location.href.split("/").filter(part => part !== "");
         const slug = pageUrl[pageUrl.length - 1];
 
-        const url = `http://localhost:8000/add-filters/${slug}?page=${page}`;
+        const url = `http://localhost:8000/add-filters/${slug}?page=${page}&productsPerPage=${this.defaultProductsAmount}`;
 
         const response = await fetch(url, {
             method: "GET",

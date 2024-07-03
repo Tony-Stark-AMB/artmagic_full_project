@@ -150,8 +150,9 @@ async function resizeLogic (){
   indexProducts.swiper.on('slideChange', async () => {
     const currentPage = indexProducts.swiper.activeIndex + 1;
     await indexProducts.changePageFetchProducts(currentPage);
+    console.log("swiper change")
   });
-  
+
   await indexProducts.basket.initialize();
   indexProducts.swiper.slideTo(0);
 

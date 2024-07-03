@@ -1,4 +1,7 @@
 // Бокова панель catalog.html
+@import "../../breakpoints/variables",
+        "../../breakpoints/response-fn";
+
 .aside-catalog{
     border-top: 1px solid $c5;
     padding: 40px 0; 
@@ -6,9 +9,13 @@
     width: 100%;
     border: none;
     min-height: 100vh;
+
     &__wrap{
         border-top: 1px solid $c5;
         grid-area: aside;
+        @include respond-to(tablet-large){
+            display: none;
+        }
     }
 
     &__list{

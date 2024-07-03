@@ -10,7 +10,18 @@
 
         {% block content %}
         <div class="main-catalog__wrap container__custom">
-            <h1 data-aos="fade-right" class="main-catalog__title">{{ parent_category.name }}</h1>
+            <div class="main-catalog__title-wrap">
+                <h1 data-aos="fade-right" class="main-catalog__title">{{ parent_category.name }}</h1>
+                <button class="main-catalog__btn btn bg17" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+                    <svg class="main-catalog__btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                        <path d="M3.9 54.9C10.5 40.9 24.5 32 40 32H472c15.5 0 29.5 8.9
+                         36.1 22.9s4.6 30.5-5.2 42.5L320 320.9V448c0 12.1-6.8 23.2-17.7
+                          28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6V320.9L9
+                           97.3C-.7 85.4-2.8 68.8 3.9 54.9z"/>
+                    </svg>
+                           Фільтри
+                    </button>
+            </div>
                 <main data-aos="fade-left" data-aos-delay="200" class="main-catalog">
                     <div class="swiper main-catalog__carousel">
                         <div class="swiper-wrapper" id="productsCatalogContainer">
@@ -76,6 +87,66 @@
                 </section>
             </aside>
         </div>
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+            <div class="offcanvas-header">
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="aside-catalog__content">
+                    {% for filter in  filters  %}
+                    <div class="accordion" id="accordionFilters">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                              {% if forloop.counter == 1 %}    
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{forloop.counter}}" aria-expanded="true" aria-controls="{{forloop.counter}}">
+                                    {{ filter.name }}
+                                </button>
+                              {% else %}
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{forloop.counter}}" aria-expanded="true" aria-controls="{{forloop.counter}}">
+                                    {{ filter.name }}
+                                </button>
+                              {% endif %}
+                            </h2>
+                            {% if forloop.counter == 1 %}
+                                <div id="{{forloop.counter}}" class="accordion-collapse collapse show" data-bs-parent="#accordionFilters">
+                                    <div class="accordion-body">
+                                    <ul class="aside-mainlist">
+                                        {% for value in filter.text %}
+                                            <li class="aside-main__item">
+                                                <input id="{{value}}" type="checkbox" />
+                                                <label class="aside-main__item__label" for="{{value}}">{{ value }}</label>
+                                            </li>
+                                    {% endfor %}
+                                    </ul>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div id="{{forloop.counter}}" class="accordion-collapse collapse" data-bs-parent="#accordionFilters">
+                                    <div class="accordion-body">
+                                    <ul class="aside-mainlist">
+                                        {% for value in filter.text %}
+                                            <li class="aside-main__item">
+                                                <input id="{{value}}" type="checkbox" />
+                                                <label class="aside-main__item__label" for="{{value}}">{{ value }}</label>
+                                            </li>
+                                    {% endfor %}
+                                    </ul>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            
+                          </div>
+                    </div>
+                    {% endfor %}
+                        <div class="aside-catalog__search">
+                            <input placeholder="Пошук" type="search">
+                            <svg class="header-search__input__icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 512 512">
+                                <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
+                            </svg>
+                        </div>
+                </div>       
+            </div>
+          </div>
         {% endblock %}
         {% block js %}
             <script type="module" src="{% static 'js/catalog/catalog-carousel.js' %}"></script>
