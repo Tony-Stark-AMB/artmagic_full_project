@@ -13,7 +13,7 @@ class CategoryProducts extends PageProducts {
   async fetchProducts(page) {
     const pageUrl = window.location.href.split("/").filter(part => part !== "");
     const slug = pageUrl[pageUrl.length - 1];
-    const url = `http://localhost:8000/add-category/${slug}?page=${page}&productsPerPage=${this.defaultProductsAmount}`;
+    const url = `http://localhost:8000/category/${slug}/add-category?page=${page}&productsPerPage=${this.defaultProductsAmount}`;
 
     const response = await fetch(url, {
       method: "GET",

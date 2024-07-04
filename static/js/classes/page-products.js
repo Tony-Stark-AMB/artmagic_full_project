@@ -62,10 +62,10 @@ export class PageProducts {
             this.defaultProductsAmount = 12;
             break;
         case width >= 1260:
-            this.defaultProductsAmount = 12;
+            this.defaultProductsAmount = 9;
             break;
           case width >= 992:
-            this.defaultProductsAmount = 9;
+            this.defaultProductsAmount = 8;
             break;
           case width >= 768:
             this.defaultProductsAmount = 9;
@@ -93,11 +93,14 @@ export class PageProducts {
         const pageUrl = window.location.href.split("/").filter(part => part !== "");
         const slug = pageUrl[pageUrl.length - 1];
 
-        const url = `http://localhost:8000/add-filters/${slug}?page=${page}&productsPerPage=${this.defaultProductsAmount}`;
+        const url = `http://localhost:8000/product/${slug}/add-filters?page=${page}&productsPerPage=${this.defaultProductsAmount}`;
 
         const response = await fetch(url, {
             method: "GET",
-            mode: "cors"
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json"
+            }
         });
         return await response.json();
     }

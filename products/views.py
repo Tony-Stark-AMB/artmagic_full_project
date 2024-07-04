@@ -7,6 +7,7 @@ from django.core.serializers import serialize
 from django.views import View
 from django.db.models import Q
 from itertools import islice
+from .filters import ProductsFilter
 
 from .models import (Products,
                      Category,
@@ -99,25 +100,34 @@ class SubCategoriesView(View):
         
 class SubProductView(View):
     template_name = 'products/catalog.html'
-    paginate_by = 12
 
     def get(self, request, slug):
         parent_category = get_object_or_404(Category, slug=slug)
+        
         sub_categories = parent_category.children.all()
         
         descendants = parent_category.get_descendants(include_self=True)
         category_ids = [descendant.pk for descendant in descendants]
-        
+
+        if parent_category:
+            parent = parent_category.parent
+            print(category_ids)
+            category_ids.append(parent.pk)
+
         products = Products.objects.filter(category_id__in=category_ids)   
 
-        products = products.values('id', 'name', 'image', 'price', 'manufacturer')
+        product_filter = ProductsFilter(request.GET, queryset=products)
+        filtered_queryset = product_filter.qs()
+        filtered_queryset = filtered_queryset.values('id', 'name', 'image', 'price', 'manufacturer')
+
         # Пагинация
-        paginator = Paginator(products, self.paginate_by)
+        paginate_by = request.GET.get('productsPerPage', 10)
+        paginator = Paginator(filtered_queryset, paginate_by)
         page_number = request.GET.get('page', 1)
         page_obj = paginator.get_page(page_number)
-        
 
-        if request.path == f'/add-filters/{slug}/':
+        if request.headers['Content-Type'] == 'application/json':
+
             products_data = list(page_obj)
             json_data = {
                 'products': products_data,
@@ -126,7 +136,8 @@ class SubProductView(View):
                 'currentPage': page_obj.number,
             }
             return JsonResponse(json_data)
-
+        
+        # http://127.0.0.1:8000/product/bloknoti-dlja-esk%D1%96z%D1%96v-ta-maljunku-tverda-obkladinka/
         filters = self.build_filters(products, parent_category, sub_categories)
 
         return render(request, self.template_name, {

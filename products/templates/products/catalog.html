@@ -49,7 +49,7 @@
                                 {% if forloop.counter == 1 %}
                                     <div id="{{forloop.counter}}" class="accordion-collapse collapse show" data-bs-parent="#accordionFilters">
                                         <div class="accordion-body">
-                                        <ul class="aside-mainlist">
+                                        <ul class="aside-mainlist" data-parrent="{{filter.name}}">
                                             {% for value in filter.text %}
                                                 <li class="aside-main__item">
                                                     <input id="{{value}}" type="checkbox" />
@@ -62,7 +62,7 @@
                                 {% else %}
                                     <div id="{{forloop.counter}}" class="accordion-collapse collapse" data-bs-parent="#accordionFilters">
                                         <div class="accordion-body">
-                                        <ul class="aside-mainlist">
+                                        <ul class="aside-mainlist" data-parrent="{{filter.name}}">
                                             {% for value in filter.text %}
                                                 <li class="aside-main__item">
                                                     <input id="{{value}}" type="checkbox" />
@@ -98,7 +98,7 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                               {% if forloop.counter == 1 %}    
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{forloop.counter}}" aria-expanded="true" aria-controls="{{forloop.counter}}">
+                                <button class="accordion-button"  type="button" data-bs-toggle="collapse" data-bs-target="#{{forloop.counter}}" aria-expanded="true" aria-controls="{{forloop.counter}}">
                                     {{ filter.name }}
                                 </button>
                               {% else %}
@@ -109,21 +109,21 @@
                             </h2>
                             {% if forloop.counter == 1 %}
                                 <div id="{{forloop.counter}}" class="accordion-collapse collapse show" data-bs-parent="#accordionFilters">
-                                    <div class="accordion-body">
-                                    <ul class="aside-mainlist">
+                                    <div class="accordion-body" id="{{filter.name}}">
+                                    <ul class="aside-mainlist" data-parrent="{{filter.name}}">
                                         {% for value in filter.text %}
                                             <li class="aside-main__item">
                                                 <input id="{{value}}" type="checkbox" />
                                                 <label class="aside-main__item__label" for="{{value}}">{{ value }}</label>
                                             </li>
-                                    {% endfor %}
+                                        {% endfor %}
                                     </ul>
                                     </div>
                                 </div>
                             {% else %}
                                 <div id="{{forloop.counter}}" class="accordion-collapse collapse" data-bs-parent="#accordionFilters">
-                                    <div class="accordion-body">
-                                    <ul class="aside-mainlist">
+                                    <div class="accordion-body" id="{{filter.name}}" >
+                                    <ul class="aside-mainlist" data-parrent="{{filter.name}}">
                                         {% for value in filter.text %}
                                             <li class="aside-main__item">
                                                 <input id="{{value}}" type="checkbox" />
@@ -139,7 +139,7 @@
                     </div>
                     {% endfor %}
                         <div class="aside-catalog__search">
-                            <input placeholder="Пошук" type="search">
+                            <input placeholder="Пошук" type="search" >
                             <svg class="header-search__input__icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 512 512">
                                 <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
                             </svg>
