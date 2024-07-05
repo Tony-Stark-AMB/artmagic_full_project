@@ -6,7 +6,7 @@ export class PageProducts {
         this.productsLists = document.querySelectorAll(`.products-${this.pageName}__list`);;
         this.defaultProductsAmount = 10;
         this.swiper = swiper;
-
+        this.filters = {};
         this.basket.setPageName(pageName);
     }
 
@@ -51,36 +51,69 @@ export class PageProducts {
         rerenderImage(images);
     }
 
+    updateFilterString = () => {
+        const filterString = Object.keys(this.filters)
+            .map(category => `${category}=${this.filters[category].join(';')}`)
+            .join('&');
+        console.log(filterString);
+    }
+    
+    handleCheckboxChange = (event) =>{
+        const target = event.target;
+        if (target.type === 'checkbox') {
+            const parent = target.closest('[data-parent]');
+            if (parent) {
+                const category = parent.getAttribute('data-parent');
+                const filter = target.id;
+                if (!this.filters[category]) {
+                    this.filters[category] = [];
+                }
+
+                // Update filters based on checkbox state
+                if (target.checked) {
+                    if (!this.filters[category].includes(filter)) {
+                        this.filters[category].push(filter);
+                    }
+                } else {
+                    this.filters[category] = this.filters[category].filter(f => f !== filter);
+                    if (this.filters[category].length === 0) {
+                        delete this.filters[category];
+                    }
+                }
+
+                this.updateFilterString();
+            }
+        }
+    }
+
     setResponsiveProductsAmount() {
-        console.log("rerender count of products")
         const width = window.innerWidth;
         switch(true){
-        case width >= 1600:
-            this.defaultProductsAmount = 12;
-            break;
-        case width >= 1400:
-            this.defaultProductsAmount = 12;
-            break;
-        case width >= 1260:
-            this.defaultProductsAmount = 9;
-            break;
-          case width >= 992:
-            this.defaultProductsAmount = 8;
-            break;
-          case width >= 768:
-            this.defaultProductsAmount = 9;
-            break;
-          case width >= 576:
-            this.defaultProductsAmount = 6;
-            break;
-          case width >= 400:
-            this.defaultProductsAmount = 4;
-            break;
-          default: 
-            this.defaultProductsAmount = 12;
-            break;
+            case width >= 1600:
+                this.defaultProductsAmount = 12;
+                break;
+            case width >= 1400:
+                this.defaultProductsAmount = 12;
+                break;
+            case width >= 1260:
+                this.defaultProductsAmount = 9;
+                break;
+            case width >= 992:
+                this.defaultProductsAmount = 8;
+                break;
+            case width >= 768:
+                this.defaultProductsAmount = 9;
+                break;
+            case width >= 576:
+                this.defaultProductsAmount = 6;
+                break;
+            case width >= 400:
+                this.defaultProductsAmount = 4;
+                break;
+            default: 
+                this.defaultProductsAmount = 12;
+                break;
         }
-        console.log(this.defaultProductsAmount, "this.defaultProductsAmount")
       }
 
     mapProducts(arr) {
@@ -104,6 +137,10 @@ export class PageProducts {
         });
         return await response.json();
     }
+
+    
+    // Add event listener to the document for change events
+    
 
     async initialize() {
         const { products, productsAmount, productsPerPage } = await this.fetchProducts(1);

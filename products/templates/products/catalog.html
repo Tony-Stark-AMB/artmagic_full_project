@@ -49,7 +49,7 @@
                                 {% if forloop.counter == 1 %}
                                     <div id="{{forloop.counter}}" class="accordion-collapse collapse show" data-bs-parent="#accordionFilters">
                                         <div class="accordion-body">
-                                        <ul class="aside-mainlist" data-parrent="{{filter.name}}">
+                                        <ul class="aside-mainlist" data-parent="{{filter.name}}">
                                             {% for value in filter.text %}
                                                 <li class="aside-main__item">
                                                     <input id="{{value}}" type="checkbox" />
@@ -62,7 +62,7 @@
                                 {% else %}
                                     <div id="{{forloop.counter}}" class="accordion-collapse collapse" data-bs-parent="#accordionFilters">
                                         <div class="accordion-body">
-                                        <ul class="aside-mainlist" data-parrent="{{filter.name}}">
+                                        <ul class="aside-mainlist" data-parent="{{filter.name}}">
                                             {% for value in filter.text %}
                                                 <li class="aside-main__item">
                                                     <input id="{{value}}" type="checkbox" />
