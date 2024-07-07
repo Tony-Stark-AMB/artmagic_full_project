@@ -249,13 +249,30 @@ body.modal-open {
     place-items: center;
 }
 
-.btn-next-catalog-10{
-    right: 29%;
-}
-.btn-prev-catalog-10{
-    left: 29%;
+
+.btn-prev{
+    &-category-10{
+        position: absolute;
+        right: 75%;
+        bottom: 0;
+        z-index: 1000;
+    }
+    &-catalog-10{
+        left: 19%;
+    }
 }
 
+.btn-next{
+    &-category-10{
+        position: absolute;
+        left: 75%;
+        bottom: 0;
+        z-index: 1000;
+    }
+    &-catalog-10{
+        right: 44%;
+    }
+}
 
 .loader {
     position: fixed;
@@ -275,4 +292,38 @@ body.modal-open {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+.active{
+    background-color: #007aff !important;
+    color: $c6 !important;
+}
+
+.btn-pagination{
+    width: 30px;
+    height: 30px;
+    border: none;
+    outline: none;
+    border-radius: 50%; 
+    background-color: rgba(0, 0, 0, 0.2);
+    margin: 0 2px;
+    text-align: center;
+    padding: 0;
+}
+
+.pagination{
+    height: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    right: 12.5%;
+    &-index{
+        right: 0;
+    }
+    &-category{
+        right: 0;
+    }
 }

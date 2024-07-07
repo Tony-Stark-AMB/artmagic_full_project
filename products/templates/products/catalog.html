@@ -26,7 +26,8 @@
                     <div class="swiper main-catalog__carousel">
                         <div class="swiper-wrapper" id="productsCatalogContainer">
                         </div>
-                        <div class="swiper-pagination swiper-pagination-rewrite"></div>
+                        <!-- <div class="swiper-pagination swiper-pagination-rewrite"></div> -->
+                        <div class="pagination"></div>
                     </div>
                 </main>
             <aside data-aos="fade-right" data-aos-delay="100" class="aside-catalog__wrap">
@@ -52,8 +53,8 @@
                                         <ul class="aside-mainlist" data-parent="{{filter.name}}">
                                             {% for value in filter.text %}
                                                 <li class="aside-main__item">
-                                                    <input id="{{value}}" type="checkbox" />
-                                                    <label class="aside-main__item__label" for="{{value}}">{{ value }}</label>
+                                                    <input id="{{filter.name}}{{value}}" type="checkbox" data-child="{{value}}"/>
+                                                    <label class="aside-main__item__label" for="{{filter.name}}{{value}}">{{ value }}</label>
                                                 </li>
                                         {% endfor %}
                                         </ul>
@@ -65,8 +66,8 @@
                                         <ul class="aside-mainlist" data-parent="{{filter.name}}">
                                             {% for value in filter.text %}
                                                 <li class="aside-main__item">
-                                                    <input id="{{value}}" type="checkbox" />
-                                                    <label class="aside-main__item__label" for="{{value}}">{{ value }}</label>
+                                                    <input id="{{filter.name}}{{value}}" type="checkbox" data-child="{{value}}"/>
+                                                    <label class="aside-main__item__label" for="{{filter.name}}{{value}}">{{ value }}</label>
                                                 </li>
                                         {% endfor %}
                                         </ul>
@@ -113,8 +114,8 @@
                                     <ul class="aside-mainlist" data-parrent="{{filter.name}}">
                                         {% for value in filter.text %}
                                             <li class="aside-main__item">
-                                                <input id="{{value}}" type="checkbox" />
-                                                <label class="aside-main__item__label" for="{{value}}">{{ value }}</label>
+                                                <input id="{{filter.name}}{{value}}" type="checkbox" data-child="{{value}}" />
+                                                <label class="aside-main__item__label" for="{{filter.name}}{{value}}">{{ value }}</label>
                                             </li>
                                         {% endfor %}
                                     </ul>
@@ -126,8 +127,8 @@
                                     <ul class="aside-mainlist" data-parrent="{{filter.name}}">
                                         {% for value in filter.text %}
                                             <li class="aside-main__item">
-                                                <input id="{{value}}" type="checkbox" />
-                                                <label class="aside-main__item__label" for="{{value}}">{{ value }}</label>
+                                                <input id="{{filter.name}}{{value}}" type="checkbox" data-child="{{value}}"/>
+                                                <label class="aside-main__item__label" for="{{filter.name}}{{value}}">{{ value }}</label>
                                             </li>
                                     {% endfor %}
                                     </ul>

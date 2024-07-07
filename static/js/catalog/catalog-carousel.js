@@ -1,8 +1,12 @@
 // import { Swiper, Pagination, Navigation } from "../import.js";
-import { PageProducts } from "../classes/page-cust.js";
+import { PageProducts } from "../classes/page-products.js";
+// import { PageProducts } from "../classes/page-products.js";
 import { basket } from "../header/basket/basket.js";
 
 const pageName = "catalog";
+
+new PageProducts(pageName, "productsCatalogContainer",  `.main-${pageName}__carousel`, basket).initializePage();
+
 
 // const swiperContainer = document.querySelector(`.main-${pageName}__carousel`);
 
@@ -83,6 +87,7 @@ const pageName = "catalog";
 
 // const {catalogCarouselConfig} = {
 //     catalogCarouselConfig: {
+//         allowTouchMove: false,
 //         pagination: customPagination
 //     },
 //     modules: [Pagination, Navigation]
@@ -90,7 +95,6 @@ const pageName = "catalog";
 
 // const catalogProductsSwiper = new Swiper( `.main-${pageName}__carousel`, catalogCarouselConfig)
 // const catalogProducts = new PageProducts(pageName, "productsCatalogContainer", catalogProductsSwiper, basket);
-new PageProducts(pageName, "productsCatalogContainer", basket);
 
 // toggleGroupButtonsVisibility(createBtnPrev10, createBtnNext10);
 

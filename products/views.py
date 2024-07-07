@@ -111,11 +111,10 @@ class SubProductView(View):
 
         if parent_category:
             parent = parent_category.parent
-            print(category_ids)
             category_ids.append(parent.pk)
 
         products = Products.objects.filter(category_id__in=category_ids)   
-
+        print(request.GET, 117)
         product_filter = ProductsFilter(request.GET, queryset=products)
         filtered_queryset = product_filter.qs()
         filtered_queryset = filtered_queryset.values('id', 'name', 'image', 'price', 'manufacturer')
@@ -163,8 +162,7 @@ class SubProductView(View):
             filters.insert(0, {'name': 'ВИРОБНИК', 'text': list(manufacturer.values_list('name', flat=True))})
 
         if sub_categories.exists():
-            filters.insert(0, {'name': 'ПІДКАТЕГІЯ', 'text': list(sub_categories.values_list('name', flat=True))})
-
+            filters.insert(0, {'name': 'ПІДКАТЕГОРІЯ', 'text': list(sub_categories.values_list('name', flat=True))})
         return filters
 
 def get_new_arrivals(request):
