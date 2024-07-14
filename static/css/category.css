@@ -150,6 +150,38 @@
   background-color: #f84147;
 }
 
+.c20 {
+  color: #edc63d;
+}
+
+.bg20 {
+  background-color: #edc63d;
+}
+
+.c21 {
+  color: #ffec00;
+}
+
+.bg21 {
+  background-color: #ffec00;
+}
+
+.c22 {
+  color: #000200;
+}
+
+.bg22 {
+  background-color: #000200;
+}
+
+.c23 {
+  color: #78cd5d;
+}
+
+.bg23 {
+  background-color: #78cd5d;
+}
+
 .color-inh {
   color: inherit;
 }
@@ -615,15 +647,20 @@
   border-bottom: 1px solid #7d7d7d;
 }
 
-.order-choose__content {
-  width: 40%;
+.order-choose__delivery, .order-choose__payment {
   margin: 20px auto;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
-.order-choose__content input {
+.order-choose__delivery input, .order-choose__payment input {
   display: none;
+}
+.order-choose__payment {
+  width: 60%;
+}
+.order-choose__payment label {
+  width: 30%;
 }
 .order-choose__title {
   text-align: center;
@@ -644,17 +681,58 @@
   border: 1px solid #ddd;
 }
 
-.card-img {
+.card-input__icon {
   width: 50px;
-  color: #ddd;
+  height: 50px;
+  transition: all 0.05s ease;
   cursor: pointer;
 }
+.card-input__icon-wrap {
+  display: grid;
+  place-items: center;
+}
 
-.wallet-img {
-  width: 45px;
-  height: 55px;
-  color: #ddd;
-  cursor: pointer;
+.ukr_post {
+  width: 40px;
+  height: 40px;
+}
+
+.artmagic_department {
+  width: 30px;
+  height: 50px;
+}
+
+.notification {
+  text-align: center;
+  font-weight: 700;
+}
+
+.order__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 30vh;
+}
+.order__input {
+  width: 15vw;
+  padding: 5px 0 5px 10px;
+  border-radius: 8px;
+  outline: none;
+  border: 1px solid #ddd;
+  margin: 20px 0;
+}
+.order__input__content {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.order__input__wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .header {

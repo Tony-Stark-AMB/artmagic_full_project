@@ -6,6 +6,7 @@ const formDataOrder = {
     fullName: "",
     clientPhone: "",
     email: "",
+    city: "",
     address: ""
 }
 
@@ -23,6 +24,7 @@ const patternsOrder = {
     address: [
         { rule:  MIN_2_LETTERS_UA, errorMsg: "Мінімум 2 літери UA"},
     ],
+    city: [],
 };
 
 const formOrder = new Form(formDataOrder, patternsOrder, "Order", productManager, basket );
@@ -31,6 +33,7 @@ formOrder.initForm({
     fullName: "name",
     email: "email",
     clientPhone: "phone",
+    city: "city",
     address: "address",
     products: "products",
 }, "cart/process-order/", "POST", 

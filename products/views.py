@@ -109,9 +109,9 @@ class SubProductView(View):
         descendants = parent_category.get_descendants(include_self=True)
         category_ids = [descendant.pk for descendant in descendants]
 
-        if parent_category:
-            parent = parent_category.parent
-            category_ids.append(parent.pk)
+        # if parent_category:
+        #     parent = parent_category.parent
+        #     category_ids.append(parent.pk)
 
         products = Products.objects.filter(category_id__in=category_ids)   
         print(request.GET, 117)

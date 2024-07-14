@@ -147,8 +147,8 @@
 }
 
 .order-choose{
-    &__content{
-        width: 40%;
+    &__delivery,
+    &__payment{
         margin: 20px auto;
         display: flex;
         justify-content: space-around;
@@ -157,6 +157,13 @@
             display: none;
         }
     }
+    &__payment{
+        width: 60%;
+        & label{
+            width: 30%;
+        }
+    }
+    
     &__title{
         text-align: center;
     }
@@ -177,19 +184,70 @@
     }
 }
 
+
+
 .card{
-    &-img{
-    width: 50px;
-    color: $c5;
-    cursor: pointer;
+    &-input__icon{
+        &-wrap{
+            display: grid;
+            place-items: center;
+        }
+        width: 50px;
+        height: 50px;
+        transition: all .05s ease;
+        cursor: pointer;    
+        // & .active_new{
+        //     color: $c11;
+        // }
+        // & .active_ukr{
+        //     color: $c20;
+        // }
+        
     }
 }
 
-.wallet{
-    &-img{
-        width: 45px;
-        height: 55px;
-        color: $c5;
-        cursor: pointer;
+.ukr_post{
+    width: 40px;
+    height: 40px;
+}
+
+.artmagic_department{
+    width: 30px;
+    height: 50px;
+}
+
+.notification{
+    text-align: center;
+    font-weight: 700;
+}
+
+
+.order{
+    &__form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        height: 30vh;
+    }
+    &__input{
+        width: 15vw;
+        padding: 5px 0 5px 10px;
+        border-radius: 8px;
+        outline: none;
+        border: 1px solid $c5;
+        margin: 20px 0;
+        &__content{
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        &__wrap{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
     }
 }

@@ -26,7 +26,7 @@ anime.timeline({loop: true})
     delay: 3000
   });
 
-import { Swiper, Navigation } from "../import.js";
+import { Swiper, Navigation, Pagination } from "../import.js";
 
 new Swiper(".login__registration", {
   direction: "vertical",
@@ -40,16 +40,33 @@ new Swiper(".login__registration", {
   modules: [Navigation]
 });
 
-new Swiper(".basket__modal__swiper", {
-  navigation: {
-    nextEl: ".swiper-btn-next",
-    prevEl: ".swiper-btn-prev",
-  },
+const basketModalCarousel = new Swiper(".basket__modal__swiper", {
   speed: 1000,
   allowTouchMove: false,
   noSwiping: false,
-  modules: [Navigation]
+  modules: [Pagination]
 });
+
+const footerBasketModalBtns = document.querySelector(".modal-footer__btns").children;
+
+const targetDeliveryAndPayment = document.querySelector(".order-choose");
+const targetNotification = document.querySelector(".notification");
+
+Array.from(footerBasketModalBtns).forEach((btn, i) => btn.addEventListener("click", (e) => {
+  e.preventDefault;
+  basketModalCarousel.slideTo(i)
+  switch(i){
+    case 1:
+      setTimeout(async () => await smoothTo(targetDeliveryAndPayment), 1000);
+      break;
+    case 2:
+      setTimeout(async () => await smoothTo(targetNotification), 1000);
+      break;
+  }
+}))
+
+
+const smoothTo = async (target) => target.scrollIntoView({behavior: "smooth"})
 
 const images = document.querySelectorAll(".overlook__img");
 rerenderImage(images);

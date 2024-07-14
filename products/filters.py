@@ -28,14 +28,14 @@ class ProductsFilter(django_filters.FilterSet):
         super().__init__(data=data, queryset=queryset, *args, **kwargs)
 
     def filter_by_subcategory(self, queryset, name, value):
-        
+        category_list_id=[]
         subcategory_id = value.strip('[]').strip("''").split('|')
-        print(subcategory_id, "33")
-        print(subcategory_id, value)
+
         for el in subcategory_id:
             parent_category = Category.objects.get(name=el)
             descendants = parent_category.get_descendants(include_self=True)
-            category_list_id = [descendant.pk for descendant in descendants]
+            list_id = [descendant.pk for descendant in descendants]
+            category_list_id = list(set(category_list_id) | set(list_id))
 
         return queryset.filter(category__in=category_list_id).distinct()
 
