@@ -58,6 +58,7 @@ export class Basket {
         }
 
         // Обновление бейджа корзины
+
         this.badgeContent.textContent = this.productManager.productsTotalCount();
 
         // Обновление общей стоимости товаров

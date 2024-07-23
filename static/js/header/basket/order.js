@@ -27,6 +27,8 @@ const patternsOrder = {
     city: [],
 };
 
+basket.renderBasket();
+
 const formOrder = new Form(formDataOrder, patternsOrder, "Order", productManager, basket );
 
 formOrder.initForm("orderForm", {

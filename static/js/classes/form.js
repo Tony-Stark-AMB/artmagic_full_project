@@ -79,6 +79,17 @@ class Form {
             this.triggerInput(field.dataset.field)
         }))
 
+        if(formContainerId === "profileForm"){
+            const btnsWrappers = Array.from(document.querySelectorAll(".profile-page__user-info__btns-wrap")).map((btnsWrapper) => btnsWrapper.children);
+            console.log(btnsWrappers)
+            btnsWrappers.forEach(([btnEdit, btnClear]) => {
+                console.log(btnEdit, btnClear)
+                btnEdit.addEventListener("click", () => this.editField(btnEdit.dataset.edit));
+                btnClear.addEventListener("click", () => this.clearField(btnClear.dataset.clear));
+            })
+
+        }
+
         this.dataSubmitBtn.addEventListener("click", async (e) => {
             e.preventDefault();
            

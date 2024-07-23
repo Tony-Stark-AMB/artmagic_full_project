@@ -1,7 +1,9 @@
+import { basket, productManager } from "./header/basket/basket.js";
+
 // for images ratio
 initImagesRation(PROFILE);
 // for products working
-
+const { EMAIL, POSTAL_INDEX } = regexp;
 
 const formDataProfile = {
     firstName: "",
@@ -36,9 +38,10 @@ const patternsProfile = {
     ]
 };
 
-const formProfile = new Form(formDataProfile, patternsProfile, "Profile");
 
-formProfile.initForm({
+const formProfile = new Form(formDataProfile, patternsProfile, "Profile", productManager, basket);
+
+formProfile.initForm("profileForm", {
     firstName: "first_name",
     lastName: "last_name",
     profileEmail: "user_email",
