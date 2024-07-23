@@ -17,6 +17,7 @@ class Form {
         this.dataSubmitBtn = document.querySelector(`button[data-submit="btn_${formName}"]`);
         this.successLabel = document.querySelector("div#successMessage");
         this.errorLabel = document.querySelector("div#errorMessage");
+        // this.fetchNewPostAPIData("get_regions")
     }
 
     getField(fieldName) {
@@ -182,6 +183,18 @@ class Form {
 
     clearForm(obj) {
         Object.keys(obj).forEach((key) => this.clearField(key, false));
+    }
+
+    async fetchNewPostAPIData(pathName){
+        const path = `api/${pathName}`
+        const data = await fetch(`${PROTOCOL}://${HOST}:${PORT}/delivery/${path}/`, 
+            {
+                method: "GET",
+                mode: "cors"
+            }
+        )
+            .then((data) => data.json())
+        console.log(data);
     }
 }
 

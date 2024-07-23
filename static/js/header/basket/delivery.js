@@ -25,24 +25,51 @@ updateNotification();
 
 const iconsDelivery = document.querySelectorAll('[data-delivery]');
 
+const orderInputWrap = (fieldName) => document.querySelector(`[data-field="${fieldName}"]`).parentElement;
+const orderInputWraps = document.querySelectorAll(`[data-field]`)
+console.log(orderInputWraps);
+
+const show = (el) => {
+    if(el.classList.contains("d-none")){
+        el.classList.remove("d-none");
+        el.classList.add("d-block");
+    }
+}
+
+const hide = (el) => {
+    if(el.classList.contains("d-block")){
+        el.classList.remove("d-block");
+        el.classList.add("d-none");
+    }
+}
+
 const removeDeliveryActiveClass = () => iconsDelivery.forEach((icon) => {
     const typeOfIcon = icon.dataset.delivery;
-    switch(true){
-        case typeOfIcon == "artmagic_department":
+    const addressOrderInputWrap = orderInputWrap("address");
+    console.log(addressOrderInputWrap)
+    switch(typeOfIcon){
+        case "artmagic_department":
             icon.setAttribute("src", "/static/assets/basket-icons/artmagic.png")
             break;
-        case typeOfIcon == "new_post_department" 
-        || typeOfIcon == "new_post_packing"
-        || typeOfIcon == "new_post_address":
+        case "new_post_department":
+            icon.classList.remove('c11');
+            icon.classList.add('c8');
+            break;
+        case "new_post_packing":
+            icon.classList.remove('c11');
+            icon.classList.add('c8');
+            break;
+        case "new_post_address":
             icon.classList.remove('c11');
             icon.classList.add('c8')
             break;
-        case typeOfIcon == "ukr_post":
+        case "ukr_post":
             icon.classList.remove('c20');
             icon.classList.add('c8');
             break;
     }
 });
+
 
 // Добавляем обработчик клика для каждого SVG
 iconsDelivery.forEach((icon) => {
@@ -51,17 +78,25 @@ iconsDelivery.forEach((icon) => {
         const typeOfIcon = e.currentTarget.dataset.delivery;
         selectedDelivery = typeOfIcon;
         const curIcon = e.currentTarget;
-        switch(true){
-            case typeOfIcon == "artmagic_department":
-                icon.setAttribute("src", "/static/assets/logo/artmagic.png")
+        const addressOrderInputWrap = orderInputWrap("address");
+        console.log(addressOrderInputWrap)
+        switch(typeOfIcon){
+            case "artmagic_department":
+                icon.setAttribute("src", "/static/assets/logo/artmagic.png");
                 break;
-            case typeOfIcon == "new_post_department" 
-            || typeOfIcon == "new_post_packing"
-            || typeOfIcon == "new_post_address":
+            case "new_post_department":
+                curIcon.classList.remove('c8');
+                curIcon.classList.add('c11');
+                break;
+            case "new_post_packing":
+                curIcon.classList.remove('c8');
+                curIcon.classList.add('c11');
+                break;
+            case "new_post_address":
                 curIcon.classList.remove('c8');
                 curIcon.classList.add('c11')
                 break;
-            case typeOfIcon == "ukr_post":
+            case "ukr_post":
                 curIcon.classList.remove('c8');
                 curIcon.classList.add('c20');
                 break;
@@ -74,8 +109,8 @@ const iconsPayment = document.querySelectorAll('[data-payment]');
 
 const removePaymentActiveClass = () => iconsPayment.forEach((icon) => {
     const typeOfIcon = icon.dataset.payment;
-    switch(true){
-        case typeOfIcon == "liqpay":
+    switch(typeOfIcon){
+        case "liqpay":
             const pathesLiqpay = icon.children[0].children;
                 pathesLiqpay[0].classList.remove("c14");
                 for(let i = 1; i <= 2; i++){
@@ -83,11 +118,11 @@ const removePaymentActiveClass = () => iconsPayment.forEach((icon) => {
                     pathesLiqpay[i].classList.add("c6");
                 }
             break;
-        case typeOfIcon == "payment_card":
+        case "payment_card":
             icon.classList.remove("c20");
             icon.classList.add("c8");
             break;
-        case typeOfIcon == "payment_real":
+        case "payment_real":
             const pathesPayment = icon.children;
             pathesPayment[0].classList.remove("c12");
             pathesPayment[0].classList.add("c8");
@@ -103,8 +138,8 @@ iconsPayment.forEach((icon) => {
         const typeOfIcon = e.currentTarget.dataset.payment;
         const curIcon = e.currentTarget;
         selectedPayment = typeOfIcon;
-        switch(true){
-            case typeOfIcon == "liqpay":
+        switch(typeOfIcon){
+            case "liqpay":
                 const pathesLiqpay = curIcon.children[0].children;
                 pathesLiqpay[0].classList.add("c14");
                 for(let i = 1; i <= 2; i++){
@@ -112,11 +147,11 @@ iconsPayment.forEach((icon) => {
                     pathesLiqpay[i].classList.add("c23");
                 }
                 break;
-            case typeOfIcon == "payment_card":
+            case "payment_card":
                 curIcon.classList.remove("c8");
                 curIcon.classList.add("c20");
                 break;
-            case typeOfIcon == "payment_real":
+            case "payment_real":
                 const pathesPayment = curIcon.children;
                 pathesPayment[0].classList.remove("c8");
                 pathesPayment[0].classList.add("c12");
