@@ -37,12 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     'mptt',
 
     'products',
     'users',
     'carts',
+    'delivery',
 
     'corsheaders',
 ]
@@ -113,6 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+NOVA_POSHTA_API_KEY = "3395ff65768492c3ac09b0daa030498e"
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/

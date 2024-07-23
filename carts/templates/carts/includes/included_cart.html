@@ -153,11 +153,10 @@
                         </div>
                         <div class="swiper-slide">
                             <div id="notification" class="notification c11"></div>
-                            <form class="order-choose__form">
+                            <form class="order-choose__form" id="orderForm">
                                 <div class="order__input__content">
                                     <div class="order__input__wrap">
                                         <input class="order__input" 
-                                        oninput="formOrder.triggerInput('fullName')"
                                         data-field="fullName"
                                         type="text"
                                         placeholder="ФІО"
@@ -166,7 +165,6 @@
                                     </div>
                                     <div class="order__input__wrap">
                                         <input class="order__input" 
-                                        oninput="formOrder.triggerInput('clientPhone')"
                                         data-field="clientPhone"
                                         type="tel"
                                         placeholder="телефон"
@@ -175,7 +173,6 @@
                                     </div>
                                     <div class="order__input__wrap">
                                         <input class="order__input" 
-                                        oninput="formOrder.triggerInput('email')"
                                         data-field="email"
                                         type="email"
                                         placeholder="Email"
@@ -184,7 +181,6 @@
                                     </div>
                                     <div class="order__input__wrap">
                                         <input class="order__input" 
-                                        oninput="formOrder.triggerInput('address')"
                                         data-field="address"
                                         type="text"
                                         placeholder="Адреса"
@@ -193,7 +189,6 @@
                                     </div>
                                     <div class="order__input__wrap">
                                         <select class="order__input" 
-                                        oninput="formOrder.triggerInput('city')"
                                         data-field="city"
                                         type="text"
                                         placeholder="Місто"

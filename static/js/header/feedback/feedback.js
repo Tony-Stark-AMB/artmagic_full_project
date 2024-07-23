@@ -28,7 +28,7 @@ const patternsFeedback = {
 
 const formFeedback = new Form(formDataFeedback, patternsFeedback, "Feedback");
 
-formFeedback.initForm({
+formFeedback.initForm("feedbackForm", {
     firstName: "first_name",
     lastName: "last_name",
     phone: "phone_number",

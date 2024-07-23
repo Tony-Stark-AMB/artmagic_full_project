@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вибір опції доставки</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Вибір опції доставки</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <label for="id_method">Метод доставки:</label>
+            {{ form.method }}
+        </div>
+        <div>
+            <label for="id_region">Область:</label>
+            <input type="text" id="region_input" name="region" list="region_list">
+            <datalist id="region_list"></datalist>
+        </div>
+        <div>
+            <label for="id_city">Місто:</label>
+            <input type="text" id="city_input" name="city" list="city_list">
+            <datalist id="city_list"></datalist>
+        </div>
+        <div id="branch_container" style="display:none;">
+            <label for="id_branch_id">Відділення:</label>
+            <input type="text" id="branch_input" list="branch_list">
+            <datalist id="branch_list"></datalist>
+        </div>
+        <div id="postomat_container" style="display:none;">
+            <label for="id_postomat_id">Поштомат:</label>
+            <input type="text" id="postomat_input" list="postomat_list">
+            <datalist id="postomat_list"></datalist>
+        </div>
+        <button type="submit">Зберегти</button>
+    </form>
+
+    <script>
+        $(document).ready(function() {
+            function loadRegions() {
+                $.ajax({
+                    url: '{% url "get_regions" %}',
+                    type: 'GET',
+                    success: function(data) {
+                        const regions = data.regions;
+                        $('#region_list').empty();
+                        regions.forEach(function(region) {
+                            $('#region_list').append(`<option value="${region.Description}" data-ref="${region.Ref}"></option>`);
+                        });
+                    },
+                    error: function(error) {
+                        console.error('Error fetching regions:', error);
+                    }
+                });
+            }
+
+            function loadCities(regionRef) {
+                $.ajax({
+                    url: '{% url "get_cities" %}',
+                    type: 'GET',
+                    data: {
+                        region_ref: regionRef
+                    },
+                    success: function(data) {
+                        const cities = data.cities;
+                        $('#city_list').empty();
+                        cities.forEach(function(city) {
+                            $('#city_list').append(`<option value="${city.Description}" data-ref="${city.Ref}"></option>`);
+                        });
+                    },
+                    error: function(error) {
+                        console.error('Error fetching cities:', error);
+                    }
+                });
+            }
+
+            function loadBranchesAndPostomats(cityRef) {
+                $.ajax({
+                    url: '{% url "get_branches_and_postomats" %}',
+                    type: 'GET',
+                    data: {
+                        city_ref: cityRef
+                    },
+                    success: function(data) {
+                        const branches = data.branches;
+                        const postomats = data.postomats;
+
+                        $('#branch_list').empty();
+                        $('#postomat_list').empty();
+
+                        if (branches.length > 0) {
+                            $('#branch_container').show();
+                            branches.forEach(function(branch) {
+                                $('#branch_list').append(`<option value="${branch.Description}" data-ref="${branch.Ref}"></option>`);
+                            });
+                        } else {
+                            $('#branch_container').hide();
+                        }
+
+                        if (postomats.length > 0) {
+                            $('#postomat_container').show();
+                            postomats.forEach(function(postomat) {
+                                $('#postomat_list').append(`<option value="${postomat.Description}" data-ref="${postomat.Ref}"></option>`);
+                            });
+                        } else {
+                            $('#postomat_container').hide();
+                        }
+                    },
+                    error: function(error) {
+                        console.error('Error fetching branches and postomats:', error);
+                    }
+                });
+            }
+
+            $('#region_input').on('input', function() {
+                const input = $(this).val().toLowerCase();
+                const options = $('#region_list option').filter(function() {
+                    return $(this).val().toLowerCase().startsWith(input);
+                });
+                if (options.length > 0) {
+                    const regionRef = options.first().data('ref');
+                    loadCities(regionRef);
+                }
+            });
+
+            $('#city_input').on('input', function() {
+                const input = $(this).val().toLowerCase();
+                const options = $('#city_list option').filter(function() {
+                    return $(this).val().toLowerCase().startsWith(input);
+                });
+                if (options.length > 0) {
+                    const cityRef = options.first().data('ref');
+                    loadBranchesAndPostomats(cityRef);
+                }
+            });
+
+            $('#branch_input').on('input', function() {
+                const input = $(this).val().toLowerCase();
+                const options = $('#branch_list option').filter(function() {
+                    return $(this).val().toLowerCase().startsWith(input);
+                });
+                if (options.length > 0) {
+                    const branchRef = options.first().data('ref');
+                    $('#branch_select').val(branchRef);
+                }
+            });
+
+            $('#postomat_input').on('input', function() {
+                const input = $(this).val().toLowerCase();
+                const options = $('#postomat_list option').filter(function() {
+                    return $(this).val().toLowerCase().startsWith(input);
+                });
+                if (options.length > 0) {
+                    const postomatRef = options.first().data('ref');
+                    $('#postomat_select').val(postomatRef);
+                }
+            });
+
+            loadRegions();
+        });
+    </script>
+</body>
+</html>

@@ -70,7 +70,15 @@ class Form {
         return true;
     }
 
-    async initForm(obj, path, methodType, msgObj, animDuration, clearCond = true) {
+    async initForm(formContainerId, obj, path, methodType, msgObj, animDuration, clearCond = true) {
+        const formContainer = document.getElementById(formContainerId);
+
+        
+        const fields = formContainer.querySelectorAll("[data-field]");
+        fields.forEach((field) => field.addEventListener("input", (e) => {
+            this.triggerInput(field.dataset.field)
+        }))
+
         this.dataSubmitBtn.addEventListener("click", async (e) => {
             e.preventDefault();
            

@@ -29,7 +29,7 @@ const patternsOrder = {
 
 const formOrder = new Form(formDataOrder, patternsOrder, "Order", productManager, basket );
 
-formOrder.initForm({
+formOrder.initForm("orderForm", {
     fullName: "name",
     email: "email",
     clientPhone: "phone",
