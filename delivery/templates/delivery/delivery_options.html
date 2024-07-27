@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вибір опції доставки</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <h1>Вибір опції доставки</h1>
@@ -38,123 +37,118 @@
     </form>
 
     <script>
-        $(document).ready(function() {
+        document.addEventListener('DOMContentLoaded', function() {
             function loadRegions() {
-                $.ajax({
-                    url: '{% url "get_regions" %}',
-                    type: 'GET',
-                    success: function(data) {
+                fetch('{% url "get_regions" %}')
+                    .then(response => response.json())
+                    .then(data => {
                         const regions = data.regions;
-                        $('#region_list').empty();
-                        regions.forEach(function(region) {
-                            $('#region_list').append(`<option value="${region.Description}" data-ref="${region.Ref}"></option>`);
+                        const regionList = document.getElementById('region_list');
+                        regionList.innerHTML = '';
+                        regions.forEach(region => {
+                            const option = document.createElement('option');
+                            option.value = region.Description;
+                            option.dataset.ref = region.Ref;
+                            regionList.appendChild(option);
                         });
-                    },
-                    error: function(error) {
-                        console.error('Error fetching regions:', error);
-                    }
-                });
+                    })
+                    .catch(error => console.error('Error fetching regions:', error));
             }
 
             function loadCities(regionRef) {
-                $.ajax({
-                    url: '{% url "get_cities" %}',
-                    type: 'GET',
-                    data: {
-                        region_ref: regionRef
-                    },
-                    success: function(data) {
+                fetch('{% url "get_cities" %}?region_ref=' + encodeURIComponent(regionRef))
+                    .then(response => response.json())
+                    .then(data => {
                         const cities = data.cities;
-                        $('#city_list').empty();
-                        cities.forEach(function(city) {
-                            $('#city_list').append(`<option value="${city.Description}" data-ref="${city.Ref}"></option>`);
+                        const cityList = document.getElementById('city_list');
+                        cityList.innerHTML = '';
+                        cities.forEach(city => {
+                            const option = document.createElement('option');
+                            option.value = city.Description;
+                            option.dataset.ref = city.Ref;
+                            cityList.appendChild(option);
                         });
-                    },
-                    error: function(error) {
-                        console.error('Error fetching cities:', error);
-                    }
-                });
+                    })
+                    .catch(error => console.error('Error fetching cities:', error));
             }
 
             function loadBranchesAndPostomats(cityRef) {
-                $.ajax({
-                    url: '{% url "get_branches_and_postomats" %}',
-                    type: 'GET',
-                    data: {
-                        city_ref: cityRef
-                    },
-                    success: function(data) {
+                fetch('{% url "get_branches_and_postomats" %}?city_ref=' + encodeURIComponent(cityRef))
+                    .then(response => response.json())
+                    .then(data => {
                         const branches = data.branches;
                         const postomats = data.postomats;
 
-                        $('#branch_list').empty();
-                        $('#postomat_list').empty();
+                        const branchList = document.getElementById('branch_list');
+                        const postomatList = document.getElementById('postomat_list');
+
+                        branchList.innerHTML = '';
+                        postomatList.innerHTML = '';
 
                         if (branches.length > 0) {
-                            $('#branch_container').show();
-                            branches.forEach(function(branch) {
-                                $('#branch_list').append(`<option value="${branch.Description}" data-ref="${branch.Ref}"></option>`);
+                            document.getElementById('branch_container').style.display = 'block';
+                            branches.forEach(branch => {
+                                const option = document.createElement('option');
+                                option.value = branch.Description;
+                                option.dataset.ref = branch.Ref;
+                                branchList.appendChild(option);
                             });
                         } else {
-                            $('#branch_container').hide();
+                            document.getElementById('branch_container').style.display = 'none';
                         }
 
                         if (postomats.length > 0) {
-                            $('#postomat_container').show();
-                            postomats.forEach(function(postomat) {
-                                $('#postomat_list').append(`<option value="${postomat.Description}" data-ref="${postomat.Ref}"></option>`);
+                            document.getElementById('postomat_container').style.display = 'block';
+                            postomats.forEach(postomat => {
+                                const option = document.createElement('option');
+                                option.value = postomat.Description;
+                                option.dataset.ref = postomat.Ref;
+                                postomatList.appendChild(option);
                             });
                         } else {
-                            $('#postomat_container').hide();
+                            document.getElementById('postomat_container').style.display = 'none';
                         }
-                    },
-                    error: function(error) {
-                        console.error('Error fetching branches and postomats:', error);
-                    }
-                });
+                    })
+                    .catch(error => console.error('Error fetching branches and postomats:', error));
             }
 
-            $('#region_input').on('input', function() {
-                const input = $(this).val().toLowerCase();
-                const options = $('#region_list option').filter(function() {
-                    return $(this).val().toLowerCase().startsWith(input);
-                });
-                if (options.length > 0) {
-                    const regionRef = options.first().data('ref');
+            document.getElementById('region_input').addEventListener('input', function() {
+                const input = this.value.toLowerCase();
+                const options = Array.from(document.getElementById('region_list').options);
+                const matchedOption = options.find(option => option.value.toLowerCase().startsWith(input));
+                if (matchedOption) {
+                    const regionRef = matchedOption.dataset.ref;
                     loadCities(regionRef);
                 }
             });
 
-            $('#city_input').on('input', function() {
-                const input = $(this).val().toLowerCase();
-                const options = $('#city_list option').filter(function() {
-                    return $(this).val().toLowerCase().startsWith(input);
-                });
-                if (options.length > 0) {
-                    const cityRef = options.first().data('ref');
+            document.getElementById('city_input').addEventListener('input', function() {
+                const input = this.value.toLowerCase();
+                const options = Array.from(document.getElementById('city_list').options);
+                const matchedOption = options.find(option => option.value.toLowerCase().startsWith(input));
+                if (matchedOption) {
+                    const cityRef = matchedOption.dataset.ref;
                     loadBranchesAndPostomats(cityRef);
                 }
             });
 
-            $('#branch_input').on('input', function() {
-                const input = $(this).val().toLowerCase();
-                const options = $('#branch_list option').filter(function() {
-                    return $(this).val().toLowerCase().startsWith(input);
-                });
-                if (options.length > 0) {
-                    const branchRef = options.first().data('ref');
-                    $('#branch_select').val(branchRef);
+            document.getElementById('branch_input').addEventListener('input', function() {
+                const input = this.value.toLowerCase();
+                const options = Array.from(document.getElementById('branch_list').options);
+                const matchedOption = options.find(option => option.value.toLowerCase().startsWith(input));
+                if (matchedOption) {
+                    const branchRef = matchedOption.dataset.ref;
+                    document.getElementById('branch_select').value = branchRef;
                 }
             });
 
-            $('#postomat_input').on('input', function() {
-                const input = $(this).val().toLowerCase();
-                const options = $('#postomat_list option').filter(function() {
-                    return $(this).val().toLowerCase().startsWith(input);
-                });
-                if (options.length > 0) {
-                    const postomatRef = options.first().data('ref');
-                    $('#postomat_select').val(postomatRef);
+            document.getElementById('postomat_input').addEventListener('input', function() {
+                const input = this.value.toLowerCase();
+                const options = Array.from(document.getElementById('postomat_list').options);
+                const matchedOption = options.find(option => option.value.toLowerCase().startsWith(input));
+                if (matchedOption) {
+                    const postomatRef = matchedOption.dataset.ref;
+                    document.getElementById('postomat_select').value = postomatRef;
                 }
             });
 

@@ -17,11 +17,13 @@ class Form {
         this.dataSubmitBtn = document.querySelector(`button[data-submit="btn_${formName}"]`);
         this.successLabel = document.querySelector("div#successMessage");
         this.errorLabel = document.querySelector("div#errorMessage");
-        // this.fetchNewPostAPIData("get_regions")
+        this.areasDataWithNullField = [];
     }
 
     getField(fieldName) {
-        return document.querySelector(`input[data-field="${fieldName}"]`) ?? document.querySelector(`textarea[data-field="${fieldName}"]`);
+        return document.querySelector(`input[data-field="${fieldName}"]`) 
+        ?? document.querySelector(`textarea[data-field="${fieldName}"]`) 
+        ?? document.querySelector(`select[data-field="${fieldName}"]`); 
     }
 
     errorMessageElement(fieldName) {
@@ -78,18 +80,30 @@ class Form {
         const fields = formContainer.querySelectorAll("[data-field]");
         fields.forEach((field) => field.addEventListener("input", (e) => {
             this.triggerInput(field.dataset.field)
-        }))
+        }));
 
         if(formContainerId === "profileForm"){
             const btnsWrappers = Array.from(document.querySelectorAll(".profile-page__user-info__btns-wrap")).map((btnsWrapper) => btnsWrapper.children);
-            console.log(btnsWrappers)
             btnsWrappers.forEach(([btnEdit, btnClear]) => {
-                console.log(btnEdit, btnClear)
                 btnEdit.addEventListener("click", () => this.editField(btnEdit.dataset.edit));
                 btnClear.addEventListener("click", () => this.clearField(btnClear.dataset.clear));
             })
+        };
 
+        if(formContainerId === "orderForm"){
+            const areaInputWrap = this.orderInputWrap("area");
+
+            this.updateAreaOptions(areaInputWrap);
+
+            const cityInputWrap = this.orderInputWrap("city");
+            const departmentInputWrap = this.orderInputWrap("department");
+
+            this.fetchSomeOptions(areaInputWrap, cityInputWrap, "get_cities", "region_ref", "-- Оберіть Місто --", "cities", undefined, this.areasDataWithNullField);
+            this.fetchSomeOptions(cityInputWrap, departmentInputWrap, "get_branches_and_postomats", "city_ref", "-- Оберіть відділення", "branches")
+            
         }
+        
+
 
         this.dataSubmitBtn.addEventListener("click", async (e) => {
             e.preventDefault();
@@ -185,16 +199,65 @@ class Form {
         Object.keys(obj).forEach((key) => this.clearField(key, false));
     }
 
-    async fetchNewPostAPIData(pathName){
+    async fetchNewPostAPIData(pathName, query = ""){
         const path = `api/${pathName}`
-        const data = await fetch(`${PROTOCOL}://${HOST}:${PORT}/delivery/${path}/`, 
+        const data = await fetch(`${PROTOCOL}://${HOST}:${PORT}/delivery/${path}?${query}`, 
             {
                 method: "GET",
                 mode: "cors"
             }
         )
             .then((data) => data.json())
-        console.log(data);
+        return data;
+    }
+
+    orderInputWrap(fieldName){
+        return document.querySelector(`[data-field="${fieldName}"]`);
+    }
+
+    async fetchSomeOptions(triggerInputWrap, containerInputWrap, url, queryKey, nullElementText, dataKey, filtrationFunc){
+        this.areasDataWithNullField = await this.updateAreaOptions()
+        triggerInputWrap.addEventListener("change", async () => {
+            if(triggerInputWrap.value != "null"){
+                const nullElement = document.querySelector("option");
+                let data = (await this.fetchNewPostAPIData(url, `${queryKey}=${triggerInputWrap.value}`))[dataKey];
+
+                if(filtrationFunc)
+                    data = filtrationFunc(data);
+                
+
+                containerInputWrap.innerHTML = "";  
+                nullElement.value = null;
+                nullElement.textContent = nullElementText;
+                containerInputWrap.appendChild(nullElement);
+                data.forEach((city) => {
+                    const element = document.createElement("option");
+                    element.value = city.Ref;
+                    element.textContent = city.Description;
+                    containerInputWrap.appendChild(element);
+                })
+            } 
+        });
+    }
+
+    clearOptions = (selectElement) => {
+        selectElement.innerHTML = "";
+    };
+
+    async updateAreaOptions(container){
+        const areasData = (await this.fetchNewPostAPIData("get_regions")).regions;
+        this.areasDataWithNullField = [{ Ref: null, Description: "-- Оберіть область --" }, ...areasData];
+    
+        this.clearOptions(container);
+    
+        this.areasDataWithNullField.forEach((area) => {
+            const element = document.createElement("option");
+            element.value = area.Ref;
+            element.textContent = area.Description;
+            container.appendChild(element);
+        });
+
+        return areasData;
     }
 }
 

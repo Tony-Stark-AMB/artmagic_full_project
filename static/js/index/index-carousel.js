@@ -9,7 +9,6 @@ class IndexProducts extends PageProducts{
     super(pageName, containerId, swiper, basket)
     this.basket.setPageName(pageName)
     this.swiperPagination = {...this.swiperPagination, productsPerPage: 10};
-    console.log(this.swiperPagination);
     this.initializePage();
   }
 

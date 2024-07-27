@@ -101,7 +101,6 @@ export class PageProducts {
 
         const startPage = this.swiperPagination.currentPageGroup * this.swiperPagination.buttonsPerGroup + 1;
         const endPage = Math.min(startPage + this.swiperPagination.buttonsPerGroup - 1, this.productsLists.length);
-        console.log("startPage = ", startPage,"endPage = ", endPage, "productsLists.lengrth = ", this.productsLists.length);
         for (let i = startPage; i <= endPage; i++) {
             const pageButton = document.createElement("button");
             pageButton.classList.add("btn-pagination");
