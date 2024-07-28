@@ -17,7 +17,6 @@ class Form {
         this.dataSubmitBtn = document.querySelector(`button[data-submit="btn_${formName}"]`);
         this.successLabel = document.querySelector("div#successMessage");
         this.errorLabel = document.querySelector("div#errorMessage");
-        this.areasDataWithNullField = [];
     }
 
     getField(fieldName) {
@@ -82,26 +81,29 @@ class Form {
             this.triggerInput(field.dataset.field)
         }));
 
-        if(formContainerId === "profileForm"){
-            const btnsWrappers = Array.from(document.querySelectorAll(".profile-page__user-info__btns-wrap")).map((btnsWrapper) => btnsWrapper.children);
-            btnsWrappers.forEach(([btnEdit, btnClear]) => {
-                btnEdit.addEventListener("click", () => this.editField(btnEdit.dataset.edit));
-                btnClear.addEventListener("click", () => this.clearField(btnClear.dataset.clear));
-            })
+        switch(formContainerId){
+            case "profileForm":
+                const btnsWrappers = Array.from(document.querySelectorAll(".profile-page__user-info__btns-wrap")).map((btnsWrapper) => btnsWrapper.children);
+                btnsWrappers.forEach(([btnEdit, btnClear]) => {
+                    btnEdit.addEventListener("click", () => this.editField(btnEdit.dataset.edit));
+                    btnClear.addEventListener("click", () => this.clearField(btnClear.dataset.clear));
+                })
+                break;
+            case "orderForm":
+                const areaInputWrap = this.orderInputWrap("area");
+
+                this.updateAreaOptions(areaInputWrap);
+
+                const cityInputWrap = this.orderInputWrap("city");
+                const departmentInputWrap = this.orderInputWrap("department");
+
+                this.fetchSomeOptions(areaInputWrap, cityInputWrap, "get_cities", "region_ref", "-- Оберіть Місто --", "cities", undefined, this.areasDataWithNullField);
+                this.fetchSomeOptions(cityInputWrap, departmentInputWrap, "get_branches_and_postomats", "city_ref", "-- Оберіть відділення", "branches")
+                break;
+            
         };
 
-        if(formContainerId === "orderForm"){
-            const areaInputWrap = this.orderInputWrap("area");
-
-            this.updateAreaOptions(areaInputWrap);
-
-            const cityInputWrap = this.orderInputWrap("city");
-            const departmentInputWrap = this.orderInputWrap("department");
-
-            this.fetchSomeOptions(areaInputWrap, cityInputWrap, "get_cities", "region_ref", "-- Оберіть Місто --", "cities", undefined, this.areasDataWithNullField);
-            this.fetchSomeOptions(cityInputWrap, departmentInputWrap, "get_branches_and_postomats", "city_ref", "-- Оберіть відділення", "branches")
-            
-        }
+        
         
 
 
@@ -110,6 +112,8 @@ class Form {
            
             let emptyForm = false;
             Object.keys(this.formData).forEach(key => this.triggerInput(key));
+
+            console.log(this.formData);
             
 
             const submitedFormData = this.mapedFormData(obj);
@@ -118,13 +122,15 @@ class Form {
             const productsExistCondition = 
                 submitedFormData.products && submitedFormData.products.length === 0;
             try {
+                if(formContainerId !== "orderForm"){
+                    Object.keys(this.formData).map(key => {
+                        if(this.formData[key].value === ""){
+                            emptyForm = true;
+                            throw Error();
+                        }
+                    });
+                }
                 
-                Object.keys(this.formData).map(key => {
-                    if(this.formData[key].value === ""){
-                        emptyForm = true;
-                        throw Error();
-                    }
-                });
 
                 if (productsExistCondition) throw Error();           
                 await this.fetchData(path, methodType, submitedFormData);
@@ -216,10 +222,9 @@ class Form {
     }
 
     async fetchSomeOptions(triggerInputWrap, containerInputWrap, url, queryKey, nullElementText, dataKey, filtrationFunc){
-        this.areasDataWithNullField = await this.updateAreaOptions()
         triggerInputWrap.addEventListener("change", async () => {
             if(triggerInputWrap.value != "null"){
-                const nullElement = document.querySelector("option");
+                const nullElement = containerInputWrap.querySelector("option");
                 let data = (await this.fetchNewPostAPIData(url, `${queryKey}=${triggerInputWrap.value}`))[dataKey];
 
                 if(filtrationFunc)
@@ -246,18 +251,13 @@ class Form {
 
     async updateAreaOptions(container){
         const areasData = (await this.fetchNewPostAPIData("get_regions")).regions;
-        this.areasDataWithNullField = [{ Ref: null, Description: "-- Оберіть область --" }, ...areasData];
     
-        this.clearOptions(container);
-    
-        this.areasDataWithNullField.forEach((area) => {
+        areasData.forEach((area) => {
             const element = document.createElement("option");
             element.value = area.Ref;
             element.textContent = area.Description;
             container.appendChild(element);
         });
-
-        return areasData;
     }
 }
 
