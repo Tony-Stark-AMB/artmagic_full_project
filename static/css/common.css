@@ -493,6 +493,28 @@ body.modal-open {
 .btn-prev-catalog-10 {
   left: 19%;
 }
+@media (max-width: 1600px) {
+  .btn-prev-catalog-10 {
+    left: 10%;
+  }
+}
+@media (max-width: 1260px) {
+  .btn-prev-catalog-10 {
+    left: 2%;
+  }
+}
+@media (max-width: 992px) {
+  .btn-prev-catalog-10 {
+    left: 10%;
+    bottom: 1%;
+  }
+}
+@media (max-width: 576px) {
+  .btn-prev-catalog-10 {
+    left: 6%;
+    bottom: 0.5%;
+  }
+}
 
 .btn-next-category-10 {
   position: absolute;
@@ -502,6 +524,28 @@ body.modal-open {
 }
 .btn-next-catalog-10 {
   right: 44%;
+}
+@media (max-width: 1600px) {
+  .btn-next-catalog-10 {
+    right: 35%;
+  }
+}
+@media (max-width: 1260px) {
+  .btn-next-catalog-10 {
+    right: 30%;
+  }
+}
+@media (max-width: 992px) {
+  .btn-next-catalog-10 {
+    right: 12%;
+    bottom: 1%;
+  }
+}
+@media (max-width: 576px) {
+  .btn-next-catalog-10 {
+    right: 6%;
+    bottom: 0.5%;
+  }
 }
 
 .loader {
@@ -552,11 +596,25 @@ body.modal-open {
   align-items: center;
   width: 100%;
   position: relative;
+  margin: 0 auto;
   right: 12.5%;
+}
+@media (max-width: 768px) {
+  .pagination {
+    width: 50%;
+    height: 80px;
+  }
 }
 .pagination-index {
   right: 0;
 }
 .pagination-category {
   right: 0;
+}
+@media (max-width: 992px) {
+  .pagination-catalog {
+    width: 50%;
+    height: 80px;
+    position: initial;
+  }
 }

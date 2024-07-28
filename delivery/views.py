@@ -62,12 +62,9 @@ def get_branches_and_postomats(request):
 
     logger.debug("Fetching branches and postomats for city_ref: %s", city_ref)
     branches = NovaPoshtaAPI.get_branches(city_ref=city_ref)
-    postomats = NovaPoshtaAPI.get_postomats(city_ref=city_ref)
 
     logger.debug("Branches: %s", branches)
-    logger.debug("Postomats: %s", postomats)
 
     return JsonResponse({
         'branches': branches.get('data', []),
-        'postomats': postomats.get('data', []),
     })

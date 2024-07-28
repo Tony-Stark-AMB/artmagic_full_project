@@ -31,7 +31,7 @@ const patternsOrder = {
 
 basket.renderBasket();
 
-const formOrder = new Form(formDataOrder, patternsOrder, "Order", productManager, basket );
+export const formOrder = new Form(formDataOrder, patternsOrder, "Order", productManager, basket );
 
 formOrder.initForm("orderForm", {
     fullName: "name",

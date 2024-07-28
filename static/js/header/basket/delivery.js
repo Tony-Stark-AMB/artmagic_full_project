@@ -1,3 +1,5 @@
+import { formOrder } from "./order.js";
+
 document.addEventListener("DOMContentLoaded", () => {
     const notification = document.getElementById('notification');
     const formContainer = document.querySelector('.order-choose__form');
@@ -80,10 +82,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (selectedDelivery === typeOfIcon) {
                 selectedDelivery = null;
+                formOrder.setSelectedDelivery(null);
                 removeDeliveryActiveClass();
             } else {
                 removeDeliveryActiveClass();
                 selectedDelivery = typeOfIcon;
+                formOrder.setSelectedDelivery(typeOfIcon);
 
                 switch (typeOfIcon) {
                     case "artmagic_department":
@@ -142,10 +146,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (selectedPayment === typeOfIcon) {
                 selectedPayment = null;
+                formOrder.setSelectedPayment(null);
                 removePaymentActiveClass();
             } else {
                 removePaymentActiveClass();
                 selectedPayment = typeOfIcon;
+                formOrder.setSelectedPayment(typeOfIcon);
 
                 switch (typeOfIcon) {
                     case "liqpay":

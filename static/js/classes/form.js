@@ -17,6 +17,10 @@ class Form {
         this.dataSubmitBtn = document.querySelector(`button[data-submit="btn_${formName}"]`);
         this.successLabel = document.querySelector("div#successMessage");
         this.errorLabel = document.querySelector("div#errorMessage");
+        this.selectedBasketObj = {
+            selectedDelivery: null,
+            selectedPayment: null
+        }
     }
 
     getField(fieldName) {
@@ -98,7 +102,7 @@ class Form {
                 const departmentInputWrap = this.orderInputWrap("department");
 
                 this.fetchSomeOptions(areaInputWrap, cityInputWrap, "get_cities", "region_ref", "-- Оберіть Місто --", "cities", undefined, this.areasDataWithNullField);
-                this.fetchSomeOptions(cityInputWrap, departmentInputWrap, "get_branches_and_postomats", "city_ref", "-- Оберіть відділення", "branches")
+                this.fetchSomeOptions(cityInputWrap, departmentInputWrap, "get_branches_and_postomats", "city_ref", "-- Оберіть відділення", "branches", this.filterData)
                 break;
             
         };
@@ -227,10 +231,14 @@ class Form {
                 const nullElement = containerInputWrap.querySelector("option");
                 let data = (await this.fetchNewPostAPIData(url, `${queryKey}=${triggerInputWrap.value}`))[dataKey];
 
-                if(filtrationFunc)
-                    data = filtrationFunc(data);
+                const filterDepartment = (dataArr, key) => filtrationFunc(dataArr, key, value => value.startsWith("Відділення"));
+                const filterPayment = (dataArr, key) => filtrationFunc(dataArr, key, value => !value.startsWith("Відділення"));
+                if(filtrationFunc && this.selectedBasketObj.selectedDelivery === "new_post_department")
+                    data = filterDepartment(data, "Description");
+                if(filtrationFunc && this.selectedBasketObj.selectedDelivery === "new_post_packing")
+                    data = filterPayment(data, "Description");
                 
-
+                console.log(data);
                 containerInputWrap.innerHTML = "";  
                 nullElement.value = null;
                 nullElement.textContent = nullElementText;
@@ -257,6 +265,30 @@ class Form {
             element.value = area.Ref;
             element.textContent = area.Description;
             container.appendChild(element);
+        });
+    }
+
+    setSelectedDelivery(value){
+        this.selectedBasketObj = {...this.selectedBasketObj, selectedDelivery: value};
+        this.resetSelectElements();
+    }
+
+    setSelectedPayment(value){
+        this.selectedBasketObj = {...this.selectedBasketObj, selectedPayment: value};
+    }
+
+    filterData(data, key, condition){
+        return data.filter((obj) => condition(obj[key]))
+    }
+
+    resetSelectElements() {
+        // Находим все элементы select в форме
+        const form = document.getElementById('orderForm');
+        const selects = form.querySelectorAll('select');
+
+        // Устанавливаем значение каждого select на null
+        selects.forEach(select => {
+            select.value = 'null';
         });
     }
 }

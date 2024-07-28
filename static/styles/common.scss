@@ -259,6 +259,20 @@ body.modal-open {
     }
     &-catalog-10{
         left: 19%;
+        @include respond-to(extra-large-screen) {
+            left: 10%;
+        }
+        @include respond-to(laptop-small){
+            left: 2%;
+        }
+        @include respond-to(tablet-large){
+            left: 10%;
+            bottom: 1%;
+        }
+        @include respond-to(phone-large){
+            left: 6%;
+            bottom: 0.5%;
+        }
     }
 }
 
@@ -271,6 +285,20 @@ body.modal-open {
     }
     &-catalog-10{
         right: 44%;
+        @include respond-to(extra-large-screen){
+            right: 35%;
+        }
+        @include respond-to(laptop-small){
+            right: 30%;
+        }
+        @include respond-to(tablet-large){
+            right: 12%;
+            bottom: 1%;
+        }
+        @include respond-to(phone-large){
+            right: 6%;
+            bottom: 0.5%;
+        }
     }
 }
 
@@ -319,11 +347,23 @@ body.modal-open {
     align-items: center;
     width: 100%;
     position: relative;
+    margin: 0 auto;
     right: 12.5%;
+    @include respond-to(tablet-small){
+        width: 50%;
+        height: 80px;
+    }
     &-index{
         right: 0;
     }
     &-category{
         right: 0;
+    }
+    &-catalog{
+        @include respond-to(tablet-large){
+            width: 50%;
+            height: 80px;
+            position: initial;
+        }
     }
 }
