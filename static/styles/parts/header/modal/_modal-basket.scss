@@ -1,3 +1,7 @@
+@import "../../../breakpoints/variables",
+        "../../../breakpoints/response-fn";
+
+
 .basket__modal{
     max-width: 700px;
     overflow-y: initial !important;
@@ -110,8 +114,12 @@
     &__btns{
         width: 100%;
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
+        @include respond-to(phone-large){
+            height: 80px;
+        }
     }
     &__text{
         font-weight: 700;
@@ -151,6 +159,7 @@
     &__payment{
         margin: 20px auto;
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-around;
         align-items: center;
         & input{
@@ -159,8 +168,17 @@
     }
     &__payment{
         width: 60%;
+        @include respond-to(tablet-small){
+            width: 95%;
+        }
+        @include respond-to(phone-small){
+            width: 100%;
+        }
         & label{
-            width: 30%;
+            width: 33%;
+            // @include respond-to(phone-small){
+            //     width: 33%;
+            // }
         }
     }
     
@@ -196,23 +214,22 @@
         height: 50px;
         transition: all .05s ease;
         cursor: pointer;    
-        // & .active_new{
-        //     color: $c11;
-        // }
-        // & .active_ukr{
-        //     color: $c20;
-        // }
-        
+        @include respond-to(tablet-small){
+            width: 40px;
+        }
     }
 }
 
 .ukr_post{
     width: 40px;
     height: 40px;
+    @include respond-to(tablet-small){
+        width: 33px;
+    }
 }
 
 .artmagic_department{
-    width: 30px;
+    width: 33px;
     height: 50px;
 }
 
@@ -237,6 +254,15 @@
         outline: none;
         border: 1px solid $c5;
         margin: 20px 0;
+        @include respond-to(laptop-large){
+            width: 20vw;
+        }   
+        @include respond-to(laptop-small){
+            width: 27.5vw;
+        }
+        @include respond-to(tablet-large){
+            width: 35vw;
+        }
         &__content{
             display: flex;
             justify-content: space-around;

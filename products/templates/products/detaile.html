@@ -1,0 +1,60 @@
+{% extends 'products/base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/product.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main__wrap">
+    <main class="main container__small">
+        <div class="product-page">
+            <div class="product-image__content" data-aos="fade-down-right">
+                <div class="product-image__wrap">
+                    <img class="product-image" src="{{ product.image.url }}" alt="Product Image" class="main-image">
+                </div>
+            </div>
+            <div class="product-details" data-aos-delay="100" data-aos="fade-left">
+                <h2 class="product-title">{{ product.name }}</h2>
+                <p class="product-description">{{ product.description|striptags }}</p>
+                <div class="product-details__buttons">
+                    <button class="product-details__btn__add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="product-specs" data-aos-delay="200" data-aos="fade-up">
+            <h3>Product Specifications</h3>
+            <table>
+                 {% for el in att %}
+
+                    <p>{{ el.attribute }}{{ '  ' }}:{{ '  ' }}{{ el.text }}</p>
+                {% endfor %}
+                </tr>
+            </table>
+        </div>
+    </main>
+</div>
+{% endblock %}
+<script>
+    $(document).ready(function(){
+        $('.product-details__btn__add-to-cart').click(function(){
+            var product_id = "{{ product.id }}";
+            $.ajax({
+                type: "POST",
+                url: "{% url 'products:cart_add' %}",
+                data: {
+                    'product_id': product_id,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                dataType: 'json',
+                success: function(data){
+                    $('#basket__modal').modal('show');
+                    $('#basket-products').html(data.cart_items_html);
+                },
+                error: function(xhr, errmsg, err){
+                    console.log(xhr.status + ": " + xhr.responseText);
+                }
+            });
+        });
+    });
+</script>

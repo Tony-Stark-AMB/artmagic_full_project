@@ -615,8 +615,14 @@
 .modal-footer__btns {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+}
+@media (max-width: 576px) {
+  .modal-footer__btns {
+    height: 80px;
+  }
 }
 .modal-footer__text {
   font-weight: 700;
@@ -650,6 +656,7 @@
 .order-choose__delivery, .order-choose__payment {
   margin: 20px auto;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
 }
@@ -659,8 +666,18 @@
 .order-choose__payment {
   width: 60%;
 }
+@media (max-width: 768px) {
+  .order-choose__payment {
+    width: 95%;
+  }
+}
+@media (max-width: 400px) {
+  .order-choose__payment {
+    width: 100%;
+  }
+}
 .order-choose__payment label {
-  width: 30%;
+  width: 33%;
 }
 .order-choose__title {
   text-align: center;
@@ -691,14 +708,24 @@
   display: grid;
   place-items: center;
 }
+@media (max-width: 768px) {
+  .card-input__icon {
+    width: 40px;
+  }
+}
 
 .ukr_post {
   width: 40px;
   height: 40px;
 }
+@media (max-width: 768px) {
+  .ukr_post {
+    width: 33px;
+  }
+}
 
 .artmagic_department {
-  width: 30px;
+  width: 33px;
   height: 50px;
 }
 
@@ -721,6 +748,21 @@
   outline: none;
   border: 1px solid #ddd;
   margin: 20px 0;
+}
+@media (max-width: 1400px) {
+  .order__input {
+    width: 20vw;
+  }
+}
+@media (max-width: 1260px) {
+  .order__input {
+    width: 27.5vw;
+  }
+}
+@media (max-width: 992px) {
+  .order__input {
+    width: 35vw;
+  }
 }
 .order__input__content {
   display: flex;

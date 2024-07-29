@@ -16,6 +16,7 @@ from .models import (Products,
                      ProductFilter,
                      FilterGroup,
                      Filter,
+                     ProductImage,
                      Manufacturer)
 
 def add_to_cart(request):
@@ -187,3 +188,26 @@ def get_new_arrivals(request):
     }
     print(json_data)
     return JsonResponse(json_data)
+
+class DetaileProductView(View):
+    template_name = 'products/detaile.html'
+    
+    def get(self, request, id):
+
+        product = Products.objects.get(id=id)
+        att = ProductAttribute.objects.filter(product_id=product.pk)
+        images = ProductImage.objects.filter(product=product.pk)
+        all_images = self.build_images(product, images)
+        
+        return render(request, self.template_name, {'products': product, 'att': att, 'all_images': all_images})
+
+    def build_images(self, product, images):
+        all_images = [] 
+
+        if product.image:
+            all_images.append(product.image.url)
+
+        for image in images:
+            if image.image:
+                all_images.append(image.image.url)
+        return all_images

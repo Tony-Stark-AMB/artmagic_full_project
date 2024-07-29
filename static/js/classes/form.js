@@ -142,6 +142,10 @@ class Form {
 
                 if (clearCond) {
                     this.clearForm(this.initObj);
+                    if(formContainerId === "orderForm"){
+                        const selectors = document.querySelectorAll("select");
+                        selectors.forEach((el) => el.value = null)
+                    }
                     if (this.productManager !== null) {
                         this.productManager.clearStorageProducts();
                         this.productManager.clearProducts();
