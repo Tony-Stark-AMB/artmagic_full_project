@@ -416,7 +416,7 @@
   overflow: hidden;
 }
 .mobile-menu__container {
-  width: 100%;
+  width: 95.5%;
   padding: 15px;
 }
 .mobile-menu__list {
@@ -933,8 +933,10 @@
 }
 
 .product-thumbnails {
-  width: 100%;
+  width: 15%;
   margin: 20px 0;
+}
+.product-thumbnails-wrap {
   display: flex;
   justify-content: space-evenly;
 }

@@ -34,10 +34,12 @@
 }
 
 .product-thumbnails{
-    width: 100%;
+    width: 15%;
     margin: 20px 0;
-    display: flex;
-    justify-content: space-evenly;
+    &-wrap{
+        display: flex;
+        justify-content: space-evenly;
+    }
 }
 
 .main-image {

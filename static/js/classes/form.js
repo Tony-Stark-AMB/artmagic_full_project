@@ -120,7 +120,7 @@ class Form {
             console.log(this.formData);
             
 
-            const submitedFormData = this.mapedFormData(obj);
+            const submitedFormData = {...this.mapedFormData(obj), ...this.selectedBasketObj};
             if (this.productManager !== null) submitedFormData.products = 
                 this.productManager.filterProductsByQuantity(this.productManager.getProducts());
             const productsExistCondition = 

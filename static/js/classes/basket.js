@@ -22,13 +22,22 @@ export class Basket {
         const btns = productList.querySelectorAll(`button[data-item="product_btn"]`);
         btns.forEach((btn) => {
             btn.addEventListener("click", async (e) => {
-                console.log("here");
                 const id = +e.target.closest(`div.product-item`).getAttribute("id");
                 const product = await this.productManager.fetchNewProduct(id);
                 this.productManager.addProduct(product);
                 this.renderBasket();
                 this.animateBadge();
             });
+        });
+        const products = productList.querySelectorAll(`div.product-item`);
+        products.forEach(productElement => {
+            productElement.addEventListener("click", (e) => {
+                if(e.target.tagName === "BUTTON")
+                    return 
+                const currentEl = e.currentTarget;
+                const currentElId = +currentEl.getAttribute("id");
+                window.location.assign(`${PROTOCOL}://${HOST}:${PORT}/product/detaile-product/${currentElId}/`);
+            })
         });
     }
 

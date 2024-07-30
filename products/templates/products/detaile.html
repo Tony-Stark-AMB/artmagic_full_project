@@ -11,9 +11,16 @@
         <div class="product-page">
             <div class="product-image__content" data-aos="fade-down-right">
                 <div class="product-image__wrap">
-                    <img class="product-image" src="{{ product.image.url }}" alt="Product Image" class="main-image">
+                    <img class="product-image"  src="{{ all_images.0  }}">
+                </div>
+                <div class="div">
+                    {% for image_url  in all_images %}
+                        <img class="product-thumbnails" src="{{image_url}}" >
+                    {% endfor %}
                 </div>
             </div>
+            
+            
             <div class="product-details" data-aos-delay="100" data-aos="fade-left">
                 <h2 class="product-title">{{ product.name }}</h2>
                 <p class="product-description">{{ product.description|striptags }}</p>
