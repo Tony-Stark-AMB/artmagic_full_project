@@ -396,7 +396,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
     <script src="{% static 'node_modules/aos/dist/aos.js' %}"></script>
     <script>
-        AOS.init();
+        AOS.init({
+            once: true
+        });
     </script>
     <script src="{% static 'js/common/bone.js' %}"></script>
     <script src="{% static 'js/classes/product.js' %}"></script>

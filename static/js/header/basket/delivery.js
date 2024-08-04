@@ -129,11 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     icon.classList.add("c8");
                     break;
                 case "payment_real":
-                    const pathesPayment = icon.children;
-                    pathesPayment[0].classList.remove("c12");
-                    pathesPayment[0].classList.add("c8");
-                    pathesPayment[1].classList.remove("c20");
-                    pathesPayment[1].classList.add("c8");
+                    icon.setAttribute("src", "/static/assets/basket-icons/oplata-kartoy_grey.png");
                     break;
             }
         });
@@ -143,7 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
         icon.addEventListener('click', (e) => {
             const typeOfIcon = e.currentTarget.dataset.payment;
             const curIcon = e.currentTarget;
-
             if (selectedPayment === typeOfIcon) {
                 selectedPayment = null;
                 formOrder.setSelectedPayment(null);
@@ -152,7 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 removePaymentActiveClass();
                 selectedPayment = typeOfIcon;
                 formOrder.setSelectedPayment(typeOfIcon);
-
                 switch (typeOfIcon) {
                     case "liqpay":
                         const pathesLiqpay = curIcon.children[0].children;
@@ -167,11 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         curIcon.classList.add("c20");
                         break;
                     case "payment_real":
-                        const pathesPayment = curIcon.children;
-                        pathesPayment[0].classList.remove("c8");
-                        pathesPayment[0].classList.add("c12");
-                        pathesPayment[1].classList.remove("c8");
-                        pathesPayment[1].classList.add("c20");
+                        icon.setAttribute("src", "/static/assets/basket-icons/oplata-kartoy.png");
                         break;
                 }
             }

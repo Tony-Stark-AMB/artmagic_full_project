@@ -4,9 +4,10 @@ const {HOST, PORT, PROTOCOL} = {
     PROTOCOL: "http"
 }
 
-const {INDEX, CATEGORY, CATALOG, PROFILE} = {
+const {INDEX, CATEGORY, CATALOG, PROFILE, DETAILE} = {
     INDEX: "index",
     CATEGORY: "category",
     CATALOG: "catalog",
     PROFILE: "profile",
+    DETAILE: "detaile"
 }

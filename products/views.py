@@ -199,7 +199,7 @@ class DetaileProductView(View):
         images = ProductImage.objects.filter(product=product.pk)
         all_images = self.build_images(product, images)
         
-        return render(request, self.template_name, {'products': product, 'att': att, 'all_images': all_images})
+        return render(request, self.template_name, {'product': product, 'att': att, 'all_images': all_images})
 
     def build_images(self, product, images):
         all_images = [] 

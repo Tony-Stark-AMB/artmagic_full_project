@@ -6,14 +6,24 @@
 {% endblock %}
 
 {% block content %}
-<div class="main__wrap">
+<div class="main__wrap" >
     <main class="main container__small">
-        <div class="product-page">
+        <div class="product-page" >
             <div class="product-image__content" data-aos="fade-down-right">
+                {% if product.stock_status_id.pk == 7 %}
+                    <div class="product-details__status bg23">
+                        В наявності
+                    </div>
+                {% else %}
+                    <div class="product-details__status bg21">
+                        На замовлення
+                    </div>
+                {% endif %}
                 <div class="product-image__wrap">
-                    <img class="product-image"  src="{{ all_images.0  }}">
+                    <img class="products-detaile__item__img"  src="{{ all_images.0  }}">
                 </div>
-                <div class="div">
+                <div #description>
+                    
                     {% for image_url  in all_images %}
                         <img class="product-thumbnails" src="{{image_url}}" >
                     {% endfor %}
@@ -22,15 +32,31 @@
             
             
             <div class="product-details" data-aos-delay="100" data-aos="fade-left">
-                <h2 class="product-title">{{ product.name }}</h2>
-                <p class="product-description">{{ product.description|striptags }}</p>
+                
                 <div class="product-details__buttons">
-                    <button class="product-details__btn__add-to-cart">Add to Cart</button>
+                    <h2 class="product-title">{{ product.name }}</h2>
+                    <button class="product-details__btn__add-to-cart" id="{{product.pk}}">Додати до кошика</button>
                 </div>
+                <p class="product-details__articul c8">Артикул: {{product.model}}</p>
+                <div class="product-details__info">
+                    <p class="product-details__price">Ціна: <span class="fw-bold">{{product.price}} грн</span> </p>
+                    <p class="product-details__manufacturer">Виробник: {{product.manufacturer}}</p>
+                    <h5 class="text-center">Характеристика товару</h5>
+                    <table class="product-detailes__atributes">
+                        <tr>
+                            <th class="atributes-row">Виробник</th> 
+                            <td class="atributes-row atributes-row__value">{{product.manufacturer}}</td>
+                        </tr>
+                        <tr>
+                           
+                        </tr>
+                    </table>
+                </div>  
             </div>
         </div>
-        <div class="product-specs" data-aos-delay="200" data-aos="fade-up">
-            <h3>Product Specifications</h3>
+        <div class="product-specs" data-aos-delay="200" data-aos-anchor="description" data-aos="fade-up">
+            <h3>Опис товару</h3>
+            <p class="product-description">{{ product.description|striptags }}</p>
             <table>
                  {% for el in att %}
 
@@ -42,7 +68,7 @@
     </main>
 </div>
 {% endblock %}
-<script>
+<!-- <script>
     $(document).ready(function(){
         $('.product-details__btn__add-to-cart').click(function(){
             var product_id = "{{ product.id }}";
@@ -64,4 +90,8 @@
             });
         });
     });
-</script>
+</script> -->
+{% block js %}
+    <script src="{% static 'js/detaile/detaile.js' %}"></script>
+    <script type="module" src="{% static 'js/detaile/detaile-btn.js' %}"></script>
+{% endblock %}
