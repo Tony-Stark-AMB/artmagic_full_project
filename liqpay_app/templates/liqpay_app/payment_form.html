@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Redirecting to LiqPay</title>
+</head>
+<body>
+    <h2>Redirecting to LiqPay...</h2>
+    <form method="post" action="https://www.liqpay.ua/api/3/checkout">
+        {{ form|safe }}
+        <button type="submit">Proceed to Payment</button>
+    </form>
+    <script>
+        // document.forms[0].submit();  // Автоматично відправляємо форму
+    </script>
+</body>
+</html>

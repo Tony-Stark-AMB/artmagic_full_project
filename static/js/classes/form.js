@@ -134,6 +134,20 @@ class Form {
                         }
                     });
                 }
+
+                console.log(this.selectedBasketObj.selectedPayment, formContainer)
+                if(formContainerId == "orderForm" && this.selectedBasketObj.selectedPayment == "liqpay"){
+                    console.log("orderForm + liqpay")
+                    this.formData.description = `
+                        Час замовлення: ${this.getCurrentDateTime()}
+                        Продукти:
+
+                    `
+                    this.formData.amount = this.productManager.allProductsTotalPrice(this.productManager.priceOutputFn, 2);
+                    const body = this.formData;
+                    const orderFormData = await this.fetchData(`payment/create/`, "POST", body);
+                    console.log(orderFormData);
+                }
                 
 
                 if (productsExistCondition) throw Error();           
@@ -294,6 +308,24 @@ class Form {
         selects.forEach(select => {
             select.value = 'null';
         });
+    }
+
+    getCurrentDateTime() {
+        const now = new Date();
+        
+        // Форматирование компонентов даты и времени
+        const day = String(now.getDate()).padStart(2, '0');
+        const month = String(now.getMonth() + 1).padStart(2, '0'); // Месяцы начинаются с 0
+        const year = String(now.getFullYear()).slice(-2);
+        
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        
+        // Форматирование даты и времени в строку
+        const formattedDateTime = `${day}.${month}.${year} ${hours}:${minutes}:${seconds}`;
+        
+        return formattedDateTime;
     }
 }
 
