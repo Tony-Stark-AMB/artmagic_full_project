@@ -7,6 +7,8 @@ from .models import Payment
 from users.models import CustomUser, Address
 from liqpay.liqpay3 import LiqPay
 from datetime import datetime
+from django.http import JsonResponse
+import re
 import json
 
 logger = logging.getLogger(__name__)
@@ -42,8 +44,18 @@ def create_payment(request):
         }
         print(params)
         form = liqpay.cnb_form(params)
-        # return render(request, 'liqpay_app/payment_form.html', {'form': form})
-        return HttpResponse(form)
+        print(form)
+        data_pattern = re.compile(r'<input type="hidden" name="data" value="([^"]+)" />')
+        signature_pattern = re.compile(r'<input type="hidden" name="signature" value="([^"]+)" />')
+
+        data_match = data_pattern.search(form)
+        signature_match = signature_pattern.search(form)
+
+        data = {
+            "data": data_match.group(1) if data_match else None,
+            "signature": signature_match.group(1) if signature_match else None,
+        }
+        return JsonResponse(data)
 
     user = request.user
     address = user.address if hasattr(user, 'address') else None
