@@ -23,13 +23,16 @@ class OrderIDGenerator:
 
 order_id_liqpay = OrderIDGenerator()
 
-@login_required
 def create_payment(request):
     if request.method == 'POST':
-        print( json.loads(request.body))
-        data = json.loads(request.body)
-        amount = data.get('amount', '')
-        description = data.get('description', '')
+        body_data = json.loads(request.body)
+        amount = body_data.get('amount', '')
+        email = body_data.get('email', '')
+        description = body_data.get('description', '')
+        
+        # Assuming you have some function to get the next order ID
+        order_id = order_id_liqpay.get_next_id()
+
         liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
         params = {
             'public_key': settings.LIQPAY_PUBLIC_KEY,
@@ -37,29 +40,28 @@ def create_payment(request):
             'amount': amount,
             'currency': 'UAH',
             'description': description,
-            'order_id': order_id_liqpay.get_next_id(),
+            'order_id': order_id,
             'version': '3',
             'server_url': request.build_absolute_uri('/liqpay-callback/'),
             'result_url': request.build_absolute_uri('/payment-success/'),
         }
-        print(params)
-        form = liqpay.cnb_form(params)
-        print(form)
-        data_pattern = re.compile(r'<input type="hidden" name="data" value="([^"]+)" />')
-        signature_pattern = re.compile(r'<input type="hidden" name="signature" value="([^"]+)" />')
+        
+        # Generate the form HTML
+        form_html = liqpay.cnb_form(params)
+        
+        form_html = form_html.replace('<form', '<form target="_blank"')
 
-        data_match = data_pattern.search(form)
-        signature_match = signature_pattern.search(form)
-
-        data = {
-            "data": data_match.group(1) if data_match else None,
-            "signature": signature_match.group(1) if signature_match else None,
+        # Return the form HTML in a JSON response
+        response_data = {
+            'status': 200,
+            'formHtml': form_html
         }
-        return JsonResponse(data)
+        
+        return JsonResponse(response_data)
 
-    user = request.user
-    address = user.address if hasattr(user, 'address') else None
-    return render(request, 'liqpay_app/create_payment.html', {'user': user, 'address': address})
+    user = request.user if request.user.is_authenticated else None
+    address = user.address if user and hasattr(user, 'address') else None
+    return HttpResponse("GET method not supported for payment creation", status=405)
 # def create_payment(request):
 
 @login_required

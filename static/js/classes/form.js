@@ -48,6 +48,8 @@ class Form {
     triggerInput(fieldName) {
         const errorElem = this.errorMessageElement(fieldName);
         this.formData[fieldName].value = this.getField(fieldName).value;
+        console.log(fieldName);
+        console.log("this.formData[fieldName]", this.formData[fieldName])
         return !this.validateField(fieldName, errorElem);
     }
 
@@ -143,10 +145,21 @@ class Form {
                         Продукти:
 
                     `
+                    console.log(this.formData)
                     this.formData.amount = this.productManager.allProductsTotalPrice(this.productManager.priceOutputFn, 2);
                     const body = this.formData;
-                    const orderFormData = await this.fetchData(`payment/create/`, "POST", body);
-                    console.log(orderFormData);
+                    try{
+                        const {formHtml} = await this.fetchData(`payment/create/`, "POST", body);
+                        const liqpayFormContainer = document.getElementById('liqpayForm')
+                        liqpayFormContainer.innerHTML = formHtml;
+                        liqpayFormContainer.querySelector('form').addEventListener("submit", (e) => {
+                            e.preventDefault();
+                        });
+                        liqpayFormContainer.querySelector('form').submit();
+                    } catch (err) {
+                        console.log(err)
+                    }
+                    
                 }
                 
 

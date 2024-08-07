@@ -117,7 +117,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 NOVA_POSHTA_API_KEY = "3395ff65768492c3ac09b0daa030498e"
-
+LIQPAY_PUBLIC_KEY = 'sandbox_i7216631845'
+LIQPAY_PRIVATE_KEY = 'sandbox_riL15asckkqGWZPCPe6F68V3HdJ53RZPak0D0xCO'
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
