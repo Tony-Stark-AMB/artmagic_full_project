@@ -97,4 +97,14 @@ export class ProductManager {
     filterProductsByQuantity(products) {
         return products.filter(product => product.quantity > 0);
     }
+
+    getProductsInfo() {
+        return this.products.map(({id, name, price, quantity}, i) => 
+            `${i + 1}) Продукт 
+             Назва: ${name}
+             Ціна: ${price} грн
+             Кільіксть: ${quantity}
+             Ціна загальна: ${this.currentProductTotalPrice(id, this.priceOutputFn, 2)} грн`
+        ).join('\n');
+    }
 }

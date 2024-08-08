@@ -44,6 +44,6 @@ formOrder.initForm("orderForm", {
     department: "department"
 }, "cart/process-order/", "POST", 
     {successMessage: "Ваше замовлення успішно прийняте", errorMessage: "Якась помилка"},
-    60000, true
+    3000, true
 );
 

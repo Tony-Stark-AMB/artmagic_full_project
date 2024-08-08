@@ -138,12 +138,13 @@ body.modal-open {
 
 .alert{
     position: fixed;
-    top: 5%;
+    top: 8%;
     left: 50%;
     transform: translate(-50%, -55%);
     z-index: 15000;
     font-weight: 500;
     display: none;
+    text-align: center;
     @include respond-to(phone-large){
         top: 10%;
     }

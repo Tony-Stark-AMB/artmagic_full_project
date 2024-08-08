@@ -46,10 +46,11 @@ class Form {
     }
 
     triggerInput(fieldName) {
+        if(fieldName == "description" || fieldName == "amount")
+            return;
         const errorElem = this.errorMessageElement(fieldName);
+
         this.formData[fieldName].value = this.getField(fieldName).value;
-        console.log(fieldName);
-        console.log("this.formData[fieldName]", this.formData[fieldName])
         return !this.validateField(fieldName, errorElem);
     }
 
@@ -141,9 +142,10 @@ class Form {
                 if(formContainerId == "orderForm" && this.selectedBasketObj.selectedPayment == "liqpay"){
                     console.log("orderForm + liqpay")
                     this.formData.description = `
+                        ФОП Чикольба Т.Ю.
                         Час замовлення: ${this.getCurrentDateTime()}
-                        Продукти:
-
+                        Продукти: 
+                        ${this.productManager.getProductsInfo()}
                     `
                     console.log(this.formData)
                     this.formData.amount = this.productManager.allProductsTotalPrice(this.productManager.priceOutputFn, 2);
@@ -155,7 +157,7 @@ class Form {
                         liqpayFormContainer.querySelector('form').addEventListener("submit", (e) => {
                             e.preventDefault();
                         });
-                        liqpayFormContainer.querySelector('form').submit();
+                        setTimeout(() => liqpayFormContainer.querySelector('form').submit(), 1000);
                     } catch (err) {
                         console.log(err)
                     }
@@ -180,6 +182,7 @@ class Form {
                     }
                 }
             } catch (err) {
+                console.log(err)
                 switch(true){
                     case productsExistCondition:
                         this.showAlert("err", "Неможливо зробити замовлення без обраного товару", animDuration);
