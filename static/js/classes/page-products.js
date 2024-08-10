@@ -93,6 +93,7 @@ export class PageProducts {
 
         const images = document.querySelectorAll(`.products-${this.pageName}__item__img`);
         rerenderImage(images);
+        this.basket.addEventToDetailePage(productsList);
     }
 
     renderPaginationBullets() {

@@ -29,6 +29,10 @@ export class Basket {
                 this.animateBadge();
             });
         });
+        this.addEventToDetailePage(productList);
+    }
+
+    addEventToDetailePage(productList){
         const products = productList.querySelectorAll(`div.product-item`);
         products.forEach(productElement => {
             productElement.addEventListener("click", (e) => {

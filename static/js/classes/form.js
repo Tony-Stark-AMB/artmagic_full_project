@@ -119,10 +119,7 @@ class Form {
            
             let emptyForm = false;
             Object.keys(this.formData).forEach(key => this.triggerInput(key));
-
-            console.log(this.formData);
             
-
             const submitedFormData = {...this.mapedFormData(obj), ...this.selectedBasketObj};
             if (this.productManager !== null) submitedFormData.products = 
                 this.productManager.filterProductsByQuantity(this.productManager.getProducts());
@@ -138,16 +135,13 @@ class Form {
                     });
                 }
 
-                console.log(this.selectedBasketObj.selectedPayment, formContainer)
                 if(formContainerId == "orderForm" && this.selectedBasketObj.selectedPayment == "liqpay"){
-                    console.log("orderForm + liqpay")
                     this.formData.description = `
                         ФОП Чикольба Т.Ю.
                         Час замовлення: ${this.getCurrentDateTime()}
                         Продукти: 
                         ${this.productManager.getProductsInfo()}
                     `
-                    console.log(this.formData)
                     this.formData.amount = this.productManager.allProductsTotalPrice(this.productManager.priceOutputFn, 2);
                     const body = this.formData;
                     try{
@@ -182,7 +176,6 @@ class Form {
                     }
                 }
             } catch (err) {
-                console.log(err)
                 switch(true){
                     case productsExistCondition:
                         this.showAlert("err", "Неможливо зробити замовлення без обраного товару", animDuration);
@@ -272,7 +265,6 @@ class Form {
                 if(filtrationFunc && this.selectedBasketObj.selectedDelivery === "new_post_packing")
                     data = filterPayment(data, "Description");
                 
-                console.log(data);
                 containerInputWrap.innerHTML = "";  
                 nullElement.value = null;
                 nullElement.textContent = nullElementText;
