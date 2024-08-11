@@ -310,6 +310,7 @@
   outline: none;
   border: 1px solid #ddd;
   padding-left: 10px;
+  position: relative;
 }
 .header-search__input__wrap {
   position: relative;
@@ -323,6 +324,13 @@
   height: 20px;
   top: 20%;
   right: 5%;
+}
+.header-search__input__icon-wrap {
+  border: none;
+  outline: none;
+  position: absolute;
+  right: 5%;
+  top: 20%;
 }
 
 .header-login {

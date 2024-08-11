@@ -168,14 +168,23 @@ export class PageProducts {
 
     async fetchProducts(page) {
         const pageUrl = window.location.href.split("/").filter(part => part !== "");
-        const slug = pageUrl[pageUrl.length - 1];
+        let slug = pageUrl[pageUrl.length - 1];
         const filtrartionProductsQuery = this.updateFilterString();
-        console.log(filtrartionProductsQuery);
         const { productsPerPage } = this.swiperPagination;
 
+        const isSearchPage = window.location.href.includes("search");
+        if(isSearchPage)
+            slug = "search";
+        
+        const query = pageUrl[pageUrl.length - 1].replace("?", "&");
+        console.log(query);
+        
         const url = `http://localhost:8000/product/${slug}/add-filters?page=${page}&productsPerPage=${productsPerPage}&${filtrartionProductsQuery ? filtrartionProductsQuery : ""}`;
+        
+        const queryUrl = url + query;
 
-        const response = await fetch(url, {
+        console.log(isSearchPage)
+        const response = await fetch(isSearchPage ? url : queryUrl, {
             method: "GET",
             mode: "cors",
             headers: {

@@ -28,6 +28,7 @@ urlpatterns = [
     path('cart/', include('carts.urls')),
     path('delivery/', include('delivery.urls')),
     path('payment/', include('liqpay_app.urls')),
+    path('main/', include('main.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

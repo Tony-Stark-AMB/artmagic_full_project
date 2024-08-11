@@ -46,8 +46,10 @@ INSTALLED_APPS = [
     'django_filters',
     'delivery',
     'liqpay_app',    
+    'main',
 
     'corsheaders',
+
 ]
 
     # 'django_dump_load_utf8',

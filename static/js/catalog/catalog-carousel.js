@@ -5,7 +5,7 @@ import { basket } from "../header/basket/basket.js";
 
 const pageName = "catalog";
 
-new PageProducts(pageName, "productsCatalogContainer",  `.main-${pageName}__carousel`, basket).initializePage();
+export const pageProductsCatalog = new PageProducts(pageName, "productsCatalogContainer",  `.main-${pageName}__carousel`, basket).initializePage();
 
 
 // const swiperContainer = document.querySelector(`.main-${pageName}__carousel`);

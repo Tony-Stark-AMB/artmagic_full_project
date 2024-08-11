@@ -13,4 +13,5 @@ urlpatterns = [
     path('product/<str:slug>/add-filters/', SubProductView.as_view(), name='add_filters'),
     path('product/detaile-product/<int:id>/', DetaileProductView.as_view(), name='detaile_product'),    
     path('products/', views.products_view, name='products_list'), 
+    path('product/<str:slug>/', SubProductView.as_view(), name='search_products'),  # Новый URL для поиска
 ]

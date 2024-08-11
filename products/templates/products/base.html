@@ -95,10 +95,15 @@
                         </div>
                         <div class="header-search">
                             <div class="header-search__input__wrap">
-                                <input class="header-search__input" placeholder="Пошук"/>
-                                <svg class="header-search__input__icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 512 512">
-                                    <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
-                                </svg>
+                                <input class="header-search__input" name="query" placeholder="Пошук"/>
+                                <button class="header-search__input__icon-wrap" name="query__btn" >
+                                    <svg class="header-search__input__icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 512 512">
+                                        <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
+                                    </svg>
+                                </button>
+                                <!-- <form  method="get" action="{% url 'search_products' slug='search' %}">
+                                    
+                                </form> -->
                             </div>
                         </div>
                         <div class="header-call__wrap">
@@ -363,15 +368,17 @@
         </div>
         <ul class="mobile-menu__list font__raleway">
             <li class="mobile-menu__item">
-                <a class="mobile-menu__link" href="">Головна</a></li>
+                <a class="mobile-menu__link" href="/">Головна</a></li>
             <li class="mobile-menu__item">
-                <a class="mobile-menu__link" href="">Оплата і доставка</a></li>
+                <a class="mobile-menu__link" href="{% url 'main:about_detail' %}">Про нас</a></li>
             <li class="mobile-menu__item">
-                <a class="mobile-menu__link" href="">Новини</a></li>
-            <li class="mobile-menu__item">
-                <a class="mobile-menu__link" href="">Допомога</a></li>
+                <a class="mobile-menu__link" href="{% url 'main:safeguards_detail' %}">Гарантії</a></li>
             <li class="mobile-menu__item">
                 <a class="mobile-menu__link" href="">Контакти</a></li>
+            <li class="mobile-menu__item">
+                <a class="mobile-menu__link" href="{% url 'main:return_agoods_detail' %}">Повернення товару</a></li>
+            <li class="mobile-menu__item">
+                <a class="mobile-menu__link" href="{% url 'main:payment_delivery_detail' %}">Оплата і доставка</a></li>
         </ul>
     </div>
 </div>
@@ -414,6 +421,7 @@
     <script src="{% static 'js/header/feedback/feedback.js' %}"></script>
     <script src="{% static 'js/header/burger-menu/burger-menu.js' %}"></script>
     <script src="{% static 'js/header/sidenav/sidenav.js' %}"></script>
+    <script type="module" src="{% static 'js/header/search/search.js' %}"></script>
     <script type="module" src="{% static 'js/import.js' %}"></script>
     <script type="module" src="{% static 'js/classes/page-products.js' %}"></script>
     <script type="module" src="{% static 'js/header/header.js' %}"></script>
