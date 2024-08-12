@@ -16,6 +16,8 @@ class ProductsFilter(django_filters.FilterSet):
         print(data, "16")
         if data is not None:
             data = data.copy()
+            if 'query' in data:
+                data.pop('query')
             if 'ПІДКАТЕГОРІЯ' in data:
                 data['subcategory'] = data.pop('ПІДКАТЕГОРІЯ')
             if 'ВИРОБНИК' in data:

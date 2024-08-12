@@ -107,6 +107,7 @@ class SubProductView(View):
         sub_categories = []
         print('-----------------------123', slug)
         if slug != 'search':
+            print('-----------------------456', slug)
             parent_category = get_object_or_404(Category, slug=slug)
         
         if parent_category:
@@ -114,12 +115,16 @@ class SubProductView(View):
             print('=--2---=', sub_categories)
             descendants = parent_category.get_descendants(include_self=True)
             category_ids = [descendant.pk for descendant in descendants]
-            print('=+++++++++++++++++++++++++++++', category_ids)
+            print('=------------------------', category_ids)
             products = Products.objects.filter(category_id__in=category_ids)  # Не забіть поменять!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            
         else:
             query = request.GET.get('query', '')
+            print('request.GET', request.GET)
+            print('request.headers', request.headers)
             print('=+++++++++++++++++++++++++++++', query)
             products = Products.objects.filter(name__icontains=query)
+            print(len(products))
         
         print(request.GET, 117)
         print(len(products), '----')
@@ -147,12 +152,14 @@ class SubProductView(View):
         # http://127.0.0.1:8000/product/bloknoti-dlja-esk%D1%96z%D1%96v-ta-maljunku-tverda-obkladinka/
         filters = self.build_filters(products, parent_category, sub_categories)
 
+        print('222', filters)
         return render(request, self.template_name, {
             'parent_category': parent_category,
             'filters': filters,
         })
 
     def build_filters(self, products, parent_category, sub_categories):
+        print('1111', len(products), parent_category, sub_categories)
         products_ids = products.values_list("pk", flat=True)
         product_filters = ProductAttribute.objects.filter(product__in=products_ids)
         
@@ -171,8 +178,9 @@ class SubProductView(View):
 
         if sub_categories:
             filters.insert(0, {'name': 'ПІДКАТЕГОРІЯ', 'text': list(sub_categories.values_list('name', flat=True))})
-        return filters
         
+        return filters
+     
 def get_new_arrivals(request):
     products = list(Products.objects.order_by('-date_added')[:20].values('name', 'image', 'price', 'pk'))
 

@@ -177,14 +177,16 @@ export class PageProducts {
             slug = "search";
         
         const query = pageUrl[pageUrl.length - 1].replace("?", "&");
+        
         console.log(query);
         
         const url = `http://localhost:8000/product/${slug}/add-filters?page=${page}&productsPerPage=${productsPerPage}&${filtrartionProductsQuery ? filtrartionProductsQuery : ""}`;
         
         const queryUrl = url + query;
-
+        console.log('url',url)
+        console.log('queryUrl',queryUrl)
         console.log(isSearchPage)
-        const response = await fetch(isSearchPage ? queryUrl : url , {
+        const response = await fetch(isSearchPage ? queryUrl : url, {
             method: "GET",
             mode: "cors",
             headers: {
