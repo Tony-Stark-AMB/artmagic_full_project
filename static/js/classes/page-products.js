@@ -184,7 +184,7 @@ export class PageProducts {
         const queryUrl = url + query;
 
         console.log(isSearchPage)
-        const response = await fetch(isSearchPage ? url : queryUrl, {
+        const response = await fetch(isSearchPage ? queryUrl : url , {
             method: "GET",
             mode: "cors",
             headers: {
