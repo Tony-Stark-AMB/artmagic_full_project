@@ -169,10 +169,10 @@
                     <h4 class="footer__info__title">Інформація про компанію</h4>
                     <ul class="footer__info__list">
                         <li class="footer__info__item">
-                            <a class="footer__info__link" href="">Про нас</a>
+                            <a class="footer__info__link" href="{% url 'main:about_detail' %}">Про нас</a>
                         </li>
                         <li class="footer__info__item">
-                            <a class="footer__info__link" href="">Контакти</a>
+                            <a class="footer__info__link" href="{% url 'main:contacts_detail' %}">Контакти</a>
                         </li>
                     </ul>
                 </div>
@@ -180,13 +180,13 @@
                     <h4 class="footer__help__title">Допомога</h4>
                     <ul class="footer__help__list">
                         <li class="footer__help__item">
-                            <a class="footer__help__link" href="">Оплата і доставка</a>
+                            <a class="footer__help__link" href="{% url 'main:payment_delivery_detail' %}">Оплата і доставка</a>
                         </li>
                         <li class="footer__help__item">
-                            <a class="footer__help__link" href="">Гарантії</a>
+                            <a class="footer__help__link" href="">Договір оферти</a>
                         </li>
                         <li class="footer__help__item">
-                            <a class="footer__help__link" href="">Повернення товару</a>
+                            <a class="footer__help__link" href="{% url 'main:return_agoods_detail' %}">Повернення товару</a>
                         </li>
                     </ul>
                 </div>
@@ -372,7 +372,7 @@
             <li class="mobile-menu__item">
                 <a class="mobile-menu__link" href="{% url 'main:about_detail' %}">Про нас</a></li>
             <li class="mobile-menu__item">
-                <a class="mobile-menu__link" href="{% url 'main:safeguards_detail' %}">Гарантії</a></li>
+                <a class="mobile-menu__link" href="{% url 'main:safeguards_detail' %}">Договір оферти</a></li>
             <li class="mobile-menu__item">
                 <a class="mobile-menu__link" href="">Контакти</a></li>
             <li class="mobile-menu__item">

@@ -43,3 +43,7 @@ def safeguards(request):
 def return_a_goods(request):
     informations = PaymentDelivery.objects.all()
     return render(request, 'main/return_a_goods.html', {'informations': informations})
+
+def contacts(request):
+    informations = PaymentDelivery.objects.all()
+    return render(request, 'main/contacts.html', {'informations': informations})

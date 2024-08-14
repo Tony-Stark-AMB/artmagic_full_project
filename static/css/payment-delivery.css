@@ -1,0 +1,26 @@
+.payment-delivery {
+  font-size: 1.2rem;
+}
+.payment-delivery__title {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.delivery {
+  font-size: 1.2rem;
+}
+.delivery__title {
+  margin: 15px 0;
+}
+.delivery__list {
+  padding-left: 20px;
+  list-style: inside;
+}
+
+.payment {
+  margin: 20px 0;
+  font-size: 1.2rem;
+}
+.payment__title {
+  margin: 15px 0;
+}
