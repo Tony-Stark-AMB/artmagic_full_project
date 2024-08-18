@@ -226,3 +226,5 @@ class DetaileProductView(View):
             if image.image:
                 all_images.append(image.image.url)
         return all_images
+
+

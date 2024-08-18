@@ -1,19 +1,18 @@
-.contacts-page {
+.safeguards {
   margin: 0 0 40px 0;
   font-size: 1.2rem;
 }
-.contacts-page__title {
+.safeguards__title {
   text-align: center;
   margin: 20px 0;
 }
-.contacts-page__subtitle {
+.safeguards__subtitle {
   margin: 15px 0;
 }
-.contacts-page__list {
+.safeguards__list {
   padding-left: 20px;
   list-style: none;
 }
-.contacts-page__list__item {
-  padding-left: 20px;
+.safeguards__list__item {
   margin: 10px 0;
 }

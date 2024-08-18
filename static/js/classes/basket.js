@@ -147,7 +147,7 @@ export class Basket {
             }
             e.target.value = value;
             this.productManager.setProductQuantity(product.id, value);
-            updateProductQuantityAndPrice(product.id, productDiv.querySelector(`[data-action="quantity"]`), productDiv.querySelector(".cart__product__price"))
+            this.updateProductQuantityAndPrice(product.id, productDiv.querySelector(`[data-action="quantity"]`), productDiv.querySelector(".cart__product__price"))
         });
         return productDiv;        
     }
