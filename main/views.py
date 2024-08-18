@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import DetailView
-from .models import Header, AboutUs, PaymentDelivery, Safeguards, ReturnAgoods
+from .models import Header, AboutUs, PaymentDelivery, Safeguards, ReturnAgoods, ContactInfo
 from products.models import Category
 
 
@@ -44,6 +44,7 @@ def return_a_goods(request):
     informations = PaymentDelivery.objects.all()
     return render(request, 'main/return_a_goods.html', {'informations': informations})
 
-def contacts(request):
-    informations = PaymentDelivery.objects.all()
-    return render(request, 'main/contacts.html', {'informations': informations})
+def contact_page(request):
+    contact_info = ContactInfo.objects.all()
+    return render(request, 'main/contacts.html', {'contact_info': contact_info}) 
+

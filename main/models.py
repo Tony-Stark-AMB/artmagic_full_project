@@ -65,7 +65,15 @@ class ReturnAgoods(models.Model):
         return f'{"Возврат товара :"}'
 
 
+class ContactInfo(models.Model):
+    phone_number = models.CharField(max_length=20, verbose_name="Номер телефона")
 
+    class Meta:
+        verbose_name = 'Контакти'
+        verbose_name_plural = 'Контакти'
+
+    def str(self):
+        return self.phone_number
 
 
 
