@@ -159,7 +159,7 @@ class Form {
                 }
                 
 
-                if (productsExistCondition) throw Error();           
+                if (productsExistCondition && formContainerId == "orderForm") throw Error();           
                 await this.fetchData(path, methodType, submitedFormData);
                 this.showAlert("success", msgObj.successMessage, animDuration);
 
@@ -177,7 +177,7 @@ class Form {
                 }
             } catch (err) {
                 switch(true){
-                    case productsExistCondition:
+                    case productsExistCondition && formContainerId == "orderForm":
                         this.showAlert("err", "Неможливо зробити замовлення без обраного товару", animDuration);
                         break;
                     case emptyForm:
