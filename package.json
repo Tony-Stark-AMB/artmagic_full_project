@@ -1,0 +1,12 @@
+{
+  "name": "artmagic_full_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd venv/scripts && activate && cd ../.. && python manage.py runserver"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

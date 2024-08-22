@@ -1,0 +1,89 @@
+{% extends 'products/base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/product.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main__wrap" >
+    <main class="main container__small">
+        <div class="product-page" >
+            <div class="product-image__content" data-aos="fade-down-right">
+                {% if product.stock_status_id.pk == 7 %}
+                    <div class="product-details__status bg23">
+                        В наявності
+                    </div>
+                {% else %}
+                    <div class="product-details__status bg21">
+                        {{product.stock_status_id}}
+                    </div>
+                {% endif %}
+                <div class="product-image__wrap">
+                    <img class="products-detaile__item__img"  src="{{ all_images.0  }}">
+                </div>
+                <div #description>
+                    
+                    {% for image_url  in all_images %}
+                        <img class="product-thumbnails" src="{{image_url}}" >
+                    {% endfor %}
+                </div>
+            </div>
+            
+            
+            <div class="product-details" data-aos-delay="100" data-aos="fade-left">
+                
+                <div class="product-details__buttons">
+                    <h2 class="product-title">{{ product.name }}</h2>
+                    <button class="product-details__btn__add-to-cart" id="{{product.pk}}">Додати до кошика</button>
+                </div>
+                <p class="product-details__articul c8">Артикул: {{product.model}}</p>
+                <div class="product-details__info">
+                    <p class="product-details__price">Ціна: <span class="fw-bold">{{product.price}} грн</span> </p>
+                    <h5 class="text-center">Характеристика товару</h5>
+                    <table class="product-detailes__atributes">
+                        {% for el in att %}
+                            <tr>
+                                <th class="atributes-row">{{ el.filter_category }}</th>
+                                <td class="atributes-row atributes-row__value">{{ el.filter_value }}</td>
+                            <tr>
+                        {% endfor %}
+                    </table>
+                </div>  
+            </div>
+        </div>
+        <div class="product-specs" data-aos-delay="200" data-aos-anchor="description" data-aos="fade-up">
+            <h3>Опис товару</h3>
+            <p class="product-description">{{ product.description|striptags }}</p>
+
+        </div>
+    </main>
+</div>
+{% endblock %}
+<!-- <script>
+    $(document).ready(function(){
+        $('.product-details__btn__add-to-cart').click(function(){
+            var product_id = "{{ product.id }}";
+            $.ajax({
+                type: "POST",
+                url: "{% url 'products:cart_add' %}",
+                data: {
+                    'product_id': product_id,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                dataType: 'json',
+                success: function(data){
+                    $('#basket__modal').modal('show');
+                    $('#basket-products').html(data.cart_items_html);
+                },
+                error: function(xhr, errmsg, err){
+                    console.log(xhr.status + ": " + xhr.responseText);
+                }
+            });
+        });
+    });
+</script> -->
+{% block js %}
+    <script src="{% static 'js/detaile/detaile.js' %}"></script>
+    <script type="module" src="{% static 'js/detaile/detaile-btn.js' %}"></script>
+{% endblock %}

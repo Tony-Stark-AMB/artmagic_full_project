@@ -1,0 +1,30 @@
+.login__modal,
+.registration__modal{
+    &__form{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        height: 30vh;
+        & input[type="text"],
+        & input[type="password"]{
+            width: 80%;
+            padding: 5px 0 5px 10px;
+            border-radius: 8px;
+            outline: none;
+            border: 1px solid $c5;
+        }
+       
+    }
+    &__link{
+        transition: color .3s ease;
+        &:hover{
+            color: $c9;
+        }
+        &__wrap{
+            display: flex;
+            width: 60%;
+            justify-content: space-between;
+        }   
+    }
+}

@@ -1,0 +1,34 @@
+{% extends 'products/base.html' %}
+{% load static %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer/about_us.css' %}">
+    <link rel="stylesheet" href="{% static 'css/about-us.css' %}">
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="about-us">
+        <div class="container__extra__small">
+            <h1 class="about-us__title">Про нас</h1>
+            <p class="text-center">Раді бачити вас у нашому магазині <span class="c11 fw-bold">АРТМАГІЯ</span>.</p>
+
+            <div class="about-us-info">
+                <p class="about-us-info__text">- <span class="c17 fw-bold">Ми працюємо для вас  з 2008 року</span>і вже завоювали серця клієнтів по всій Україні.</p>
+                <p class="about-us-info__text">- Ми найбільш цікавий продавець художніх матеріалів для всіх, хто займається творчістю.</p>
+                <p class="about-us-info__text">- Ми можемо задовольнити всі творчі потреби художників, студентів, дизайнерів, аматорів, у нас є все для хобі.</p>
+                <p class="about-us-info__text">- Ми надихаємо людей займатися улюбленою справою.</p>
+            </div>
+
+            <div class="social-links">
+                <p class="text-center">Підпишіться на нас в 
+                    <a href="https://www.instagram.com" target="_blank">Instagram</a> та 
+                    <a href="https://www.facebook.com" target="_blank">Facebook</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

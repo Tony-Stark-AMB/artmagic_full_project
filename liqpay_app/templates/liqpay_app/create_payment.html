@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Payment</title>
+</head>
+<body>
+    <h2>Create Payment</h2>
+    <p>User: {{ user.username }}</p>
+    <p>Phone Number: {{ user.phone_number }}</p>
+    <h3>Address</h3>
+    {% if address %}
+        <p>{{ address.address_line1 }}</p>
+        <p>{{ address.address_line2 }}</p>
+        <p>{{ address.city }}, {{ address.state }}</p>
+        <p>{{ address.country }} - {{ address.postal_code }}</p>
+    {% else %}
+        <p>No address found.</p>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <label for="amount">Amount:</label>
+        <input type="number" name="amount" id="amount" step="0.01" required>
+        <p id="description" >blablabla</p>
+        <button type="submit">Pay</button>
+    </form>
+</body>
+</html>
+

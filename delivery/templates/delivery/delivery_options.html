@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вибір опції доставки</title>
+</head>
+<body>
+    <h1>Вибір опції доставки</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <label for="id_method">Метод доставки:</label>
+            {{ form.method }}
+        </div>
+        <div>
+            <label for="id_region">Область:</label>
+            <input type="text" id="region_input" name="region" list="region_list">
+            <datalist id="region_list"></datalist>
+        </div>
+        <div>
+            <label for="id_city">Місто:</label>
+            <input type="text" id="city_input" name="city" list="city_list">
+            <datalist id="city_list"></datalist>
+        </div>
+        <div id="branch_container" style="display:none;">
+            <label for="id_branch_id">Відділення:</label>
+            <input type="text" id="branch_input" list="branch_list">
+            <datalist id="branch_list"></datalist>
+        </div>
+        <div id="postomat_container" style="display:none;">
+            <label for="id_postomat_id">Поштомат:</label>
+            <input type="text" id="postomat_input" list="postomat_list">
+            <datalist id="postomat_list"></datalist>
+        </div>
+        <button type="submit">Зберегти</button>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function loadRegions() {
+                fetch('{% url "get_regions" %}')
+                    .then(response => response.json())
+                    .then(data => {
+                        const regions = data.regions;
+                        const regionList = document.getElementById('region_list');
+                        regionList.innerHTML = '';
+                        regions.forEach(region => {
+                            const option = document.createElement('option');
+                            option.value = region.Description;
+                            option.dataset.ref = region.Ref;
+                            regionList.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error('Error fetching regions:', error));
+            }
+
+            function loadCities(regionRef) {
+                fetch('{% url "get_cities" %}?region_ref=' + encodeURIComponent(regionRef))
+                    .then(response => response.json())
+                    .then(data => {
+                        const cities = data.cities;
+                        const cityList = document.getElementById('city_list');
+                        cityList.innerHTML = '';
+                        cities.forEach(city => {
+                            const option = document.createElement('option');
+                            option.value = city.Description;
+                            option.dataset.ref = city.Ref;
+                            cityList.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error('Error fetching cities:', error));
+            }
+
+            function loadBranchesAndPostomats(cityRef) {
+                fetch('{% url "get_branches_and_postomats" %}?city_ref=' + encodeURIComponent(cityRef))
+                    .then(response => response.json())
+                    .then(data => {
+                        const branches = data.branches;
+                        const postomats = data.postomats;
+
+                        const branchList = document.getElementById('branch_list');
+                        const postomatList = document.getElementById('postomat_list');
+
+                        branchList.innerHTML = '';
+                        postomatList.innerHTML = '';
+
+                        if (branches.length > 0) {
+                            document.getElementById('branch_container').style.display = 'block';
+                            branches.forEach(branch => {
+                                const option = document.createElement('option');
+                                option.value = branch.Description;
+                                option.dataset.ref = branch.Ref;
+                                branchList.appendChild(option);
+                            });
+                        } else {
+                            document.getElementById('branch_container').style.display = 'none';
+                        }
+
+                        if (postomats.length > 0) {
+                            document.getElementById('postomat_container').style.display = 'block';
+                            postomats.forEach(postomat => {
+                                const option = document.createElement('option');
+                                option.value = postomat.Description;
+                                option.dataset.ref = postomat.Ref;
+                                postomatList.appendChild(option);
+                            });
+                        } else {
+                            document.getElementById('postomat_container').style.display = 'none';
+                        }
+                    })
+                    .catch(error => console.error('Error fetching branches and postomats:', error));
+            }
+
+            document.getElementById('region_input').addEventListener('input', function() {
+                const input = this.value.toLowerCase();
+                const options = Array.from(document.getElementById('region_list').options);
+                const matchedOption = options.find(option => option.value.toLowerCase().startsWith(input));
+                if (matchedOption) {
+                    const regionRef = matchedOption.dataset.ref;
+                    loadCities(regionRef);
+                }
+            });
+
+            document.getElementById('city_input').addEventListener('input', function() {
+                const input = this.value.toLowerCase();
+                const options = Array.from(document.getElementById('city_list').options);
+                const matchedOption = options.find(option => option.value.toLowerCase().startsWith(input));
+                if (matchedOption) {
+                    const cityRef = matchedOption.dataset.ref;
+                    loadBranchesAndPostomats(cityRef);
+                }
+            });
+
+            document.getElementById('branch_input').addEventListener('input', function() {
+                const input = this.value.toLowerCase();
+                const options = Array.from(document.getElementById('branch_list').options);
+                const matchedOption = options.find(option => option.value.toLowerCase().startsWith(input));
+                if (matchedOption) {
+                    const branchRef = matchedOption.dataset.ref;
+                    document.getElementById('branch_select').value = branchRef;
+                }
+            });
+
+            document.getElementById('postomat_input').addEventListener('input', function() {
+                const input = this.value.toLowerCase();
+                const options = Array.from(document.getElementById('postomat_list').options);
+                const matchedOption = options.find(option => option.value.toLowerCase().startsWith(input));
+                if (matchedOption) {
+                    const postomatRef = matchedOption.dataset.ref;
+                    document.getElementById('postomat_select').value = postomatRef;
+                }
+            });
+
+            loadRegions();
+        });
+    </script>
+</body>
+</html>

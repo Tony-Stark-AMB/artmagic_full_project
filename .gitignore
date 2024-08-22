@@ -1,0 +1,5 @@
+*.rar
+*.env
+media
+static/node_modules
+venv

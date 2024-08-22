@@ -1,0 +1,22 @@
+.footer__info{
+    padding: 16px 24px;
+    min-height: 10vh;
+    &__title{
+        margin-bottom: 15px;
+    }
+    &__list{
+        min-height: inherit;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    &__item{}
+    &__link{
+        color: $c8;
+        transition: color .3s ease;
+        &:hover{
+            color: $c9;
+        }
+    }
+    
+}
