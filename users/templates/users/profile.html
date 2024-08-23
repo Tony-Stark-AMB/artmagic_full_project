@@ -21,7 +21,7 @@
                 <div class="profile-page__content">
                     <div class="d-flex justify-content-end align-center">
                         <btn class="btn btn-primary me-1" data-bs-toggle="modal" data-bs-target="#changePassword" href="{% url 'user:change_password' %}">Change Password</btn>
-                        <btn class="btn btn-primary" href="{% url 'user:logout' %}">Logout</btn>
+                        <a class="btn btn-primary" href="{% url 'user:logout' %}">Logout</a>
                     </div>
                     <form class="profile-page__user-info" id="profileForm">
                        <h1 class="profile-page__user-info__title">Інформація вашого профілю</h1> 
@@ -111,7 +111,7 @@
                             data-field="profileAddress"
                             type="tel" 
                             disabled
-                            value="{{ address.address_line1 }}" 
+                            value="{{ user.address }}" 
                             />
                             <div class="profile-page__user-info__btns-wrap">
                                 <button type="button" class="btn btn-primary profile-page__user-info__btn" data-edit="profileAddress">
@@ -131,7 +131,7 @@
                             data-field="postalCode"
                             type="tel" 
                             disabled
-                            value="{{ address.address_line1 }}" 
+                            value="{{ user.postal_code }}" 
                             />
                             <div class="profile-page__user-info__btns-wrap">
                                 <button type="button" class="btn btn-primary profile-page__user-info__btn" data-edit="postalCode">

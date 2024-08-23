@@ -277,9 +277,11 @@
                         <div class="modal-body">
                             <form class="login__modal__form" method="post" action="{% url 'user:login' %}">
                                 {% csrf_token %}
-                                
+                                <div id="login-form-errors"></div>
                                 <input class="login__modal__input" type="text" name="username" placeholder="Логин">
+                                <p class="error c17 d-hidden" data-error-login="username"></p>
                                 <input class="login__modal__input" type="password" name="password" placeholder="Пароль">
+                                <p class="error c17 d-hidden" data-error-login="password"></p>
                                 <div class="login__modal__link__wrap">
                                     <a class="login__modal__link" href="#">Забыли пароль?</a>
                                     <div class="login__modal__link swiper-btn-next">Регистрация</div>
@@ -293,7 +295,7 @@
                         <div class="modal-body">
                             <form class="registration__modal__form" method="post" action="{% url 'user:register' %}">
                                 {% csrf_token %}
-                                {{ form.as_p }}
+                                <div id="registration-form-errors"></div>
                                 <input class="registration__modal__input" type="text" name="username" placeholder="Логин">
                                 <input class="registration__modal__input" type="text" name="email" placeholder="Email">
                                 <input class="registration__modal__input" type="text" name="phone_number" placeholder="Номер телефону">
@@ -410,7 +412,6 @@
         {% endrecursetree %}
     </ul>
 </div>
-
     <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
     <script src="{% static 'node_modules/aos/dist/aos.js' %}"></script>
@@ -437,6 +438,68 @@
     <script type="module" src="{% static 'js/import.js' %}"></script>
     <script type="module" src="{% static 'js/classes/page-products.js' %}"></script>
     <script type="module" src="{% static 'js/header/header.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginForm = document.querySelector('.login__modal__form');
+            const registerForm = document.querySelector('.registration__modal__form');
+
+            if (loginForm) {
+                loginForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const formData = new FormData(loginForm);
+                    fetch('{% url "user:login" %}', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.redirect) {
+                            window.location.href = data.redirect;
+                        } else {
+                            // Обработка ошибок и отображение сообщений
+                            const errorsContainer = document.getElementById('login-form-errors');
+                            errorsContainer.innerHTML = '';
+                            for (let field in data.errors) {
+                                const error = data.errors[field].join(', ');
+                                errorsContainer.innerHTML += `<p>${field}: ${error}</p>`;
+                            }
+                        }
+                    });
+                });
+            }
+
+            if (registerForm) {
+                registerForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const formData = new FormData(registerForm);
+                    fetch('{% url "user:register" %}', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.redirect) {
+                            window.location.href = data.redirect;
+                        } else {
+                            // Обработка ошибок и отображение сообщений
+                            const errorsContainer = document.getElementById('registration-form-errors');
+                            errorsContainer.innerHTML = '';
+                            for (let field in data.errors) {
+                                const error = data.errors[field].join(', ');
+                                errorsContainer.innerHTML += `<p>${field}: ${error}</p>`;
+                            }
+                        }
+                    });
+                });
+            }
+        });
+    </script>
     {% block js %}{% endblock %}
 </div>
 </body>

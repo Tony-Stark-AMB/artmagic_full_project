@@ -1,86 +1,72 @@
-from email.message import EmailMessage
+import json
 import logging
 
-from django.contrib import auth
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout, get_user_model
-from django.template.loader import render_to_string
-
-from django.contrib.auth.decorators import login_required
-from pyexpat.errors import messages
-
-from .models import Address
-from .forms import UserLoginForm, FeedbackForm
-from .forms import ProfileForm
-from .forms import RegistrationForm
-from .forms import ChangePasswordForm
-from django.contrib.auth import update_session_auth_hash
-from .models import PurchaseHistory, Address
-from products.models import Category
-from django.core.exceptions import ObjectDoesNotExist
+from django.contrib import auth
 from django.views import View
+from django.contrib.auth import login, update_session_auth_hash, logout, get_user_model
+from django.contrib.auth import login as auth_login, authenticate
+from django.views.generic.edit import FormView
+from django.urls import reverse_lazy
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+from django.shortcuts import redirect
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
-import json
+
+from .forms import UserLoginForm, FeedbackForm, AddressForm, ProfileForm, RegistrationForm, ChangePasswordForm
 
 
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
+
 
 
 def index(request):
     return render(request, 'users/index.html')
 
+
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('parent_categories')
+            user = form.save()
+
+            # Выполняем аутентификацию
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')  # Поскольку это поле пароля, его нужно сохранить в момент создания
+
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                auth_login(request, user)  # Вход в систему
+                return JsonResponse({'redirect': '/'})
+        else:
+            return JsonResponse({'errors': form.errors}, status=400)
     else:
         form = RegistrationForm()
-    return render(request, 'products/index.html', {'form': form})
-
 
 def user_login(request):
-    form = UserLoginForm(data=request.POST)
-    print(form.is_valid())
-    print(request.POST['username'])
-    print(request.POST['password'])
-    if form.is_valid():
-        print('===============')
-        username = request.POST['username']
-        password = request.POST['password']
-        user = auth.authenticate(username=username, password=password)
-        print(user)
-        if user is not None:
-            login(request, user)
-            print(user)
-            return redirect('parent_categories')
-    else:
-        form = UserLoginForm()
-    return render(request, 'products/base.html', {'form': form})
+    if request.method == 'POST':
+        form = UserLoginForm(data=request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = auth.authenticate(username=username, password=password)
+            if user is not None:
+                auth_login(request, user)
+                return JsonResponse({'redirect': '/user/profile/'})
+        # Возвращаем JSON с ошибками, если форма не валидна
+        return JsonResponse({'errors': form.errors}, status=400)
+    
+    # Если метод запроса не POST, рендерим страницу входа
+    form = UserLoginForm()
+    return render(request, 'products/index.html', {'form': form})
 
 
 def user_logout(request):
     logout(request)
     return redirect('parent_categories')
-
-
-# def profile(request):
-#     user = request.user
-#     addresses = Address.objects.all()
-#     # addresses = user.addresses.all()  # Получаем все адреса пользователя
-#     purchase_history = PurchaseHistory.objects.filter(user=user)  # Получаем историю покупок пользователя
-#     if request.method == 'PUT':
-#         form = ProfileForm(request.PUT, instance=user)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('profile')  # После сохранения данных перенаправляем пользователя на страницу профиля
-#     else:
-#         form = ProfileForm(instance=user)
-#     context = {'user': user, 'addresses': addresses, 'form': form, 'purchase_history': purchase_history}
-#     return render(request, 'users/profile.html', context)
-
-
 
 def change_password(request):
     if request.method == 'POST':
@@ -93,61 +79,107 @@ def change_password(request):
         form = ChangePasswordForm(request.user)
     return render(request, 'account/change_password.html', {'form': form})
 
-# @login_required()
-def profile_field(request):
-    
-    if not request.user.is_authenticated:
-        return JsonResponse({'error': 'Пользователь не аутентифицирован.'}, status=401)
-    User = get_user_model()
 
-    if request.method == 'PUT':
-        print('------------------------------------------------------------------------------------')
-        try:
-            print(request.body.decode('utf-8'))
-            body_data = request.read()
-            return JsonResponse({'message': 'Data received successfully'}, status=200)
-        except json.JSONDecodeError as e:
-            return JsonResponse({'error': 'Invalid JSON data'}, status=400)
 
-    try:
+class ProfileView(View):
+    def get(self, request):
         user_profile = User.objects.get(id=request.user.id)
-
-        addresses_query = user_profile.address_set.all().values('address_line1', 'city', 'country')
-        for address_data in addresses_query:
-            address = ", ".join([str(value) for value in address_data.values()])
+        addresses_query = user_profile.address_set.all().values('address_line1', 'postal_code')
+        print('*************', addresses_query)
 
         user_data = {
             'email': user_profile.email,
             'first_name': user_profile.first_name,
             'last_name': user_profile.last_name,
             'phone_number': user_profile.phone_number,
-            'addresses': address,
-            'postal_code': postal_code,
+            'address': addresses_query[0]['address_line1'],
+            'postal_code': addresses_query[0]['postal_code'],
         }
-        return JsonResponse(user_data, safe=False)
-    except ObjectDoesNotExist:
-        return JsonResponse({'error': 'Продукт с указанным идентификатором не найден.'}, status=404)
-
-class ProfileView(View):
-    def get(self, request):
         if not request.user.is_authenticated:
             return redirect('user:login')  # Перенаправляем анонимных пользователей на страницу входа
 
-        return render(request, 'users/profile.html')
+        return render(request, 'users/profile.html', {"user": user_data})
 
-    # def put(self, request):
-    #     print('--------------------------------------------------------------------------')
-    #     if not request.user.is_authenticated:
-    #         return JsonResponse({'error': 'Пользователь не аутентифицирован.'}, status=401)
 
-    #     user = request.body
-    #     form = ProfileForm(request.PUT, instance=user)  # Здесь изменено на request.body
-    #     if form.is_valid():
-    #         form.save()
-    #         return redirect('user:profile')
-    #     else:
-    #         # Handle invalid form
-    #         pass
+User = get_user_model()
+
+class ProfilefieldView(View):
+    
+
+    def get(self, request):
+
+        print('---', request.user.id)
+        if not request.user.is_authenticated:
+            return JsonResponse({'error': 'Пользователь не аутентифицирован.'}, status=401)
+        print('wadawd-------------------------------------------------------------------dwadawda')
+        try:
+            user_profile = User.objects.get(id=request.user.id)
+            addresses_query = user_profile.address_set.all().values('address_line1', 'postal_code')
+            print('*************', addresses_query)
+
+            user_data = {
+                'email': user_profile.email,
+                'first_name': user_profile.first_name,
+                'last_name': user_profile.last_name,
+                'phone_number': user_profile.phone_number,
+                'address': addresses_query[0]['address_line1'],
+                'postal_code': addresses_query[0]['postal_code'],
+            }
+            print('---1---2---4--', user_data)
+            return JsonResponse(user_data, safe=False)
+        except ObjectDoesNotExist:
+            print('---1---2---4--', user_data)
+            return JsonResponse({'error': 'Пользователь не найден.'}, status=404)
+
+    def put(self, request):
+        if not request.user.is_authenticated:
+            return JsonResponse({'error': 'Пользователь не аутентифицирован.'}, status=401)
+
+        user = request.user
+        print('-------------------------------------------------------------', user, user.pk)
+        try:
+            data = json.loads(request.body.decode('utf-8'))
+            logger.debug('Полученные данные: %s', data)
+        except json.JSONDecodeError:
+            logger.error('Некорректный JSON')
+            return JsonResponse({'error': 'Некорректный JSON'}, status=400)
+
+
+        try:
+            data['email'] = data.pop('user_email')
+            data['phone_number'] = data.pop('user_pnone')
+            user_form = ProfileForm(data, instance=user)
+        except Exception as e:
+            logger.error('Ошибка при создании формы профиля: %s', e)
+            return JsonResponse({'error': 'Ошибка при обработке данных профиля'}, status=400)
+        
+        try:
+            address = user.address_set.first()
+        except ObjectDoesNotExist:
+            logger.warning('Адрес пользователя не найден')
+            address = None  
+
+
+        try:
+            address_data = {
+                'address_line1': data.get('address'),
+                'postal_code': data.get('postal_code'),
+            }
+            address_form = AddressForm(address_data, instance=address, user=user)
+        except Exception as e:
+            logger.error('Ошибка при создании формы адреса: %s', e)
+            return JsonResponse({'error': 'Ошибка при обработке данных адреса'}, status=400)
+
+        logger.debug('Форма пользователя валидна: %s', user_form.is_valid())
+        logger.debug('Форма адреса валидна: %s', address_form.is_valid())       
+        if user_form.is_valid() and address_form.is_valid():
+            user_form.save()                     
+            address_form.save()
+            return JsonResponse({'message': 'Профиль успешно обновлен.'}, status=200)
+        else:
+            logger.error('Ошибки формы пользователя: %s', user_form.errors)
+            return JsonResponse({'error': user_form.errors}, status=400)
+
 
 class FeedbackView(View):
     def post(self, request):
@@ -171,7 +203,7 @@ class FeedbackView(View):
                     'message': message,
                 })
 
-                recipient_list = ['Asgeron90@gmail.com']
+                recipient_list = ['karmot02@gmail.com']
 
                 try:
                     logger.debug('Trying to send mail to %s', recipient_list)
