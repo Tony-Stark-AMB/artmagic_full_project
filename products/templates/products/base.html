@@ -255,7 +255,10 @@
                 </div>
                 <div class="footer__underground">
                     <p class="footer__underground__text">
-                        Artmagic - товари для художників та творчості © 2010 - 2024.
+                        Artmagic - товари для художників та творчості © 2008 
+                        <a id="adminLink">
+                            <i class="fa fa-lock lock-small c8"></i>
+                        </a>2024.
                     </p>
                 </div>
             </div>
@@ -322,9 +325,9 @@
     </div>
 </div>
 <!-- FEEDBACK -->
-<div class="modal fade modal__call" id="call__modal" tabindex="-1" aria-labelledby="call__modal" aria-hidden="true">
+<div class="modal fade call__modal" id="call__modal" tabindex="-1" aria-labelledby="call__modal" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content call__modal__content">
         <div class="modal-header">
             <h5 class="modal-title">Зворотній зв'язок</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -332,23 +335,21 @@
         <div class="modal-body">
             <form class="call__modal__form" id="feedbackForm">
                 <h3 class="text-center">Контактні дані</h3>
-                <div class="call__modal__input__content">
-                    <div class="call__modal__input__wrap">
-                        <input class="call__modal__input" 
-                        data-field="firstName"
-                        type="text"
-                        placeholder="Ім'я"
-                        />
-                        <p data-error="firstName" class="error-message-hidden"></p>
-                    </div>
-                    <div class="call__modal__input__wrap">
-                        <input class="call__modal__input" 
-                        data-field="lastName"
-                        type="text"
-                        placeholder="Прізвище"
-                        />
-                        <p data-error="lastName" class="error-message-hidden"></p>
-                    </div>
+                <div class="call__modal__input__wrap">
+                    <input class="call__modal__input" 
+                    data-field="firstName"
+                    type="text"
+                    placeholder="Ім'я"
+                    />
+                    <p data-error="firstName" class="error-message-hidden"></p>
+                </div>
+                <div class="call__modal__input__wrap">
+                    <input class="call__modal__input" 
+                    data-field="lastName"
+                    type="text"
+                    placeholder="Прізвище"
+                    />
+                    <p data-error="lastName" class="error-message-hidden"></p>
                 </div>
                 <div class="call__modal__input__wrap">
                     <input class="call__modal__input" 
@@ -358,7 +359,7 @@
                     />
                     <p data-error="phone" class="error-message-hidden"></p>
                 </div>
-                <textarea 
+                <textarea class="call__modal__textarea"
                     placeholder="Ваше питання"
                     data-field="text"
                 ></textarea>
@@ -420,13 +421,13 @@
             once: true
         });
     </script>
+    <script src="{% static 'js/common/constants.js' %}"></script>
     <script src="{% static 'js/common/bone.js' %}"></script>
     <script src="{% static 'js/classes/product.js' %}"></script>
     <script type="module" src="{% static 'js/classes/product-manager.js' %}"></script>
     <script src="{% static 'js/classes/form.js' %}"></script>
     <script type="module" src="{% static 'js/classes/basket.js' %}"></script>
     <script src="{% static 'js/common/index.js' %}"></script>
-    <script src="{% static 'js/common/constants.js' %}"></script>
     <script src="{% static 'js/common/regexp.js' %}"></script>
     <script type="module" src="{% static 'js/header/basket/basket.js' %}"></script>
     <script type="module" src="{% static 'js/header/basket/order.js' %}"></script>

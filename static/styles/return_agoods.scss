@@ -1,6 +1,7 @@
 .return-agoods{
     margin: 0 0 40px 0;
     font-size: 1.2rem;
+    min-height: 56vh;
     &__title{
         text-align: center;
         margin: 20px 0;
@@ -14,17 +15,3 @@
     }
 }
 
-.privat-24__payment{
-    margin: 20px 0;
-    font-size: 1.2rem;
-    &__title{
-        margin: 15px 0;
-    }
-    &__list{
-        padding-left: 30px;
-        list-style: decimal;
-        & li{
-            padding-left: 10px;
-        }
-    }
-}

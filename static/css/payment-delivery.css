@@ -24,3 +24,18 @@
 .payment__title {
   margin: 15px 0;
 }
+
+.privat-24__payment {
+  margin: 20px 0;
+  font-size: 1.2rem;
+}
+.privat-24__payment__title {
+  margin: 15px 0;
+}
+.privat-24__payment__list {
+  padding-left: 30px;
+  list-style: decimal;
+}
+.privat-24__payment__list li {
+  padding-left: 10px;
+}

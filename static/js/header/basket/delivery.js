@@ -173,8 +173,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const updateFormFields = () => {
         const fieldsToShow = [];
 
-        if (selectedDelivery === "artmagic_department" || selectedDelivery === "ukr_post") {
+        if (selectedDelivery === "ukr_post") {
             fieldsToShow.push("fullName", "clientPhone", "address", "email");
+        }
+        if(selectedDelivery === "artmagic_department"){
+            fieldsToShow.push("fullName", "clientPhone", "email");
         }
         if (selectedDelivery === "new_post_packing" || selectedDelivery === "new_post_department") {
             fieldsToShow.push("fullName", "clientPhone", "area", "city", "email", "department");

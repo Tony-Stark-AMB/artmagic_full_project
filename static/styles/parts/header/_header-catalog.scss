@@ -8,6 +8,9 @@
     @include respond-to(laptop-small){
         display: grid;
     }
+    @include respond-to(tablet-large){
+        order: 7;
+    }
         &__btn{
             display: flex;
             justify-content: space-between;
@@ -20,9 +23,6 @@
             width: 30px;
             height: 30px;
             color: $c6;
-        }
-        &__text{
-
         }
     }
 }

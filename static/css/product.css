@@ -223,6 +223,11 @@
   display: grid;
   place-items: center;
 }
+@media (max-width: 992px) {
+  .header-basket__wrap {
+    order: 7;
+  }
+}
 
 @keyframes bounce {
   0%, 100% {
@@ -250,6 +255,11 @@
     display: grid;
   }
 }
+@media (max-width: 992px) {
+  .header-catalog {
+    order: 7;
+  }
+}
 .header-catalog__btn {
   display: flex;
   justify-content: space-between;
@@ -264,6 +274,7 @@
   height: 30px;
   color: #fff;
 }
+
 .header-call {
   margin-right: 20px;
 }
@@ -365,6 +376,7 @@
 @media (max-width: 992px) {
   .header-nav__burger {
     display: grid;
+    order: 6;
   }
 }
 .header-nav__burger-icon {
@@ -498,12 +510,15 @@
   justify-content: space-between;
 }
 
+.call__modal__content {
+  min-height: 60vh;
+}
 .call__modal__form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  height: 30vh;
+  height: 50vh;
 }
 .call__modal__input {
   width: 90%;
@@ -522,6 +537,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.call__modal__textarea {
+  width: 67%;
+  height: 30%;
+}
+.call__modal__textarea::-moz-placeholder {
+  text-align: center;
+}
+.call__modal__textarea::placeholder {
+  text-align: center;
 }
 
 .basket__modal {

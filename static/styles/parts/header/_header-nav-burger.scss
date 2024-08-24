@@ -6,6 +6,7 @@
     place-items: center;
     @include respond-to(tablet-large){
         display: grid;
+        order: 6;
     }
     &-icon{
         width: 40px;
