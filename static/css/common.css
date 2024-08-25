@@ -215,6 +215,14 @@
   background-color: #78cd5d;
 }
 
+.c24 {
+  color: rgb(115, 96, 242);
+}
+
+.bg24 {
+  background-color: rgb(115, 96, 242);
+}
+
 .color-inh {
   color: inherit;
 }

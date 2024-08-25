@@ -46,3 +46,11 @@
         }
     }
 }
+
+
+.accordion-body{
+    padding: 5px 10px;
+    overflow-y: scroll;
+    transition: overflow .3s ease;
+    max-height: 130px;
+}
