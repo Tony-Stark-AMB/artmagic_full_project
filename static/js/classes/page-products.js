@@ -58,10 +58,12 @@ export class PageProducts {
     }
 
     renderProductItem({ name, id, image, price }, container) {
+
+        console.log(image);
         const productHTML = `
             <div class="products-${this.pageName}__item product-item" id="${id}">
                 <div class="products-${this.pageName}__item__img__wrap">
-                    <img class="products-${this.pageName}__item__img" src="/media/${image}" />
+                    <img class="products-${this.pageName}__item__img" src="${image}" />
                 </div>
                 <p class="products-${this.pageName}__item__title">${name}</p>
                 <span class="products-${this.pageName}__item__price">${price}</span>
@@ -178,14 +180,9 @@ export class PageProducts {
         
         const query = pageUrl[pageUrl.length - 1].replace("?", "&");
         
-        console.log(query);
-        
         const url = `http://localhost:8000/product/${slug}/add-filters?page=${page}&productsPerPage=${productsPerPage}&${filtrartionProductsQuery ? filtrartionProductsQuery : ""}`;
         
         const queryUrl = url + query;
-        console.log('url',url)
-        console.log('queryUrl',queryUrl)
-        console.log(isSearchPage)
         const response = await fetch(isSearchPage ? queryUrl : url, {
             method: "GET",
             mode: "cors",

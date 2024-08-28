@@ -8,7 +8,7 @@ class ProductRenderer {
         const productHTML = `
             <div class="products-${this.pageName}__item product-item" id="${id}">
                 <div class="products-${this.pageName}__item__img__wrap">
-                    <img class="products-${this.pageName}__item__img" src="/media/${imageSrc}" />
+                    <img class="products-${this.pageName}__item__img" src="${imageSrc}" />
                 </div>
                 <p class="products-${this.pageName}__item__title">${name}</p>
                 <span class="products-${this.pageName}__item__price">${price}</span>

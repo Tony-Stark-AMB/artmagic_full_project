@@ -1,5 +1,5 @@
 class Form {
-    constructor(obj, patterns, formName, ...args) {
+    constructor(obj, patterns, formName, alertCl, ...args) {
         this.formData = Object.fromEntries(
             Object.keys(obj).map(key => [
                 key,
@@ -11,6 +11,7 @@ class Form {
         );
         const [productManager, basket] = args;
         this.productManager = productManager ?? null;
+        this.alert = alertCl ?? null;
         this.basket = basket ?? null;
         this.initObj = obj;
         this.formName = formName;
@@ -82,7 +83,7 @@ class Form {
     async initForm(formContainerId, obj, path, methodType, msgObj, animDuration, clearCond = true) {
         const formContainer = document.getElementById(formContainerId);
 
-        
+        // console.log(this.alert("err", 10000, "err"));
         const fields = formContainer.querySelectorAll("[data-field]");
         fields.forEach((field) => field.addEventListener("input", (e) => {
             this.triggerInput(field.dataset.field)
@@ -153,7 +154,8 @@ class Form {
                         });
                         setTimeout(() => liqpayFormContainer.querySelector('form').submit(), 1000);
                     } catch (err) {
-                        console.log(err)
+                        console.log(err);
+                        this.alert("err", "Неможливо зробити замовлення без обраного товару", animDuration);
                     }
                     
                 }
@@ -161,7 +163,7 @@ class Form {
 
                 if (productsExistCondition && formContainerId == "orderForm") throw Error();           
                 await this.fetchData(path, methodType, submitedFormData);
-                this.showAlert("success", msgObj.successMessage, animDuration);
+                this.alert("success", msgObj.successMessage, animDuration);
 
                 if (clearCond) {
                     this.clearForm(this.initObj);
@@ -176,15 +178,16 @@ class Form {
                     }
                 }
             } catch (err) {
+                console.log(err);
                 switch(true){
                     case productsExistCondition && formContainerId == "orderForm":
-                        this.showAlert("err", "Неможливо зробити замовлення без обраного товару", animDuration);
+                        this.alert("err", "Неможливо зробити замовлення без обраного товару", animDuration);
                         break;
                     case emptyForm:
-                        this.showAlert("err", "Будь ласка заповніть поля форми", animDuration);
+                        this.alert("err", "Будь ласка заповніть поля форми", animDuration);
                         break;
                     default :
-                        this.showAlert("err", msgObj.errorMessage, animDuration);
+                        this.alert("err", msgObj.errorMessage, animDuration);
                         break; 
                 }
 
@@ -221,15 +224,6 @@ class Form {
 
     mapedFormData(obj) {
         return Object.fromEntries(Object.entries(this.formData).map(([key, { value }]) => [obj[key] || key, value]));
-    }
-
-    showAlert(type, text, animDuration) {
-        const label = type === "success" ? this.successLabel : this.errorLabel;
-        label.classList.add("alert_anim");
-        label.querySelector("div.alert-text").textContent = text;
-        setTimeout(() => {
-            label.classList.remove("alert_anim");
-        }, animDuration);
     }
 
     clearForm(obj) {

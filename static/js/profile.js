@@ -39,7 +39,7 @@ const patternsProfile = {
 };
 
 
-const formProfile = new Form(formDataProfile, patternsProfile, "Profile", productManager, basket);
+const formProfile = new Form(formDataProfile, patternsProfile, "Profile", Alert, productManager, basket);
 
 formProfile.initForm("profileForm", {
     firstName: "first_name",

@@ -3,7 +3,8 @@ class Product {
       this.name = name;
       this.price = price;
       this.quantity = quantity ? quantity : quantity === 0 ? quantity : 1;
-      this.image = image
+      this.originalImage = image
+      this.image = image !== "" ? `/media/${image}` : `/static/product-placeholder.png`;
       this.id = id; // Assigning a unique ID to each object
       this.manufacturerId = manufacturer ? manufacturer : null;
     }
