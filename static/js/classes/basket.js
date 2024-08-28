@@ -83,7 +83,6 @@ export class Basket {
     }
 
     renderProduct(product) {
-        console.log(product.originalImage)
 
         const productDiv = document.createElement("div");
         productDiv.classList.add("cart__product");
@@ -92,7 +91,7 @@ export class Basket {
             <div class="cart__product__overlook">
                 <div class="overlook__img__container">
                     <div class="overlook__img__wrap">
-                        <img class="overlook__img" src="${product.originalImage}" alt="${product.name}" />
+                        <img class="overlook__img" src="${product.image}" alt="${product.name}" />
                     </div>
                 </div>
                 <div class="overlook__name__wrap">

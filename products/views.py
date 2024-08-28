@@ -26,43 +26,21 @@ def add_to_cart(request):
     product_id = int(request.GET["id"])
     try:
         product = Products.objects.filter(pk=product_id)
-        json_data = list(product.values('id', 'name', 'image', 'price'))[0]
 
+        json_data = list(product.values('id', 'name', 'image', 'price', 'model'))[0]
+        if not json_data['image']:
+            json_data['image']
+        else:
+            json_data['image'] = "/media/" + json_data['image']
         return JsonResponse(json_data, safe=False)
     except Products.DoesNotExist:
         return JsonResponse(status=404)
 
 
 def parent_categories(request):
-    products = list(Products.objects.order_by('-date_added')[:20].values('name', 'image', 'price', 'pk'))
-
-    first_half = products[:10]
-    second_half = products[10:]
-    split_products = {
-        'first_half': first_half,
-        'second_half': second_half
-    }
-
     categories = Category.objects.filter(parent=None)
     stocks = Stocks.objects.all()
-    return render(request, 'products/index.html', {'categories': categories, 'products': split_products, 'stocks': stocks})
-
-
-def products_view(request):
-    products = Products.objects.all()[:20].values('name', 'image', 'price')
-
-    # Преобразование QuerySet в список для сериализации
-    products_list = list(products)
-    return JsonResponse(products_list, safe=False)
-
-
-def chunk_queryset(queryset, chunk_size):
-    """Разбивает QuerySet на вложенные списки фиксированного размера."""
-    iterator = iter(queryset)
-    for first in iterator:
-        chunk = [first] + list(islice(iterator, chunk_size - 1))
-        yield chunk
-
+    return render(request, 'products/index.html', {'categories': categories, 'stocks': stocks})
 
 class SubCategoriesView(View):
     template_name = 'products/category.html'
@@ -89,7 +67,7 @@ class SubCategoriesView(View):
             # add-category/<str:slug>/
 
             print('-----123---', len(products))
-            products_values = products.values('id', 'name', 'image', 'price', 'manufacturer')
+            products_values = products.values('id', 'name', 'image', 'price', 'model')
 
             # Пагинация
             paginate_by = request.GET.get('productsPerPage', 10)
@@ -98,6 +76,11 @@ class SubCategoriesView(View):
             page_obj = paginator.get_page(page_number)
 
             products_data = list(page_obj)
+            for product in products_data:
+                if not product['image']:
+                    product['image']
+                else:
+                    product['image'] = "/media/" + product['image']
             json_data = {
                 'products': products_data,
                 'productsPerPage': paginator.per_page,
@@ -143,7 +126,7 @@ class SubProductView(View):
         # , products.filter(filters__filter_value__value="Маркер")
         product_filter = ProductsFilter(request.GET, queryset=products)
         filtered_queryset = product_filter.qs()
-        filtered_queryset = filtered_queryset.values('id', 'name', 'image', 'price', 'manufacturer')
+        filtered_queryset = filtered_queryset.values('id', 'name', 'image', 'price', 'model')
         filters = self.build_filters(filtered_queryset)
         print('------------------------------------------filtered_queryset------------', len(filtered_queryset))
         # Пагинация
@@ -154,6 +137,11 @@ class SubProductView(View):
 
         if request.headers['Content-Type'] == 'application/json':
             products_data = list(page_obj)
+            for product in products_data:
+                if not product['image']:
+                    product['image']
+                else:
+                    product['image'] = "/media/" + product['image']
             json_data = {
                 'products': products_data,
                 'productsPerPage': paginator.per_page,
@@ -195,7 +183,7 @@ class SubProductView(View):
 
 
 def get_new_arrivals(request):
-    products = list(Products.objects.order_by('-date_added')[:20].values('name', 'image', 'price', 'pk'))
+    products = list(Products.objects.order_by('-date_added')[:20].values('name', 'image', 'price', 'pk', 'model'))
 
     paginate_by = request.GET.get('productsPerPage', 10)
     page_number = request.GET.get('page', 1)
@@ -208,7 +196,11 @@ def get_new_arrivals(request):
         {'name': product['name'], 'image': product['image'], 'price': product['price'], 'id': product['pk']}
         for product in page_obj
     ]
-
+    for product in products_data:
+        if not product['image']:
+            product['image']
+        else:
+            product['image'] = "/media/" + product['image']
     json_data = {
         'products': products_data,
         'productsPerPage': paginator.per_page,

@@ -122,6 +122,9 @@ class Form {
             Object.keys(this.formData).forEach(key => this.triggerInput(key));
             
             const submitedFormData = {...this.mapedFormData(obj), ...this.selectedBasketObj};
+            if(formContainerId == "orderForm"){
+                submitedFormData.amount = this.productManager.allProductsTotalPrice(this.productManager.priceOutputFn, 2);
+            }
             if (this.productManager !== null) submitedFormData.products = 
                 this.productManager.filterProductsByQuantity(this.productManager.getProducts());
             const productsExistCondition = 
@@ -134,7 +137,10 @@ class Form {
                             throw Error();
                         }
                     });
+                    
                 }
+
+                
 
                 if(formContainerId == "orderForm" && this.selectedBasketObj.selectedPayment == "liqpay"){
                     this.formData.description = `
@@ -143,7 +149,7 @@ class Form {
                         Продукти: 
                         ${this.productManager.getProductsInfo()}
                     `
-                    this.formData.amount = this.productManager.allProductsTotalPrice(this.productManager.priceOutputFn, 2);
+                    
                     const body = this.formData;
                     try{
                         const {formHtml} = await this.fetchData(`payment/create/`, "POST", body);

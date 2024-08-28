@@ -33,22 +33,22 @@ export class ProductManager {
         localStorage.setItem('products', JSON.stringify([]));
     }
 
-    addProduct({ id, name, price, quantity, image, manufacturer }) {
+    addProduct({ id, name, price, quantity, image, model }) {
         const existProduct = this.existProduct(id);
         if (existProduct) existProduct.addOne();
-        else this.products = [...this.products, new Product(id, name, price, image, manufacturer, quantity)];
+        else this.products = [...this.products, new Product(id, name, price, image, model, quantity)];
     }
 
     mapObjectsInProducts(products) {
         if (!products) return [];
-        return products.map(({ id, name, price, quantity, image, manufacturerId }) =>
-            new Product(id, name, price, image, manufacturerId, quantity)
+        return products.map(({ id, name, price, quantity, image, model }) =>
+            new Product(id, name, price, image, model, quantity)
         );
     }
 
-    mapObjectInProduct({id, name, price, image, manufacturerId, quantity}) {
+    mapObjectInProduct({id, name, price, image, model, quantity}) {
         if (!id) return null;
-        return new Product(id, name, price, image, manufacturerId, quantity);
+        return new Product(id, name, price, image, model, quantity);
     }
 
     async fetchNewProduct(id) {

@@ -1,12 +1,11 @@
 class Product {
-    constructor(id, name, price, image, manufacturer, quantity) {
+    constructor(id, name, price, image, model, quantity) {
       this.name = name;
       this.price = price;
       this.quantity = quantity ? quantity : quantity === 0 ? quantity : 1;
-      this.originalImage = image
-      this.image = image !== "" ? `/media/${image}` : `/static/product-placeholder.png`;
+      this.image = image !== "" ? image : `/static/product-placeholder.png`;
       this.id = id; // Assigning a unique ID to each object
-      this.manufacturerId = manufacturer ? manufacturer : null;
+      this.model = model
     }
   
     static currentId = 1; // Static variable to keep track of the IDs

@@ -20,9 +20,10 @@
                     </div>
                 {% endif %}
                 <div class="product-image__wrap">
-                {% if all_images.0 != "" %}
+                {% if all_images|length != 0 %}
                     <img class="products-detaile__item__img"  src="{{ all_images.0  }}">
                 {% else %}
+                    <!-- <img class="products-detaile__item__img"  src="{% static 'product-placeholder.png' %}" alt=""> -->
                     <img class="products-detaile__item__img"  src="{% static 'product-placeholder.png' %}" alt="">
                 {% endif %}
                 </div>

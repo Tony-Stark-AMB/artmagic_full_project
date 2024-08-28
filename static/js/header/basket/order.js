@@ -9,7 +9,7 @@ const formDataOrder = {
     city: "",
     address: "",
     area: "",
-    department: ""
+    department: "",
 }
 
 // Не забувати, що патерни можуть перекривати один одного
@@ -41,7 +41,7 @@ formOrder.initForm("orderForm", {
     address: "address",
     area: "area",
     products: "products",
-    department: "department"
+    department: "department",
 }, "cart/process-order/", "POST", 
     {successMessage: "Ваше замовлення успішно прийняте", errorMessage: "Якась помилка"},
     3000, true

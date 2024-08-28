@@ -58,8 +58,6 @@ export class PageProducts {
     }
 
     renderProductItem({ name, id, image, price }, container) {
-
-        console.log(image);
         const productHTML = `
             <div class="products-${this.pageName}__item product-item" id="${id}">
                 <div class="products-${this.pageName}__item__img__wrap">
@@ -163,8 +161,8 @@ export class PageProducts {
     }
 
     mapProducts(arr) {
-        return arr.map(({ name, image, id, price, manufacturer }) =>
-            new Product(id, name, price, image, manufacturer)
+        return arr.map(({ name, image, id, price, model }) =>
+            new Product(id, name, price, image, model)
         );
     }
 
@@ -194,21 +192,12 @@ export class PageProducts {
     }
 
     async pageChange(page) {
-        // if (this.productsLists[page - 1].hasChildNodes()) return;
-
-        // const { products } = await this.fetchProducts(page);
-        // const mappedProducts = this.mapProducts(products);
-        // this.renderProductItemsOnList(mappedProducts, page);
-
-        // if (page != 1)
-        //     this.basket.initProductsBuyBtns(page);
         if (this.productsLists[page - 1].hasChildNodes()) return;
 
         const { products, productsAmount, productsPerPage } = await this.fetchProducts(page);
 
         // Если данные о продуктах изменились, обновляем листы продуктов
         if (productsAmount !== this.productsLists.length * this.swiperPagination.productsPerPage) {
-            // this.productsLists = this.renderProductsLists(productsAmount, productsPerPage);
             this.renderPaginationBullets();
         }
 
@@ -228,7 +217,6 @@ export class PageProducts {
     }
 
     handleCheckboxChange = (event) => {
-        // console.log("checkbox")
         const target = event.target;
         if (target.type === 'checkbox') {
             const parent = target.closest('[data-parent]');
