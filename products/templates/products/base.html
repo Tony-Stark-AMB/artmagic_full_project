@@ -360,7 +360,11 @@
                     <input class="call__modal__input" 
                     data-field="firstName"
                     type="text"
-                    placeholder="Ім'я"
+                    {% if user.is_authenticated %}
+                        value="{{ user.first_name }}" 
+                    {% else %}
+                        placeholder="Ім'я"
+                    {% endif %}
                     />
                     <p data-error="firstName" class="error-message-hidden"></p>
                 </div>
@@ -368,7 +372,11 @@
                     <input class="call__modal__input" 
                     data-field="lastName"
                     type="text"
-                    placeholder="Прізвище"
+                    {% if user.is_authenticated %}
+                        value="{{ user.last_name }}" 
+                    {% else %}
+                        placeholder="Прізвище"
+                    {% endif %}
                     />
                     <p data-error="lastName" class="error-message-hidden"></p>
                 </div>
@@ -376,7 +384,11 @@
                     <input class="call__modal__input" 
                     data-field="phone"
                     type="text"
-                    placeholder="Телефон"
+                    {% if user.is_authenticated %}
+                        value="{{ user.phone_number }}" 
+                    {% else %}
+                        placeholder="Телефон"
+                    {% endif %}
                     />
                     <p data-error="phone" class="error-message-hidden"></p>
                 </div>

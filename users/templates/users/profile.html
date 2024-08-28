@@ -1,4 +1,4 @@
-{% extends "products/base.html" %}
+{% extends 'products/base.html' %}
 {% load static %}
 {% load mptt_tags %}
 
@@ -20,11 +20,11 @@
             <div class="profile-page__container container__extra__small">
                 <div class="profile-page__content">
                     <div class="d-flex justify-content-end align-center">
-                        <btn class="btn btn-primary me-1" data-bs-toggle="modal" data-bs-target="#changePassword" href="{% url 'user:change_password' %}">Change Password</btn>
+                        <a class="btn btn-primary me-1" href="{% url 'user:change_password' %}">Change Password</a>
                         <a class="btn btn-primary" href="{% url 'user:logout' %}">Logout</a>
                     </div>
                     <form class="profile-page__user-info" id="profileForm">
-                       <h1 class="profile-page__user-info__title">Інформація вашого профілю</h1> 
+                       <h1 class="profile-page__user-info__title">Інформація вашого профілю</h1>
                         <div class="profile-page__user-info__input-wrap">
                             <span class="profile-page__user-info__label">Ваше ім'я: </span>
                             <input class="profile-page__user-info__input" 
@@ -111,7 +111,7 @@
                             data-field="profileAddress"
                             type="tel" 
                             disabled
-                            value="{{ user.address }}" 
+                            value="{{ address.address_line1 }}"
                             />
                             <div class="profile-page__user-info__btns-wrap">
                                 <button type="button" class="btn btn-primary profile-page__user-info__btn" data-edit="profileAddress">
@@ -131,7 +131,7 @@
                             data-field="postalCode"
                             type="tel" 
                             disabled
-                            value="{{ user.postal_code }}" 
+                            value="{{ address.postal_code }}"
                             />
                             <div class="profile-page__user-info__btns-wrap">
                                 <button type="button" class="btn btn-primary profile-page__user-info__btn" data-edit="postalCode">

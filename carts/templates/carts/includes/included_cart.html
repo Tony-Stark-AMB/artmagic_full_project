@@ -230,3 +230,9 @@
         </div>
     </div>
 </div>
+<div class="d-none">
+    <p>{{request.user.is_authenticated}}</p>
+    <p>{{request.user.first_name}} {{request.user.last_name}}</p>
+    <p>{{request.user.phone_number}}</p>
+    <p>{{request.user.custom_user.address_line1}}</p>
+</div>
