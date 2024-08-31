@@ -31,7 +31,17 @@ const patternsOrder = {
 
 basket.renderBasket();
 
-export const formOrder = new Form(formDataOrder, patternsOrder, "Order", Alert,  productManager, basket );
+const userData = new Map();
+
+Array.from(document.querySelectorAll("[data-user]")).map(el => {
+    const key = el.dataset.user;
+    const val = el.textContent;
+    userData.set(key, val)
+    return userData
+});
+
+
+export const formOrder = new Form(formDataOrder, patternsOrder, "Order", Alert,  productManager, basket, userData);
 
 formOrder.initForm("orderForm", {
     fullName: "name",

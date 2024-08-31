@@ -9,10 +9,11 @@ class Form {
                 }
             ])
         );
-        const [productManager, basket] = args;
+        const [productManager, basket, userData] = args;
         this.productManager = productManager ?? null;
         this.alert = alertCl ?? null;
         this.basket = basket ?? null;
+        this.userData = userData ?? null;
         this.initObj = obj;
         this.formName = formName;
         this.dataSubmitBtn = document.querySelector(`button[data-submit="btn_${formName}"]`);
@@ -22,6 +23,7 @@ class Form {
             selectedDelivery: null,
             selectedPayment: null
         }
+
     }
 
     getField(fieldName) {
@@ -83,7 +85,8 @@ class Form {
     async initForm(formContainerId, obj, path, methodType, msgObj, animDuration, clearCond = true) {
         const formContainer = document.getElementById(formContainerId);
 
-        // console.log(this.alert("err", 10000, "err"));
+        this.userAuthDefaultData();
+
         const fields = formContainer.querySelectorAll("[data-field]");
         fields.forEach((field) => field.addEventListener("input", (e) => {
             this.triggerInput(field.dataset.field)
@@ -170,12 +173,13 @@ class Form {
                 if (productsExistCondition && formContainerId == "orderForm") throw Error();           
                 await this.fetchData(path, methodType, submitedFormData);
                 this.alert("success", msgObj.successMessage, animDuration);
-
+                
                 if (clearCond) {
                     this.clearForm(this.initObj);
                     if(formContainerId === "orderForm"){
                         const selectors = document.querySelectorAll("select");
                         selectors.forEach((el) => el.value = null)
+                        this.userAuthDefaultData();
                     }
                     if (this.productManager !== null) {
                         this.productManager.clearStorageProducts();
@@ -184,6 +188,7 @@ class Form {
                     }
                 }
             } catch (err) {
+                this.userAuthDefaultData();
                 console.log(err);
                 switch(true){
                     case productsExistCondition && formContainerId == "orderForm":
@@ -334,6 +339,20 @@ class Form {
         const formattedDateTime = `${day}.${month}.${year} ${hours}:${minutes}:${seconds}`;
         
         return formattedDateTime;
+    }
+
+    userAuthDefaultData(){
+        if(this.userData && this.userData.get("status") === "1"){
+            this.formData = Object.fromEntries(
+                Object.entries(this.formData).map(([key, value]) => {
+                    // Check if the key exists in userData and update the value accordingly
+                    const newValue = this.userData.has(key) ? this.userData.get(key) : "";
+                    if(this.userData.has(key))
+                    this.getField(key).value = newValue;
+                    return [key, { ...value, value: newValue }];
+                })
+            ); 
+        }
     }
 }
 

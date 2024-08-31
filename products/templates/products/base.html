@@ -474,66 +474,72 @@
     <script type="module" src="{% static 'js/classes/page-products.js' %}"></script>
     <script type="module" src="{% static 'js/header/header.js' %}"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const loginForm = document.querySelector('.login__modal__form');
-            const registerForm = document.querySelector('.registration__modal__form');
-
-            if (loginForm) {
-                loginForm.addEventListener('submit', function (e) {
-                    e.preventDefault();
-                    const formData = new FormData(loginForm);
-                    fetch('{% url "user:login" %}', {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'X-Requested-With': 'XMLHttpRequest'
+        const loginForm = document.querySelector('.login__modal__form');
+        debugger
+        loginForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                console.log("here login")
+                const formData = new FormData(loginForm);
+                fetch('{% url "user:login" %}', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.redirect) {
+                        window.location.href = data.redirect;
+                    } else {
+                        // Обработка ошибок и отображение сообщений
+                        const errorsContainer = document.getElementById('login-form-errors');
+                        errorsContainer.innerHTML = '';
+                        console.log(data.errors)
+                        let errText = ""
+                        for (const [key, val] of Object.entries(data.errors)) {
+                            errText += `${val}\n\n`
                         }
-                    })
-                    .then(response => response.json())
-                    .then(data => {
+                        Alert("err", errText, 5000)
+                    }
+                });
+            });
+
+        const registerForm = document.querySelector('.registration__modal__form');
+
+        registerForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                console.log("here registr")
+                const formData = new FormData(registerForm);
+                fetch('{% url "user:register" %}', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.redirect) {
+                        window.location.href = data.redirect;
+                    } else {
+                        // Обработка ошибок и отображение сообщений
                         if (data.redirect) {
-                            window.location.href = data.redirect;
+                        window.location.href = data.redirect;
                         } else {
                             // Обработка ошибок и отображение сообщений
                             const errorsContainer = document.getElementById('login-form-errors');
                             errorsContainer.innerHTML = '';
-                            for (let field in data.errors) {
-                                const error = data.errors[field].join(', ');
-                                errorsContainer.innerHTML += `<p>${field}: ${error}</p>`;
+                            console.log(data.errors)
+                            let errText = ""
+                            for (const [key, val] of Object.entries(data.errors)) {
+                                errText += `${key}: ${val}\n`;
                             }
+                            Alert("err", errText, 5000)
                         }
-                    });
+                    }
                 });
-            }
-
-            if (registerForm) {
-                registerForm.addEventListener('submit', function (e) {
-                    e.preventDefault();
-                    const formData = new FormData(registerForm);
-                    fetch('{% url "user:register" %}', {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'X-Requested-With': 'XMLHttpRequest'
-                        }
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.redirect) {
-                            window.location.href = data.redirect;
-                        } else {
-                            // Обработка ошибок и отображение сообщений
-                            const errorsContainer = document.getElementById('registration-form-errors');
-                            errorsContainer.innerHTML = '';
-                            for (let field in data.errors) {
-                                const error = data.errors[field].join(', ');
-                                errorsContainer.innerHTML += `<p>${field}: ${error}</p>`;
-                            }
-                        }
-                    });
-                });
-            }
-        });
+            }); 
     </script>
     {% block js %}{% endblock %}
 </div>

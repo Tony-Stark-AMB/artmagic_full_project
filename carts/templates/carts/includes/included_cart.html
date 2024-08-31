@@ -122,24 +122,20 @@
                                         </svg>
                                         <p>За реквізитами</p>
                                     </label>
-                                    <input class="wallet-input" id="liqpay" name="payment" type="radio">
+                                    <!-- <input class="wallet-input" id="liqpay" name="payment" type="radio">
                                     <label class="card-input__icon-wrap" for="liqpay">
                                         <svg class="card-input__icon c8" data-payment="liqpay" version="1.0" xmlns="http://www.w3.org/2000/svg"
                                             width="240.000000pt" height="240.000000pt" viewBox="0 0 240.000000 240.000000"
-                                            preserveAspectRatio="xMidYMid meet">
-
+                                            preserveAspectRatio="xMidYMid meet"
                                             <g transform="translate(0.000000,240.000000) scale(0.100000,-0.100000)"
                                             fill="currentColor" stroke="none">
-                                                    <!-- Группа 1: Основная структура -->
                                                 <path d="M475 2389 c-234 -35 -391 -173 -452 -399 -16 -59 -18 -129 -18 -790 0 -796 -1 -774 62 -908 63 -134 192 -234 353 -273 81 -20 1479 -20 1560 0 161 39 290 139 353 273 63 134 62 112 62 908 0 661 -2 731 -18 790 -54 199 -182 329 -382 387 -54 15 -130 17 -760 19 -385 1 -727 -2 -760 -7z"/>
-                                                    <!-- Группа 2: Левая часть -->
                                                 <path class="c6" d="M717 1903 c36 -20 556 -611 580 -660 27 -53 7 -92 -115 -229 -59 -67 -184 -210 -279 -317 -187 -212 -210 -229 -276 -208 -43 15 -85 58 -97 102 -8 28 -6 41 12 76 21 38 375 451 428 498 l22 20 19 -23 c10 -13 28 -36 39 -50 19 -25 20 -25 9 -3 -17 35 -78 108 -308 369 -113 129 -212 245 -220 259 -27 53 3 120 74 164 38 24 71 24 112 2z"/>
-                                                    <!-- Группа 3: Правая часть -->
                                                 <path class="c6" d="M1368 1909 c22 -7 109 -100 299 -316 147 -169 276 -318 285 -332 20 -30 23 -82 6 -114 -6 -12 -61 -78 -123 -147 -61 -69 -183 -206 -270 -305 -87 -99 -165 -185 -174 -191 -34 -23 -71 -25 -116 -5 -53 23 -85 70 -85 123 0 40 11 53 369 461 l95 109 29 -34 29 -33 -28 41 c-26 37 -176 209 -390 448 -45 50 -86 101 -93 113 -31 60 5 149 73 179 38 16 54 17 94 3z"/>
                                             </g>
                                         </svg>
                                         <p>liqpay</p>
-                                    </label>
+                                    </label> -->
                                     <input class="wallet-input" id="payment_real" name="payment" type="radio">
                                     <label class="card-input__icon-wrap" for="payment_real" >
                                         <img class="card-input__icon " src="{% static 'assets/basket-icons/oplata-kartoy_grey.png' %}" alt="" data-payment="payment_real">
@@ -154,17 +150,17 @@
                                 <div class="order__input__content">
                                     <div class="order__input__wrap">
                                         <input class="order__input" 
-                                        data-field="fullName"
-                                        type="text"
-                                        placeholder="ПІБ"
+                                            data-field="fullName" 
+                                            type="text"
+                                            placeholder="ПІБ"
                                         />
                                         <p data-error="fullName" class="error-message-hidden"></p>
                                     </div>
                                     <div class="order__input__wrap">
                                         <input class="order__input" 
-                                        data-field="clientPhone"
-                                        type="tel"
-                                        placeholder="телефон"
+                                            data-field="clientPhone"
+                                            type="tel"
+                                            placeholder="телефон"
                                         />
                                         <p data-error="clientPhone" class="error-message-hidden"></p>
                                     </div>
@@ -230,9 +226,11 @@
         </div>
     </div>
 </div>
+<!-- USER DATA -->
 <div class="d-none">
-    <p>{{request.user.is_authenticated}}</p>
-    <p>{{request.user.first_name}} {{request.user.last_name}}</p>
-    <p>{{request.user.phone_number}}</p>
-    <p>{{request.user.custom_user.address_line1}}</p>
+    <p data-user="status">{{user.is_authenticated|yesno:"1,0" }}</p>
+    <p data-user="fullName">{{user.first_name}} {{user.last_name}}</p>
+    <p data-user="clientPhone">{{user.phone_number}}</p>
+    <p data-user="email">{{user.email}}</p>
+    <p data-user="address">{{address.address_line1}}</p>
 </div>

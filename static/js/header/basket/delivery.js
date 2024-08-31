@@ -187,6 +187,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
+
+
+        formOrder.userAuthDefaultData()
+
+
         orderInputWraps.forEach((wrap) => {
             const fieldName = wrap.querySelector('.order__input').dataset.field;
             if (fieldsToShow.includes(fieldName)) {
@@ -210,3 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeFormFields();
     updateFormFields();
 });
+
+
+
+

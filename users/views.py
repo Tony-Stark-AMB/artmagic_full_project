@@ -33,18 +33,25 @@ def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save()  # Сохраняем пользователя
+            
+            # Выполняем аутентификацию
             username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
+            password = form.cleaned_data.get('password1')  # Получаем пароль
 
+            # Аутентификация пользователя
             user = authenticate(request, username=username, password=password)
             if user is not None:
-                auth_login(request, user)
-                return JsonResponse({'redirect': '/'})
-            return JsonResponse({'errors': {'auth': 'Не удалось выполнить аутентификацию'}}, status=400)
-
-        return JsonResponse({'errors': form.errors}, status=400)
-    return JsonResponse({'errors': 'Метод GET не поддерживается'}, status=405)
+                auth_login(request, user)  # Выполняем вход пользователя
+                return redirect('parent_categories')
+            else:
+                return JsonResponse({'errors': {'auth': 'Не удалось выполнить аутентификацию'}}, status=400)
+        else:
+            errors = {field: error_list[0] for field, error_list in form.errors.items()}
+            return JsonResponse({'errors': errors}, status=400)
+    else:
+        form = RegistrationForm()
+        return JsonResponse({'errors': 'Метод GET не поддерживается'}, status=405)
 
 def user_login(request):
     if request.method == 'POST':
@@ -52,11 +59,15 @@ def user_login(request):
         if form.is_valid():
             username = request.POST['username']
             password = request.POST['password']
-            user = authenticate(username=username, password=password)
+            user = auth.authenticate(username=username, password=password)
             if user is not None:
                 auth_login(request, user)
-                return JsonResponse({'redirect': '/user/profile/'})
-        return JsonResponse({'errors': form.errors}, status=400)
+                return redirect('parent_categories')
+        # Возвращаем JSON с ошибками, если форма не валидна
+        errors = {field: error_list[0] for field, error_list in form.errors.items()}
+        return JsonResponse({'errors': errors}, status=400)
+
+    # Если метод запроса не POST, возвращаем ошибку
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 def user_logout(request):

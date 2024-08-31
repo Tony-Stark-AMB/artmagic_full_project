@@ -7,9 +7,42 @@ from .models import CustomUser, Address
 from django.contrib.auth import authenticate
 
 
+
 class RegistrationForm(UserCreationForm):
-    email = forms.EmailField(max_length=254, help_text="Введите действительный адрес электронной почты.")
-    phone_number = forms.CharField(max_length=15, help_text="Введите номер телефона в формате +123456789.")
+    email = forms.EmailField(
+        max_length=254,
+        error_messages={
+            'invalid': "Будь ласка, введіть дійсну адресу електронної пошти.",
+            'required': "Це поле є обов'язковим."
+        }
+    )
+    phone_number = forms.CharField(
+        max_length=15,
+        error_messages={
+            'required': "Це поле є обов'язковим."
+        }
+    )
+    
+    username = forms.CharField(
+        max_length=150,
+        error_messages={
+            'required': "Це поле є обов'язковим."
+        }
+    )
+    
+    password1 = forms.CharField(
+        widget=forms.PasswordInput,
+        error_messages={
+            'required': "Це поле є обов'язковим."
+        }
+    )
+    
+    password2 = forms.CharField(
+        widget=forms.PasswordInput,
+        error_messages={
+            'required': "Це поле є обов'язковим."
+        }
+    )
     
     class Meta:
         model = CustomUser
@@ -20,39 +53,41 @@ class RegistrationForm(UserCreationForm):
         if CustomUser.objects.filter(username=username).exists():
             raise ValidationError("Користувач із таким ім'ям вже існує.")
         print('-----------------------------------------------------------------------------------------------------------------------', len(username))
-        if len(username) <= 4:
-            raise ValidationError("Ім'я користувача має містити щонайменше 4 символи.")
+        if len(username) <= 5:
+            raise ValidationError("Ім'я користувача має містити щонайменше 5 літери.")
         # if not re.match(r'^[a-zA-Z]+$', username):
         #     raise ValidationError("Ім'я користувача має складатися лише з англійських букв.")
         return username
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
-        try:
-            validate_email(email)
-        except ValidationError:
-            raise ValidationError("Будь ласка, введіть дійсну адресу електронної пошти.")
+        if CustomUser.objects.filter(email=email).exists():
+            raise ValidationError("Користувач з такою електронную почтою вже існує.")
+        # Дополнительная логика для проверки email, если необходимо
         return email
 
     def clean_phone_number(self):
         phone_number = self.cleaned_data.get('phone_number')
         if not re.match(r'^\+?3?\d{9,14}$', phone_number):
             raise ValidationError("Неправильний номер телефону")
+        if CustomUser.objects.filter(phone_number=phone_number).exists():
+            raise ValidationError("Користувач з таким номером телефону вже існує.")
+        
         return phone_number
 
     def clean_password1(self):
         password1 = self.cleaned_data.get('password1')
         if not re.match(r'^[a-zA-Z0-9!@#$%^&*()_+{}\[\]:;"\'<>,.?/]+$', password1):
             raise ValidationError("Пароль може містити лише латинські літери та символи.")
-        if len(password1) < 5:
-            raise ValidationError("Пароль повинен містити щонайменше 5 символів.")
+        if len(password1) <= 3:
+            raise ValidationError("Пароль повинен містити щонайменше 4 символів.")
         return password1
 
     def clean_password2(self):
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
         if password1 != password2:
-            raise ValidationError("Паролі не збігаються.")
+            raise ValidationError("Паролі відрізняються.")
         return password2
 
     def clean(self):
@@ -65,8 +100,21 @@ class RegistrationForm(UserCreationForm):
             self.add_error('password2', "Паролі не збігаються.")
 
 class UserLoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+
+    username = forms.CharField(
+        max_length=30,
+        error_messages={
+            'required': "Це поле є обов'язковим."
+        }
+    )
+    
+    password = forms.CharField(
+        widget=forms.PasswordInput,
+        error_messages={
+            'required': "Це поле є обов'язковим."
+        }
+    )
+
 
     def clean(self):
         cleaned_data = super().clean()
@@ -78,7 +126,6 @@ class UserLoginForm(forms.Form):
             if user is None:
                 # Валидация неверного логина/пароля
                 raise forms.ValidationError("Будь ласка, введіть правильне ім'я користувача та пароль. Зверніть увагу, що обидва поля можуть бути чутливими до регістру.")
-    
 
 
 class ChangePasswordForm(PasswordChangeForm):
