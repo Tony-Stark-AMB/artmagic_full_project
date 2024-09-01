@@ -4,6 +4,4 @@ if (!localStorage.getItem('products'))
 
     const adminLinkEl = document.getElementById("adminLink");
 
-    // http://localhost:8000/admin
-
     adminLinkEl.setAttribute("href", `${PROTOCOL}://${HOST}:${PORT}/admin`)

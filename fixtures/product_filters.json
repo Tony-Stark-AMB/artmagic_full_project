@@ -2035,60 +2035,6 @@
     },
     {
         "model": "products.productfilter",
-        "pk": 227,
-        "fields": {
-            "product": 15270,
-            "filter_category": 1,
-            "filter_value": 116
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 228,
-        "fields": {
-            "product": 15270,
-            "filter_category": 3,
-            "filter_value": 172
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 229,
-        "fields": {
-            "product": 15270,
-            "filter_category": 5,
-            "filter_value": 285
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 230,
-        "fields": {
-            "product": 15270,
-            "filter_category": 6,
-            "filter_value": 381
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 231,
-        "fields": {
-            "product": 15270,
-            "filter_category": 10,
-            "filter_value": 519
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 232,
-        "fields": {
-            "product": 15270,
-            "filter_category": 11,
-            "filter_value": 581
-        }
-    },
-    {
-        "model": "products.productfilter",
         "pk": 233,
         "fields": {
             "product": 15271,
@@ -3241,69 +3187,6 @@
     },
     {
         "model": "products.productfilter",
-        "pk": 361,
-        "fields": {
-            "product": 15759,
-            "filter_category": 1,
-            "filter_value": 115
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 362,
-        "fields": {
-            "product": 15759,
-            "filter_category": 3,
-            "filter_value": 187
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 363,
-        "fields": {
-            "product": 15759,
-            "filter_category": 4,
-            "filter_value": 207
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 364,
-        "fields": {
-            "product": 15759,
-            "filter_category": 5,
-            "filter_value": 243
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 365,
-        "fields": {
-            "product": 15759,
-            "filter_category": 6,
-            "filter_value": 368
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 366,
-        "fields": {
-            "product": 15759,
-            "filter_category": 10,
-            "filter_value": 485
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 367,
-        "fields": {
-            "product": 15759,
-            "filter_category": 11,
-            "filter_value": 581
-        }
-    },
-    {
-        "model": "products.productfilter",
         "pk": 368,
         "fields": {
             "product": 15760,
@@ -3523,114 +3406,6 @@
         "pk": 392,
         "fields": {
             "product": 16319,
-            "filter_category": 11,
-            "filter_value": 581
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 393,
-        "fields": {
-            "product": 16320,
-            "filter_category": 1,
-            "filter_value": 116
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 394,
-        "fields": {
-            "product": 16320,
-            "filter_category": 3,
-            "filter_value": 172
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 395,
-        "fields": {
-            "product": 16320,
-            "filter_category": 5,
-            "filter_value": 339
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 396,
-        "fields": {
-            "product": 16320,
-            "filter_category": 6,
-            "filter_value": 381
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 397,
-        "fields": {
-            "product": 16320,
-            "filter_category": 10,
-            "filter_value": 519
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 398,
-        "fields": {
-            "product": 16320,
-            "filter_category": 11,
-            "filter_value": 581
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 399,
-        "fields": {
-            "product": 16321,
-            "filter_category": 1,
-            "filter_value": 116
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 400,
-        "fields": {
-            "product": 16321,
-            "filter_category": 3,
-            "filter_value": 172
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 401,
-        "fields": {
-            "product": 16321,
-            "filter_category": 5,
-            "filter_value": 325
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 402,
-        "fields": {
-            "product": 16321,
-            "filter_category": 6,
-            "filter_value": 381
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 403,
-        "fields": {
-            "product": 16321,
-            "filter_category": 10,
-            "filter_value": 519
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 404,
-        "fields": {
-            "product": 16321,
             "filter_category": 11,
             "filter_value": 581
         }
@@ -4501,60 +4276,6 @@
     },
     {
         "model": "products.productfilter",
-        "pk": 501,
-        "fields": {
-            "product": 16381,
-            "filter_category": 1,
-            "filter_value": 116
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 502,
-        "fields": {
-            "product": 16381,
-            "filter_category": 3,
-            "filter_value": 172
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 503,
-        "fields": {
-            "product": 16381,
-            "filter_category": 5,
-            "filter_value": 339
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 504,
-        "fields": {
-            "product": 16381,
-            "filter_category": 6,
-            "filter_value": 381
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 505,
-        "fields": {
-            "product": 16381,
-            "filter_category": 10,
-            "filter_value": 519
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 506,
-        "fields": {
-            "product": 16381,
-            "filter_category": 11,
-            "filter_value": 581
-        }
-    },
-    {
-        "model": "products.productfilter",
         "pk": 507,
         "fields": {
             "product": 16382,
@@ -4609,114 +4330,6 @@
     },
     {
         "model": "products.productfilter",
-        "pk": 513,
-        "fields": {
-            "product": 16384,
-            "filter_category": 1,
-            "filter_value": 116
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 514,
-        "fields": {
-            "product": 16384,
-            "filter_category": 3,
-            "filter_value": 172
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 515,
-        "fields": {
-            "product": 16384,
-            "filter_category": 5,
-            "filter_value": 339
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 516,
-        "fields": {
-            "product": 16384,
-            "filter_category": 6,
-            "filter_value": 381
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 517,
-        "fields": {
-            "product": 16384,
-            "filter_category": 10,
-            "filter_value": 519
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 518,
-        "fields": {
-            "product": 16384,
-            "filter_category": 11,
-            "filter_value": 581
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 519,
-        "fields": {
-            "product": 16385,
-            "filter_category": 1,
-            "filter_value": 116
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 520,
-        "fields": {
-            "product": 16385,
-            "filter_category": 3,
-            "filter_value": 172
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 521,
-        "fields": {
-            "product": 16385,
-            "filter_category": 5,
-            "filter_value": 339
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 522,
-        "fields": {
-            "product": 16385,
-            "filter_category": 6,
-            "filter_value": 381
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 523,
-        "fields": {
-            "product": 16385,
-            "filter_category": 10,
-            "filter_value": 519
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 524,
-        "fields": {
-            "product": 16385,
-            "filter_category": 11,
-            "filter_value": 581
-        }
-    },
-    {
-        "model": "products.productfilter",
         "pk": 525,
         "fields": {
             "product": 16387,
@@ -4765,60 +4378,6 @@
         "pk": 530,
         "fields": {
             "product": 16387,
-            "filter_category": 11,
-            "filter_value": 581
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 531,
-        "fields": {
-            "product": 16386,
-            "filter_category": 1,
-            "filter_value": 116
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 532,
-        "fields": {
-            "product": 16386,
-            "filter_category": 3,
-            "filter_value": 172
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 533,
-        "fields": {
-            "product": 16386,
-            "filter_category": 5,
-            "filter_value": 339
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 534,
-        "fields": {
-            "product": 16386,
-            "filter_category": 6,
-            "filter_value": 381
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 535,
-        "fields": {
-            "product": 16386,
-            "filter_category": 10,
-            "filter_value": 519
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 536,
-        "fields": {
-            "product": 16386,
             "filter_category": 11,
             "filter_value": 581
         }
@@ -21367,60 +20926,6 @@
     },
     {
         "model": "products.productfilter",
-        "pk": 2375,
-        "fields": {
-            "product": 12336,
-            "filter_category": 1,
-            "filter_value": 25
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 2376,
-        "fields": {
-            "product": 12336,
-            "filter_category": 3,
-            "filter_value": 177
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 2377,
-        "fields": {
-            "product": 12336,
-            "filter_category": 4,
-            "filter_value": 211
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 2378,
-        "fields": {
-            "product": 12336,
-            "filter_category": 5,
-            "filter_value": 214
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 2379,
-        "fields": {
-            "product": 12336,
-            "filter_category": 10,
-            "filter_value": 571
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 2380,
-        "fields": {
-            "product": 12336,
-            "filter_category": 11,
-            "filter_value": 610
-        }
-    },
-    {
-        "model": "products.productfilter",
         "pk": 2381,
         "fields": {
             "product": 12337,
@@ -22180,69 +21685,6 @@
         "pk": 2465,
         "fields": {
             "product": 4356,
-            "filter_category": 11,
-            "filter_value": 610
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 2466,
-        "fields": {
-            "product": 4301,
-            "filter_category": 1,
-            "filter_value": 25
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 2467,
-        "fields": {
-            "product": 4301,
-            "filter_category": 2,
-            "filter_value": 139
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 2468,
-        "fields": {
-            "product": 4301,
-            "filter_category": 3,
-            "filter_value": 175
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 2469,
-        "fields": {
-            "product": 4301,
-            "filter_category": 4,
-            "filter_value": 206
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 2470,
-        "fields": {
-            "product": 4301,
-            "filter_category": 5,
-            "filter_value": 325
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 2471,
-        "fields": {
-            "product": 4301,
-            "filter_category": 10,
-            "filter_value": 485
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 2472,
-        "fields": {
-            "product": 4301,
             "filter_category": 11,
             "filter_value": 610
         }
@@ -28522,69 +27964,6 @@
     },
     {
         "model": "products.productfilter",
-        "pk": 3170,
-        "fields": {
-            "product": 12734,
-            "filter_category": 1,
-            "filter_value": 25
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 3171,
-        "fields": {
-            "product": 12734,
-            "filter_category": 2,
-            "filter_value": 143
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 3172,
-        "fields": {
-            "product": 12734,
-            "filter_category": 3,
-            "filter_value": 189
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 3173,
-        "fields": {
-            "product": 12734,
-            "filter_category": 4,
-            "filter_value": 205
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 3174,
-        "fields": {
-            "product": 12734,
-            "filter_category": 5,
-            "filter_value": 235
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 3175,
-        "fields": {
-            "product": 12734,
-            "filter_category": 10,
-            "filter_value": 485
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 3176,
-        "fields": {
-            "product": 12734,
-            "filter_category": 11,
-            "filter_value": 610
-        }
-    },
-    {
-        "model": "products.productfilter",
         "pk": 3177,
         "fields": {
             "product": 12735,
@@ -28642,69 +28021,6 @@
         "pk": 3183,
         "fields": {
             "product": 12735,
-            "filter_category": 11,
-            "filter_value": 610
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 3184,
-        "fields": {
-            "product": 12736,
-            "filter_category": 1,
-            "filter_value": 25
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 3185,
-        "fields": {
-            "product": 12736,
-            "filter_category": 2,
-            "filter_value": 143
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 3186,
-        "fields": {
-            "product": 12736,
-            "filter_category": 3,
-            "filter_value": 189
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 3187,
-        "fields": {
-            "product": 12736,
-            "filter_category": 4,
-            "filter_value": 205
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 3188,
-        "fields": {
-            "product": 12736,
-            "filter_category": 5,
-            "filter_value": 235
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 3189,
-        "fields": {
-            "product": 12736,
-            "filter_category": 10,
-            "filter_value": 485
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 3190,
-        "fields": {
-            "product": 12736,
             "filter_category": 11,
             "filter_value": 610
         }
@@ -84799,33 +84115,6 @@
     },
     {
         "model": "products.productfilter",
-        "pk": 9423,
-        "fields": {
-            "product": 8301,
-            "filter_category": 8,
-            "filter_value": 446
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 9424,
-        "fields": {
-            "product": 8301,
-            "filter_category": 10,
-            "filter_value": 493
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 9425,
-        "fields": {
-            "product": 8301,
-            "filter_category": 11,
-            "filter_value": 625
-        }
-    },
-    {
-        "model": "products.productfilter",
         "pk": 9426,
         "fields": {
             "product": 8302,
@@ -100207,24 +99496,6 @@
     },
     {
         "model": "products.productfilter",
-        "pk": 11135,
-        "fields": {
-            "product": 17511,
-            "filter_category": 10,
-            "filter_value": 509
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 11136,
-        "fields": {
-            "product": 17511,
-            "filter_category": 11,
-            "filter_value": 622
-        }
-    },
-    {
-        "model": "products.productfilter",
         "pk": 11137,
         "fields": {
             "product": 17512,
@@ -112087,33 +111358,6 @@
     },
     {
         "model": "products.productfilter",
-        "pk": 12455,
-        "fields": {
-            "product": 15789,
-            "filter_category": 1,
-            "filter_value": 3
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 12456,
-        "fields": {
-            "product": 15789,
-            "filter_category": 10,
-            "filter_value": 545
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 12457,
-        "fields": {
-            "product": 15789,
-            "filter_category": 11,
-            "filter_value": 612
-        }
-    },
-    {
-        "model": "products.productfilter",
         "pk": 12458,
         "fields": {
             "product": 12510,
@@ -113230,33 +112474,6 @@
     },
     {
         "model": "products.productfilter",
-        "pk": 12582,
-        "fields": {
-            "product": 5546,
-            "filter_category": 10,
-            "filter_value": 481
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 12583,
-        "fields": {
-            "product": 5546,
-            "filter_category": 11,
-            "filter_value": 603
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 12584,
-        "fields": {
-            "product": 5546,
-            "filter_category": 12,
-            "filter_value": 651
-        }
-    },
-    {
-        "model": "products.productfilter",
         "pk": 12585,
         "fields": {
             "product": 5555,
@@ -113386,33 +112603,6 @@
         "pk": 12599,
         "fields": {
             "product": 13466,
-            "filter_category": 11,
-            "filter_value": 612
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 12600,
-        "fields": {
-            "product": 10651,
-            "filter_category": 1,
-            "filter_value": 98
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 12601,
-        "fields": {
-            "product": 10651,
-            "filter_category": 10,
-            "filter_value": 553
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 12602,
-        "fields": {
-            "product": 10651,
             "filter_category": 11,
             "filter_value": 612
         }
@@ -116686,33 +115876,6 @@
     },
     {
         "model": "products.productfilter",
-        "pk": 12966,
-        "fields": {
-            "product": 13629,
-            "filter_category": 1,
-            "filter_value": 3
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 12967,
-        "fields": {
-            "product": 13629,
-            "filter_category": 10,
-            "filter_value": 545
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 12968,
-        "fields": {
-            "product": 13629,
-            "filter_category": 11,
-            "filter_value": 612
-        }
-    },
-    {
-        "model": "products.productfilter",
         "pk": 12969,
         "fields": {
             "product": 3115,
@@ -118207,33 +117370,6 @@
     },
     {
         "model": "products.productfilter",
-        "pk": 13135,
-        "fields": {
-            "product": 14442,
-            "filter_category": 1,
-            "filter_value": 98
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 13136,
-        "fields": {
-            "product": 14442,
-            "filter_category": 10,
-            "filter_value": 553
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 13137,
-        "fields": {
-            "product": 14442,
-            "filter_category": 11,
-            "filter_value": 612
-        }
-    },
-    {
-        "model": "products.productfilter",
         "pk": 13138,
         "fields": {
             "product": 14569,
@@ -118401,33 +117537,6 @@
             "product": 15144,
             "filter_category": 12,
             "filter_value": 651
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 13157,
-        "fields": {
-            "product": 14436,
-            "filter_category": 1,
-            "filter_value": 98
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 13158,
-        "fields": {
-            "product": 14436,
-            "filter_category": 10,
-            "filter_value": 553
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 13159,
-        "fields": {
-            "product": 14436,
-            "filter_category": 11,
-            "filter_value": 612
         }
     },
     {
@@ -120745,33 +119854,6 @@
     },
     {
         "model": "products.productfilter",
-        "pk": 13417,
-        "fields": {
-            "product": 14572,
-            "filter_category": 1,
-            "filter_value": 3
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 13418,
-        "fields": {
-            "product": 14572,
-            "filter_category": 10,
-            "filter_value": 545
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 13419,
-        "fields": {
-            "product": 14572,
-            "filter_category": 11,
-            "filter_value": 612
-        }
-    },
-    {
-        "model": "products.productfilter",
         "pk": 13420,
         "fields": {
             "product": 16307,
@@ -121036,33 +120118,6 @@
         "pk": 13449,
         "fields": {
             "product": 2661,
-            "filter_category": 11,
-            "filter_value": 612
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 13450,
-        "fields": {
-            "product": 14571,
-            "filter_category": 1,
-            "filter_value": 3
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 13451,
-        "fields": {
-            "product": 14571,
-            "filter_category": 10,
-            "filter_value": 545
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 13452,
-        "fields": {
-            "product": 14571,
             "filter_category": 11,
             "filter_value": 612
         }
@@ -140428,42 +139483,6 @@
     },
     {
         "model": "products.productfilter",
-        "pk": 15604,
-        "fields": {
-            "product": 14538,
-            "filter_category": 1,
-            "filter_value": 82
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 15605,
-        "fields": {
-            "product": 14538,
-            "filter_category": 10,
-            "filter_value": 562
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 15606,
-        "fields": {
-            "product": 14538,
-            "filter_category": 11,
-            "filter_value": 607
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 15607,
-        "fields": {
-            "product": 14538,
-            "filter_category": 17,
-            "filter_value": 708
-        }
-    },
-    {
-        "model": "products.productfilter",
         "pk": 15608,
         "fields": {
             "product": 5096,
@@ -143920,42 +142939,6 @@
     },
     {
         "model": "products.productfilter",
-        "pk": 15992,
-        "fields": {
-            "product": 7180,
-            "filter_category": 1,
-            "filter_value": 96
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 15993,
-        "fields": {
-            "product": 7180,
-            "filter_category": 10,
-            "filter_value": 562
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 15994,
-        "fields": {
-            "product": 7180,
-            "filter_category": 11,
-            "filter_value": 573
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 15995,
-        "fields": {
-            "product": 7180,
-            "filter_category": 18,
-            "filter_value": 723
-        }
-    },
-    {
-        "model": "products.productfilter",
         "pk": 15996,
         "fields": {
             "product": 7181,
@@ -144429,42 +143412,6 @@
             "product": 11071,
             "filter_category": 11,
             "filter_value": 573
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 16049,
-        "fields": {
-            "product": 11350,
-            "filter_category": 1,
-            "filter_value": 96
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 16050,
-        "fields": {
-            "product": 11350,
-            "filter_category": 10,
-            "filter_value": 562
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 16051,
-        "fields": {
-            "product": 11350,
-            "filter_category": 11,
-            "filter_value": 573
-        }
-    },
-    {
-        "model": "products.productfilter",
-        "pk": 16052,
-        "fields": {
-            "product": 11350,
-            "filter_category": 18,
-            "filter_value": 723
         }
     },
     {

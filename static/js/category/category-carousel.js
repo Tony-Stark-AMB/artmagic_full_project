@@ -30,7 +30,7 @@ class CategoryProducts extends PageProducts {
     const pageUrl = window.location.href.split("/").filter(part => part !== "");
     const slug = pageUrl[pageUrl.length - 1];
     const { productsPerPage } = this.swiperPagination;
-    const url = `http://localhost:8000/category/${slug}/add-category?page=${page}&productsPerPage=${productsPerPage}`;
+    const url = `${PROTOCOL}://${HOST}:${PORT}/category/${slug}/add-category?page=${page}&productsPerPage=${productsPerPage}`;
 
     const response = await fetch(url, {
       method: "GET",

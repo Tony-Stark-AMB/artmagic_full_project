@@ -1,19 +1,24 @@
+import random
 from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
+from django.utils.crypto import get_random_string
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from carts.models import Cart
+from carts.models import Cart, Order
 from django.views import View
-from carts.utils import get_user_carts
+from carts.utils import get_user_carts, generate_excel
 from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 from products.models import Products
 from delivery.models import DeliveryOption
 from liqpay_app.models import Payment
 from .decryption_ref import get_city_name, get_area_name, get_department_name
+from openpyxl import Workbook
+import os
+from datetime import datetime
 import json
 import logging
 from django.conf import settings
@@ -105,7 +110,6 @@ def cart_remove(request):
 
 logger = logging.getLogger(__name__)
 
-
 class ProcessOrderView(View):
 
     def post(self, request):
@@ -134,16 +138,33 @@ class ProcessOrderView(View):
 
             total_price = 0
             for el in products:
-                total_price += int(el['quantity']) * float(el['price'])
+                total_price += round(int(el['quantity']) * float(el['price']), 2)
 
             # Проверка на наличие обязательных полей
-            if not (name and phone and email and products):
+            if not (name, phone, email, products):
                 logger.error('Missing required fields in data')
                 return JsonResponse({'status': 'error', 'message': 'Missing required fields'}, status=400)
 
-            # Формирование письма
-            subject = 'Новый заказ от клиента'
-            html_message = render_to_string('carts/email_template.html', {
+            # Генерация уникального номера заказа
+            while True:
+                order_number = str(random.randint(10000000, 99999999))
+                if not Order.objects.filter(order_number=order_number).exists():
+                    break
+
+            order = Order.objects.create(
+                order_number=order_number,
+                name=name,
+                phone=phone,
+                email=email,
+                payment=payment,
+                address=address,
+                address_delivery=address_delivery,
+                total_price=total_price,
+                products=products  # Сохранение продуктов как JSON-объект
+            )
+
+            # Параметры для писем
+            params = {
                 'name': name,
                 'phone': phone,
                 'email': email,
@@ -151,19 +172,38 @@ class ProcessOrderView(View):
                 'address': address,
                 'products': products,
                 'total_price': total_price,
-                'address_delivery': address_delivery
-            })
-            recipient_list = ['Asgeron90@gmail.com']
+                'address_delivery': address_delivery,
+                'order_number': order_number
+            }
+
+            # Формирование письма владельцу сайта
+            subject_owner = 'Новый заказ от клиента'
+            html_message_owner = render_to_string('carts/email_template.html', params)
+            recipient_list_owner = ['Asgeron90@gmail.com']
 
             try:
-                email_message = EmailMessage(subject, html_message, 'Asgeron90@gmail.com', recipient_list)
-                email_message.content_subtype = "html"
-                email_message.send()
-                logger.debug('Email sent successfully to %s', recipient_list)
+                email_message_owner = EmailMessage(subject_owner, html_message_owner, 'Asgeron90@gmail.com', recipient_list_owner)
+                email_message_owner.content_subtype = "html"
+                email_message_owner.send()
+                logger.debug('Email sent successfully to %s', recipient_list_owner)
+            except Exception as e:
+                logger.error('Error sending email to owner: %s', e)
+                return JsonResponse({'status': 'error', 'message': 'Ошибка при отправке электронной почты владельцу'}, status=500)
+
+            # Формирование письма пользователю
+            subject_user = 'Ваше замовлення прийняте'
+            html_message_user = render_to_string('users/email_template_user.html', params)
+            recipient_list_user = [email]
+
+            try:
+                email_message_user = EmailMessage(subject_user, html_message_user, 'Asgeron90@gmail.com', recipient_list_user)
+                email_message_user.content_subtype = "html"
+                email_message_user.send()
+                logger.debug('Email sent successfully to %s', recipient_list_user)
                 return JsonResponse({'status': 'success', 'message': 'Заказ успешно отправлен'}, status=200)
             except Exception as e:
-                logger.error('Error sending email: %s', e)
-                return JsonResponse({'status': 'error', 'message': 'Ошибка при отправке электронной почты'}, status=500)
+                logger.error('Error sending email to user: %s', e)
+                return JsonResponse({'status': 'error', 'message': 'Ошибка при отправке электронной почты пользователю'}, status=500)
 
         except json.JSONDecodeError as e:
             logger.error('JSON decode error: %s', e)

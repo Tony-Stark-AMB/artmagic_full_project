@@ -53,8 +53,8 @@ class RegistrationForm(UserCreationForm):
         if CustomUser.objects.filter(username=username).exists():
             raise ValidationError("Користувач із таким ім'ям вже існує.")
         print('-----------------------------------------------------------------------------------------------------------------------', len(username))
-        if len(username) <= 5:
-            raise ValidationError("Ім'я користувача має містити щонайменше 5 літери.")
+        if len(username) <= 1:
+            raise ValidationError("Ім'я користувача має містити щонайменше 3 літери.")
         # if not re.match(r'^[a-zA-Z]+$', username):
         #     raise ValidationError("Ім'я користувача має складатися лише з англійських букв.")
         return username

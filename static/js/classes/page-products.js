@@ -178,7 +178,7 @@ export class PageProducts {
         
         const query = pageUrl[pageUrl.length - 1].replace("?", "&");
         
-        const url = `http://localhost:8000/product/${slug}/add-filters?page=${page}&productsPerPage=${productsPerPage}&${filtrartionProductsQuery ? filtrartionProductsQuery : ""}`;
+        const url = `${PROTOCOL}://${HOST}:${PORT}/product/${slug}/add-filters?page=${page}&productsPerPage=${productsPerPage}&${filtrartionProductsQuery ? filtrartionProductsQuery : ""}`;
         
         const queryUrl = url + query;
         const response = await fetch(isSearchPage ? queryUrl : url, {

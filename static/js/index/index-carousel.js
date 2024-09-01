@@ -43,7 +43,7 @@ class IndexProducts extends PageProducts{
 
   async fetchProducts(page) {
     const { productsPerPage } = this.swiperPagination;
-    const url = `http://localhost:8000/get-new-arrivals/?page=${page}&productsPerPage=${productsPerPage}`;
+    const url = `${PROTOCOL}://${HOST}:${PORT}/get-new-arrivals/?page=${page}&productsPerPage=${productsPerPage}`;
 
     const response = await fetch(url, {
         method: "GET",

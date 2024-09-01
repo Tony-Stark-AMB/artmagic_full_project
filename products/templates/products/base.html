@@ -474,9 +474,11 @@
     <script type="module" src="{% static 'js/classes/page-products.js' %}"></script>
     <script type="module" src="{% static 'js/header/header.js' %}"></script>
     <script>
-        const loginForm = document.querySelector('.login__modal__form');
-        debugger
-        loginForm.addEventListener('submit', function (e) {
+        document.addEventListener("DOMContentLoaded", () => {
+            const loginForm = document.querySelector('.login__modal__form');
+        
+        if(loginForm){
+            loginForm.addEventListener('submit', function (e) {
                 e.preventDefault();
                 console.log("here login")
                 const formData = new FormData(loginForm);
@@ -504,10 +506,12 @@
                     }
                 });
             });
-
+        }
+        
         const registerForm = document.querySelector('.registration__modal__form');
 
-        registerForm.addEventListener('submit', function (e) {
+        if(registerForm){
+            registerForm.addEventListener('submit', function (e) {
                 e.preventDefault();
                 console.log("here registr")
                 const formData = new FormData(registerForm);
@@ -540,6 +544,10 @@
                     }
                 });
             }); 
+        }
+        })
+        
+        
     </script>
     {% block js %}{% endblock %}
 </div>

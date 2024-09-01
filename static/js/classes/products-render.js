@@ -59,7 +59,7 @@ class ProductRenderer {
     async fetchProducts(page) {
         const pageUrlParts = window.location.href.split("/").filter((part) => part !== "");
         const slug = pageUrlParts[pageUrlParts.length - 1];
-        const url = `http://localhost:8000/product/${slug}/add-filters?page=${page}`;
+        const url = `${PROTOCOL}://${HOST}:${PORT}/product/${slug}/add-filters?page=${page}`;
 
         const response = await fetch(url, { method: "GET", mode: "cors" });
         return await response.json();

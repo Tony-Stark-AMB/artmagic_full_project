@@ -1665,14 +1665,6 @@
     },
     {
         "model": "products.productimage",
-        "pk": 209,
-        "fields": {
-            "product_id": "16554",
-            "image": "catalog/1312221_1_large.jpeg"
-        }
-    },
-    {
-        "model": "products.productimage",
         "pk": 210,
         "fields": {
             "product_id": "16605",

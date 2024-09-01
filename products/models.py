@@ -4,7 +4,7 @@ from mptt.models import MPTTModel, TreeForeignKey
 
 
 class Category(MPTTModel):
-    name = models.CharField(max_length=295)
+    name = models.CharField(max_length=295, unique=True)
     description = models.TextField(null=True, blank=True)
     meta_title = models.CharField(max_length=255, null=True)
     meta_description = models.TextField(max_length=255, null=True, blank=True)
@@ -76,10 +76,10 @@ class FilterValue(models.Model):
 
 
 class Products(models.Model):
-    name = models.CharField(max_length=299)
+    name = models.CharField(max_length=299, unique=True)
     description = models.TextField(null=True, blank=True)
 
-    model = models.CharField(max_length=255, blank=True)
+    model = models.CharField(max_length=255, blank=True, unique=True)
     quantity = models.IntegerField(null=True, blank=True)
     stock_status_id = models.ForeignKey(StockStatus, on_delete=models.CASCADE, max_length=300)
     image = models.ImageField(upload_to='catalog/', null=True, max_length=300, blank=True)

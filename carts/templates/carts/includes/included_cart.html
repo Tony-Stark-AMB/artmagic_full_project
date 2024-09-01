@@ -126,7 +126,7 @@
                                     <label class="card-input__icon-wrap" for="liqpay">
                                         <svg class="card-input__icon c8" data-payment="liqpay" version="1.0" xmlns="http://www.w3.org/2000/svg"
                                             width="240.000000pt" height="240.000000pt" viewBox="0 0 240.000000 240.000000"
-                                            preserveAspectRatio="xMidYMid meet"
+                                            preserveAspectRatio="xMidYMid meet">
                                             <g transform="translate(0.000000,240.000000) scale(0.100000,-0.100000)"
                                             fill="currentColor" stroke="none">
                                                 <path d="M475 2389 c-234 -35 -391 -173 -452 -399 -16 -59 -18 -129 -18 -790 0 -796 -1 -774 62 -908 63 -134 192 -234 353 -273 81 -20 1479 -20 1560 0 161 39 290 139 353 273 63 134 62 112 62 908 0 661 -2 731 -18 790 -54 199 -182 329 -382 387 -54 15 -130 17 -760 19 -385 1 -727 -2 -760 -7z"/>
@@ -150,17 +150,17 @@
                                 <div class="order__input__content">
                                     <div class="order__input__wrap">
                                         <input class="order__input" 
-                                            data-field="fullName" 
-                                            type="text"
-                                            placeholder="ПІБ"
+                                        data-field="fullName"
+                                        type="text"
+                                        placeholder="ПІБ"
                                         />
                                         <p data-error="fullName" class="error-message-hidden"></p>
                                     </div>
                                     <div class="order__input__wrap">
                                         <input class="order__input" 
-                                            data-field="clientPhone"
-                                            type="tel"
-                                            placeholder="телефон"
+                                        data-field="clientPhone"
+                                        type="tel"
+                                        placeholder="телефон"
                                         />
                                         <p data-error="clientPhone" class="error-message-hidden"></p>
                                     </div>
@@ -226,7 +226,6 @@
         </div>
     </div>
 </div>
-<!-- USER DATA -->
 <div class="d-none">
     <p data-user="status">{{user.is_authenticated|yesno:"1,0" }}</p>
     <p data-user="fullName">{{user.first_name}} {{user.last_name}}</p>

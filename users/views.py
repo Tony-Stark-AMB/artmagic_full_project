@@ -3,6 +3,7 @@ import logging
 
 from django.contrib.auth import authenticate, login as auth_login, logout, update_session_auth_hash, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import auth
 from django.core.mail import EmailMessage
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
@@ -43,7 +44,7 @@ def register(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 auth_login(request, user)  # Выполняем вход пользователя
-                return redirect('parent_categories')
+                return JsonResponse({'redirect': '/'})
             else:
                 return JsonResponse({'errors': {'auth': 'Не удалось выполнить аутентификацию'}}, status=400)
         else:
@@ -62,7 +63,7 @@ def user_login(request):
             user = auth.authenticate(username=username, password=password)
             if user is not None:
                 auth_login(request, user)
-                return redirect('parent_categories')
+                return JsonResponse({'redirect': '/'})
         # Возвращаем JSON с ошибками, если форма не валидна
         errors = {field: error_list[0] for field, error_list in form.errors.items()}
         return JsonResponse({'errors': errors}, status=400)
