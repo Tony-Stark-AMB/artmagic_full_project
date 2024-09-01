@@ -1,5 +1,5 @@
 const {HOST, PORT, PROTOCOL} = {
-    HOST: "localhost",
+    HOST: "artmagic",
     PORT: "8000",
     PROTOCOL: "http"
 }
