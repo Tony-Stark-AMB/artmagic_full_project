@@ -11,21 +11,24 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+load_dotenv(os.path.join(BASE_DIR, '.env'))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-q#)5^v8c0d)s)26-6-agi4-m4dkcxw6g=bb8w+!&4e8%5prpb+'
+SECRET_KEY = os.getenv('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ["*"]
+print('----------------------------------', type(os.getenv('ALLOWED_HOSTS', '')), os.getenv('ALLOWED_HOSTS', ''))
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
 
 # Application definition
@@ -60,7 +63,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -94,17 +97,27 @@ WSGI_APPLICATION = 'artmagic.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'root',  # Название вашей базы данных
+#         'USER': 'root',  # Имя пользователя вашей базы данных
+#         'PASSWORD': 'root',  # Пароль пользователя базы данных
+#         'HOST': 'localhost',  # Хост базы данных (обычно localhost)
+#         'PORT': '5432',  # Порт базы данных (обычно 5432)
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'root',  # Название вашей базы данных
-        'USER': 'postgres',  # Имя пользователя вашей базы данных
-        'PASSWORD': 'root',  # Пароль пользователя базы данных
-        'HOST': 'localhost',  # Хост базы данных (обычно localhost)
-        'PORT': '5432',  # Порт базы данных (обычно 5432)
+        'NAME': os.getenv('DATABASE_NAME'),
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'HOST': os.getenv('DATABASE_HOST'),
+        'PORT': os.getenv('DATABASE_PORT'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -124,10 +137,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-NOVA_POSHTA_API_KEY = "3395ff65768492c3ac09b0daa030498e"
-LIQPAY_PUBLIC_KEY = 'sandbox_i7216631845'
-LIQPAY_PRIVATE_KEY = 'sandbox_riL15asckkqGWZPCPe6F68V3HdJ53RZPak0D0xCO'
 
+
+NOVA_POSHTA_API_KEY = os.getenv('NOVA_POSHTA_API_KEY')
+LIQPAY_PUBLIC_KEY = os.getenv('LIQPAY_PUBLIC_KEY')
+LIQPAY_PRIVATE_KEY = os.getenv('LIQPAY_PRIVATE_KEY')
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -163,12 +177,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MPTT_ADMIN_LEVEL_INDENT = 25
 
+
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'Asgeron90@gmail.com'
-EMAIL_HOST_PASSWORD = 'cnyl ughh wuuw xvgv'
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 
 import mimetypes
