@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cd venv/scripts && activate && cd ../.. && python manage.py runserver"
+    "start": "cd venv/scripts && activate && cd ../.. && python manage.py runserver",
+    "start_prod": "cd /venv/bin && source activate && cd ../.. && python manage.py runserver"
   },
   "keywords": [],
   "author": "",
