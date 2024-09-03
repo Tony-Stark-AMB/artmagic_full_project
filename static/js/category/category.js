@@ -1,0 +1,2 @@
+
+initImagesRation(CATEGORY);

@@ -1,0 +1,80 @@
+// Блок продуктів для сторінки category.html
+
+@import "../../breakpoints/variables",
+        "../../breakpoints/response-fn";
+
+.products-category{
+    &__title{
+        text-align: center;
+    }
+    &__list{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 40px;
+        margin: 40px 0;
+        padding: 0 40px;
+        @include respond-to(phone-large){
+            justify-content: center;
+        }
+    }
+    &__item{
+        padding: 16px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        height: 500px;
+        cursor: pointer;
+        border: 1px solid $c5;
+        transition: border .3s ease,
+                    box-shadow .3s ease;
+        box-sizing: border-box;
+        width: 22.8%;
+        @include respond-to(laptop-large){
+            width: 30%;
+        }
+        @include respond-to(tablet-large){
+            width: 40%;
+        }
+        @include respond-to(tablet-large){
+            width: 45%;
+        }
+        @include respond-to(phone-large){
+            width: 75%;
+        }
+        &:hover{
+            border: 1px solid $c6;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+        &__img{
+            width: 100%;
+            &__wrap{
+                width: 200px;
+                height: 200px;
+                display: grid;
+                place-items: center;
+            }
+        }
+        &__title{
+            margin-top: 20px;
+            text-align: center;
+            font-size: 20px;
+        }
+        &__price{
+            font-size: 25px;
+            font-weight: 700;
+        }
+    }
+}
+
+#productsCategoryContainer{
+    width: 87.5vw;
+    @media (max-width: 1700px){
+        width: 92.5vw;
+    }
+    @include respond-to(extra-large-screen){
+        width: 100vw;
+    }
+}

@@ -1,0 +1,31 @@
+<!-- templates/email_template.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="message">
+        <h2>Номер Вашого замовлення {{ order_number }}</h2>
+        Ваше замовлення прийняте в обробку, ми зв'яжемося з Вами в робочі години.
+        <div class="footer">
+            З повагою,<br>
+            Артмагия
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,555 @@
+{% load static %}
+{% load mptt_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'node_modules/@popperjs/core/lib/popper.js' %}">
+    <link rel="stylesheet" href="{% static 'node_modules/@popperjs/core/dist/esm/popper.js' %}">
+    <link rel="stylesheet" href="{% static 'node_modules/swiper/swiper.js' %}">
+    <link rel="stylesheet" href="{% static 'node_modules/swiper/modules/index.mjs' %}">
+    <link rel="stylesheet" href="{% static 'node_modules/swiper/swiper-bundle.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link rel="stylesheet" href="{% static 'node_modules/aos/dist/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    {% block css %}{% endblock %}    
+    <title>Document</title>
+</head>
+<body>
+    <div class="full-content">
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </symbol>
+            <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </symbol>
+            <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </symbol>
+          </svg>
+        <div id="successMessage" class="alert alert-success" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+            <div class="alert-text">
+            </div>
+        </div> 
+        <div id="errorMessage" class="alert alert-danger mt-3" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div class="alert-text">
+            </div>
+        </div>  
+{% block header %}
+<header class="header">
+            <div class="header-main">
+                <div class="container__custom">
+                    <div class="header-main__content">
+                        <div class="logo__wrap">
+                            <a class="logo__link" href="/">
+                                <img class="logo" src="{% static 'assets/logo/artmagic.png' %}" alt="">
+                                <p class="logo__text">
+                                    <span class="text-wrapper">
+                                        <span class="letters">Артмагія</span>
+                                        <span class="line"></span>
+                                    </span>
+                                </p>
+                            </a>
+                        </div>
+                        <div class="header-login">
+                            {% if user.is_authenticated %}
+                            <div class="user__info">
+                                <p class="header-login__text">Привіт, {{ user.username }}!</p>
+                                <a class="btn btn-primary header-login__link" href="{% url 'user:profile'%}">
+                                    <svg class="user-small" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 448 512">
+                                        <path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 
+                                        128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9
+                                        16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 
+                                        26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"/></svg>
+                                    <p class="header-login__come-in">Особистий кабінет</p></a>
+                                <a class="btn btn-primary header-login__link" href="{% url 'user:logout' %}">
+                                    <svg class="left-small" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7
+                                        0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3
+                                        32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7
+                                        0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z"/>
+                                    </svg>
+                                    <p class="header-login__come-out">Вийти з кабінету</p>
+                                </a>
+                            </div>
+                            {% else %}
+                                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#login__modal"><i class="fa fa-lock lock-small" aria-hidden="true"></i>
+                                    <p class="header-login__come-in">Авторизація</p>
+                                </button>
+                            {% endif %}
+                            <!--- Проверка на ошибки  -->
+                            {% if messages %}
+                                <ul class="messages">
+                                    {% for message in messages %}
+                                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                        <div class="header-search">
+                            <div class="header-search__input__wrap">
+                                <input class="header-search__input" name="query" placeholder="Пошук"/>
+                                <button class="header-search__input__icon-wrap" name="query__btn" >
+                                    <svg class="header-search__input__icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 512 512">
+                                        <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
+                                    </svg>
+                                </button>
+                                <!-- <form  method="get" action="{% url 'search_products' slug='search' %}">
+                                    
+                                </form> -->
+                            </div>
+                        </div>
+                        <div class="header-call__wrap">
+                            <div class="header-call__main">
+                                <div class="header-call__wrap">
+                            <div class="header-call__main">
+                                <div class="header-call">
+                                    <button class="header-call__btn" type="button" data-bs-toggle="modal" data-bs-target="#call__modal">
+                                        <img src="{% static 'assets/icon-phone.png' %}" alt="">
+                                    </button>
+                                </div>
+                                <div class="header-call__text__wrap">
+                                    <p class="header-call__text">Зателефонуйте нам:
+                                        <a class="header-call__link" type="button" data-bs-toggle="modal" data-bs-target="#call__modal">
+                                            {{ table_data.phone }}
+                                        </a>
+                                    </p>
+                                    <p class="header-call__text">e-mail:
+                                        <a class="header-call__link" type="button" data-bs-toggle="modal" data-bs-target="#call__modal">
+                                            {{ table_data.email }}
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                            </div>
+                        </div>
+                        <div class="header-catalog">
+                            <button class="header-catalog__btn bg15" onclick="openNav()">
+                                <svg class="header-catalog__btn__icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 576 512">
+                                    <path d="M264.5 5.2c14.9-6.9 32.1-6.9 47 0l218.6 101c8.5 3.9 13.9 12.4 13.9 21.8s-5.4
+                                     17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 149.8C37.4 145.8 32 137.3 32
+                                      128s5.4-17.9 13.9-21.8L264.5 5.2zM476.9 209.6l53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4
+                                       17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 277.8C37.4 273.8 32 265.3 32
+                                        256s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0l152-70.2zm-152
+                                         198.2l152-70.2 53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9
+                                          6.9-32.1 6.9-47 0L45.9 405.8C37.4 401.8 32 393.3 32 384s5.4-17.9 13.9-21.8l53.2-24.6 152
+                                           70.2c23.4 10.8 50.4 10.8 73.8 0z"/></svg>
+                            </button>
+                        </div>
+                        <div class="header-nav__burger" onclick="showBurgerMenu()">
+                            <div class="header-nav__burger-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 448 512">
+                                    <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3
+                                     128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32
+                                      32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32
+                                       32-32H416c17.7 0 32 14.3 32 32z"/></svg>
+                            </div>
+                        </div>
+                        <div class="header-basket__wrap" type="button" data-bs-toggle="modal" data-bs-target="#basket__modal">
+                            <div class="header-basket__icon__wrap position-relative">
+                                <svg class="header-basket__icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 576 512"><path d="M253.3 35.1c6.1-11.8 1.5-26.3-10.2-32.4s-26.3-1.5-32.4
+                                    10.2L117.6 192H32c-17.7 0-32 14.3-32 32s14.3 32 32 32L83.9 463.5C91 492 116.6 512 146 512H430c29.4 0 55-20 62.1-48.5L544
+                                    256c17.7 0 32-14.3 32-32s-14.3-32-32-32H458.4L365.3 12.9C359.2 1.2 344.7-3.4 332.9 2.7s-16.3 20.6-10.2 32.4L404.3 192H171.7L253.3
+                                    35.1zM192 304v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16zm96-16c8.8 0 16 7.2 16 16v96c0 8.8-7.2 16-16
+                                    16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16zm128 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16z"/>
+                                </svg>
+                                <div class="header-basket__icon__badge bg-danger border border-light rounded-circle">
+                                    <span class="header-basket__icon__badge__number c6"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="divider"></div>
+{% endblock %}
+{% block content %}
+{% endblock %}
+{% block footer %}
+<footer class="footer">
+            <div class="footer__list container__custom">
+                <div class="footer__info">
+                    <h4 class="footer__info__title">Інформація про компанію</h4>
+                    <ul class="footer__info__list">
+                        <li class="footer__info__item">
+                            <a class="footer__info__link" href="{% url 'main:about_detail' %}">Про нас</a>
+                        </li>
+                        <li class="footer__info__item">
+                            <a class="footer__info__link" href="{% url 'main:contacts_detail' %}">Контакти</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer__help">
+                    <h4 class="footer__help__title">Допомога</h4>
+                    <ul class="footer__help__list">
+                        <li class="footer__help__item">
+                            <a class="footer__help__link" href="{% url 'main:payment_delivery_detail' %}">Оплата і доставка</a>
+                        </li>
+                        <li class="footer__help__item">
+                            <a class="footer__help__link" href="{% url 'main:safeguards_detail' %}">Договір оферти</a>
+                        </li>
+                        <li class="footer__help__item">
+                            <a class="footer__help__link" href="{% url 'main:return_agoods_detail' %}">Повернення товару</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer__payment">
+                    <h4 class="footer__payment__title">
+                        Ми приймаємо
+                    </h4>
+                    <div class="footer__payment__img__wrap">
+                        <img class="footer__payment__img" src="{% static 'assets/payment.png' %}" alt="">
+                    </div>
+                </div>
+                <div class="footer__social">
+                    <h4 class="footer__social__title">
+                        Ми у соцмережах
+                    </h4>
+                    <div class="footer__social__list">
+                        <a class="footer__social__link bg18" href="">
+                            <svg class="footer__social__svg" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512">
+                                <path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4
+                                    37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"/></svg>
+                        </a>
+                        <a class="footer__social__link bg18" href="">
+                            <svg class="footer__social__svg" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 448 512">
+                                <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9
+                                        287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7
+                                        74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8
+                                        26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9
+                                        0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9
+                                            36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8
+                                            388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7
+                                            2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7
+                                            9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1
+                                            9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                        </a>
+                        <a class="footer__social__link bg18" href="">
+                                <svg class="footer__social__svg viber__link" fill="currentColor" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                    width="183.000000pt" height="186.000000pt" viewBox="0 0 183.000000 186.000000"
+                                    >
+                                    <g transform="translate(-10.000000,196.000000) scale(0.100000,-0.100000)"
+                                    fill="currentColor" stroke="none">
+                                    <path d="M760 1784 c-161 -34 -306 -145 -383 -291 -54 -104 -67 -176 -67 -388
+                                    0 -205 12 -280 61 -382 40 -85 157 -205 241 -248 l58 -30 0 -102 c0 -92 2
+                                    -104 23 -129 37 -42 62 -28 168 91 l94 105 187 0 c211 0 263 8 363 55 137 65
+                                    249 197 298 350 20 63 22 91 22 290 0 185 -3 230 -18 280 -62 204 -228 357
+                                    -432 400 -95 20 -522 20 -615 -1z m621 -120 c80 -24 126 -50 186 -107 64 -60
+                                    107 -131 128 -212 20 -78 21 -406 1 -480 -39 -146 -142 -260 -285 -313 -59
+                                    -22 -85 -25 -253 -30 l-186 -4 -124 -136 -123 -136 -3 151 -3 151 -54 31
+                                    c-107 61 -181 151 -217 265 -17 54 -19 87 -16 281 l3 220 32 68 c57 120 172
+                                    220 292 253 74 20 552 19 622 -2z"/>
+                                    <path d="M1021 1446 c-17 -20 5 -32 71 -39 153 -15 257 -116 282 -274 8 -56
+                                    16 -78 26 -78 12 0 15 15 15 70 0 157 -115 288 -283 324 -70 15 -97 14 -111
+                                    -3z"/>
+                                    <path d="M740 1400 c-47 -51 -63 -96 -58 -164 6 -70 27 -117 101 -224 107
+                                    -156 290 -278 432 -289 111 -9 195 51 195 139 0 37 -1 38 -80 78 -44 22 -85
+                                    40 -92 40 -7 0 -33 -21 -59 -46 l-47 -46 -48 23 c-85 43 -214 179 -214 227 0
+                                    7 15 31 32 53 l33 41 -29 81 c-36 102 -48 117 -99 117 -30 0 -45 -6 -67 -30z"/>
+                                    <path d="M1066 1361 c-12 -19 6 -39 43 -45 46 -7 114 -55 142 -99 11 -18 25
+                                    -51 31 -74 9 -30 17 -43 30 -43 44 0 6 122 -58 185 -52 52 -173 101 -188 76z"/>
+                                    <path d="M1074 1258 c-7 -11 3 -21 55 -50 16 -9 39 -35 51 -57 22 -44 37 -51
+                                    47 -24 22 56 -123 180 -153 131z"/>
+                                    </g>
+                                </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom container__custom">
+                <div class="footer__approve">
+                    <div class="footer__approve__img__wrap">
+                        <img src="{% static 'assets/mastercard-logo.svg' %}" alt="" class="footer__img">
+                    </div>
+                    <div class="footer__approve__img__wrap">
+                        <img src="{% static 'assets/visa-logo.svg' %}" alt="" class="footer__img">
+                    </div>
+                </div>
+                <div class="footer__underground">
+                    <p class="footer__underground__text">
+                        Artmagic - товари для художників та творчості © 2008 
+                        <a id="adminLink">
+                            <i class="fa fa-lock lock-small c8"></i>
+                        </a>2024.
+                    </p>
+                </div>
+            </div>
+        </footer>
+        {% endblock %}
+    </div>
+<!-- LOGIN MODAL -->
+<div class="modal fade modal__login" id="login__modal" tabindex="-1" aria-labelledby="login__modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Авторизация и Регистрация</h5>
+                <button tabindex="-1" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="swiper login__registration">
+                <div class="swiper-wrapper">
+                    <!-- Форма для входа -->
+                    <div class="swiper-slide">
+                        <div class="modal-body">
+                            <form class="login__modal__form" method="post" action="{% url 'user:login' %}">
+                                {% csrf_token %}
+                                <div id="login-form-errors"></div>
+                                <input class="login__modal__input" type="text" name="username" placeholder="Логин">
+                                <p class="error c17 d-hidden" data-error-login="username"></p>
+                                <input class="login__modal__input" type="password" name="password" placeholder="Пароль">
+                                <p class="error c17 d-hidden" data-error-login="password"></p>
+                                <div class="login__modal__link__wrap">
+                                    <a class="login__modal__link" href="#">Забыли пароль?</a>
+                                    <div class="login__modal__link swiper-btn-next">Регистрация</div>
+                                </div>
+                                <button class="btn btn-primary" type="submit">Войти</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Форма для регистрации -->
+                    <div class="swiper-slide">
+                        <div class="modal-body">
+                            <form class="registration__modal__form" method="post" action="{% url 'user:register' %}">
+                                {% csrf_token %}
+                                <div id="registration-form-errors"></div>
+                                <input class="registration__modal__input" type="text" name="username" placeholder="Логин">
+                                <input class="registration__modal__input" type="text" name="email" placeholder="Email">
+                                <input class="registration__modal__input" type="text" name="phone_number" placeholder="Номер телефону">
+                                <input class="registration__modal__input" type="password" name="password1" placeholder="Пароль">
+                                <input class="registration__modal__input" type="password" name="password2" placeholder="Подтверждение пароля">
+                                <div class="login__modal__link__wrap">
+                                    <div class="registration__modal__link swiper-btn-prev">Авторизация</div>
+                                    <button class="btn btn-primary" type="submit">Зарегистрироваться</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!--- Проверка на ошибки  -->
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FEEDBACK -->
+<div class="modal fade call__modal" id="call__modal" tabindex="-1" aria-labelledby="call__modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content call__modal__content">
+        <div class="modal-header">
+            <h5 class="modal-title">Зворотній зв'язок</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form class="call__modal__form" id="feedbackForm">
+                <h3 class="text-center">Контактні дані</h3>
+                <div class="call__modal__input__wrap">
+                    <input class="call__modal__input" 
+                    data-field="firstName"
+                    type="text"
+                    {% if user.is_authenticated %}
+                        value="{{ user.first_name }}" 
+                    {% else %}
+                        placeholder="Ім'я"
+                    {% endif %}
+                    />
+                    <p data-error="firstName" class="error-message-hidden"></p>
+                </div>
+                <div class="call__modal__input__wrap">
+                    <input class="call__modal__input" 
+                    data-field="lastName"
+                    type="text"
+                    {% if user.is_authenticated %}
+                        value="{{ user.last_name }}" 
+                    {% else %}
+                        placeholder="Прізвище"
+                    {% endif %}
+                    />
+                    <p data-error="lastName" class="error-message-hidden"></p>
+                </div>
+                <div class="call__modal__input__wrap">
+                    <input class="call__modal__input" 
+                    data-field="phone"
+                    type="text"
+                    {% if user.is_authenticated %}
+                        value="{{ user.phone_number }}" 
+                    {% else %}
+                        placeholder="Телефон"
+                    {% endif %}
+                    />
+                    <p data-error="phone" class="error-message-hidden"></p>
+                </div>
+                <textarea class="call__modal__textarea"
+                    placeholder="Ваше питання"
+                    data-field="text"
+                ></textarea>
+                <button class="btn btn-primary" data-submit="btn_Feedback">Залишити заявку</button>
+            </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    {% include 'carts/includes/included_cart.html' %}
+<!-- MOBILE BURGER -->
+<div class="mobile-menu bg13">
+    <div class="mobile-menu__container">
+        <div class="mobile-menu__icon-close__wrap">
+            <div class="mobile-menu__icon-close" onclick="closeBurgerMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 384 512">
+                    <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5
+                        32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3
+                        0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+            </div>
+        </div>
+        <ul class="mobile-menu__list font__raleway">
+            <li class="mobile-menu__item">
+                <a class="mobile-menu__link" href="/">Головна</a></li>
+            <li class="mobile-menu__item">
+                <a class="mobile-menu__link" href="{% url 'main:about_detail' %}">Про нас</a></li>
+            <li class="mobile-menu__item">
+                <a class="mobile-menu__link" href="{% url 'main:safeguards_detail' %}">Договір оферти</a></li>
+            <li class="mobile-menu__item">
+                <a class="mobile-menu__link" href="">Контакти</a></li>
+            <li class="mobile-menu__item">
+                <a class="mobile-menu__link" href="{% url 'main:return_agoods_detail' %}">Повернення товару</a></li>
+            <li class="mobile-menu__item">
+                <a class="mobile-menu__link" href="{% url 'main:payment_delivery_detail' %}">Оплата і доставка</a></li>
+        </ul>
+    </div>
+</div>
+<!-- SIDENAV MODAL -->
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <ul class="header-sidemenu">
+        {% recursetree categories %}
+            <li class="header-sidemenu__item" >
+                <a class="header-sidemenu__item-link" href="{% url 'sub_categories' node.slug %}">
+                    {{ node.name }}
+                </a>
+                <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512">
+                    <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7
+                    256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+            </li>
+        {% endrecursetree %}
+    </ul>
+</div>
+    <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script src="{% static 'node_modules/aos/dist/aos.js' %}"></script>
+    <script>
+        AOS.init({
+            once: true
+        });
+    </script>
+    <script src="{% static 'js/common/constants.js' %}"></script>
+    <script src="{% static 'js/common/bone.js' %}"></script>
+    <script src="{% static 'js/classes/product.js' %}"></script>
+    <script type="module" src="{% static 'js/classes/product-manager.js' %}"></script>
+    <script src="{% static 'js/classes/alert.js' %}"></script>
+    <script src="{% static 'js/classes/form.js' %}"></script>
+    <script type="module" src="{% static 'js/classes/basket.js' %}"></script>
+    <script src="{% static 'js/common/index.js' %}"></script>
+    <script src="{% static 'js/common/regexp.js' %}"></script>
+    <script type="module" src="{% static 'js/header/basket/basket.js' %}"></script>
+    <script type="module" src="{% static 'js/header/basket/order.js' %}"></script>
+    <script type="module" src="{% static 'js/header/basket/delivery.js' %}"></script>
+    <script src="{% static 'js/header/feedback/feedback.js' %}"></script>
+    <script src="{% static 'js/header/burger-menu/burger-menu.js' %}"></script>
+    <script src="{% static 'js/header/sidenav/sidenav.js' %}"></script>
+    <script type="module" src="{% static 'js/header/search/search.js' %}"></script>
+    <script type="module" src="{% static 'js/import.js' %}"></script>
+    <script type="module" src="{% static 'js/classes/page-products.js' %}"></script>
+    <script type="module" src="{% static 'js/header/header.js' %}"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const loginForm = document.querySelector('.login__modal__form');
+        
+        if(loginForm){
+            loginForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                console.log("here login")
+                const formData = new FormData(loginForm);
+                fetch('{% url "user:login" %}', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.redirect) {
+                        window.location.href = data.redirect;
+                    } else {
+                        // Обработка ошибок и отображение сообщений
+                        const errorsContainer = document.getElementById('login-form-errors');
+                        errorsContainer.innerHTML = '';
+                        console.log(data.errors)
+                        let errText = ""
+                        for (const [key, val] of Object.entries(data.errors)) {
+                            errText += `${val}\n\n`
+                        }
+                        Alert("err", errText, 5000)
+                    }
+                });
+            });
+        }
+        
+        const registerForm = document.querySelector('.registration__modal__form');
+
+        if(registerForm){
+            registerForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                console.log("here registr")
+                const formData = new FormData(registerForm);
+                fetch('{% url "user:register" %}', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.redirect) {
+                        window.location.href = data.redirect;
+                    } else {
+                        // Обработка ошибок и отображение сообщений
+                        if (data.redirect) {
+                        window.location.href = data.redirect;
+                        } else {
+                            // Обработка ошибок и отображение сообщений
+                            const errorsContainer = document.getElementById('login-form-errors');
+                            errorsContainer.innerHTML = '';
+                            console.log(data.errors)
+                            let errText = ""
+                            for (const [key, val] of Object.entries(data.errors)) {
+                                errText += `${key}: ${val}\n`;
+                            }
+                            Alert("err", errText, 5000)
+                        }
+                    }
+                });
+            }); 
+        }
+        })
+        
+        
+    </script>
+    {% block js %}{% endblock %}
+</div>
+</body>
+</html>

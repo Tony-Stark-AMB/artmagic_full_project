@@ -1,0 +1,19 @@
+.contacts-page{
+    margin: 0 0 40px 0;
+    font-size: 1.2rem;
+    &__title{
+        text-align: center;
+        margin: 20px 0;
+    }
+    &__subtitle{
+        margin: 15px 0;
+    }
+    &__list{
+        padding-left: 20px;
+        list-style: none;
+        &__item{
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+    }
+}

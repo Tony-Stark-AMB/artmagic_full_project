@@ -1,0 +1,235 @@
+{% load static %}
+
+<div class="modal fade modal__basket" id="basket__modal" tabindex="-1" aria-labelledby="basket__modal" aria-hidden="true">
+    <div class="modal-dialog basket__modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Кошик</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body basket__modal__body">
+                <div class="swiper basket__modal__swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="basket__modal__cart" id="basket-products">
+                                <!-- Products will be dynamically loaded here -->
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="order-choose">
+                                <h4 class="order-choose__title">Оберіть спосіб доставки</h4>
+                                <div class="order-choose__delivery">
+                                    <input class="card-input" id="artmagic_department" name="delivery" checked="true" type="radio">
+                                    <label class="card-input__icon-wrap" for="artmagic_department">
+                                        <img class="card-input__icon artmagic_department c8" data-delivery="artmagic_department" src="{% static 'assets/basket-icons/artmagic.png' %}" fill="currentColor" alt="">
+                                        <p>Самовивіз</p>
+                                    </label>
+                                    <input class="card-input" id="new_post_department" name="delivery" checked="true" type="radio">
+                                    <label class="card-input__icon-wrap" for="new_post_department">
+                                        <svg class="card-input__icon c8" data-delivery="new_post_department" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                            width="500.000000pt" height="500.000000pt" viewBox="0 0 500.000000 500.000000">
+                                                <g transform="translate(0.000000,500.000000) scale(0.100000,-0.100000)"
+                                                fill="currentColor" stroke="none">
+                                                <path d="M2404 4752 c-28 -10 -69 -31 -91 -48 -23 -16 -205 -198 -406 -404
+                                                l-365 -375 294 -3 294 -2 0 -465 0 -465 385 0 385 0 0 465 0 465 296 0 c181 0
+                                                294 4 292 9 -4 14 -716 740 -756 773 -80 65 -222 86 -328 50z"/>
+                                                <path d="M760 3127 c-397 -408 -419 -436 -440 -547 -14 -71 2 -167 38 -238 21
+                                                -40 123 -152 402 -439 l375 -384 3 495 c1 272 1 720 0 996 l-3 501 -375 -384z"/>
+                                                <path d="M3890 2515 c0 -547 2 -995 3 -995 2 0 173 173 380 385 402 412 416
+                                                430 438 550 14 78 -2 173 -41 241 -17 31 -171 197 -401 432 -204 210 -374 382
+                                                -375 382 -2 0 -4 -448 -4 -995z"/>
+                                                <path d="M2128 1583 l-3 -468 -294 -3 -295 -2 120 -123 c577 -591 644 -657
+                                                692 -681 65 -33 146 -45 219 -34 116 18 142 40 544 452 l373 381 -290 5 -289
+                                                5 -3 468 -2 467 -385 0 -385 0 -2 -467z"/>
+                                                </g>
+                                        </svg>
+                                        <p>Відділення</p>
+                                    </label>
+                                    <input class="card-input" id="new_post_packing" name="delivery" checked="true" type="radio">
+                                    <label class="card-input__icon-wrap" for="new_post_packing">
+                                        <svg class="card-input__icon c8" data-delivery="new_post_packing" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                            width="500.000000pt" height="500.000000pt" viewBox="0 0 500.000000 500.000000"
+                                            preserveAspectRatio="xMidYMid meet">
+                                            <g transform="translate(0.000000,500.000000) scale(0.100000,-0.100000)"
+                                            fill="currentColor" stroke="none">
+                                            <path d="M2404 4752 c-28 -10 -69 -31 -91 -48 -23 -16 -205 -198 -406 -404
+                                            l-365 -375 294 -3 294 -2 0 -465 0 -465 385 0 385 0 0 465 0 465 296 0 c181 0
+                                            294 4 292 9 -4 14 -716 740 -756 773 -80 65 -222 86 -328 50z"/>
+                                            <path d="M760 3127 c-397 -408 -419 -436 -440 -547 -14 -71 2 -167 38 -238 21
+                                            -40 123 -152 402 -439 l375 -384 3 495 c1 272 1 720 0 996 l-3 501 -375 -384z"/>
+                                            <path d="M3890 2515 c0 -547 2 -995 3 -995 2 0 173 173 380 385 402 412 416
+                                            430 438 550 14 78 -2 173 -41 241 -17 31 -171 197 -401 432 -204 210 -374 382
+                                            -375 382 -2 0 -4 -448 -4 -995z"/>
+                                            <path d="M2128 1583 l-3 -468 -294 -3 -295 -2 120 -123 c577 -591 644 -657
+                                            692 -681 65 -33 146 -45 219 -34 116 18 142 40 544 452 l373 381 -290 5 -289
+                                            5 -3 468 -2 467 -385 0 -385 0 -2 -467z"/>
+                                            </g>
+                                        </svg>
+                                        <p>Поштомат</p> 
+                                    </label>
+                                    <input class="card-input" id="new_post_address" name="delivery" checked="true" type="radio">
+                                    <label class="card-input__icon-wrap" for="new_post_address">
+                                        <svg class="card-input__icon c8" data-delivery="new_post_address" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                            width="500.000000pt" height="500.000000pt" viewBox="0 0 500.000000 500.000000"
+                                            preserveAspectRatio="xMidYMid meet">
+                                            <g transform="translate(0.000000,500.000000) scale(0.100000,-0.100000)"
+                                            fill="currentColor" stroke="none">
+                                            <path d="M2404 4752 c-28 -10 -69 -31 -91 -48 -23 -16 -205 -198 -406 -404
+                                            l-365 -375 294 -3 294 -2 0 -465 0 -465 385 0 385 0 0 465 0 465 296 0 c181 0
+                                            294 4 292 9 -4 14 -716 740 -756 773 -80 65 -222 86 -328 50z"/>
+                                            <path d="M760 3127 c-397 -408 -419 -436 -440 -547 -14 -71 2 -167 38 -238 21
+                                            -40 123 -152 402 -439 l375 -384 3 495 c1 272 1 720 0 996 l-3 501 -375 -384z"/>
+                                            <path d="M3890 2515 c0 -547 2 -995 3 -995 2 0 173 173 380 385 402 412 416
+                                            430 438 550 14 78 -2 173 -41 241 -17 31 -171 197 -401 432 -204 210 -374 382
+                                            -375 382 -2 0 -4 -448 -4 -995z"/>
+                                            <path d="M2128 1583 l-3 -468 -294 -3 -295 -2 120 -123 c577 -591 644 -657
+                                            692 -681 65 -33 146 -45 219 -34 116 18 142 40 544 452 l373 381 -290 5 -289
+                                            5 -3 468 -2 467 -385 0 -385 0 -2 -467z"/>
+                                            </g>
+                                        </svg>
+                                        <p>За адресою</p>
+                                    </label>
+                                    <input class="wallet-input" id="ukr_post" name="delivery" type="radio">
+                                    <label class="card-input__icon-wrap" for="ukr_post">
+                                        <svg class="card-input__icon ukr_post c8" data-delivery="ukr_post" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                            width="30" height="50" viewBox="0 0 30 50" fill="currentColor">
+                                            <path d="M33.4014085,28.5526316 L17.0107042,24.8245614 C12.7869212,23.8666513
+                                            9.82564198,20.044013 9.93894213,15.6958077 C10.0522423,11.3476023 13.2085414,7.68581496
+                                            17.4764267,6.9511783 C21.744312,6.21654165 25.9341864,8.61382262 27.4821683,12.6760693
+                                            C29.0301502,16.738316 27.5047672,21.3332493 23.8394366,23.6491228 C23.7694744,23.7015627
+                                            23.7356365,23.789651 23.7523976,23.8757068 C23.7691588,23.9617626 23.8335503,24.030545
+                                            23.9180282,24.0526316 L31.2095775,25.7105263 C31.3830365,25.7509295 31.5639961,25.6857635
+                                            31.6723944,25.5438596 C35.2044426,20.8573651 35.8802618,14.5978186 33.4305397,9.25963413
+                                            C30.9808175,3.92144962 25.8036992,0.37222433 19.9622535,0.0263157895 L19.2811268,0.0263157895
+                                            C12.4734678,-0.0806359551 6.17960389,3.65128187 2.98325566,9.69006401 C-0.213092582,15.7288461
+                                            0.226544695,23.0571747 4.12169014,28.6666667 L18.7047887,49.5877193 C18.7689058,49.6759502
+                                            18.8711132,49.7281179 18.9798592,49.7281179 C19.0886051,49.7281179 19.1908125,49.6759502
+                                            19.2549296,49.5877193 L33.6109859,29.1052632 C33.6872133,29.0105357 33.7075514,28.8822387
+                                            33.6643845,28.7684127 C33.6212177,28.6545867 33.5210574,28.5724017 33.4014085,28.5526316 Z" />
+                                        </svg>
+                                        <p>Укр пошта</p>
+                                    </label>
+                                </div>
+                                <h4 class="order-choose__title">Оберіть спосіб оплати</h4>
+                                <div class="order-choose__payment">
+                                    <input class="wallet-input" id="payment_card" name="payment" type="radio">
+                                    <label class="card-input__icon-wrap" for="payment_card">
+                                        <svg class="card-input__icon c8" fill="currentColor" data-payment="payment_card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                            <path d="M64 32C28.7 32 0 60.7 0 96v32H576V96c0-35.3-28.7-64-64-64H64zM576
+                                            224H0V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V224zM112 352h64c8.8
+                                            0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm112 16c0-8.8
+                                            7.2-16 16-16H368c8.8 0 16 7.2 16 16s-7.2 16-16 16H240c-8.8 0-16-7.2-16-16z"/>
+                                        </svg>
+                                        <p>За реквізитами</p>
+                                    </label>
+                                    <!-- <input class="wallet-input" id="liqpay" name="payment" type="radio">
+                                    <label class="card-input__icon-wrap" for="liqpay">
+                                        <svg class="card-input__icon c8" data-payment="liqpay" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                            width="240.000000pt" height="240.000000pt" viewBox="0 0 240.000000 240.000000"
+                                            preserveAspectRatio="xMidYMid meet">
+                                            <g transform="translate(0.000000,240.000000) scale(0.100000,-0.100000)"
+                                            fill="currentColor" stroke="none">
+                                                <path d="M475 2389 c-234 -35 -391 -173 -452 -399 -16 -59 -18 -129 -18 -790 0 -796 -1 -774 62 -908 63 -134 192 -234 353 -273 81 -20 1479 -20 1560 0 161 39 290 139 353 273 63 134 62 112 62 908 0 661 -2 731 -18 790 -54 199 -182 329 -382 387 -54 15 -130 17 -760 19 -385 1 -727 -2 -760 -7z"/>
+                                                <path class="c6" d="M717 1903 c36 -20 556 -611 580 -660 27 -53 7 -92 -115 -229 -59 -67 -184 -210 -279 -317 -187 -212 -210 -229 -276 -208 -43 15 -85 58 -97 102 -8 28 -6 41 12 76 21 38 375 451 428 498 l22 20 19 -23 c10 -13 28 -36 39 -50 19 -25 20 -25 9 -3 -17 35 -78 108 -308 369 -113 129 -212 245 -220 259 -27 53 3 120 74 164 38 24 71 24 112 2z"/>
+                                                <path class="c6" d="M1368 1909 c22 -7 109 -100 299 -316 147 -169 276 -318 285 -332 20 -30 23 -82 6 -114 -6 -12 -61 -78 -123 -147 -61 -69 -183 -206 -270 -305 -87 -99 -165 -185 -174 -191 -34 -23 -71 -25 -116 -5 -53 23 -85 70 -85 123 0 40 11 53 369 461 l95 109 29 -34 29 -33 -28 41 c-26 37 -176 209 -390 448 -45 50 -86 101 -93 113 -31 60 5 149 73 179 38 16 54 17 94 3z"/>
+                                            </g>
+                                        </svg>
+                                        <p>liqpay</p>
+                                    </label> -->
+                                    <input class="wallet-input" id="payment_real" name="payment" type="radio">
+                                    <label class="card-input__icon-wrap" for="payment_real" >
+                                        <img class="card-input__icon " src="{% static 'assets/basket-icons/oplata-kartoy_grey.png' %}" alt="" data-payment="payment_real">
+                                        <p>У точці видачі</p>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div id="notification" class="notification c11"></div>
+                            <form class="order-choose__form" id="orderForm">
+                                <div class="order__input__content">
+                                    <div class="order__input__wrap">
+                                        <input class="order__input" 
+                                        data-field="fullName"
+                                        type="text"
+                                        placeholder="ПІБ"
+                                        />
+                                        <p data-error="fullName" class="error-message-hidden"></p>
+                                    </div>
+                                    <div class="order__input__wrap">
+                                        <input class="order__input" 
+                                        data-field="clientPhone"
+                                        type="tel"
+                                        placeholder="телефон"
+                                        />
+                                        <p data-error="clientPhone" class="error-message-hidden"></p>
+                                    </div>
+                                    <div class="order__input__wrap">
+                                        <input class="order__input" 
+                                        data-field="email"
+                                        type="email"
+                                        placeholder="Email"
+                                        />
+                                        <p data-error="email" class="error-message-hidden"></p>
+                                    </div>
+                                    <div class="order__input__wrap">
+                                        <input class="order__input" 
+                                        data-field="address"
+                                        type="text"
+                                        placeholder="Адреса"
+                                        />
+                                        <p data-error="address" class="error-message-hidden"></p>
+                                    </div>
+                                    <div class="order__input__wrap">
+                                        <select class="order__input" 
+                                        data-field="area"
+                                        type="text"
+                                        >
+                                            <option value="null">-- Оберіть Область --</option>
+                                        </select>
+                                        <p data-error="area" class="error-message-hidden"></p>
+                                    </div>
+                                    <div class="order__input__wrap">
+                                        <select class="order__input" 
+                                        data-field="city"
+                                        type="text"
+                                        >
+                                            <option value="null">-- Оберіть Місто --</option>
+                                        </select>
+                                        <p data-error="city" class="error-message-hidden"></p>
+                                    </div>
+                                    <div class="order__input__wrap">
+                                        <select class="order__input" 
+                                        data-field="department"
+                                        type="text"
+                                        >
+                                            <option value="null">-- Оберіть Відділення --</option>
+                                        </select>
+                                        <p data-error="department" class="error-message-hidden"></p>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-primary" data-submit="btn_Order">Замовити</button>
+                            </form>
+                            <div class="d-none" id="liqpayForm"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer basket__modal-footer">
+                <div class="modal-footer__btns">
+                    <button class="btn btn-primary ">До кошика</button>
+                    <button class="btn btn-primary">Доставка/Оплата</button>
+                    <button class="btn btn-primary ">До оформлення</button>
+                </div>
+                <p class="modal-footer__text"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-none">
+    <p data-user="status">{{user.is_authenticated|yesno:"1,0" }}</p>
+    <p data-user="fullName">{{user.first_name}} {{user.last_name}}</p>
+    <p data-user="clientPhone">{{user.phone_number}}</p>
+    <p data-user="email">{{user.email}}</p>
+    <p data-user="address">{{address.address_line1}}</p>
+</div>

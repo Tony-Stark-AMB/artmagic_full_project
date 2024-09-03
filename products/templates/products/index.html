@@ -1,0 +1,130 @@
+{% extends "./base.html" %}
+{% load static %}
+{% load mptt_tags %}
+
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'css/index.css' %}"> 
+    {% endblock %}
+    {% block content %}
+
+        <div class="main-index__wrap container__custom__sidebar">
+            <main class="main-index">
+                <section class="swiper main-index__banner">
+                    <div class="swiper-wrapper main-index__banner__list">
+                        <div class="swiper-slide main-index__banner__slide">
+                            <div class="main-index__banner__slide__img__wrap">
+                                <img class="main-index__banner__slide__img" src="{% static 'assets/slider-main/slider-1.png' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="swiper-slide main-index__banner__slide">
+                            <div class="main-index__banner__slide__img__wrap">
+                                <img class="main-index__banner__slide__img" src="{% static 'assets/slider-main/slider-2.png' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="swiper-slide main-index__banner__slide">
+                            <div class="main-index__banner__slide__img__wrap">
+                                <img class="main-index__banner__slide__img" src="{% static 'assets/slider-main/slider-3.png' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="swiper-slide main-index__banner__slide">
+                            <div class="main-index__banner__slide__img__wrap">
+                                <img class="main-index__banner__slide__img" src="{% static 'assets/slider-main/slider-4.png' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="swiper-slide main-index__banner__slide">
+                            <div class="main-index__banner__slide__img__wrap">
+                                <img class="main-index__banner__slide__img" src="{% static 'assets/slider-main/slider-5.png' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="swiper-slide main-index__banner__slide">
+                            <div class="main-index__banner__slide__img__wrap">
+                                <img class="main-index__banner__slide__img" src="{% static 'assets/slider-main/slider-6.png' %}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </section>
+                <section class="products-index">
+                    <h3 data-aos="fade-left" class="products-index__title">
+                        Новинки
+                    </h3>
+                    <div class="swiper products-index__list__wrap"> 
+                        <div class="swiper-wrapper products-index__content" id="productsIndexContainer">
+                            <!-- <div class="swiper-slide products-index__list">
+                                {% for product in products.first_half %}
+                                <div class="products-index__item product-item" id="{{ product.pk }}">
+                                    <div class="products-index__item__img__wrap">
+                                        <img class="products-index__item__img product" src="/media/{{ product.image }}" alt="">
+                                    </div>
+                                    <div class="products-index__item__content">
+                                        <p class="products-index__item__title">{{ product.name }}</p>
+                                        <span class="products-index__item__price">{{ product.price }} грн</span>
+                                        <button class="btn btn-primary products-index__item__btn" data-item="product_btn">Купити</button>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div class="swiper-slide products-index__list">
+                                {% for product in products.second_half %}
+                                <div class="products-index__item product-item" id="{{ product.pk }}">
+                                    <div class="products-index__item__img__wrap">
+                                        <img class="products-index__item__img" src="/media/{{ product.image }}" alt="">
+                                    </div>
+                                    <div class="products-index__item__content">
+                                        <p class="products-index__item__title">{{ product.name }}</p>
+                                        <span class="products-index__item__price">{{ product.price }} грн</span>
+                                        <button class="btn btn-primary products-index__item__btn" data-item="product_btn" >Купить</button>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div> -->
+                        </div>
+                        <div class="pagination pagination-index"></div>
+                    </div>
+                </section>
+                <section class="main-index__promotion">
+                    <h3 data-aos="fade-down" class="promotion__title">
+                        Акційні пропозиції
+                    </h3>
+                    <div class="promotion__content">
+                        <div class="promotion__card">
+                            <div class="">
+                                <img src="{{ stocks.0.image.url }}" class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="">
+                                <div class="card-body">
+                                <h5 class="card-title">{{ stocks.0.title }}</h5>
+                                <p class="card-text">{{ stocks.0.description }}</p>
+                                </div>
+                            </div>
+                                
+                        </div>
+                    </div>
+                </section>
+            </main>
+            <aside class="aside-index__wrap">
+                    <section class="aside-index">
+                        <ul class="aside-index__list">
+                            {% recursetree categories %}
+                                <li class="aside-index__item">
+                                    <a class="aside-index__link" href="{% url 'sub_categories' node.slug %}">{{ node.name }}</a></li>
+                                <li class="aside-index__item">
+                            {% endrecursetree %}
+                        </ul>
+                        <!-- <div class="aside-index__login bg5 font__raleway">
+                            <h1 class="aside-index__login__title">Ласкаво просимо!</h1>
+                            <button class="aside-index__login__btn bg17">Увійти до особистого кабінету</button>
+                        </div> -->
+                    </section>
+            </aside>
+        </div>
+        
+    </div>
+    
+      {% endblock %}
+  {% block js %}
+    <script src="{% static 'js/index/index.js' %}"></script>
+    <script type="module" src="{% static 'js/index/index-carousel.js' %}"></script>
+  {% endblock %}
+    
+    

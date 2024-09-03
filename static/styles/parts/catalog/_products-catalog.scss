@@ -1,0 +1,63 @@
+@import "../../breakpoints/variables",
+        "../../breakpoints/response-fn";
+
+.products-catalog{
+    &__list{
+        // height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 2vw; 
+        @include respond-to(tablet-large){
+            width: 100vw !important;
+        }
+    }
+    &__item{
+        width: calc(60vw / 3);
+        padding: 16px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        height: 500px;
+        cursor: pointer;
+        border: 1px solid $c5;
+        transition: border .3s ease,
+                    box-shadow .3s ease;
+        &:hover{
+            border: 1px solid $c6;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+        @include respond-to(extra-large-screen){
+            width: calc(62.5vw / 3);
+        }
+        @include respond-to(laptop-small){
+            width: calc(60vw / 2);
+        }
+        @include respond-to(tablet-small){
+            width: 45vw;
+        }
+        @include respond-to(phone-large){
+            width: 90vw;
+        }
+        &__img{
+            width: 100%;
+            &__wrap{
+                width: 200px;
+                height: 200px;
+                display: grid;
+                place-items: center;
+            }
+        }
+        &__title{
+            margin-top: 20px;
+            text-align: center;
+            font-size: 20px;
+        }
+        &__price{
+            font-size: 25px;
+            font-weight: 700;
+        }
+    }
+}

@@ -1,0 +1,3 @@
+
+initImagesRation(CATALOG);
+

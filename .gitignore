@@ -1,0 +1,8 @@
+*.rar
+media
+static/node_modules
+venv
+static\js\common\constants.js
+.env
+__pycache__/
+*/migrations/
