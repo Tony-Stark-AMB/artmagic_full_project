@@ -23,6 +23,7 @@ export class ProductManager {
 
     deleteProduct(id) {
         this.products = this.products.filter((product) => product.id !== id);
+        this.setStorageProducts(this.products)
     }
 
     clearProducts() {
@@ -35,8 +36,12 @@ export class ProductManager {
 
     addProduct({ id, name, price, quantity, image, model }) {
         const existProduct = this.existProduct(id);
-        if (existProduct) existProduct.addOne();
-        else this.products = [...this.products, new Product(id, name, price, image, model, quantity)];
+        if (existProduct){
+            existProduct.addOne();
+        } else {
+            this.products = [...this.products, new Product(id, name, price, image, model, quantity)];
+        }
+        this.setStorageProducts(this.products)
     }
 
     mapObjectsInProducts(products) {

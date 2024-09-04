@@ -10,6 +10,10 @@ export class Basket {
         window.onbeforeunload = () => {
             this.productManager.setStorageProducts(this.productManager.getProducts());
         };
+        window.addEventListener("pageshow", () => {
+            this.productManager.loadProductsFromStorage();
+            this.renderBasket()
+        })
     }
 
     initialize() {
