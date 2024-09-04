@@ -113,32 +113,56 @@ logger = logging.getLogger(__name__)
 class ProcessOrderView(View):
 
     def post(self, request):
+
+        payment_options = {
+                'liqpay': "Онлайн-оплата банківською карткою",
+                'payment_card': "Оплата за реквізитами",
+                'payment_real': "Оплата у точці видачі"
+            }        
+        delivery_options = {
+                'artmagic_department': "Самовивіз",
+                'new_post_department': "Відділення Нової пошти",
+                'new_post_packing': "Поштомат Нової пошти",
+                'new_post_address': "Кур'єрська доставка Нової пошти",
+                'ukr_post': "Укрпошта"
+            }
         print('----------11111--------------')
         try:
             body_unicode = request.body.decode('utf-8')
             data = json.loads(body_unicode)
+            data_delivery = data.get('selectedDelivery')
+            data_payment = data.get('selectedPayment')
             logger.debug('Received data: %s', data)
             print(data)
+
             name = data.get('name')
             phone = data.get('phone')
             email = data.get('email')
-            payment = data.get('selectedPayment')
+            total_price = data.get('amount')
+            delivery_method = delivery_options.get(data_delivery, "")   
+            print('----------------------------------', delivery_method)         
+            payment = payment_options.get(data_payment, "Невідомий спосіб оплати")
             address = data.get('address', '')
+
+            
+            
 
             # Логика для формирования адреса доставки
             address_delivery = ""
             if data.get('department') and data.get('city') and data.get('area'):
                 address_delivery = [
-                    get_department_name(data['department'], data['city']),
+                    get_area_name(data['area']),
                     get_city_name(data['city']),
-                    get_area_name(data['area'])
+                    get_department_name(data['department'], data['city'])
                 ]
+            if delivery_method == "Самовивіз":
+                address = 'м. Дніпро, Вул. Якова Самарського 5, к. 7'
+            if delivery_method == "Кур'єрська доставка Нової пошти":
+                address = f'область {address_delivery[0]}, м. {address_delivery[1]}, {address}'
 
             products = data.get('products')
 
-            total_price = 0
-            for el in products:
-                total_price += round(int(el['quantity']) * float(el['price']), 2)
+
 
             # Проверка на наличие обязательных полей
             if not (name, phone, email, products):
@@ -164,7 +188,7 @@ class ProcessOrderView(View):
             )
 
             # Параметры для писем
-            params = {
+            context = {
                 'name': name,
                 'phone': phone,
                 'email': email,
@@ -173,12 +197,13 @@ class ProcessOrderView(View):
                 'products': products,
                 'total_price': total_price,
                 'address_delivery': address_delivery,
+                'delivery_method': delivery_method,
                 'order_number': order_number
             }
-
+            print('-------------------------------', context)
             # Формирование письма владельцу сайта
-            subject_owner = 'Новый заказ от клиента'
-            html_message_owner = render_to_string('carts/email_template.html', params)
+            subject_owner = f"Замовлення №: {order_number}"
+            html_message_owner = render_to_string('carts/email_template.html', context)
             recipient_list_owner = ['artmagicinternet@gmail.com']
 
             try:
@@ -192,7 +217,7 @@ class ProcessOrderView(View):
 
             # Формирование письма пользователю
             subject_user = 'Ваше замовлення прийняте'
-            html_message_user = render_to_string('users/email_template_user.html', params)
+            html_message_user = render_to_string('users/email_template_user.html', context)
             recipient_list_user = [email]
 
             try:

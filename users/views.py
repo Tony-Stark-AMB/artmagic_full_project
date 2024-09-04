@@ -171,11 +171,11 @@ class FeedbackView(View):
                     'message': message,
                 })
 
-                recipient_list = ['artmagicinternet@gmail.com']
+                recipient_list = ['Asgeron90@gmail.com']
                 email = EmailMessage(
                     subject=subject,
                     body=html_message,
-                    from_email='artmagicinternet@gmail.com',
+                    from_email='Asgeron90@gmail.com',
                     to=recipient_list
                 )
                 email.content_subtype = "html"
