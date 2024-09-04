@@ -49,6 +49,7 @@ def register(request):
                 return JsonResponse({'errors': {'auth': 'Не удалось выполнить аутентификацию'}}, status=400)
         else:
             errors = {field: error_list[0] for field, error_list in form.errors.items()}
+            print(errors)
             return JsonResponse({'errors': errors}, status=400)
     else:
         form = RegistrationForm()
@@ -66,6 +67,7 @@ def user_login(request):
                 return JsonResponse({'redirect': '/'})
         # Возвращаем JSON с ошибками, если форма не валидна
         errors = {field: error_list[0] for field, error_list in form.errors.items()}
+        print(errors)
         return JsonResponse({'errors': errors}, status=400)
 
     # Если метод запроса не POST, возвращаем ошибку
@@ -154,6 +156,7 @@ class FeedbackView(View):
     def post(self, request):
         try:
             data = json.loads(request.body.decode('utf-8'))
+            print('----------------------------------', data)
             form = FeedbackForm(data)
             if form.is_valid():
                 first_name = form.cleaned_data['first_name']
@@ -168,11 +171,11 @@ class FeedbackView(View):
                     'message': message,
                 })
 
-                recipient_list = ['karmot02@gmail.com']
+                recipient_list = ['artmagicinternet@gmail.com']
                 email = EmailMessage(
                     subject=subject,
                     body=html_message,
-                    from_email='Asgeron90@gmail.com',
+                    from_email='artmagicinternet@gmail.com',
                     to=recipient_list
                 )
                 email.content_subtype = "html"

@@ -179,10 +179,10 @@ class ProcessOrderView(View):
             # Формирование письма владельцу сайта
             subject_owner = 'Новый заказ от клиента'
             html_message_owner = render_to_string('carts/email_template.html', params)
-            recipient_list_owner = ['Asgeron90@gmail.com']
+            recipient_list_owner = ['artmagicinternet@gmail.com']
 
             try:
-                email_message_owner = EmailMessage(subject_owner, html_message_owner, 'Asgeron90@gmail.com', recipient_list_owner)
+                email_message_owner = EmailMessage(subject_owner, html_message_owner, 'artmagicinternet@gmail.com', recipient_list_owner)
                 email_message_owner.content_subtype = "html"
                 email_message_owner.send()
                 logger.debug('Email sent successfully to %s', recipient_list_owner)
@@ -196,7 +196,7 @@ class ProcessOrderView(View):
             recipient_list_user = [email]
 
             try:
-                email_message_user = EmailMessage(subject_user, html_message_user, 'Asgeron90@gmail.com', recipient_list_user)
+                email_message_user = EmailMessage(subject_user, html_message_user, 'artmagicinternet@gmail.com', recipient_list_user)
                 email_message_user.content_subtype = "html"
                 email_message_user.send()
                 logger.debug('Email sent successfully to %s', recipient_list_user)
