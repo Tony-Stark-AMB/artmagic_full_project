@@ -126,43 +126,32 @@ class ProcessOrderView(View):
                 'new_post_address': "Кур'єрська доставка Нової пошти",
                 'ukr_post': "Укрпошта"
             }
-        print('----------11111--------------')
+        
         try:
             body_unicode = request.body.decode('utf-8')
             data = json.loads(body_unicode)
             data_delivery = data.get('selectedDelivery')
             data_payment = data.get('selectedPayment')
             logger.debug('Received data: %s', data)
-            print(data)
 
             name = data.get('name')
             phone = data.get('phone')
             email = data.get('email')
             total_price = data.get('amount')
             delivery_method = delivery_options.get(data_delivery, "")   
-            print('----------------------------------', delivery_method)         
-            payment = payment_options.get(data_payment, "Невідомий спосіб оплати")
+            payment = payment_options.get(data_payment, "")
             address = data.get('address', '')
-
-            
-            
-
-            # Логика для формирования адреса доставки
-            address_delivery = ""
-            if data.get('department') and data.get('city') and data.get('area'):
-                address_delivery = [
-                    get_area_name(data['area']),
-                    get_city_name(data['city']),
-                    get_department_name(data['department'], data['city'])
-                ]
-            if delivery_method == "Самовивіз":
-                address = 'м. Дніпро, Вул. Якова Самарського 5, к. 7'
-            if delivery_method == "Кур'єрська доставка Нової пошти":
-                address = f'область {address_delivery[0]}, м. {address_delivery[1]}, {address}'
-
+            area_value = get_area_name(data['area'])
+            city_value = get_city_name(data['city'])
+            department_value = get_department_name(data['department'], data['city'])
             products = data.get('products')
-
-
+            
+            if delivery_method == "Самовивіз":
+                address = 'м. Дніпро, Вул. Якова Самарського 5, к. 7'            
+            if delivery_method in ["Відділення Нової пошти", "Поштомат Нової пошти"]:
+                address = f'{area_value } область, {city_value}, {department_value}'
+            if delivery_method == "Кур'єрська доставка Нової пошти":
+                address = f'{area_value } область, {city_value}, {address}'    
 
             # Проверка на наличие обязательных полей
             if not (name, phone, email, products):
@@ -182,7 +171,6 @@ class ProcessOrderView(View):
                 email=email,
                 payment=payment,
                 address=address,
-                address_delivery=address_delivery,
                 total_price=total_price,
                 products=products  # Сохранение продуктов как JSON-объект
             )
@@ -196,18 +184,17 @@ class ProcessOrderView(View):
                 'address': address,
                 'products': products,
                 'total_price': total_price,
-                'address_delivery': address_delivery,
                 'delivery_method': delivery_method,
                 'order_number': order_number
             }
-            print('-------------------------------', context)
+            
             # Формирование письма владельцу сайта
             subject_owner = f"Замовлення №: {order_number}"
             html_message_owner = render_to_string('carts/email_template.html', context)
-            recipient_list_owner = ['artmagicinternet@gmail.com']
+            recipient_list_owner = ['Asgeron90@gmail.com']
 
             try:
-                email_message_owner = EmailMessage(subject_owner, html_message_owner, 'artmagicinternet@gmail.com', recipient_list_owner)
+                email_message_owner = EmailMessage(subject_owner, html_message_owner, 'Asgeron90@gmail.com', recipient_list_owner)
                 email_message_owner.content_subtype = "html"
                 email_message_owner.send()
                 logger.debug('Email sent successfully to %s', recipient_list_owner)
@@ -221,7 +208,7 @@ class ProcessOrderView(View):
             recipient_list_user = [email]
 
             try:
-                email_message_user = EmailMessage(subject_user, html_message_user, 'artmagicinternet@gmail.com', recipient_list_user)
+                email_message_user = EmailMessage(subject_user, html_message_user, 'Asgeron90@gmail.com', recipient_list_user)
                 email_message_user.content_subtype = "html"
                 email_message_user.send()
                 logger.debug('Email sent successfully to %s', recipient_list_user)

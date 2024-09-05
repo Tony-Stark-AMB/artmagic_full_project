@@ -67,17 +67,10 @@
                     <th>Спосіб оплати</th>
                     <td>{{ payment }}</td>
                 </tr>
-                {% if address %}
-                    <tr>
-                        <th>Адреса</th>
-                        <td>{{ address }}</td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <th>Адреса доставки</th>
-                        <td>{{ address_delivery }}</td>
-                    </tr>
-                {% endif %}
+                <tr>
+                    <th>Адреса</th>
+                    <td>{{ address }}</td>
+                </tr>                
             </table>
         </div>
 
