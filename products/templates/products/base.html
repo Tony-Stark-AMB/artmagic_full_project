@@ -171,6 +171,22 @@
             </div>
         </header>
         <div class="divider"></div>
+        <nav class="main-catalog__title-wrap" aria-label="breadcrumb">
+            <div class="breadcrumb">
+                {% for crumb in breadcrumbs %}
+                    {% if not forloop.last %}
+                        <span class="breadcrumb-item">
+                            <a href="{{ crumb.url }}">{{ crumb.name }}</a>
+                        </span>
+                        <span class="breadcrumb-separator"> / </span>
+                    {% else %}
+                        <span class="breadcrumb-item" aria-current="page">
+                            {{ crumb.name }}
+                        </span>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </nav>
 {% endblock %}
 {% block content %}
 {% endblock %}

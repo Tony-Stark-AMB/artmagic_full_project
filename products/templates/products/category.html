@@ -8,47 +8,9 @@
 
         {% block content %}
         <div class="main-category__wrap container__custom">
-            <main class="main-category">
-                <h1 class="main-category__title">
-                    {{ node.name }}
-                </h1>
-                <div class="main-category__content">
-                    <section data-aos="fade-left" class="swiper category-banner">
-                        <div class="swiper-wrapper category-banner__list">
-                            {% for image in category_images %}
-                                <div class="swiper-slide category-banner__item">
-                                    <img class="category-banner__img" src="{{ image.image.url }}" alt="">
-                                </div>
-                            {% endfor %}
-                        </div>
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
-                    </section>
-                    <section data-aos="fade-right" class="swiper category-brands">
-                        <div class="swiper-wrapper">
-                            {% for brand in brands %}
-                                <div class="swiper-slide">
-                                    <div class="category-brands__item">
-                                        <p class="category-brands__title">
-                                            {{brand.name}}
-                                        </p>
-
-                                        {% if brand.image %}
-                                        <img class="category-brands__img" src="{{ brand.image.url }}" alt="">
-                                        {% else %}
-                                        <img class="category-brands__img" src="{% static 'product-placeholder.png' %}" alt="">
-                                        <!-- Если изображение отсутствует, вы можете добавить здесь замену или оставить пустым -->
-                                        {% endif %}
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        </div>
-                        <div class="swiper-pagination"></div>
-                    </section>
-                </div>
+            <main class="main-category">                               
                 <section data-aos="fade-down" class="category-others">
                     <div class="category-others">
-                        <h3 class="category-others__title">Підкатегорії</h3>
                         <ul class="category-others__list">
                             {% for sub_category in sub_categories %}
                             <li class="category-others__item">

@@ -48,20 +48,22 @@ class SubCategoriesView(View):
     def get(self, request, slug):
         parent_category = get_object_or_404(Category, slug=slug)
         sub_categories = parent_category.children.all()
+        breadcrumbs = [
+            {'name': 'Головна', 'url': '/'},
+            {'name': parent_category.name, 'url': request.path},  # Текущая категория
+        ]
+
 
         descendants = parent_category.get_descendants(include_self=True)
         category_ids = [descendant.pk for descendant in descendants]
+        
         print('=---SubCategoriesView---------------------', category_ids, parent_category.pk,
               len(ProductToCategory.objects.filter(category_id=parent_category.pk).distinct()))
-        category_images = CategoryImage.objects.filter(product=parent_category.pk)
-        print('---------------------------------------------------------------------------------------------------',
-              category_images)
+        
 
         products = Products.objects.filter(
             producttocategory__category_id__in=category_ids).distinct()  # .values_list('product_id', flat=True) # Обновлено
 
-        brand_ids = products.values_list('manufacturer_id', flat=True).distinct()
-        brands = Manufacturer.objects.filter(id__in=brand_ids)[:9]
 
         if request.headers['Content-Type'] == 'application/json':
             # add-category/<str:slug>/
@@ -92,8 +94,7 @@ class SubCategoriesView(View):
         return render(request, self.template_name, {
             'parent_category': parent_category,
             'sub_categories': sub_categories,
-            'category_images': category_images,
-            'brands': brands
+            'breadcrumbs': breadcrumbs
         })
 
 
@@ -111,17 +112,28 @@ class SubProductView(View):
 
     def get(self, request, slug):
         parent_category = None
+        breadcrumbs = [{'name': 'Головна', 'url': '/'}]
 
         if slug != 'search':
             parent_category = get_object_or_404(Category, slug=slug)
+            
 
         if parent_category:
             product_ids = ProductToCategory.objects.filter(category_id=parent_category.pk).values_list('product_id',
                                                                                                        flat=True)
             print('------------------------------------------100------------', len(product_ids))
+            parent_of_parent_category = parent_category.parent
             products = Products.objects.filter(id__in=product_ids).distinct()
+            if parent_of_parent_category:
+                breadcrumbs.append({'name': parent_of_parent_category.name, 'url': parent_of_parent_category.get_absolute_url()})
+
+            breadcrumbs.append({'name': parent_category.name, 'url': request.path})
         else:
             products = Products.objects.all().distinct()
+            breadcrumbs = [
+                {'name': 'Головна', 'url': '/'},
+                {'name': "Пошук", 'url': ''},  # Текущая категория
+            ]
         print('------------------------------------------101------------', len(products))
         # , products.filter(filters__filter_value__value="Маркер")
         product_filter = ProductsFilter(request.GET, queryset=products)
@@ -156,6 +168,7 @@ class SubProductView(View):
         return render(request, self.template_name, {
             'parent_category': parent_category,
             'filters': filters,
+            'breadcrumbs': breadcrumbs
         })
 
     def build_filters(self, products):
@@ -218,10 +231,14 @@ class DetaileProductView(View):
         product = Products.objects.get(id=id)
         att = ProductFilter.objects.filter(product_id=product.pk)
         print('----------', att)
+        print('----------', id)
         images = ProductImage.objects.filter(product=product.pk)
         all_images = self.build_images(product, images)
+        
+        categories = ProductToCategory.objects.filter(product_id=product).select_related('category_id')
+        breadcrumbs = self.get_breadcrumbs(categories)
 
-        return render(request, self.template_name, {'product': product, 'att': att, 'all_images': all_images})
+        return render(request, self.template_name, {'product': product, 'att': att, 'all_images': all_images, 'breadcrumbs': breadcrumbs})
 
     def build_images(self, product, images):
         all_images = []
@@ -233,3 +250,28 @@ class DetaileProductView(View):
             if image.image:
                 all_images.append(image.image.url)
         return all_images
+    
+    def get_breadcrumbs(self, categories):
+        breadcrumbs = [{'name': 'Головна', 'url': '/'}]
+        print('categories', categories)
+        parent = categories[0].category_id.parent
+        print('parent', parent)
+        breadcrumbs.append({
+            'name': parent.name,
+            'url': parent.get_absolute_url()})
+        print('breadcrumbs', breadcrumbs)
+        for category_to_product in categories:
+            category = category_to_product.category_id
+            print("category", category)            
+                
+            if not any(b['name'] == category.name and b['url'] == f'/product/{category.slug}/' for b in breadcrumbs):
+                breadcrumbs.append({
+                    'name': category.name,
+                    'url': f'/product/{category.slug}/'
+                })
+        breadcrumbs.append({
+                    'name': '',
+                    'url': ''
+                })
+        print(breadcrumbs)        
+        return breadcrumbs
