@@ -262,6 +262,18 @@ p {
   box-sizing: border-box;
 }
 
+.container__breadcrumb-nav {
+  margin: 0 auto;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+.container__breadcrumb-nav__catalog {
+  max-width: 1600px;
+}
+.container__breadcrumb-nav__category {
+  max-width: 1200px;
+}
+
 .container__small {
   max-width: 1200px;
   margin: 0 auto;
