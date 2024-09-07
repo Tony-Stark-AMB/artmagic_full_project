@@ -27,10 +27,6 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-<<<<<<< HEAD
-print('----------------------------------', type(os.getenv('ALLOWED_HOSTS', '')), os.getenv('ALLOWED_HOSTS', ''))
-=======
->>>>>>> update_prod
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
 
@@ -59,10 +55,6 @@ INSTALLED_APPS = [
 
 ]
 
-<<<<<<< HEAD
-    # 'django_dump_load_utf8',
-=======
->>>>>>> update_prod
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -100,23 +92,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'artmagic.wsgi.application'
 
 
-<<<<<<< HEAD
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'root',  # Название вашей базы данных
-#         'USER': 'root',  # Имя пользователя вашей базы данных
-#         'PASSWORD': 'root',  # Пароль пользователя базы данных
-#         'HOST': 'localhost',  # Хост базы данных (обычно localhost)
-#         'PORT': '5432',  # Порт базы данных (обычно 5432)
-#     }
-# }
-
-=======
->>>>>>> update_prod
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
