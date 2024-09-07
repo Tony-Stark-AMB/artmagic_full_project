@@ -20,7 +20,7 @@
             <div class="profile-page__container container__extra__small">
                 <div class="profile-page__content">
                     <div class="d-flex justify-content-end align-center">
-                        <a class="btn btn-primary me-1" href="{% url 'user:change_password' %}">змінити пароль</a>
+                        <a class="btn btn-primary me-1" href="{% url 'user:change_password' %}">Змінити пароль</a>
                         <a class="btn btn-primary" href="{% url 'user:logout' %}">Вийти</a>
                     </div>
                     <form class="profile-page__user-info" id="profileForm">
@@ -149,7 +149,42 @@
                     </form>
                 </div>
             </div>
-            
+            <div class="profile-page__orders">            
+                {% if user_orders %}
+                    <h2 class="text-center my-4">Ваши заказы</h2>
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th scope="col">Номер заказа</th>
+                                    <th scope="col">Дата заказа</th>
+                                    <th scope="col">Итоговая цена</th>
+                                    <th scope="col">Товары</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for order in user_orders %}
+                                    <tr>
+                                        <td><strong>#{{ order.order_number }}</strong></td>
+                                        <td>{{ order.created_at|date:"d.m.Y H:i" }}</td>
+                                        <td><span class="badge bg-success">{{ order.total_price }} грн</span></td>
+                                        <td>
+                                            {% for product in order.products %}
+                                                <div class="mb-2">
+                                                    <i class="bi bi-box-seam"></i> {{ product.name }} - {{ product.quantity }} шт.
+                                                </div>
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="alert alert-warning text-center">
+                        <i class="bi bi-exclamation-triangle-fill"></i> У вас нет заказов.
+                    </div>
+                {% endif %}    
         </main>
         {% endblock %}
     </div>

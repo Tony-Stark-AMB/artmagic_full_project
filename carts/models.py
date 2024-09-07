@@ -41,6 +41,7 @@ class Cart(models.Model):
 
 
 class Order(models.Model):
+    user = models.ForeignKey(to=CustomUser, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Користувач')
     order_number = models.CharField(max_length=20, unique=True, editable=False)
     name = models.CharField(max_length=255)
     phone = models.CharField(max_length=20)

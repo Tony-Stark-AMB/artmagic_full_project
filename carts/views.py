@@ -163,9 +163,11 @@ class ProcessOrderView(View):
                 order_number = str(random.randint(10000000, 99999999))
                 if not Order.objects.filter(order_number=order_number).exists():
                     break
+            user = request.user if request.user.is_authenticated else None
 
             order = Order.objects.create(
                 order_number=order_number,
+                user = user,
                 name=name,
                 phone=phone,
                 email=email,

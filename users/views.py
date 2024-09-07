@@ -18,6 +18,7 @@ from .forms import (
     ProfileForm, RegistrationForm, ChangePasswordForm
 )
 from .models import Address
+from carts.models import Order
 
 logging.basicConfig(
     level=logging.DEBUG,
@@ -104,10 +105,16 @@ class ProfileView(View):
         try:
             user = request.user
             address = Address.objects.get(user=user)
+            user_orders = Order.objects.filter(user=user).order_by('-created_at')
         except Address.DoesNotExist:
             address = None
 
-        return render(request, 'users/profile.html', {'user': user, 'address': address})
+        context = {
+            'user': user,
+            'address': address,
+            'user_orders': user_orders
+        }
+        return render(request, 'users/profile.html', context)
 
 class ProfilefieldView(View):
     def put(self, request):
