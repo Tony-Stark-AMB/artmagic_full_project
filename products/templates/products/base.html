@@ -171,6 +171,22 @@
             </div>
         </header>
         <div class="divider"></div>
+        <nav class="main-catalog__title-wrap" aria-label="breadcrumb">
+            <div class="breadcrumb">
+                {% for crumb in breadcrumbs %}
+                    {% if not forloop.last %}
+                        <span class="breadcrumb-item">
+                            <a href="{{ crumb.url }}">{{ crumb.name }}</a>
+                        </span>
+                        <span class="breadcrumb-separator"> / </span>
+                    {% else %}
+                        <span class="breadcrumb-item" aria-current="page">
+                            {{ crumb.name }}
+                        </span>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </nav>
 {% endblock %}
 {% block content %}
 {% endblock %}
@@ -299,47 +315,41 @@
                     <!-- Форма для входа -->
                     <div class="swiper-slide">
                         <div class="modal-body">
-                            <form class="login__modal__form" method="post" action="{% url 'user:login' %}">
+                            <form class="login__modal__form">
                                 {% csrf_token %}
                                 <div id="login-form-errors"></div>
-                                <input class="login__modal__input" type="text" name="username" placeholder="Логин">
+                                <input class="login__modal__input" type="text" name="username" placeholder="Логін">
                                 <p class="error c17 d-hidden" data-error-login="username"></p>
                                 <input class="login__modal__input" type="password" name="password" placeholder="Пароль">
                                 <p class="error c17 d-hidden" data-error-login="password"></p>
                                 <div class="login__modal__link__wrap">
-                                    <a class="login__modal__link" href="#">Забыли пароль?</a>
-                                    <div class="login__modal__link swiper-btn-next">Регистрация</div>
+                                    <a class="login__modal__link" href="#">Забули пароль?</a>
+                                    <div class="login__modal__link swiper-btn-next">Реєстрація</div>
                                 </div>
-                                <button class="btn btn-primary" type="submit">Войти</button>
+                                <button class="btn btn-primary" type="submit">Увійти</button>
                             </form>
                         </div>
                     </div>
                     <!-- Форма для регистрации -->
                     <div class="swiper-slide">
                         <div class="modal-body">
-                            <form class="registration__modal__form" method="post" action="{% url 'user:register' %}">
+                            <form class="registration__modal__form">
                                 {% csrf_token %}
                                 <div id="registration-form-errors"></div>
-                                <input class="registration__modal__input" type="text" name="username" placeholder="Логин">
+                                <input class="registration__modal__input" type="text" name="username" placeholder="Логін">
                                 <input class="registration__modal__input" type="text" name="email" placeholder="Email">
                                 <input class="registration__modal__input" type="text" name="phone_number" placeholder="Номер телефону">
                                 <input class="registration__modal__input" type="password" name="password1" placeholder="Пароль">
-                                <input class="registration__modal__input" type="password" name="password2" placeholder="Подтверждение пароля">
+                                <input class="registration__modal__input" type="password" name="password2" placeholder="Підтвердження пароля">
                                 <div class="login__modal__link__wrap">
-                                    <div class="registration__modal__link swiper-btn-prev">Авторизация</div>
-                                    <button class="btn btn-primary" type="submit">Зарегистрироваться</button>
+                                    <div class="registration__modal__link swiper-btn-prev">Авторизація</div>
+                                    <button class="btn btn-primary" type="submit">Зареєструватись</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                     <!--- Проверка на ошибки  -->
-                    {% if messages %}
-                    <ul class="messages">
-                        {% for message in messages %}
-                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+                    
                 </div>
             </div>
         </div>

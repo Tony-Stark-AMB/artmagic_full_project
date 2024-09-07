@@ -1,27 +1,98 @@
-<!-- templates/email_template.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Підтвердження замовлення</title>
     <style>
-        table {
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+        }
+        .message {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #333;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #555;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .header {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .details, .address, .items {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .details table, .items table {
             width: 100%;
             border-collapse: collapse;
         }
-        table, th, td {
-            border: 1px solid black;
+        .details td, .address td, .items td, .items th {
+            padding: 8px;
+            border: 1px solid #ccc;
         }
-        th, td {
-            padding: 10px;
+        .details th, .items th {
+            background-color: #f0f0f0;
             text-align: left;
+        }
+        .totals {
+            text-align: right;
+            padding-top: 10px;
         }
     </style>
 </head>
 <body>
     <div class="message">
         <h2>Номер Вашого замовлення {{ order_number }}</h2>
-        Ваше замовлення прийняте в обробку, ми зв'яжемося з Вами в робочі години.
+        <p>Ваше замовлення прийняте в обробку, ми зв'яжемося з Вами в робочі години.</p>
+        <p>Якщо Ви відправили замовлення після 17:00, у суботу чи неділю, не турбуйтесь,</p>
+        <p>Менеджер обов'язково зв'яжется з Вами найближчого робочого дня</p>
+
+
+        <div class="items">
+            <p>Ваше замовлення: </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Товар</th>
+                        <th>Артикул</th>
+                        <th>Кількість</th>
+                        <th>Ціна</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.model }}</td>
+                        <td>{{ product.quantity }}</td>
+                        <td>{{ product.price }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="totals">
+                <strong>Итого: {{ total_price }} грн.</strong>
+            </div>
+        </div>
         <div class="footer">
             З повагою,<br>
             Артмагия

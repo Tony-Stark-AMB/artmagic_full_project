@@ -60,17 +60,17 @@
                     <td>{{ email }}</td>
                 </tr>
                 <tr>
+                    <th>Спосіб доставки</th>
+                    <td>{{ delivery_method }}</td>
+                </tr>
+                <tr>
                     <th>Спосіб оплати</th>
                     <td>{{ payment }}</td>
                 </tr>
                 <tr>
                     <th>Адреса</th>
                     <td>{{ address }}</td>
-                </tr>
-                <tr>
-                    <th>Адреса доставки</th>
-                    <td>{{ address_delivery }}</td>
-                </tr>
+                </tr>                
             </table>
         </div>
 
@@ -80,19 +80,17 @@
                     <tr>
                         <th>Товар</th>
                         <th>Артикул</th>
-                        <th>Количество</th>
-                        <th>Цена</th>
-                        <th>Итого</th>
+                        <th>Кількість</th>
+                        <th>Ціна</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for product in products %}
                     <tr>
                         <td>{{ product.name }}</td>
-                        <td>{{ product.sku }}</td>
+                        <td>{{ product.model }}</td>
                         <td>{{ product.quantity }}</td>
-                        <td>{{ product.price }} грн.</td>
-                        <td>{{ product.total }} грн.</td>
+                        <td>{{ product.price }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

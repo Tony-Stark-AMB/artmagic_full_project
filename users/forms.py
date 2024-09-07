@@ -1,7 +1,9 @@
 import re
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
+
 from django.core.exceptions import ValidationError
+from django.contrib.auth.password_validation import CommonPasswordValidator
 from django.core.validators import validate_email
 from .models import CustomUser, Address
 from django.contrib.auth import authenticate
@@ -13,27 +15,27 @@ class RegistrationForm(UserCreationForm):
         max_length=254,
         error_messages={
             'invalid': "Будь ласка, введіть дійсну адресу електронної пошти.",
-            'required': "Це поле є обов'язковим."
+            'required': "Email є обов'язковим полем."
         }
     )
     phone_number = forms.CharField(
         max_length=15,
         error_messages={
-            'required': "Це поле є обов'язковим."
+            'required': "Номер телефону є обов'язковим полем."
         }
     )
     
     username = forms.CharField(
         max_length=150,
         error_messages={
-            'required': "Це поле є обов'язковим."
+            'required': "Логін є обов'язковим полем."
         }
     )
     
     password1 = forms.CharField(
         widget=forms.PasswordInput,
         error_messages={
-            'required': "Це поле є обов'язковим."
+            'required': "Пароль є обов'язковим полем."
         }
     )
     
@@ -62,14 +64,14 @@ class RegistrationForm(UserCreationForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if CustomUser.objects.filter(email=email).exists():
-            raise ValidationError("Користувач з такою електронную почтою вже існує.")
+            raise ValidationError("Користувач з такою електронною поштою вже існує.")
         # Дополнительная логика для проверки email, если необходимо
         return email
 
     def clean_phone_number(self):
         phone_number = self.cleaned_data.get('phone_number')
         if not re.match(r'^\+?3?\d{9,14}$', phone_number):
-            raise ValidationError("Неправильний номер телефону")
+            raise ValidationError("Неправильний номер телефону.")
         if CustomUser.objects.filter(phone_number=phone_number).exists():
             raise ValidationError("Користувач з таким номером телефону вже існує.")
         
@@ -79,39 +81,52 @@ class RegistrationForm(UserCreationForm):
         password1 = self.cleaned_data.get('password1')
         if not re.match(r'^[a-zA-Z0-9!@#$%^&*()_+{}\[\]:;"\'<>,.?/]+$', password1):
             raise ValidationError("Пароль може містити лише латинські літери та символи.")
-        if len(password1) <= 3:
-            raise ValidationError("Пароль повинен містити щонайменше 4 символів.")
+        if len(password1) < 8:
+            raise ValidationError("Вибачте, але ваш пароль занадто короткий. Він має містити щонайменше 8 символів.")
+
+        common_password_validator = CommonPasswordValidator()
+        try:
+            common_password_validator.validate(password1)
+        except ValidationError:
+            raise ValidationError(("Вибачте, але обраний вами пароль занадто простий."))
+
+
         return password1
 
     def clean_password2(self):
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
-        if password1 != password2:
-            raise ValidationError("Паролі відрізняються.")
+
+        # Проверка совпадения паролей
+        if password1 and password2 and password1 != password2:
+            raise ValidationError(("Паролі не співпадають."))
+        
+        if len(password2) < 8:
+            raise ValidationError("Вибачте, але ваш пароль занадто короткий. Він має містити щонайменше 8 символів.")
+
+        common_password_validator = CommonPasswordValidator()
+        try:
+            common_password_validator.validate(password2)
+        except ValidationError:
+            raise ValidationError(("Вибачте, але обраний вами пароль занадто простий."))
+
         return password2
 
-    def clean(self):
-        cleaned_data = super().clean()
-        password1 = cleaned_data.get("password1")
-        password2 = cleaned_data.get("password2")
         
-        # Проверка на соответствие паролей
-        if password1 and password2 and password1 != password2:
-            self.add_error('password2', "Паролі не збігаються.")
 
 class UserLoginForm(forms.Form):
 
     username = forms.CharField(
         max_length=30,
         error_messages={
-            'required': "Це поле є обов'язковим."
+            'required': "Логін є обов'язковим полем."
         }
     )
     
     password = forms.CharField(
         widget=forms.PasswordInput,
         error_messages={
-            'required': "Це поле є обов'язковим."
+            'required': "Пароль є обов'язковим полем."
         }
     )
 

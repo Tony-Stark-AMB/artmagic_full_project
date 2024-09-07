@@ -59,7 +59,11 @@
         </div>
         <div class="product-specs" data-aos-delay="200" data-aos-anchor="description" data-aos="fade-up">
             <h3>Опис товару</h3>
-            <p class="product-description">{{ product.description|striptags }}</p>
+            {% if product.description %}
+                <p class="product-description">{{ product.description|striptags }}</p>
+            {% else %}
+                <p class="product-description"></p>
+            {% endif %}
 
         </div>
     </main>

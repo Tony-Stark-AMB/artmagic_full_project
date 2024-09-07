@@ -26,8 +26,17 @@ from carts.models import Cart, Order
 
 
 
-@admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ["order_number", "name", "phone", "email", "payment", "address", "address_delivery", "products"]
+    list_display = ('order_number', 'user', 'name', 'phone', 'email', 'payment', 'total_price', 'created_at')
+    list_filter = ('created_at', 'payment')
+    search_fields = ('order_number', 'name', 'phone', 'email')
+
+    def save_model(self, request, obj, form, change):
+        # Устанавливаем пользователя, если он авторизован и еще не установлен
+        if not obj.user and request.user.is_authenticated:
+            obj.user = request.user
+        super().save_model(request, obj, form, change)
+
+admin.site.register(Order, OrderAdmin)
 
     

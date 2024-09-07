@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from mptt.models import MPTTModel, TreeForeignKey
 
@@ -27,6 +28,8 @@ class Category(MPTTModel):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('sub_categories', kwargs={'slug': self.slug})
 
 class CategoryImage(models.Model):
     product = models.ForeignKey(Category, on_delete=models.CASCADE)

@@ -27,7 +27,10 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
+<<<<<<< HEAD
 print('----------------------------------', type(os.getenv('ALLOWED_HOSTS', '')), os.getenv('ALLOWED_HOSTS', ''))
+=======
+>>>>>>> update_prod
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
 
@@ -56,7 +59,10 @@ INSTALLED_APPS = [
 
 ]
 
+<<<<<<< HEAD
     # 'django_dump_load_utf8',
+=======
+>>>>>>> update_prod
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -94,6 +100,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'artmagic.wsgi.application'
 
 
+<<<<<<< HEAD
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -108,6 +115,8 @@ WSGI_APPLICATION = 'artmagic.wsgi.application'
 #     }
 # }
 
+=======
+>>>>>>> update_prod
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -203,6 +212,8 @@ if DEBUG:
     mimetypes.add_type("text/css", ".css", True)
 
 # CORS_ALLOWED_ORIGINS = ["http://localhost:8000", "http://127.0.0.1:8000"]
+CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS').split(',')
+
 CORS_ALLOW_METHODS = (
     "DELETE",
     "GET",
@@ -213,3 +224,7 @@ CORS_ALLOW_METHODS = (
 )
 
 CORS_ORIGIN_ALLOW_ALL=True
+
+
+CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS').split(',')
+
