@@ -149,42 +149,45 @@
                     </form>
                 </div>
             </div>
-            <div class="profile-page__orders">            
-                {% if user_orders %}
-                    <h2 class="text-center my-4">Ваши заказы</h2>
-                    <div class="table-responsive">
-                        <table class="table table-hover table-bordered align-middle">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th scope="col">Номер заказа</th>
-                                    <th scope="col">Дата заказа</th>
-                                    <th scope="col">Итоговая цена</th>
-                                    <th scope="col">Товары</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for order in user_orders %}
-                                    <tr>
-                                        <td><strong>#{{ order.order_number }}</strong></td>
-                                        <td>{{ order.created_at|date:"d.m.Y H:i" }}</td>
-                                        <td><span class="badge bg-success">{{ order.total_price }} грн</span></td>
-                                        <td>
-                                            {% for product in order.products %}
-                                                <div class="mb-2">
-                                                    <i class="bi bi-box-seam"></i> {{ product.name }} - {{ product.quantity }} шт.
-                                                </div>
-                                            {% endfor %}
-                                        </td>
+            <div class="container__extra__small">
+                <div class="profile-page__orders" >            
+                    {% if user_orders %}
+                        <h2 class="text-center my-4">Ваші замовлення</h2>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered align-middle" >
+                                <thead class="table-primary" >
+                                    <tr class="text-center align-middle">
+                                        <th >Номер замовлення</th>
+                                        <th >Дата замовлення</th>
+                                        <th >Кінцева ціна</th>
+                                        <th >Товари</th>
                                     </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                {% else %}
-                    <div class="alert alert-warning text-center">
-                        <i class="bi bi-exclamation-triangle-fill"></i> У вас нет заказов.
-                    </div>
-                {% endif %}    
+                                </thead>
+                                <tbody>
+                                    {% for order in user_orders %}
+                                        <tr>
+                                            <td><strong>#{{ order.order_number }}</strong></td>
+                                            <td>{{ order.created_at|date:"d.m.Y H:i" }}</td>
+                                            <td>
+                                                {% for product in order.products %}
+                                                    <div class="mb-2">
+                                                        <i class="bi bi-box-seam"></i> {{ product.name }} - {{ product.quantity }} шт.
+                                                    </div>
+                                                {% endfor %}
+                                            </td>
+                                            <td><span class="badge bg-primary">{{ order.total_price }} грн</span></td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-warning text-center">
+                            <i class="bi bi-exclamation-triangle-fill"></i> У вас нет заказов.
+                        </div>
+                    {% endif %}    
+            </div>
+            
         </main>
         {% endblock %}
     </div>

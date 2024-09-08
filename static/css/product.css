@@ -810,6 +810,7 @@
   outline: none;
   border: 1px solid #ddd;
   margin: 20px 0;
+  cursor: pointer;
 }
 @media (max-width: 1400px) {
   .order__input {
@@ -823,7 +824,7 @@
 }
 @media (max-width: 992px) {
   .order__input {
-    width: 35vw;
+    width: 60vw;
   }
 }
 .order__input__content {
@@ -839,6 +840,28 @@
   justify-content: center;
 }
 
+.loader-overlay-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Make sure it's above the modal content */
+}
+
+/* Keyframes for the spinning animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .header {
   top: 0;
   left: 0;

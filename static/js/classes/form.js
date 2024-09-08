@@ -23,7 +23,6 @@ class Form {
             selectedDelivery: null,
             selectedPayment: null
         }
-
     }
 
     getField(fieldName) {
@@ -120,6 +119,7 @@ class Form {
 
         this.dataSubmitBtn.addEventListener("click", async (e) => {
             e.preventDefault();
+            this.showModalLoader();
            
             let emptyForm = false;
             Object.keys(this.formData).forEach(key => this.triggerInput(key));
@@ -173,7 +173,7 @@ class Form {
                 if (productsExistCondition && formContainerId == "orderForm") throw Error();           
                 await this.fetchData(path, methodType, submitedFormData);
                 this.alert("success", msgObj.successMessage, animDuration);
-                
+                this.hideModalLoader();
                 if (clearCond) {
                     this.clearForm(this.initObj);
                     if(formContainerId === "orderForm"){
@@ -189,6 +189,7 @@ class Form {
                 }
             } catch (err) {
                 this.userAuthDefaultData();
+                this.hideModalLoader();
                 console.log(err);
                 switch(true){
                     case productsExistCondition && formContainerId == "orderForm":
@@ -242,6 +243,7 @@ class Form {
     }
 
     async fetchNewPostAPIData(pathName, query = ""){
+        this.showModalLoader();
         const path = `api/${pathName}`
         const data = await fetch(`${PROTOCOL}://${HOST}:${PORT}/delivery/${path}?${query}`, 
             {
@@ -249,7 +251,10 @@ class Form {
                 mode: "cors"
             }
         )
-            .then((data) => data.json())
+            .then((data) => {
+                this.hideModalLoader();
+                return data.json()
+            })
         return data;
     }
 
@@ -353,6 +358,14 @@ class Form {
                 })
             ); 
         }
+    }
+
+    showModalLoader(){
+        document.getElementById("modal-content").style.display = "flex";
+    }
+
+    hideModalLoader(){
+        document.getElementById("modal-content").style.display = "none"
     }
 }
 
