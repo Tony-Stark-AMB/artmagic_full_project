@@ -681,6 +681,10 @@
     height: 80px;
   }
 }
+.modal-footer__btns button.active {
+  background-color: #E63125 !important;
+  border: 1px solid #E63125 !important;
+}
 .modal-footer__text {
   font-weight: 700;
   font-size: 24px;
@@ -1022,12 +1026,12 @@
 }
 .category-others__item {
   width: 200px;
-  min-height: 200px;
+  height: 300px;
 }
 @media (max-width: 992px) {
   .category-others__item {
     width: 100px;
-    min-height: 250px;
+    height: 250px;
   }
 }
 .category-others__link {
@@ -1152,7 +1156,7 @@
 }
 .main-category__wrap {
   display: block;
-  padding: 10px 0 10px 0;
+  padding: 10px 0;
   flex-grow: 1;
 }
 .main-category__title {

@@ -130,6 +130,10 @@
         @include respond-to(phone-large){
             height: 80px;
         }
+        & button.active{
+           background-color: $c11 !important; 
+           border: 1px solid $c11 !important;
+        }
     }
     &__text{
         font-weight: 700;
