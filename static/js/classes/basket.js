@@ -66,7 +66,7 @@ export class Basket {
         const products = this.productManager.getProducts();
         
         if (products.length === 0) {
-            this.productsContainer.innerHTML = '<p>Корзина порожня</p>';
+            this.productsContainer.innerHTML = '<p>Кошик порожній</p>';
         } else {
             products.forEach((product) => {
                 const productHTML = this.renderProduct(product);

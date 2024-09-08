@@ -171,6 +171,7 @@ class Form {
                 
 
                 if (productsExistCondition && formContainerId == "orderForm") throw Error();           
+                console.log(Object.entries(this.formData))
                 await this.fetchData(path, methodType, submitedFormData);
                 this.alert("success", msgObj.successMessage, animDuration);
                 this.hideModalLoader();
