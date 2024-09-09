@@ -1,6 +1,6 @@
 {% load static %}
 
-<div class="modal fade modal__basket" id="basket__modal" tabindex="-1" aria-labelledby="basket__modal" aria-hidden="true">
+<div class="modal fade modal__basket" id="basket__modal" tabindex="-1" aria-labelledby="basket__modal" aria-hidden="true" >
     <div class="modal-dialog basket__modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -228,6 +228,21 @@
                 <p class="modal-footer__text"></p>
             </div>
         </div>
+    </div>
+</div>
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true" style="z-index: 1200; margin-top: 150px;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="successModalLabel">Заголовок модалки</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        </div>
+        <div class="modal-body" id="successModalBody">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="successModalBtn">ОК</button>
+        </div>
+      </div>
     </div>
 </div>
 <div class="d-none">

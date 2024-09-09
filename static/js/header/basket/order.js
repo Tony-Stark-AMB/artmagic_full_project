@@ -1,5 +1,5 @@
 import { productManager, basket } from "./basket.js";
-
+import "../../../node_modules/bootstrap/dist/js/bootstrap.bundle.js";
 const { MIN_2_LETTERS_UA, FIRST_LETTER_CAPITALISE_UA, EMAIL, PHONE_UA, REQUIRED, POSTAL_INDEX }  = regexp;
 
 const formDataOrder = {
@@ -41,7 +41,7 @@ Array.from(document.querySelectorAll("[data-user]")).map(el => {
 });
 
 
-export const formOrder = new Form(formDataOrder, patternsOrder, "Order", Alert,  productManager, basket, userData);
+export const formOrder = new Form(formDataOrder, patternsOrder, "Order", Alert,  productManager, basket, userData, bootstrap);
 
 formOrder.initForm("orderForm", {
     fullName: "name",

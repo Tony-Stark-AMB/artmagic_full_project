@@ -9,11 +9,12 @@ class Form {
                 }
             ])
         );
-        const [productManager, basket, userData] = args;
+        const [productManager, basket, userData, bootstrap] = args;
         this.productManager = productManager ?? null;
         this.alert = alertCl ?? null;
         this.basket = basket ?? null;
         this.userData = userData ?? null;
+        this.bootstrap = bootstrap ?? null;
         this.initObj = obj;
         this.formName = formName;
         this.dataSubmitBtn = document.querySelector(`button[data-submit="btn_${formName}"]`);
@@ -82,8 +83,9 @@ class Form {
     }
 
     async initForm(formContainerId, obj, path, methodType, msgObj, animDuration, clearCond = true) {
-        const formContainer = document.getElementById(formContainerId);
 
+        const formContainer = document.getElementById(formContainerId);
+        
         this.userAuthDefaultData();
 
         const fields = formContainer.querySelectorAll("[data-field]");
@@ -112,9 +114,13 @@ class Form {
                 break;
             
         };
-
-        
-        
+        // Добавляем чуток для новой модалки для заказа (обработка событий)
+        if(this.bootstrap){
+            const successModalBtnClose = document.querySelector("#successModal .btn-close");
+            successModalBtnClose.addEventListener("click", () => this.hideHoleModals());
+            const actionButton = document.querySelector('#successModalBtn');
+            actionButton.addEventListener("click", () => this.hideHoleModals());
+        }
 
 
         this.dataSubmitBtn.addEventListener("click", async (e) => {
@@ -122,7 +128,22 @@ class Form {
             this.showModalLoader();
            
             let emptyForm = false;
-            Object.keys(this.formData).forEach(key => this.triggerInput(key));
+            // Object.keys(this.formData).forEach(key => this.triggerInput(key));
+            Object.keys(this.formData).forEach(key => {
+                const isFieldEmpty = this.formData[key].value.trim() === "";  // Проверка, что поле пустое
+                if (isFieldEmpty) {
+                    emptyForm = true; // Если хотя бы одно поле пустое, ставим флаг
+                    this.triggerInput(key); // Обновляем отображение ошибки для пустого поля
+                }
+            });
+
+            if (emptyForm) {
+                this.alert("err", "Не всі поля заповнені", animDuration); // Выводим сообщение об ошибке
+                emptyForm = false;
+                this.hideModalLoader();
+                return;
+            }
+            
             
             const submitedFormData = {...this.mapedFormData(obj), ...this.selectedBasketObj};
             if(formContainerId == "orderForm"){
@@ -142,6 +163,7 @@ class Form {
                     });
                     
                 }
+
 
                 
 
@@ -171,9 +193,16 @@ class Form {
                 
 
                 if (productsExistCondition && formContainerId == "orderForm") throw Error();           
-                console.log(Object.entries(this.formData))
                 await this.fetchData(path, methodType, submitedFormData);
-                this.alert("success", msgObj.successMessage, animDuration);
+                // this.alert("success", msgObj.successMessage, animDuration);
+                if(this.showSuccessModal){
+                    this.showSuccessModal("Успіх! Замовлення прийнято",
+                        `<p class="text-center">Супер, ваше замовлення прийнято<br><br>Наш менеджер зв'яжеться із вами найближчим часом</p>`
+                    )
+                }
+                    
+                
+                
                 this.hideModalLoader();
                 if (clearCond) {
                     this.clearForm(this.initObj);
@@ -367,6 +396,55 @@ class Form {
 
     hideModalLoader(){
         document.getElementById("modal-content").style.display = "none"
+    }
+
+    showSuccessModal(title, content) {
+        // Изменяем заголовок модалки
+        const modalTitle = document.getElementById('successModalLabel');
+        modalTitle.textContent = title;
+    
+        // Изменяем содержимое модалки
+        const modalBody = document.getElementById('successModalBody');
+        modalBody.innerHTML = content;
+
+        const backdrop = document.querySelectorAll('.modal-backdrop')[1];
+        backdrop.style.zIndex = "1050"
+    
+        
+        // Открываем новую модалку
+        const successModal = new bootstrap.Modal(document.getElementById('successModal'), {
+            backdrop: false, // Модалка без закрытия кликом вне окна     
+        });
+        backdrop.style.zIndex = "1055"
+        successModal.show();
+        
+
+
+        
+        
+    }
+
+    hideHoleModals(){
+        document.querySelectorAll('.modal.show').forEach(modal => {
+            this.bootstrap.Modal.getInstance(modal).hide();
+        });
+        const backdrops = document.querySelectorAll('.modal-backdrop');
+        backdrops.forEach((backdrop) => {
+            if (backdrop) {
+                backdrop.style.zIndex = "1050"
+                backdrop.remove(); // Remove the backdrop element from the DOM
+            }
+                  
+        })
+        if(window.location.pathname == "/")
+            return
+        setTimeout(() => window.location.href = "/", 200);
+    }
+
+    closeSuccessModal() {
+        const successModalElement = document.getElementById('successModal');
+        const successModalInstance = bootstrap.Modal.getInstance(successModalElement);
+        successModalInstance.hide();  // Закрывает модалку
     }
 }
 
