@@ -173,11 +173,15 @@ class Form {
                 }
             
                 // If only the form is empty, throw a corresponding error
-                if (emptyForm) {
+                if (emptyForm  && formContainerId === "orderForm" ) {
                     this.hideModalLoader();
                     const error = new Error("Empty form");
                     error.name = "emptyForm";
                     throw error;
+                }
+
+                if(formContainerId === "profileForm"){
+                    
                 }
             
                 // Additional logic for order form and LiqPay integration
@@ -205,10 +209,24 @@ class Form {
                 }
             
                 // Submit form data if all validations passed
-                await this.fetchData(path, methodType, submitedFormData);
+                try{
+                    const responseData = await this.fetchData(path, methodType, submitedFormData);
+                    if(responseData.error){
+                        let errText = ""
+                        for (const [key, val] of Object.entries(responseData.error)) {
+                            errText += `${key}: ${val}\n`;
+                        }
+                        throw Error(errText)
+                    }
+                        
+                } catch(err){
+                    Alert("err", err.message, 5000);
+                };
+               
             
+             
                 // Show success modal if necessary
-                if (this.showSuccessModal) {
+                if (this.showSuccessModal && formContainerId === "orderForm") {
                     this.showSuccessModal("Успіх! Замовлення прийнято", 
                         `<p class="text-center">Супер, ваше замовлення прийнято<br><br>Наш менеджер зв'яжеться із вами найближчим часом</p>`
                     );
@@ -248,6 +266,7 @@ class Form {
                 } else {
                     console.log("Unknown error", err);
                 }
+
             }
             
             

@@ -31,7 +31,7 @@ const patternsProfile = {
         { rule: PHONE_UA, errorMsg: "Неправильний номер телефону" }
     ],
     profileAddress: [
-        { rule:  MIN_2_LETTERS_UA, errorMsg: "Мінімум 2 літери UA"},
+        // { rule:  MIN_2_LETTERS_UA, errorMsg: "Мінімум 2 літери UA"},
     ],
     postalCode: [
         { rule: POSTAL_INDEX, errorMsg: "Вкажіть поштовий індекс (49000)"}

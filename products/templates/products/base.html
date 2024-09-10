@@ -172,7 +172,7 @@
             </div>
         </header>
         <div class="divider"></div>
-        {% if request.path == '/' or request.path == '/user/profile/' %}
+        {% if request.path == '/' or request.path == '/user/profile/' or request.path == '/main/about/' or request.path == '/main/contacts/' or request.path == '/main/payment-delivery/' or request.path == '/main/safeguards/' or request.path == '/main/return-agoods/' %}
         {% else %}
             <nav class="breadcrumb-nav-wrap" aria-label="breadcrumb">
                 <p></p>
@@ -503,7 +503,6 @@
         if(loginForm){
             loginForm.addEventListener('submit', function (e) {
                 e.preventDefault();
-                console.log("here login")
                 const formData = new FormData(loginForm);
                 fetch('{% url "user:login" %}', {
                     method: 'POST',
@@ -520,7 +519,6 @@
                         // Обработка ошибок и отображение сообщений
                         const errorsContainer = document.getElementById('login-form-errors');
                         errorsContainer.innerHTML = '';
-                        console.log(data.errors)
                         let errText = ""
                         for (const [key, val] of Object.entries(data.errors)) {
                             errText += `${val}\n\n`
@@ -536,7 +534,6 @@
         if(registerForm){
             registerForm.addEventListener('submit', function (e) {
                 e.preventDefault();
-                console.log("here registr")
                 const formData = new FormData(registerForm);
                 fetch('{% url "user:register" %}', {
                     method: 'POST',
@@ -557,10 +554,9 @@
                             // Обработка ошибок и отображение сообщений
                             const errorsContainer = document.getElementById('login-form-errors');
                             errorsContainer.innerHTML = '';
-                            console.log(data.errors)
                             let errText = ""
                             for (const [key, val] of Object.entries(data.errors)) {
-                                errText += `${key}: ${val}\n`;
+                                errText += `${val}\n`;
                             }
                             Alert("err", errText, 5000)
                         }
