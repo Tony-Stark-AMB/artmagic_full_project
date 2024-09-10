@@ -1,4 +1,3 @@
-
 const searchInput = document.querySelector('[name="query"]');
 const searchInputBtn = document.querySelector('[name="query__btn"]');
 

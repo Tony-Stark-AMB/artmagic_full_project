@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Header, AboutUs, PaymentDelivery, Safeguards, ReturnAgoods, ContactInfo
+from .models import Header, AboutUs, PaymentDelivery, Safeguards, ReturnAgoods, ContactInfo, Carousel
 
 @admin.register(Header)
 class HeaderAdmin(admin.ModelAdmin):
@@ -25,4 +25,7 @@ class ReturnAgoodsAdmin(admin.ModelAdmin):
 class ContactInfo(admin.ModelAdmin):
     list_display = ('phone_number',)
     
-
+@admin.register(Carousel)
+class CarouselAdmin(admin.ModelAdmin):
+    list_display = ('title',)
+    search_fields = ('title',)

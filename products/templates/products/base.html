@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{% static 'css/common.css' %}">
     <link rel="stylesheet" href="{% static 'css/breadcrumb.css' %}">
     {% block css %}{% endblock %}    
-    <title>Document</title>
+    <title>Артмагія</title>
 </head>
 <body>
     <div class="full-content">
@@ -62,7 +62,7 @@
                         <div class="header-login">
                             {% if user.is_authenticated %}
                             <div class="user__info">
-                                <p class="header-login__text">Привіт, {{ user.username }}!</p>
+                                
                                 <a class="btn btn-primary header-login__link" href="{% url 'user:profile'%}">
                                     <svg class="user-small" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 448 512">
                                         <path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 
@@ -174,30 +174,30 @@
         <div class="divider"></div>
         {% if request.path == '/' or request.path == '/user/profile/' %}
         {% else %}
-        <nav class="breadcrumb-nav-wrap" aria-label="breadcrumb">
-            <p></p>
-            {% if request.resolver_match.url_name == 'sub_categories' or request.resolver_match.url_name == 'detaile_product' %}
-                <div class="container__breadcrumb-nav container__breadcrumb-nav__category">
-            {% endif %}
-            {% if request.resolver_match.url_name == 'sub_product' %}
-                <div class="container__breadcrumb-nav container__breadcrumb-nav__catalog">
-            {% endif %}       
-                <div class="breadcrumb-nav">
-                    {% for crumb in breadcrumbs %}
-                        {% if not forloop.last %}
-                            <span class="breadcrumb-nav-item">
-                                <a href="{{ crumb.url }}">{{ crumb.name }}</a>
-                            </span>
-                            <span class="breadcrumb-nav-separator"> / </span>
-                        {% else %}
-                            <span class="breadcrumb-nav-item" aria-current="page">
-                                {{ crumb.name }}
-                            </span>
-                        {% endif %}
-                    {% endfor %}
+            <nav class="breadcrumb-nav-wrap" aria-label="breadcrumb">
+                <p></p>
+                {% if request.resolver_match.url_name == 'sub_categories' or request.resolver_match.url_name == 'detaile_product' %}
+                    <div class="container__breadcrumb-nav container__breadcrumb-nav__category">
+                {% endif %}
+                {% if request.resolver_match.url_name == 'sub_product' %}
+                    <div class="container__breadcrumb-nav container__breadcrumb-nav__catalog">
+                {% endif %}       
+                    <div class="breadcrumb-nav">
+                        {% for crumb in breadcrumbs %}
+                            {% if not forloop.last %}
+                                <span class="breadcrumb-nav-item">
+                                    <a href="{{ crumb.url }}">{{ crumb.name }}</a>
+                                </span>
+                                <span class="breadcrumb-nav-separator"> / </span>
+                            {% else %}
+                                <span class="breadcrumb-nav-item" aria-current="page">
+                                    {{ crumb.name }}
+                                </span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
         {% endif %}
         
 {% endblock %}
