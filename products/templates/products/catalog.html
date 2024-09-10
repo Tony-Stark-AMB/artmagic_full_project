@@ -113,8 +113,8 @@
                                     <ul class="aside-mainlist" data-parrent="{{filter.name}}">
                                         {% for value in filter.text %}
                                             <li class="aside-main__item">
-                                                <input id="{{filter.name}}{{value}}" type="checkbox" data-child="{{value}}" />
-                                                <label class="aside-main__item__label" for="{{filter.name}}{{value}}">{{ value }}</label>
+                                                <input id="{{filter.name}}{{value.0}}" type="checkbox" data-child="{{value.0}}" />
+                                                <label class="aside-main__item__label" for="{{filter.name}}{{value.0}}">{{ value.1 }}</label>
                                             </li>
                                         {% endfor %}
                                     </ul>
@@ -126,8 +126,8 @@
                                     <ul class="aside-mainlist" data-parrent="{{filter.name}}">
                                         {% for value in filter.text %}
                                             <li class="aside-main__item">
-                                                <input id="{{filter.name}}{{value}}" type="checkbox" data-child="{{value}}"/>
-                                                <label class="aside-main__item__label" for="{{filter.name}}{{value}}">{{ value }}</label>
+                                                <input id="{{filter.name}}{{value.0}}" type="checkbox" data-child="{{value.0}}"/>
+                                                <label class="aside-main__item__label" for="{{filter.name}}{{value.0}}">{{ value.1 }}</label>
                                             </li>
                                     {% endfor %}
                                     </ul>
