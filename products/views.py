@@ -176,22 +176,30 @@ class SubProductView(View):
         products_ids = products.values_list("pk", flat=True)
 
         # Получаем все фильтры для этих продуктов
-        product_filters = ProductFilter.objects.filter(product__in=products_ids).select_related('filter_category',
-                                                                                                'filter_value').distinct()
+        product_filters = ProductFilter.objects.filter(product__in=products_ids).select_related('filter_category', 'filter_value').distinct()
 
         # Создаем словарь для фильтров
         attributes_dict = {}
+
         for pf in product_filters:
             category_name = pf.filter_category.name
-            value = pf.filter_value.value
+            filter_id = pf.filter_value.id  # Получаем id фильтра
+            value = pf.filter_value.value  # Получаем значение фильтра
+
+            # Инициализируем список, если фильтров для этой категории еще нет
             if category_name not in attributes_dict:
                 attributes_dict[category_name] = set()
-            attributes_dict[category_name].add(value)
+
+            # Добавляем кортеж (id, value) в соответствующую категорию
+            attributes_dict[category_name].add((filter_id, value))
 
         # Преобразуем словарь в список фильтров
-        filters = [{'name': name.upper(), 'text': sorted(list(texts), key=alphanumeric_sort)} for name, texts in
-                   sorted(attributes_dict.items(), key=lambda x: alphanumeric_sort(x[0]))]
+        filters = [{
+            'name': name.upper(),
+            'text': sorted(list(texts), key=lambda x: alphanumeric_sort(x[1]))  # сортируем по value, а не по id
+        } for name, texts in sorted(attributes_dict.items(), key=lambda x: alphanumeric_sort(x[0]))]
 
+        print('///////////////', filters)
         return filters
 
 

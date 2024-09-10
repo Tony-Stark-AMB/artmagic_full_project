@@ -11,7 +11,6 @@
         {% block content %}
         <div class="main-catalog__wrap container__custom">
             <div class="main-catalog__title-wrap">
-                <h1 data-aos="fade-right" class="main-catalog__title">{{ parent_category.name }}</h1>
                 <button class="main-catalog__btn btn bg17" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
                     <svg class="main-catalog__btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
                         <path d="M3.9 54.9C10.5 40.9 24.5 32 40 32H472c15.5 0 29.5 8.9
@@ -53,8 +52,8 @@
                                         <ul class="aside-mainlist" data-parent="{{filter.name}}">
                                             {% for value in filter.text %}
                                                 <li class="aside-main__item">
-                                                    <input id="{{filter.name}}{{value}}" type="checkbox" data-child="{{value}}"/>
-                                                    <label class="aside-main__item__label" for="{{filter.name}}{{value}}">{{ value }}</label>
+                                                    <input id="{{filter.name}}{{value.0}}" type="checkbox" data-child="{{value.0}}"/>
+                                                    <label class="aside-main__item__label" for="{{filter.name}}{{value.0}}">{{ value.1 }}</label>
                                                 </li>
                                         {% endfor %}
                                         </ul>
@@ -66,8 +65,8 @@
                                         <ul class="aside-mainlist" data-parent="{{filter.name}}">
                                             {% for value in filter.text %}
                                                 <li class="aside-main__item">
-                                                    <input id="{{filter.name}}{{value}}" type="checkbox" data-child="{{value}}"/>
-                                                    <label class="aside-main__item__label" for="{{filter.name}}{{value}}">{{ value }}</label>
+                                                    <input id="{{filter.name}}{{value.0}}" type="checkbox" data-child="{{value.0}}"/>
+                                                    <label class="aside-main__item__label" for="{{filter.name}}{{value.0}}">{{ value.1 }}</label>
                                                 </li>
                                         {% endfor %}
                                         </ul>

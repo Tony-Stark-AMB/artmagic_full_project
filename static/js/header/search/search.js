@@ -1,13 +1,19 @@
-
 const searchInput = document.querySelector('[name="query"]');
 const searchInputBtn = document.querySelector('[name="query__btn"]');
 
 searchInputBtn.addEventListener("click", async () => searchInputLogic())
 
+searchInput.addEventListener('input', function() {
+    // Заменяем все символы "/" и "\" на пустую строку
+    this.value = this.value.replace(/[\/\\]/g, '');
+});
+
 searchInput.addEventListener("keypress", async (e) => {
     if(e.key === "Enter")
-        searchInputLogic()
-})
+        searchInputLogic();
+});
+
+
 
 const searchInputLogic = () => {
     const searchInputValue = searchInput.value.trim();

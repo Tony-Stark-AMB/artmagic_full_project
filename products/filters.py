@@ -15,17 +15,29 @@ class ProductsFilter(django_filters.FilterSet):
 
     def __init__(self, data=None, queryset=None, *args, **kwargs):
         print(data, "16")
+        cat_filter = FilterCategory.objects.all()
+
+        # Получаем список доступных фильтров
+        valid_filter_names = list(cat_filter.values_list('name', flat=True))
+        print(f"Valid filters: {valid_filter_names}")
+
         if data is not None:
             data = data.copy()
-            if 'page' in data:
-                data.pop('page')
-            if 'productsPerPage' in data:
-                data.pop('productsPerPage')
-        self.attribute_params = {key: data.pop(key) for key in list(data.keys()) if key not in ['query']}
+
+            # Оставляем только те фильтры, которые есть в valid_filter_names
+            self.attribute_params = {
+                key: data.pop(key)
+                for key in list(data.keys())
+                if key in valid_filter_names
+            }
+            print(f"Filtered attribute_params: {self.attribute_params}")
+        else:
+            self.attribute_params = {}
+
         super().__init__(data=data, queryset=queryset, *args, **kwargs)
 
     def filter_by_query(self, queryset, name, value):
-
+        print('-------------------------------------------------------------------------', name, value)
         vector = SearchVector("name", "model")
         query = SearchQuery(value)
         print('-2-2---2', name, value,
@@ -45,7 +57,7 @@ class ProductsFilter(django_filters.FilterSet):
                 #     print('2---', val)
 
                 print('----------------')
-                conditions = Q(filters__filter_value__value__in=values)
+                conditions = Q(filters__filter_value__pk__in=values)
                 print('============1', conditions)
                 # conditions &= conditions
                 queryset = queryset.filter(conditions).distinct()
@@ -56,7 +68,8 @@ class ProductsFilter(django_filters.FilterSet):
 
     def qs(self):
         queryset = super().qs
-        print('5---', len(queryset))
+        
+        print('5---', len(queryset), self.attribute_params)
         if self.attribute_params:
             return self.filter_by_attributes(queryset)
         else:
