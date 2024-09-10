@@ -4,4 +4,4 @@ if (!localStorage.getItem('products'))
 
     const adminLinkEl = document.getElementById("adminLink");
 
-    adminLinkEl.setAttribute("href", `${PROTOCOL}://${HOST}:${PORT}/admin`)
+    adminLinkEl.setAttribute("href", `${PROTOCOL}://${HOST}:${PORT}/art-admin`)
