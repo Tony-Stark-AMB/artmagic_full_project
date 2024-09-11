@@ -192,7 +192,7 @@ class ProcessOrderView(View):
             
             # Формирование письма владельцу сайта
             subject_owner = 'Новый заказ от клиента'
-            html_message_owner = render_to_string('carts/email_template.html', params)
+            html_message_owner = render_to_string('carts/email_template.html', context)
             recipient_list_owner = ['artmagicinternet@gmail.com']
 
             try:
