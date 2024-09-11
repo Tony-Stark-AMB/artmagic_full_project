@@ -18,6 +18,7 @@ from .forms import (
     ProfileForm, RegistrationForm, ChangePasswordForm
 )
 from .models import Address
+from carts.models import Order
 
 logging.basicConfig(
     level=logging.DEBUG,
@@ -49,6 +50,7 @@ def register(request):
                 return JsonResponse({'errors': {'auth': 'Не удалось выполнить аутентификацию'}}, status=400)
         else:
             errors = {field: error_list[0] for field, error_list in form.errors.items()}
+            print(errors)
             return JsonResponse({'errors': errors}, status=400)
     else:
         form = RegistrationForm()
@@ -66,6 +68,7 @@ def user_login(request):
                 return JsonResponse({'redirect': '/'})
         # Возвращаем JSON с ошибками, если форма не валидна
         errors = {field: error_list[0] for field, error_list in form.errors.items()}
+        print(errors)
         return JsonResponse({'errors': errors}, status=400)
 
     # Если метод запроса не POST, возвращаем ошибку
@@ -99,13 +102,24 @@ class ProfileView(View):
         if not request.user.is_authenticated:
             return redirect('parent_categories')
 
+        # Устанавливаем значение по умолчанию для user_orders
+        user_orders = Order.objects.none()
+        address = None
+        
         try:
             user = request.user
             address = Address.objects.get(user=user)
+            user_orders = Order.objects.filter(user=user).order_by('-created_at')
         except Address.DoesNotExist:
-            address = None
+            # Если Address.DoesNotExist, оставляем address как None и user_orders как пустой QuerySet
+            pass
 
-        return render(request, 'users/profile.html', {'user': user, 'address': address})
+        context = {
+            'user': user,
+            'address': address,
+            'user_orders': user_orders
+        }
+        return render(request, 'users/profile.html', context)
 
 class ProfilefieldView(View):
     def put(self, request):
@@ -154,6 +168,7 @@ class FeedbackView(View):
     def post(self, request):
         try:
             data = json.loads(request.body.decode('utf-8'))
+            print('----------------------------------', data)
             form = FeedbackForm(data)
             if form.is_valid():
                 first_name = form.cleaned_data['first_name']
@@ -168,7 +183,7 @@ class FeedbackView(View):
                     'message': message,
                 })
 
-                recipient_list = ['karmot02@gmail.com']
+                recipient_list = ['Asgeron90@gmail.com']
                 email = EmailMessage(
                     subject=subject,
                     body=html_message,

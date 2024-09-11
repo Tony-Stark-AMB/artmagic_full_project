@@ -10,6 +10,10 @@ export class Basket {
         window.onbeforeunload = () => {
             this.productManager.setStorageProducts(this.productManager.getProducts());
         };
+        window.addEventListener("pageshow", () => {
+            this.productManager.loadProductsFromStorage();
+            this.renderBasket()
+        })
     }
 
     initialize() {
@@ -62,7 +66,7 @@ export class Basket {
         const products = this.productManager.getProducts();
         
         if (products.length === 0) {
-            this.productsContainer.innerHTML = '<p>Корзина порожня</p>';
+            this.productsContainer.innerHTML = '<p>Кошик порожній</p>';
         } else {
             products.forEach((product) => {
                 const productHTML = this.renderProduct(product);

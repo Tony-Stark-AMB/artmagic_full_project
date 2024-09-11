@@ -1,13 +1,14 @@
 {% load static %}
 
-<div class="modal fade modal__basket" id="basket__modal" tabindex="-1" aria-labelledby="basket__modal" aria-hidden="true">
+<div class="modal fade modal__basket" id="basket__modal" tabindex="-1" aria-labelledby="basket__modal" aria-hidden="true" >
     <div class="modal-dialog basket__modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Кошик</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn btn-primary text-center" data-bs-dismiss="modal" aria-label="Close" style="position: relative; right: 15px;">До покупок</button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin: 0;"></button>
             </div>
-            <div class="modal-body basket__modal__body">
+            <div class="modal-body basket__modal__body" >
                 <div class="swiper basket__modal__swiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
@@ -147,7 +148,11 @@
                         <div class="swiper-slide">
                             <div id="notification" class="notification c11"></div>
                             <form class="order-choose__form" id="orderForm">
+                                
                                 <div class="order__input__content">
+                                    <div id="modal-content" class="loader-overlay-modal" style="display: none;">
+                                        <div class="loader"></div>
+                                    </div>
                                     <div class="order__input__wrap">
                                         <input class="order__input" 
                                         data-field="fullName"
@@ -217,13 +222,28 @@
             </div>
             <div class="modal-footer basket__modal-footer">
                 <div class="modal-footer__btns">
-                    <button class="btn btn-primary ">До кошика</button>
+                    <button class="btn btn-primary active">До кошика</button>
                     <button class="btn btn-primary">Доставка/Оплата</button>
                     <button class="btn btn-primary ">До оформлення</button>
                 </div>
                 <p class="modal-footer__text"></p>
             </div>
         </div>
+    </div>
+</div>
+<div class="modal fade" id="successModal" aria-labelledby="successModalLabel" aria-hidden="true" style="z-index: 1200; margin-top: 150px;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="successModalLabel">Заголовок модалки</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        </div>
+        <div class="modal-body" id="successModalBody" tabindex="0">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="successModalBtn" tabindex="2">ОК</button>
+        </div>
+      </div>
     </div>
 </div>
 <div class="d-none">

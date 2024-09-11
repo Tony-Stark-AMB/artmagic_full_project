@@ -1,7 +1,7 @@
 const {HOST, PORT, PROTOCOL} = {
-    HOST: "artmagic.com.ua",
-    PORT: "",
-    PROTOCOL: "https"
+    HOST: "localhost",
+    PORT: "8000",
+    PROTOCOL: "http"
 }
 
 const {INDEX, CATEGORY, CATALOG, PROFILE, DETAILE} = {

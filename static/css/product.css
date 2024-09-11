@@ -589,6 +589,10 @@
 .basket__modal__btn {
   align-self: flex-end;
 }
+.basket__modal .modal-header {
+  display: flex;
+  justify-content: space-between;
+}
 
 .cart__product {
   width: 100%;
@@ -681,6 +685,10 @@
   .modal-footer__btns {
     height: 80px;
   }
+}
+.modal-footer__btns button.active {
+  background-color: #E63125 !important;
+  border: 1px solid #E63125 !important;
 }
 .modal-footer__text {
   font-weight: 700;
@@ -806,6 +814,7 @@
   outline: none;
   border: 1px solid #ddd;
   margin: 20px 0;
+  cursor: pointer;
 }
 @media (max-width: 1400px) {
   .order__input {
@@ -819,7 +828,7 @@
 }
 @media (max-width: 992px) {
   .order__input {
-    width: 35vw;
+    width: 60vw;
   }
 }
 .order__input__content {
@@ -833,6 +842,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.custom-backdrop {
+  z-index: 1199;
+}
+
+#successModal,
+#basket__modal {
+  padding: 0 !important;
 }
 
 .header {

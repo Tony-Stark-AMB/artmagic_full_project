@@ -55,6 +55,11 @@ const targetNotification = document.querySelector(".notification");
 Array.from(footerBasketModalBtns).forEach((btn, i) => btn.addEventListener("click", (e) => {
   e.preventDefault;
   basketModalCarousel.slideTo(i)
+
+  Array.from(footerBasketModalBtns).forEach(b => b.classList.remove('active'));
+
+  // Добавляем класс 'active' к выбранной кнопке
+  btn.classList.add('active');
   switch(i){
     case 1:
       setTimeout(async () => await smoothTo(targetDeliveryAndPayment), 1000);

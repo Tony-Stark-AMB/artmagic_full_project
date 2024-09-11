@@ -27,7 +27,6 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-print('----------------------------------', type(os.getenv('ALLOWED_HOSTS', '')), os.getenv('ALLOWED_HOSTS', ''))
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
 
@@ -56,7 +55,6 @@ INSTALLED_APPS = [
 
 ]
 
-    # 'django_dump_load_utf8',
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -93,20 +91,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'artmagic.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'root',  # Название вашей базы данных
-#         'USER': 'root',  # Имя пользователя вашей базы данных
-#         'PASSWORD': 'root',  # Пароль пользователя базы данных
-#         'HOST': 'localhost',  # Хост базы данных (обычно localhost)
-#         'PORT': '5432',  # Порт базы данных (обычно 5432)
-#     }
-# }
 
 DATABASES = {
     'default': {
@@ -145,7 +129,7 @@ LIQPAY_PRIVATE_KEY = os.getenv('LIQPAY_PRIVATE_KEY')
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'uk'
 
 TIME_ZONE = 'UTC'
 
@@ -203,6 +187,8 @@ if DEBUG:
     mimetypes.add_type("text/css", ".css", True)
 
 # CORS_ALLOWED_ORIGINS = ["http://localhost:8000", "http://127.0.0.1:8000"]
+CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS').split(',')
+
 CORS_ALLOW_METHODS = (
     "DELETE",
     "GET",
@@ -213,4 +199,11 @@ CORS_ALLOW_METHODS = (
 )
 
 CORS_ORIGIN_ALLOW_ALL=True
+<<<<<<< HEAD
 CSRF_TRUSTED_ORIGINS = ['https://artmagic.com.ua']
+=======
+
+
+CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS').split(',')
+
+>>>>>>> 0050fc4dd2f519cf7dcecd20cd804cce7179d8eb

@@ -39,6 +39,11 @@
     &__btn{
         align-self: flex-end;
     }
+    & .modal-header{
+        display: flex;
+        justify-content: space-between;
+    }
+       
 
 }
 
@@ -129,6 +134,10 @@
         align-items: center;
         @include respond-to(phone-large){
             height: 80px;
+        }
+        & button.active{
+           background-color: $c11 !important; 
+           border: 1px solid $c11 !important;
         }
     }
     &__text{
@@ -264,6 +273,7 @@
         outline: none;
         border: 1px solid $c5;
         margin: 20px 0;
+        cursor: pointer;
         @include respond-to(laptop-large){
             width: 20vw;
         }   
@@ -271,7 +281,7 @@
             width: 27.5vw;
         }
         @include respond-to(tablet-large){
-            width: 35vw;
+            width: 60vw;
         }
         &__content{
             display: flex;
@@ -287,3 +297,12 @@
         }
     }
 }
+
+.custom-backdrop{
+    z-index: 1199;
+}
+#successModal,
+#basket__modal{
+    padding: 0 !important;
+}
+

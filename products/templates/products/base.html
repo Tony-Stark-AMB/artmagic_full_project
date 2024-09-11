@@ -16,8 +16,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <link rel="stylesheet" href="{% static 'node_modules/aos/dist/aos.css' %}">
     <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'css/breadcrumb.css' %}">
     {% block css %}{% endblock %}    
-    <title>Document</title>
+    <title>Артмагія</title>
 </head>
 <body>
     <div class="full-content">
@@ -61,7 +62,7 @@
                         <div class="header-login">
                             {% if user.is_authenticated %}
                             <div class="user__info">
-                                <p class="header-login__text">Привіт, {{ user.username }}!</p>
+                                
                                 <a class="btn btn-primary header-login__link" href="{% url 'user:profile'%}">
                                     <svg class="user-small" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 448 512">
                                         <path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 
@@ -171,6 +172,34 @@
             </div>
         </header>
         <div class="divider"></div>
+        {% if request.path == '/' or request.path == '/user/profile/' or request.path == '/main/about/' or request.path == '/main/contacts/' or request.path == '/main/payment-delivery/' or request.path == '/main/safeguards/' or request.path == '/main/return-agoods/' %}
+        {% else %}
+            <nav class="breadcrumb-nav-wrap" aria-label="breadcrumb">
+                <p></p>
+                {% if request.resolver_match.url_name == 'sub_categories' or request.resolver_match.url_name == 'detaile_product' %}
+                    <div class="container__breadcrumb-nav container__breadcrumb-nav__category">
+                {% endif %}
+                {% if request.resolver_match.url_name == 'sub_product' %}
+                    <div class="container__breadcrumb-nav container__breadcrumb-nav__catalog">
+                {% endif %}       
+                    <div class="breadcrumb-nav">
+                        {% for crumb in breadcrumbs %}
+                            {% if not forloop.last %}
+                                <span class="breadcrumb-nav-item">
+                                    <a href="{{ crumb.url }}">{{ crumb.name }}</a>
+                                </span>
+                                <span class="breadcrumb-nav-separator"> / </span>
+                            {% else %}
+                                <span class="breadcrumb-nav-item" aria-current="page">
+                                    {{ crumb.name }}
+                                </span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </nav>
+        {% endif %}
+        
 {% endblock %}
 {% block content %}
 {% endblock %}
@@ -299,47 +328,41 @@
                     <!-- Форма для входа -->
                     <div class="swiper-slide">
                         <div class="modal-body">
-                            <form class="login__modal__form" method="post" action="{% url 'user:login' %}">
+                            <form class="login__modal__form">
                                 {% csrf_token %}
                                 <div id="login-form-errors"></div>
-                                <input class="login__modal__input" type="text" name="username" placeholder="Логин">
+                                <input class="login__modal__input" type="text" name="username" placeholder="Логін">
                                 <p class="error c17 d-hidden" data-error-login="username"></p>
                                 <input class="login__modal__input" type="password" name="password" placeholder="Пароль">
                                 <p class="error c17 d-hidden" data-error-login="password"></p>
                                 <div class="login__modal__link__wrap">
-                                    <a class="login__modal__link" href="#">Забыли пароль?</a>
-                                    <div class="login__modal__link swiper-btn-next">Регистрация</div>
+                                    <a class="login__modal__link" href="#">Забули пароль?</a>
+                                    <div class="login__modal__link swiper-btn-next">Реєстрація</div>
                                 </div>
-                                <button class="btn btn-primary" type="submit">Войти</button>
+                                <button class="btn btn-primary" type="submit">Увійти</button>
                             </form>
                         </div>
                     </div>
                     <!-- Форма для регистрации -->
                     <div class="swiper-slide">
                         <div class="modal-body">
-                            <form class="registration__modal__form" method="post" action="{% url 'user:register' %}">
+                            <form class="registration__modal__form">
                                 {% csrf_token %}
                                 <div id="registration-form-errors"></div>
-                                <input class="registration__modal__input" type="text" name="username" placeholder="Логин">
+                                <input class="registration__modal__input" type="text" name="username" placeholder="Логін">
                                 <input class="registration__modal__input" type="text" name="email" placeholder="Email">
                                 <input class="registration__modal__input" type="text" name="phone_number" placeholder="Номер телефону">
                                 <input class="registration__modal__input" type="password" name="password1" placeholder="Пароль">
-                                <input class="registration__modal__input" type="password" name="password2" placeholder="Подтверждение пароля">
+                                <input class="registration__modal__input" type="password" name="password2" placeholder="Підтвердження пароля">
                                 <div class="login__modal__link__wrap">
-                                    <div class="registration__modal__link swiper-btn-prev">Авторизация</div>
-                                    <button class="btn btn-primary" type="submit">Зарегистрироваться</button>
+                                    <div class="registration__modal__link swiper-btn-prev">Авторизація</div>
+                                    <button class="btn btn-primary" type="submit">Зареєструватись</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                     <!--- Проверка на ошибки  -->
-                    {% if messages %}
-                    <ul class="messages">
-                        {% for message in messages %}
-                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+                    
                 </div>
             </div>
         </div>
@@ -480,7 +503,6 @@
         if(loginForm){
             loginForm.addEventListener('submit', function (e) {
                 e.preventDefault();
-                console.log("here login")
                 const formData = new FormData(loginForm);
                 fetch('{% url "user:login" %}', {
                     method: 'POST',
@@ -497,7 +519,6 @@
                         // Обработка ошибок и отображение сообщений
                         const errorsContainer = document.getElementById('login-form-errors');
                         errorsContainer.innerHTML = '';
-                        console.log(data.errors)
                         let errText = ""
                         for (const [key, val] of Object.entries(data.errors)) {
                             errText += `${val}\n\n`
@@ -513,7 +534,6 @@
         if(registerForm){
             registerForm.addEventListener('submit', function (e) {
                 e.preventDefault();
-                console.log("here registr")
                 const formData = new FormData(registerForm);
                 fetch('{% url "user:register" %}', {
                     method: 'POST',
@@ -534,10 +554,9 @@
                             // Обработка ошибок и отображение сообщений
                             const errorsContainer = document.getElementById('login-form-errors');
                             errorsContainer.innerHTML = '';
-                            console.log(data.errors)
                             let errText = ""
                             for (const [key, val] of Object.entries(data.errors)) {
-                                errText += `${key}: ${val}\n`;
+                                errText += `${val}\n`;
                             }
                             Alert("err", errText, 5000)
                         }

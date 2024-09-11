@@ -3,7 +3,7 @@
         "../../breakpoints/response-fn";
 
 .category-others{
-    margin: 80px 0;
+    margin: 20px 0;
     @include respond-to(tablet-large){
         margin: 40px 0;
     }
@@ -18,14 +18,14 @@
         flex-wrap: wrap;
         justify-content: space-evenly;
         align-items: center;
-        gap: 20px;
+        gap: 5px;
     }
     &__item{
         width: 200px;
-        height: 300px;
+        height: 250px;
         @include respond-to(tablet-large){
             width: 100px;
-            height: 250px;
+            height: 200px;
         }
     }
     &__link{    
