@@ -14,6 +14,7 @@ class Form {
         this.alert = alertCl ?? null;
         this.basket = basket ?? null;
         this.userData = userData ?? null;
+        this.bootstrap = bootstrap ?? null;
         this.initObj = obj;
         this.formName = formName;
         this.dataSubmitBtn = document.querySelector(`button[data-submit="btn_${formName}"]`);
@@ -389,7 +390,8 @@ class Form {
     
         // Открываем новую модалку
         const successModal = new bootstrap.Modal(document.getElementById('successModal'), {
-            backdrop: false, // Модалка без закрытия кликом вне окна     
+            backdrop: false, // Модалка без закрытия кликом вне окна 
+            focus: false  
         });
         successModal.show();
         
@@ -405,17 +407,14 @@ class Form {
         });
         const backdrops = document.querySelectorAll('.modal-backdrop');
         backdrops.forEach((backdrop) => {
-            if (backdrop) 
+            if (backdrop){
                 backdrop.remove(); // Remove the backdrop element from the DOM
+            }
+                
         })
         if(window.location.pathname == "/")
             return
         setTimeout(() => window.location.href = "/", 200);
     }
 
-    // closeSuccessModal() {
-    //     const successModalElement = document.getElementById('successModal');
-    //     const successModalInstance = bootstrap.Modal.getInstance(successModalElement);
-    //     successModalInstance.hide();  // Закрывает модалку
-    // }
 }
