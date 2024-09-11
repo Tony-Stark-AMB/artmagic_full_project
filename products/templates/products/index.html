@@ -11,36 +11,13 @@
             <main class="main-index">
                 <section class="swiper main-index__banner">
                     <div class="swiper-wrapper main-index__banner__list">
-                        <div class="swiper-slide main-index__banner__slide">
-                            <div class="main-index__banner__slide__img__wrap">
-                                <img class="main-index__banner__slide__img" src="{% static 'assets/slider-main/slider-1.png' %}" alt="">
+                        {% for slide in carousel %}
+                            <div class="swiper-slide main-index__banner__slide">
+                                <div class="main-index__banner__slide__img__wrap">                                
+                                    <img class="main-index__banner__slide__img" src="{{ slide.image.url }}" alt="">                                
+                                </div>
                             </div>
-                        </div>
-                        <div class="swiper-slide main-index__banner__slide">
-                            <div class="main-index__banner__slide__img__wrap">
-                                <img class="main-index__banner__slide__img" src="{% static 'assets/slider-main/slider-2.png' %}" alt="">
-                            </div>
-                        </div>
-                        <div class="swiper-slide main-index__banner__slide">
-                            <div class="main-index__banner__slide__img__wrap">
-                                <img class="main-index__banner__slide__img" src="{% static 'assets/slider-main/slider-3.png' %}" alt="">
-                            </div>
-                        </div>
-                        <div class="swiper-slide main-index__banner__slide">
-                            <div class="main-index__banner__slide__img__wrap">
-                                <img class="main-index__banner__slide__img" src="{% static 'assets/slider-main/slider-4.png' %}" alt="">
-                            </div>
-                        </div>
-                        <div class="swiper-slide main-index__banner__slide">
-                            <div class="main-index__banner__slide__img__wrap">
-                                <img class="main-index__banner__slide__img" src="{% static 'assets/slider-main/slider-5.png' %}" alt="">
-                            </div>
-                        </div>
-                        <div class="swiper-slide main-index__banner__slide">
-                            <div class="main-index__banner__slide__img__wrap">
-                                <img class="main-index__banner__slide__img" src="{% static 'assets/slider-main/slider-6.png' %}" alt="">
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                     <div class="swiper-pagination"></div>
                 </section>

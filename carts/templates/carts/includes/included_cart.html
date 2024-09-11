@@ -5,9 +5,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Кошик</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn btn-primary text-center" data-bs-dismiss="modal" aria-label="Close" style="position: relative; right: 15px;">До покупок</button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin: 0;"></button>
             </div>
-            <div class="modal-body basket__modal__body">
+            <div class="modal-body basket__modal__body" >
                 <div class="swiper basket__modal__swiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
@@ -230,17 +231,17 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true" style="z-index: 1200; margin-top: 150px;">
+<div class="modal fade" id="successModal" aria-labelledby="successModalLabel" aria-hidden="true" style="z-index: 1200; margin-top: 150px;">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="successModalLabel">Заголовок модалки</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
         </div>
-        <div class="modal-body" id="successModalBody">
+        <div class="modal-body" id="successModalBody" tabindex="0">
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" id="successModalBtn">ОК</button>
+          <button type="button" class="btn btn-primary" id="successModalBtn" tabindex="2">ОК</button>
         </div>
       </div>
     </div>

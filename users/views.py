@@ -102,12 +102,17 @@ class ProfileView(View):
         if not request.user.is_authenticated:
             return redirect('parent_categories')
 
+        # Устанавливаем значение по умолчанию для user_orders
+        user_orders = Order.objects.none()
+        address = None
+        
         try:
             user = request.user
             address = Address.objects.get(user=user)
             user_orders = Order.objects.filter(user=user).order_by('-created_at')
         except Address.DoesNotExist:
-            address = None
+            # Если Address.DoesNotExist, оставляем address как None и user_orders как пустой QuerySet
+            pass
 
         context = {
             'user': user,

@@ -589,6 +589,10 @@
 .basket__modal__btn {
   align-self: flex-end;
 }
+.basket__modal .modal-header {
+  display: flex;
+  justify-content: space-between;
+}
 
 .cart__product {
   width: 100%;
