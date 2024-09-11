@@ -560,7 +560,7 @@
                             console.log(data.errors)
                             let errText = ""
                             for (const [key, val] of Object.entries(data.errors)) {
-                                errText += `${key}: ${val}\n`;
+                                errText += `${val}\n`;
                             }
                             Alert("err", errText, 5000)
                         }

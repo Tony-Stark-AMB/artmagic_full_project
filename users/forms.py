@@ -157,12 +157,12 @@ class ProfileForm(forms.ModelForm):
 
     first_name = forms.CharField(
         min_length=2,
-        max_length=10,
+        max_length=20,
         required=True
     )
     last_name = forms.CharField(
         min_length=2,
-        max_length=10
+        max_length=20
     )
     phone_number = forms.CharField(
         max_length=15,
