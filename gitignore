@@ -1,0 +1,5 @@
+.env
+media
+static/node_modules
+static/js/common/constants.js
+venv

@@ -22,7 +22,7 @@ from artmagic import settings
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('art-admin/', admin.site.urls),
     path('', include('products.urls')),
     path('user/', include('users.urls')),
     path('cart/', include('carts.urls')),
