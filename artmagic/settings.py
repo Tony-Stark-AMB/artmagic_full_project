@@ -199,11 +199,4 @@ CORS_ALLOW_METHODS = (
 )
 
 CORS_ORIGIN_ALLOW_ALL=True
-<<<<<<< HEAD
 CSRF_TRUSTED_ORIGINS = ['https://artmagic.com.ua']
-=======
-
-
-CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS').split(',')
-
->>>>>>> 0050fc4dd2f519cf7dcecd20cd804cce7179d8eb
