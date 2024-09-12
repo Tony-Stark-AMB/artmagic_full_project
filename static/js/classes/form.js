@@ -15,6 +15,7 @@ class Form {
         this.basket = basket ?? null;
         this.userData = userData ?? null;
         this.bootstrap = bootstrap ?? null;
+        this.bootstrap = bootstrap ?? null;
         this.initObj = obj;
         this.formName = formName;
         this.dataSubmitBtn = document.querySelector(`button[data-submit="btn_${formName}"]`);
