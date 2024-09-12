@@ -180,7 +180,7 @@ class Form {
                 if (productsExistCondition && formContainerId == "orderForm") throw Error();           
                 console.log(Object.entries(this.formData))
                 await this.fetchData(path, methodType, submitedFormData);
-                if(this.showSuccessModal){
+                if(this.showSuccessModal && formContainerId == "orderForm"){
                     this.showSuccessModal("Успіх! Замовлення прийнято",
                         `<p class="text-center">Супер, ваше замовлення прийнято<br><br>Наш менеджер зв'яжеться із вами найближчим часом</p>`
                     )
