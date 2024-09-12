@@ -186,7 +186,7 @@ class ProcessOrderView(View):
             }
 
             # Формирование письма владельцу сайта
-            subject_owner = f"Замовлення  N:  {order_number}"
+            subject_owner = 'Новый заказ от клиента'
             html_message_owner = render_to_string('carts/email_template.html', params)
             recipient_list_owner = ['artmagicinternet@gmail.com']
 
