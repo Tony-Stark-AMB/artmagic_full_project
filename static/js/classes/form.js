@@ -170,7 +170,6 @@ class Form {
                         });
                         setTimeout(() => liqpayFormContainer.querySelector('form').submit(), 1000);
                     } catch (err) {
-                        console.log(err);
                         this.alert("err", "Неможливо зробити замовлення без обраного товару", animDuration);
                     }
                     
@@ -178,7 +177,6 @@ class Form {
                 
 
                 if (productsExistCondition && formContainerId == "orderForm") throw Error();           
-                console.log(Object.entries(this.formData))
                 try{
                     const {message} = await this.fetchData(path, methodType, submitedFormData);
                     if(formContainerId == "profileForm")
@@ -212,7 +210,6 @@ class Form {
             } catch (err) {
                 this.userAuthDefaultData();
                 this.hideModalLoader();
-                console.log(err);
                 switch(true){
                     case productsExistCondition && formContainerId == "orderForm":
                         this.alert("err", "Неможливо зробити замовлення без обраного товару", animDuration);
