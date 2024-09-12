@@ -390,6 +390,7 @@ class Form {
         // Открываем новую модалку
         const successModal = new bootstrap.Modal(document.getElementById('successModal'), {
             backdrop: false, // Модалка без закрытия кликом вне окна     
+            focus: false
         });
         successModal.show();
         
