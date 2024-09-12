@@ -179,12 +179,22 @@ class Form {
 
                 if (productsExistCondition && formContainerId == "orderForm") throw Error();           
                 console.log(Object.entries(this.formData))
-                await this.fetchData(path, methodType, submitedFormData);
+                try{
+                    const {message} = await this.fetchData(path, methodType, submitedFormData);
+                    if(formContainerId == "profileForm")
+                        this.alert("success", message, animDuration)
+                } catch (err){
+                    const {message} = err;
+                    this.alert("err", message, animDuration)
+                }   
+                
                 if(this.showSuccessModal && formContainerId == "orderForm"){
                     this.showSuccessModal("Успіх! Замовлення прийнято",
                         `<p class="text-center">Супер, ваше замовлення прийнято<br><br>Наш менеджер зв'яжеться із вами найближчим часом</p>`
                     )
                 }
+                
+
                 this.hideModalLoader();
                 if (clearCond) {
                     this.clearForm(this.initObj);
