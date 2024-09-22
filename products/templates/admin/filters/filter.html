@@ -1,0 +1,41 @@
+{% load i18n %}
+<details data-filter-title="{{ title }}" open>
+  <summary>
+    {% blocktranslate with filter_title=title %} By {{ filter_title }} {% endblocktranslate %}
+</summary>
+
+    {% for item in choices %}
+        {% for category, subcategories in item.items %}
+            {%if category == "Всі" %}
+                <li{% if subcategories.0.selected %} class="selected"{% endif %}>
+                    <a href="{{ subcategories.0.query_string|iriencode }}">{{ subcategories.0.display }}</a>
+                </li>
+            {%else%}
+                <h2 class="list-title">{{ category }}</h2>
+                <ul class="list-items" style="display: none;">
+                    {% for subcategory in subcategories %}
+                    <li{% if subcategory.selected %} class="selected"{% endif %}>
+                        <a href="{{ subcategory.query_string|iriencode }}">{{ subcategory.display }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {%endif%}
+        {% endfor %}
+    {% endfor %}
+</details>
+<script>
+    // Получаем все элементы с классом "list-title"
+    const listTitles = document.querySelectorAll('.list-title');
+
+    // Добавляем обработчики событий для каждого заголовка списка
+    listTitles.forEach(title => {
+        title.addEventListener('click', function() {
+            // Находим следующий элемент списка для текущего заголовка
+            const list = this.nextElementSibling; // Получаем следующий элемент
+            if (list && list.classList.contains('list-items')) {
+                // Проверяем текущее состояние и меняем его
+                list.style.display = (list.style.display === 'none' || list.style.display === '') ? 'block' : 'none';
+            }
+        });
+    });
+</script>
