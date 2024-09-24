@@ -4,7 +4,7 @@ from mptt.admin import MPTTModelAdmin
 from django.utils.safestring import mark_safe
 
 from .models import Products, Category, ProductFilter, FilterCategory, FilterValue, Manufacturer, ProductImage, ProductToCategory
-
+from .forms import ProductFilterForm
 class HiddenModelAdmin(admin.ModelAdmin):
     def get_model_perms(self, request):
         return {}
@@ -61,7 +61,7 @@ class CategoryFilter(admin.SimpleListFilter):
 
 
 
-
+        
 
 
 
@@ -204,6 +204,7 @@ class CategoryAdmin(MPTTModelAdmin):
     )
 
 class ProductFilterInline(admin.TabularInline):
+    form = ProductFilterForm
     model = ProductFilter
     verbose_name = "Фільтр продукта"
     verbose_name_plural = "Фільтра продуктів"

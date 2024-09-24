@@ -1,37 +1,50 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Обработчик событий для изменения категории фильтра
-    document.addEventListener('change', function (event) {
-        // Проверяем, что изменился элемент с фильтром категории
-        if (event.target.matches('select[id^="id_filters-"][id$="-filter_category"]')) {
-            const filterCategorySelect = event.target;
-            const filterValueSelect = filterCategorySelect.closest('tr').querySelector('select[id$="-filter_value"]');
+    // Функция для обновления значений фильтра на основе выбранной категории
+    function updateFilterValues(filterCategorySelect) {
+        const filterValueSelect = filterCategorySelect.closest('tr').querySelector('select[id$="-filter_value"]');
+        const categoryId = filterCategorySelect.value;
+        const productId = filterCategorySelect.closest('tr').querySelector('input[name$="-product"]').value;  // Получаем product_id из скрытого input
 
-            const categoryId = filterCategorySelect.value;
-
-            // Если выбрана категория
-            if (categoryId) {
-                fetch(`/get-filter-values/${categoryId}/`, {
-                    method: 'GET',
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest',
+        // Если выбрана категория
+        if (categoryId) {
+            fetch(`/get-filter-values/${categoryId}/?product_id=${productId}`, {
+                method: 'GET',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Очистка предыдущих значений
+                filterValueSelect.innerHTML = '';
+                // Добавление новых значений
+                data.values.forEach(function(value) {
+                    const option = document.createElement('option');
+                    option.value = value.id;
+                    option.text = value.value;
+                    if (value.selected) {
+                        option.selected = true;  // Устанавливаем выбранное значение
                     }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // Очистка предыдущих значений
-                    filterValueSelect.innerHTML = '';
-                    // Добавление новых значений
-                    data.values.forEach(function(value) {
-                        const option = document.createElement('option');
-                        option.value = value.id;
-                        option.text = value.value;
-                        filterValueSelect.appendChild(option);
-                    });
-                })
-                .catch(error => {
-                    console.error('Error fetching filter values:', error);
+                    filterValueSelect.appendChild(option);
                 });
-            }
+            })
+            .catch(error => {
+                console.error('Error fetching filter values:', error);
+            });
+        }
+    }
+
+    // При изменении категории фильтра
+    document.addEventListener('change', function (event) {
+        if (event.target.matches('select[id^="id_filters-"][id$="-filter_category"]')) {
+            updateFilterValues(event.target);
+        }
+    });
+
+    // При загрузке страницы подгружаем значения для уже выбранных категорий фильтров
+    document.querySelectorAll('select[id^="id_filters-"][id$="-filter_category"]').forEach(function (filterCategorySelect) {
+        if (filterCategorySelect.value) {
+            updateFilterValues(filterCategorySelect);
         }
     });
 });

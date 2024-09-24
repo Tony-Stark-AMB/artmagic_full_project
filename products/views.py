@@ -28,12 +28,24 @@ def alphanumeric_sort(text):
 
 
 def get_filter_values(request, category_id):
-    print('-----========----------============----------------==================-----------')
-    print(category_id)
+    product_id = request.GET.get('product_id')
+    
+    # Получаем все значения фильтра для данной категории
     filter_values = FilterValue.objects.filter(category_id=category_id)
     sorted_filter_values = sorted(filter_values, key=lambda fv: alphanumeric_sort(fv.value))
-    values = [{'id': value.id, 'value': value.value} for value in sorted_filter_values]
-    print(values)
+    
+    # Определяем предустановленное значение, если есть выбранное для этого продукта
+    selected_value_id = None
+    if product_id:
+        try:
+            selected_value = ProductFilter.objects.get(product_id=product_id, filter_category_id=category_id)
+            selected_value_id = selected_value.filter_value_id
+        except ProductFilter.DoesNotExist:
+            selected_value_id = None
+
+    # Формируем массив значений фильтра
+    values = [{'id': value.id, 'value': value.value, 'selected': value.id == selected_value_id} for value in sorted_filter_values]
+    
     return JsonResponse({'values': values})
 
 
