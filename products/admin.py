@@ -18,7 +18,7 @@ import time
 
 class CategoryFilter(admin.SimpleListFilter):
     template = 'admin/filters/filter.html'
-    title = 'категоріями'
+    title = 'категорією'
     parameter_name = 'category'
 
     def lookups(self, request, model_admin):
@@ -59,131 +59,25 @@ class CategoryFilter(admin.SimpleListFilter):
                 choices.append(temp_dict)
         return choices
 
+class ParentCategoryFilter(admin.SimpleListFilter):
+    title = 'батьківською категорією'
+    parameter_name = 'category'
 
+    def lookups(self, request, model_admin):
+        # Получение всех категорий, замените на вашу логику
+        categories = Category.objects.filter(parent=None)
+        return [(cat.id, cat.name) for cat in categories]
 
-        
+    def queryset(self, request, queryset):
+        if self.value():
+            return queryset.filter(parent__id=self.value())
+        return queryset
 
-
-
-
-
-
-
-        # all_list = []
-        # internal_list = []
-        # # Вызываем оригинальный метод choices
-        # for choice in super().choices(changelist):
-        #     try:
-        #         # sa = choice['query_string'].split('=')[1]
-        #         # print(sa)
-        #         parent = Category.objects.get(pk=choice['query_string'].split('=')[1])
-        #         print(parent.parent.pk)
-        #         # print(parent)
-        #         # Добавляем новый ключ 'qwe'
-        #         choice['parent'] = parent.parent.pk
-        #     except:
-        #         pass
-        #     # print(choice)    
-        #     yield choice
-        
-            # {% for choice in choices %}
-            # {%if choice.display == "Всі" %}
-            #     <li{% if choice.selected %} class="selected"{% endif %}>
-            #     <a href="{{ choice.query_string|iriencode }}">{{ choice.display }}</a></li>
-            # {% endif %}
-
-
-'''wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww'''
-# {% load i18n %}
-# <details data-filter-title="{{ title }}" open>
-#   <summary>
-#     {% blocktranslate with filter_title=title %} By {{ filter_title }} {% endblocktranslate %}
-#     <h1>Hello world</h1>
-# </summary>
-#         {% for choice in choices %}
-#             {% if not choice.parent %}
-#                 <h3 class="list-title">{{ choice.display }}</h3> 
-#             {% else %}      
-#                 <ul class="list-items">
-#                     <li{% if choice.selected %} class="selected"{% endif %}>
-#                     <a href="{{ choice.query_string|iriencode }}">{{ choice.display }}</a></li>         
-#                 </ul>
-#             {% endif %}
-#         {% endfor %}
-# </details>
-# <script>
-#     // Получаем все элементы с классом "list-title"
-#     const listTitles = document.querySelectorAll('.list-title');
-
-#     // Добавляем обработчики событий для каждого заголовка списка
-#     listTitles.forEach(title => {
-#         title.addEventListener('click', () => {
-#             // Следующий элемент после заголовка (список) скрывается/отображается
-#             const list = title.nextElementSibling;
-#             if (list.style.display === 'none' || list.style.display === '') {
-#                 list.style.display = 'block'; // Показываем список
-#             } else {
-#                 list.style.display = 'none'; // Скрываем список
-#             }
-#         });
-#     });
-# </script>
-
-
-
-    # def choices(self, request):
-    #     choices = []
-    #     for value, display in self.lookups(request, self.model_admin):
-    #         selected = value == self.value()
-    #         query_string = self.query_string(value)
-    #         choices.append({
-    #             'selected': selected,
-    #             'query_string': query_string,
-    #             'display': display,
-    #             'qwe': 'wdd',
-    #         })
-    #     return choices
-    # def get_model_admin(self, request):
-    #     # Это вспомогательный метод для получения model_admin
-    #     # Возможно, вам придется адаптировать эту часть в зависимости от вашего контекста
-    #     # Например, если фильтр связан с конкретной моделью, то здесь можно получить model_admin
-    #     return ProductsAdmin()  # Измените на вашу логику получения model_admin
-
-# class CategoryAccordionFilter(SimpleListFilter):
-#     title = 'Категорія'
-#     parameter_name = 'category'
-#     template = 'admin/filters/category_accordion_filter.html'  # Указываем путь к кастомному шаблону
-
-#     def lookups(self, request, model_admin):
-#         # Получаем родительские категории (без родителей)
-#         parents = Category.objects.filter(parent__isnull=True)
-#         return [(category.id, category.name) for category in parents]
-
-#     def queryset(self, request, queryset):
-#         # Фильтрация по категории
-#         if self.value():
-#             return queryset.filter(producttocategory__category_id=self.value())
-#         return queryset
-
-    # def choices(self, changelist):
-    #     # Формируем список категорий для передачи в шаблон
-    #     subcategories = {}
-    #     for category_id, category_name in self.lookup_choices:
-    #         # Получаем дочерние категории для каждой родительской категории
-    #         subcategories[category_name] = Category.objects.filter(parent_id=category_id)
-        
-    #     # Формируем контекст для шаблона
-    #     return {
-    #         'parameter_name': self.parameter_name,
-    #         'lookups': self.lookup_choices,
-    #         'subcategories': subcategories,  # Передаем подкатегории в шаблон
-    #         'spec': self,
-    #     }
 @admin.register(Category)
 class CategoryAdmin(MPTTModelAdmin):
     list_display = ('name', 'parent', 'is_active', 'date_added', 'date_modified')
-    list_filter = ('is_active', 'parent')
-    search_fields = ('name', 'meta_title', 'meta_description', 'seo_keyword', 'meta_keyword')
+    list_filter = ('is_active', ParentCategoryFilter)
+    search_fields = ('name',)
     prepopulated_fields = {'slug': ('name',)}
     ordering = ('tree_id', 'lft')
     mptt_level_indent = 20
