@@ -111,11 +111,15 @@ class Category(MPTTModel):
 
 class Stocks(models.Model):
     image = models.ImageField(upload_to='stocks/', null=True, max_length=300, blank=True)
-    title = models.CharField(max_length=100, verbose_name='Тітул')
+    title = models.CharField(max_length=100, verbose_name='Титул')
     description = models.TextField(verbose_name='Опис')
 
     def __str__(self):
         return self.title
+    
+    class Meta:
+        verbose_name = "Акційна пропозиція"
+        verbose_name_plural = "Акційні пропозиції"
 
 class Manufacturer(models.Model):
     name = models.CharField(max_length=255, verbose_name="Назва виробника")
