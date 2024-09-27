@@ -129,15 +129,19 @@ class Manufacturer(models.Model):
         verbose_name_plural = "Виробники"
 
 
-class StockStatus(models.Model):
-    name = models.CharField(max_length=255)
+class FilterGroup(models.Model):
+    name = models.CharField(max_length=100, unique=True, verbose_name="Група категорій фільтрів")
 
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "Група категорій фільтрів"
+        verbose_name_plural = "Групи категорій фільтрів"
 
 class FilterCategory(models.Model):
     name = models.CharField(max_length=100, unique=True, verbose_name="Категорія фільтрів")
+    group = models.ForeignKey(FilterGroup, on_delete=models.CASCADE, null=True, related_name="categories", verbose_name="Група категорій фільтрів")
 
     def __str__(self):
         return self.name
@@ -148,7 +152,7 @@ class FilterCategory(models.Model):
 
 
 class FilterValue(models.Model):
-    category = models.ForeignKey(FilterCategory, on_delete=models.PROTECT, related_name="values", verbose_name="Категорія фільтра")
+    category = models.ForeignKey(FilterCategory, on_delete=models.CASCADE, related_name="values", verbose_name="Категорія фільтра")
     value = models.CharField(max_length=100, verbose_name="Значення фільтра")
 
     def __str__(self):
@@ -180,12 +184,6 @@ class Products(models.Model):
         null=True, 
         blank=True, 
         verbose_name='Кількість'
-    )
-    stock_status_id = models.ForeignKey(
-        StockStatus, 
-        on_delete=models.CASCADE, 
-        max_length=300,
-        verbose_name='Статус на складі'
     )
     image = models.ImageField(
         upload_to='catalog/', 

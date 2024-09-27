@@ -27,27 +27,79 @@ def alphanumeric_sort(text):
     return [convert(c) for c in re.split('([0-9]+)', text)]
 
 
-def get_filter_values(request, category_id):
+from django.http import JsonResponse
+from .models import FilterCategory, ProductFilter
+
+from django.http import JsonResponse
+
+def get_filter_data(request, group_id):
     product_id = request.GET.get('product_id')
+    category_id = request.GET.get('category_id')
+    value_id = request.GET.get('value_id')
+
+    # Получаем все категории фильтров для данной группы
+    filter_categories = FilterCategory.objects.filter(group_id=group_id).order_by('name')
     
-    # Получаем все значения фильтра для данной категории
-    filter_values = FilterValue.objects.filter(category_id=category_id)
-    sorted_filter_values = sorted(filter_values, key=lambda fv: alphanumeric_sort(fv.value))
-    
-    # Определяем предустановленное значение, если есть выбранное для этого продукта
+    # Определяем предустановленное значение для категорий и значений
+    selected_category_id = None
     selected_value_id = None
+
     if product_id:
-        try:
-            selected_value = ProductFilter.objects.get(product_id=product_id, filter_category_id=category_id)
-            selected_value_id = selected_value.filter_value_id
-        except ProductFilter.DoesNotExist:
-            selected_value_id = None
+        if category_id and value_id:
+            try:
+                product_filter = ProductFilter.objects.get(product_id=product_id, filter_category_id=category_id, filter_value_id=value_id)
+                selected_category_id = product_filter.filter_category_id
+                selected_value_id = product_filter.filter_value_id
+            except ProductFilter.DoesNotExist:
+                pass
 
-    # Формируем массив значений фильтра
-    values = [{'id': value.id, 'value': value.value, 'selected': value.id == selected_value_id} for value in sorted_filter_values]
+        # if value_id:
+        #     try:
+        #         selected_value = ProductFilter.objects.get(product_id=product_id, filter_category_id=category_id, filter_value_id = value_id)
+        #         print('---', selected_value)
+        #         selected_value_id = selected_value.filter_value_id
+        #     except ProductFilter.DoesNotExist:
+        #         pass
+        
+
+    categories = [{'id': category.id, 'name': category.name, 'selected': category.id == selected_category_id} for category in filter_categories]
+    print('-------------------------------------------------', categories)
+    # Получаем все значения фильтров для выбранной категории, если она указана
+    values = []
+    if category_id:
+        print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++', selected_value_id)
+        filter_values = FilterValue.objects.filter(category_id=category_id)
+        sorted_filter_values = sorted(filter_values, key=lambda fv: alphanumeric_sort(fv.value))
+        values = [{'id': value.id, 'value': value.value, 'selected': value.id == selected_value_id} for value in sorted_filter_values]
+    # print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++', values)
+    return JsonResponse({'categories': categories, 'values': values})
+
+
+
+# def get_filter_values(request, category_id):
+#     product_id = request.GET.get('product_id')
     
-    return JsonResponse({'values': values})
+#     # Получаем все значения фильтра для данной категории
+#     filter_values = FilterValue.objects.filter(category_id=category_id)
+#     sorted_filter_values = sorted(filter_values, key=lambda fv: alphanumeric_sort(fv.value))
+    
+#     # Определяем предустановленное значение, если есть выбранное для этого продукта
+#     selected_value_id = None
+#     if product_id:
+#         try:
+#             value_id = request.GET.get('value_id')
 
+#             if value_id:
+#                 selected_value = ProductFilter.objects.get(product_id=product_id, filter_category_id=category_id, filter_value_id = value_id)
+#                 selected_value_id = selected_value.filter_value_id
+#             else:
+#                 selected_value_id = None
+#         except ProductFilter.DoesNotExist:
+#             pass
+
+#     # Формируем массив значений фильтра
+#     values = [{'id': value.id, 'value': value.value, 'selected': value.id == selected_value_id} for value in sorted_filter_values]
+#     return JsonResponse({'values': values})
 
 def add_to_cart(request):
     product_id = int(request.GET["id"])

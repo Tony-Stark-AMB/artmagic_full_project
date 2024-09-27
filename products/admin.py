@@ -3,7 +3,7 @@ from django import forms
 from mptt.admin import MPTTModelAdmin
 from django.utils.safestring import mark_safe
 
-from .models import Products, Category, ProductFilter, FilterCategory, FilterValue, Manufacturer, ProductImage, ProductToCategory
+from .models import Products, Category, ProductFilter, FilterCategory, FilterValue, Manufacturer, ProductImage, ProductToCategory, FilterGroup
 from .forms import ProductFilterForm
 class HiddenModelAdmin(admin.ModelAdmin):
     def get_model_perms(self, request):
@@ -142,7 +142,7 @@ class ProductsAdmin(admin.ModelAdmin):
             'fields': ('name', 'slug', 'description', 'model', 'image', 'manufacturer')
         }),
         ('Наявність та ціни', {
-            'fields': ('price', 'discount', 'quantity', 'stock_status_id')
+            'fields': ('price', 'discount', 'quantity')
         }),
         ('Статус', {
             'fields': ('status', )
@@ -150,6 +150,7 @@ class ProductsAdmin(admin.ModelAdmin):
     )
 
 admin.site.register(Manufacturer, HiddenModelAdmin)
+admin.site.register(FilterGroup)
 admin.site.register(FilterCategory)
 admin.site.register(FilterValue)
 admin.site.register(ProductFilter, HiddenModelAdmin)

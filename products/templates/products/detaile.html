@@ -10,13 +10,17 @@
     <main class="main container__small">
         <div class="product-page" >
             <div class="product-image__content" data-aos="fade-down-right">
-                {% if product.stock_status_id.pk == 7 %}
+                {% if product.quantity > 0 %}
                     <div class="product-details__status bg23">
                         В наявності
                     </div>
-                {% else %}
+                {% elif product.quantity < 0 %}
                     <div class="product-details__status bg21">
-                        {{product.stock_status_id}}
+                        На замовлення
+                    </div>
+                {% elif product.quantity == 0 %}
+                    <div class="product-details__status bg11">
+                        Немає
                     </div>
                 {% endif %}
                 <div class="product-image__wrap">
