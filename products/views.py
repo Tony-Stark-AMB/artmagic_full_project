@@ -50,6 +50,7 @@ def get_filter_data(request, group_id):
                 product_filter = ProductFilter.objects.get(product_id=product_id, filter_category_id=category_id, filter_value_id=value_id)
                 selected_category_id = product_filter.filter_category_id
                 selected_value_id = product_filter.filter_value_id
+                # print('~~~~~~~~', selected_category_id, '--------selected_category_id-----selected_value_id-------', selected_value_id)
             except ProductFilter.DoesNotExist:
                 pass
 
@@ -63,14 +64,16 @@ def get_filter_data(request, group_id):
         
 
     categories = [{'id': category.id, 'name': category.name, 'selected': category.id == selected_category_id} for category in filter_categories]
-    print('-------------------------------------------------', categories)
     # Получаем все значения фильтров для выбранной категории, если она указана
     values = []
-    if category_id:
-        print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++', selected_value_id)
-        filter_values = FilterValue.objects.filter(category_id=category_id)
-        sorted_filter_values = sorted(filter_values, key=lambda fv: alphanumeric_sort(fv.value))
-        values = [{'id': value.id, 'value': value.value, 'selected': value.id == selected_value_id} for value in sorted_filter_values]
+
+    if not category_id:
+        category_id = categories[0]['id']
+
+    filter_values = FilterValue.objects.filter(category_id=category_id)
+    sorted_filter_values = sorted(filter_values, key=lambda fv: alphanumeric_sort(fv.value))
+    values = [{'id': value.id, 'value': value.value, 'selected': value.id == selected_value_id} for value in sorted_filter_values]
+
     # print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++', values)
     return JsonResponse({'categories': categories, 'values': values})
 
