@@ -518,7 +518,8 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.redirect) {
-                        window.location.href = data.redirect;
+                        Alert("success", "Вхід виконано успішно", 2000);
+                        setTimeout(() => window.location.href = data.redirect, 2000);
                     } else {
                         // Обработка ошибок и отображение сообщений
                         const errorsContainer = document.getElementById('login-form-errors');
@@ -549,21 +550,17 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.redirect) {
-                        window.location.href = data.redirect;
+                        Alert("success", "Ви успішно зареєстровані", 2000);
+                        setTimeout(() => window.location.href = data.redirect, 2000);
                     } else {
                         // Обработка ошибок и отображение сообщений
-                        if (data.redirect) {
-                        window.location.href = data.redirect;
-                        } else {
-                            // Обработка ошибок и отображение сообщений
-                            const errorsContainer = document.getElementById('login-form-errors');
-                            errorsContainer.innerHTML = '';
-                            let errText = ""
-                            for (const [key, val] of Object.entries(data.errors)) {
-                                errText += `${val}\n`;
-                            }
-                            Alert("err", errText, 5000)
+                        const errorsContainer = document.getElementById('login-form-errors');
+                        errorsContainer.innerHTML = '';
+                        let errText = ""
+                        for (const [key, val] of Object.entries(data.errors)) {
+                            errText += `${val}\n`;
                         }
+                        Alert("err", errText, 5000)
                     }
                 });
             }); 
