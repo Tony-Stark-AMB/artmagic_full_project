@@ -4,99 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Підтвердження замовлення</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-        }
-        .message {
-            text-align: center;
-            font-size: 1.5rem;
-            color: #333;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .footer {
-            margin-top: 20px;
-            font-size: 1rem;
-            color: #555;
-        }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-        }
-        .header {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-        .details, .address, .items {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 20px;
-        }
-        .details table, .items table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .details td, .address td, .items td, .items th {
-            padding: 8px;
-            border: 1px solid #ccc;
-        }
-        .details th, .items th {
-            background-color: #f0f0f0;
-            text-align: left;
-        }
-        .totals {
-            text-align: right;
-            padding-top: 10px;
-        }
-    </style>
 </head>
-<body>
-    <div class="message">
-        <h2>Номер Вашого замовлення {{ order_number }}</h2>
-        <p>Ваше замовлення прийняте в обробку, ми зв'яжемося з Вами в робочі години.</p>
-        <p>Якщо Ви відправили замовлення після 17:00, у суботу чи неділю, не турбуйтесь,</p>
-        <p>Менеджер обов'язково зв'яжется з Вами найближчого робочого дня</p>
-
-
-        <div class="items">
-            <p>Ваше замовлення: </p>
-            <table>
-                <thead>
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f4f4f4; margin: 0; padding: 20px 0;">
+        <tr>
+            <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                     <tr>
-                        <th>Товар</th>
-                        <th>Артикул</th>
-                        <th>Кількість</th>
-                        <th>Ціна</th>
+                        <td style="text-align: center;">
+                            <h2 style="font-size: 24px; color: #333;">Номер Вашого замовлення {{ order_number }}</h2>
+                            <p style="font-size: 16px; color: #333;">Ваше замовлення прийняте в обробку, ми зв'яжемося з Вами в робочі години.</p>
+                            <p style="font-size: 16px; color: #333;">Якщо Ви відправили замовлення після 17:00, у суботу чи неділю, не турбуйтесь,</p>
+                            <p style="font-size: 16px; color: #333;">Менеджер обов'язково зв'яжется з Вами найближчого робочого дня</p>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    {% for product in products %}
                     <tr>
-                        <td>{{ product.name }}</td>
-                        <td>{{ product.model }}</td>
-                        <td>{{ product.quantity }}</td>
-                        <td>{{ product.price }}</td>
+                        <td style="padding-top: 20px;">
+                            <p style="font-size: 16px; color: #333;">Ваше замовлення:</p>
+                            <table width="100%" cellpadding="5" cellspacing="0" border="1" style="border-collapse: collapse; border-color: #ccc;">
+                                <thead>
+                                    <tr style="background-color: #f0f0f0;">
+                                        <th style="padding: 8px; text-align: left;">Товар</th>
+                                        <th style="padding: 8px; text-align: left;">Артикул</th>
+                                        <th style="padding: 8px; text-align: left;">Кількість</th>
+                                        <th style="padding: 8px; text-align: left;">Ціна</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for product in products %}
+                                    <tr>
+                                        <td style="padding: 8px;">{{ product.name }}</td>
+                                        <td style="padding: 8px;">{{ product.model }}</td>
+                                        <td style="padding: 8px;">{{ product.quantity }}</td>
+                                        <td style="padding: 8px;">{{ product.price }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <div style="text-align: right; padding-top: 10px;">
+                                <strong style="font-size: 16px; color: #333;">Итого: {{ total_price }} грн.</strong>
+                            </div>
+                        </td>
                     </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            <div class="totals">
-                <strong>Итого: {{ total_price }} грн.</strong>
-            </div>
-        </div>
-        <div class="footer">
-            З повагою,<br>
-            Артмагия
-        </div>
-    </div>
+                    <tr>
+                        <td style="padding-top: 20px; text-align: center; font-size: 14px; color: #555;">
+                            З повагою,<br> Артмагия
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>

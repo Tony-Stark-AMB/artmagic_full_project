@@ -214,7 +214,7 @@ class ProcessOrderView(View):
                 email_message_user.content_subtype = "html"
                 email_message_user.send()
                 logger.debug('Email sent successfully to %s', recipient_list_user)
-                return JsonResponse({'status': 'success', 'message': 'Заказ успешно отправлен'}, status=200)
+                return JsonResponse({'status': 'success', 'message': 'Заказ успешно отправлен', 'orderNumber': order_number}, status=200)
             except Exception as e:
                 logger.error('Error sending email to user: %s', e)
                 return JsonResponse({'status': 'error', 'message': 'Ошибка при отправке электронной почты пользователю'}, status=500)
