@@ -290,3 +290,11 @@ class DetaileProductView(View):
                 })
         print(breadcrumbs)        
         return breadcrumbs
+
+def quantity_check_product(request):
+    product_id = request.GET.get('id')
+    # quantity_to_add = int(request.GET.get('quantity', 1))
+    product = get_object_or_404(Products, id=product_id)
+
+    return JsonResponse({'storage_quantity': product.quantity}, status=200)
+    
