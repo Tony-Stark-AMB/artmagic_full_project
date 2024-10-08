@@ -28,7 +28,7 @@ export class Basket {
             btn.addEventListener("click", async (e) => {
                 const id = +e.target.closest(`div.product-item`).getAttribute("id");
                 const product = await this.productManager.fetchNewProduct(id);
-                this.productManager.addProduct(product);
+                await this.productManager.addProduct(product);
                 this.renderBasket();
                 this.animateBadge();
             });
@@ -57,17 +57,15 @@ export class Basket {
         // Очистка контейнера перед новым рендером
         this.productsContainer.innerHTML = '';
 
-        // const products = this.productManager.getStorageProducts();
-
         window.addEventListener("DOMContentLoaded", () => {
             this.productManager.setProducts(this.productManager.getStorageProducts());
         })
 
         const products = this.productManager.getProducts();
         
-        if (products.length === 0) {
+        if (products.length === 0) 
             this.productsContainer.innerHTML = '<p>Кошик порожній</p>';
-        } else {
+        else {
             products.forEach((product) => {
                 const productHTML = this.renderProduct(product);
                 this.productsContainer.appendChild(productHTML);
@@ -87,6 +85,7 @@ export class Basket {
     }
 
     renderProduct(product) {
+        console.log(product, "inRenderProduct")
 
         const productDiv = document.createElement("div");
         productDiv.classList.add("cart__product");
@@ -120,19 +119,25 @@ export class Basket {
                     </svg>
                 </button>
             </div>
-            
         `;
-
-
-
-        productDiv.querySelector(`[data-action="increase"]`).addEventListener("click", () => {
-            product.addOne();
-            if (product.quantity < 0) {
-                product.quantity = 0;
+    
+        // Обработчик увеличения
+        productDiv.querySelector(`[data-action="increase"]`).addEventListener("click", async () => {
+            const {storage_quantity} = await this.productManager.fetchStorageQuantity(product.id);
+            if(storage_quantity === product.quantity){
+                Alert("err", `Товару ${product.name} у кількості ${product.quantity + 1}шт. недостатньо на складі.`, 5000);
+                this.productManager.setProductQuantity(product.id, product.quantity);
+                this.productManager.setStorageProducts(this.products);
+            } else {
+                product.addOne();
+                this.renderBasket(); // Обновляем корзину только если проверка прошла успешно 
             }
-            this.renderBasket();
+            
+          
+                       
         });
-
+    
+        // Обработчик уменьшения
         productDiv.querySelector(`[data-action="decrease"]`).addEventListener("click", () => {
             product.removeOne();
             if (product.quantity < 0) {
@@ -145,17 +150,33 @@ export class Basket {
             this.productManager.deleteProduct(product.id);
             this.renderBasket();
         });
-        productDiv.querySelector(`[data-action="quantity"]`).addEventListener("input", (e) => {
+    
+        // Обработчик ввода количества
+        productDiv.querySelector(`[data-action="quantity"]`).addEventListener("input", async (e) => {
             let value = parseInt(e.target.value, 10);
             if (isNaN(value) || value < 0) {
                 value = 0; // Устанавливаем значение 0, если введено некорректное значение
             }
-            e.target.value = value;
-            this.productManager.setProductQuantity(product.id, value);
-            this.updateProductQuantityAndPrice(product.id, productDiv.querySelector(`[data-action="quantity"]`), productDiv.querySelector(".cart__product__price"))
+            console.log(value)
+            const {storage_quantity} = await this.productManager.fetchStorageQuantity(product.id);
+            if(storage_quantity <= value){
+                Alert("err", `Товару ${product.name} у кількості ${value}шт. недостатньо на складі. Максимально можливе значення ${storage_quantity}`, 5000);
+                this.productManager.setProductQuantity(product.id, storage_quantity);
+                this.productManager.setStorageProducts(this.products);
+                productDiv.querySelector(`[data-action="quantity"]`).value = storage_quantity
+            } else {
+                this.productManager.setProductQuantity(product.id, value);
+                this.updateProductQuantityAndPrice(product.id, productDiv.querySelector(`[data-action="quantity"]`), productDiv.querySelector(".cart__product__price"));
+            }
+
+
         });
-        return productDiv;        
+    
+        return productDiv;
     }
+    
+
+    
 
     updateProductQuantityAndPrice(productId, quantityInput, totalPriceElement) {
         const product = this.productManager.existProduct(productId);
@@ -176,6 +197,8 @@ export class Basket {
             this.badge.classList.remove("animated");
         }, { once: true });
     }
+    
+
 
 
 

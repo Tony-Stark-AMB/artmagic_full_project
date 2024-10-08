@@ -14,4 +14,5 @@ urlpatterns = [
     path('product/detaile-product/<int:id>/', DetaileProductView.as_view(), name='detaile_product'),    
     path('product/<str:slug>/', SubProductView.as_view(), name='search_products'),  # Новый URL для поиска
     path('get-filter-values/<int:category_id>/', views.get_filter_values, name='get_filter_values'),
+    path('add-to-cart-checkin-quantity/', views.quantity_check_product, name='quantity_check'),
 ]
