@@ -149,9 +149,13 @@ class ProductsAdmin(admin.ModelAdmin):
         }),
     )
 
+@admin.register(FilterCategory)
+class FilterCategoryAdmin(admin.ModelAdmin):
+    list_filter = ('group__name',)
+
 admin.site.register(Manufacturer, HiddenModelAdmin)
 admin.site.register(FilterGroup)
-admin.site.register(FilterCategory)
+# admin.site.register(FilterCategory)
 admin.site.register(FilterValue)
 admin.site.register(Stocks)
 admin.site.register(ProductFilter, HiddenModelAdmin)

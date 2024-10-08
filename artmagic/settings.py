@@ -42,17 +42,16 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
 
     'mptt',
+    'corsheaders',
+    'rest_framework',
+    'django_filters',
 
     'products',
     'users',
     'carts',
-    'django_filters',
     'delivery',
     'liqpay_app',    
     'main',
-
-    'corsheaders',
-
 ]
 
 
@@ -202,4 +201,3 @@ CORS_ORIGIN_ALLOW_ALL=True
 
 
 CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS').split(',')
-

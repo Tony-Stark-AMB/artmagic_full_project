@@ -4,8 +4,10 @@ from django.core.exceptions import ObjectDoesNotExist
 def header(request):
     try:
         informations = Header.objects.get(pk=1)
+        informations1 = Header.objects.get(pk=2)
+        phones = f"{informations.phone_number}, {informations1.phone_number}"
         table_data_dict = {
-            'phone': informations.phone_number,
+            'phone': phones,
             'email': informations.email,
         }
     except ObjectDoesNotExist:

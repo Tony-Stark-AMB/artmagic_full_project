@@ -1342,7 +1342,7 @@
 }
 .footer__bottom {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   align-items: center;
   border-top: 1px solid #ddd;
@@ -1354,12 +1354,7 @@
     justify-content: space-around;
   }
 }
-.footer__approve {
-  width: 25%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
+
 .footer__underground {
   padding: 10px 0;
 }

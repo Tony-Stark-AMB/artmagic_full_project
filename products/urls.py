@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import SubProductView, SubCategoriesView, DetaileProductView
+from .views import SubProductView, SubCategoriesView, DetaileProductView, SyncProductsAPIView
 
 
 urlpatterns = [
@@ -14,4 +14,5 @@ urlpatterns = [
     path('product/detaile-product/<int:id>/', DetaileProductView.as_view(), name='detaile_product'),    
     path('product/<str:slug>/', SubProductView.as_view(), name='search_products'),  # Новый URL для поиска
     path('get-filter-data/<int:group_id>/', views.get_filter_data, name='get_filter_data'),
+    path('sync_products/', SyncProductsAPIView.as_view(), name='sync_products'),
 ]

@@ -82,13 +82,13 @@ class RegistrationForm(UserCreationForm):
         if not re.match(r'^[a-zA-Z0-9!@#$%^&*()_+{}\[\]:;"\'<>,.?/]+$', password1):
             raise ValidationError("Пароль може містити лише латинські літери та символи.")
         if len(password1) < 8:
-            raise ValidationError("Вибачте, але ваш пароль занадто короткий. Він має містити щонайменше 8 символів.")
+            raise ValidationError("Вибачте, але Ваш пароль занадто короткий. Він має містити щонайменше 8 символів.")
 
         common_password_validator = CommonPasswordValidator()
         try:
             common_password_validator.validate(password1)
         except ValidationError:
-            raise ValidationError(("Вибачте, але обраний вами пароль занадто простий."))
+            raise ValidationError(("Вибачте, але обраний Вами пароль занадто простий."))
 
 
         return password1
@@ -102,13 +102,13 @@ class RegistrationForm(UserCreationForm):
             raise ValidationError(("Паролі не співпадають."))
         
         if len(password2) < 8:
-            raise ValidationError("Вибачте, але ваш пароль занадто короткий. Він має містити щонайменше 8 символів.")
+            raise ValidationError("Вибачте, але Ваш пароль занадто короткий. Він має містити щонайменше 8 символів.")
 
         common_password_validator = CommonPasswordValidator()
         try:
             common_password_validator.validate(password2)
         except ValidationError:
-            raise ValidationError(("Вибачте, але обраний вами пароль занадто простий."))
+            raise ValidationError(("Вибачте, але обраний Вами пароль занадто простий."))
 
         return password2
 
