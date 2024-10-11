@@ -8,6 +8,10 @@ from .serializers import ProductSerializer
 from rest_framework import status
 from rest_framework.response import Response
 
+import requests
+import logging
+from rest_framework.decorators import api_view
+from itertools import islice
 
 from .models import (Products,
                      Category,
@@ -20,7 +24,11 @@ from .models import (Products,
                      Stocks)  # Обновлено
 from main.models import Carousel
 from .filters import ProductsFilter
+from .serializers import ProductSerializer
+from .tasks import fetch_products_from_1c_task
 
+
+logger = logging.getLogger(__name__)
 
 def alphanumeric_sort(text):
     """Функция для сортировки строк, содержащих как буквы, так и цифры."""
@@ -361,69 +369,109 @@ class DetaileProductView(View):
                 })
         print(breadcrumbs)        
         return breadcrumbs
+    
 
-class SyncProductsAPIView(APIView):
-
-
-    def post(self, request):
-
-        data = request.data
-        model_value = data.get('model')  # Получаем значение артикула (model)
-
-
-        '''Не забыть добавить обработку имени для поля slug'''
-        name_value = data.get('name')  # Получаем значение name для slug
-        '''_______________________________________________________________'''
-
-        if model_value is None:
-            return Response({'error': 'Model (SKU) is required.'}, status=status.HTTP_400_BAD_REQUEST)
-
+from unidecode import unidecode    
+from django.utils.text import slugify
+@api_view(['POST'])
+def sync_products(request):
+    print('***************************************************************************')
+    """
+    Получение данных от 1С и отправка задачи на обновление записей в базе данных через Celery.
+    """
+    data = request.data
+    for product_data in data:
+        # Предполагаем, что product_data - это словарь с данными продукта
         try:
-            product = Products.objects.get(model=model_value)  # Ищем продукт по артикулу (model)
+            product = Products.objects.get(model=product_data.get('model'))
         except Products.DoesNotExist:
-            product = Products(model=model_value)  # Создаем новый продукт, если не найден
+            product = Products()
+            
+        serializer = ProductSerializer(product, data=product_data, partial=True)
 
-        # Обновляем или создаем продукт
-        serializer = ProductSerializer(product, data=data, partial=True)
         if serializer.is_valid():
             serializer.save()
-            return Response({'status': 'Product updated successfully'}, status=status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    return Response({'status': 'Products synchronized successfully'}, status=status.HTTP_200_OK)
 
-    def get(self, request):
-        """
-        Получение данных от API 1С и обновление БД.
-        Этот метод отправляет запрос к 1С для получения всех продуктов и синхронизации их в БД.
-        """
-        # URL API 1С
-        onec_api_url = 'https://example.com/api/products'  # Замените на реальный URL API 1С
 
-        try:
-            # Отправляем GET-запрос к 1С
-            response = request.get(onec_api_url)
-            response.raise_for_status()  # Если ответ не 200, выбросит исключение
+@api_view(['GET'])
+def fetch_products_from_1c(request):
+    print('------------------------------------------------------------------------')
+    """
+    Отправка задачи на синхронизацию данных о продуктах от 1С в Celery для фоновой обработки.
+    """
+    # Запускаем задачу через Celery
+    
+    task = fetch_products_from_1c_task.delay()
 
-            # Получаем данные продуктов из ответа
-            products_data = response.json()
+    # Возвращаем ответ, что задача запущена
+    return Response({'status': 'Task started', 'task_id': task.id}, status=status.HTTP_200_OK)
 
-            # Обновляем или создаем продукты на основе данных от 1С
-            for product_data in products_data:
-                try:
-                    product = Products.objects.get(slug=product_data.get('slug'))
-                except Products.DoesNotExist:
-                    product = Products()
+# class SyncProductsAPIView(APIView):
 
-                serializer = ProductSerializer(product, data=product_data, partial=True)
-                if serializer.is_valid():
-                    serializer.save()
-                else:
-                    print(f"Error updating product {product.slug}: {serializer.errors}")
 
-            return Response({'status': 'Products synchronized successfully'}, status=status.HTTP_200_OK)
+#     def post(self, request):
 
-        except request.exceptions.RequestException as e:
-            # Если не удалось подключиться к API 1С
-            print(f"Failed to fetch data from 1C: {e}")
-            return Response({'status': 'Failed to fetch data from 1C'}, status=status.HTTP_400_BAD_REQUEST)
+#         data = request.data
+#         model_value = data.get('model')  # Получаем значение артикула (model)
+
+
+#         '''Не забыть добавить обработку имени для поля slug'''
+#         name_value = data.get('name')  # Получаем значение name для slug
+#         '''_______________________________________________________________'''
+
+#         if model_value is None:
+#             return Response({'error': 'Model (SKU) is required.'}, status=status.HTTP_400_BAD_REQUEST)
+
+#         try:
+#             product = Products.objects.get(model=model_value)  # Ищем продукт по артикулу (model)
+#         except Products.DoesNotExist:
+#             product = Products(model=model_value)  # Создаем новый продукт, если не найден
+
+#         # Обновляем или создаем продукт
+#         serializer = ProductSerializer(product, data=data, partial=True)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response({'status': 'Product updated successfully'}, status=status.HTTP_200_OK)
+#         else:
+#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+#     def get(self, request):
+#         """
+#         Получение данных от API 1С и обновление БД.
+#         Этот метод отправляет запрос к 1С для получения всех продуктов и синхронизации их в БД.
+#         """
+#         # URL API 1С
+#         onec_api_url = 'https://example.com/api/products'  # Замените на реальный URL API 1С
+
+#         try:
+#             # Отправляем GET-запрос к 1С
+#             response = request.get(onec_api_url)
+#             response.raise_for_status()  # Если ответ не 200, выбросит исключение
+
+#             # Получаем данные продуктов из ответа
+#             products_data = response.json()
+
+#             # Обновляем или создаем продукты на основе данных от 1С
+#             for product_data in products_data:
+#                 try:
+#                     product = Products.objects.get(slug=product_data.get('slug'))
+#                 except Products.DoesNotExist:
+#                     product = Products()
+
+#                 serializer = ProductSerializer(product, data=product_data, partial=True)
+#                 if serializer.is_valid():
+#                     serializer.save()
+#                 else:
+#                     print(f"Error updating product {product.slug}: {serializer.errors}")
+
+#             return Response({'status': 'Products synchronized successfully'}, status=status.HTTP_200_OK)
+
+#         except request.exceptions.RequestException as e:
+#             # Если не удалось подключиться к API 1С
+#             print(f"Failed to fetch data from 1C: {e}")
+#             return Response({'status': 'Failed to fetch data from 1C'}, status=status.HTTP_400_BAD_REQUEST)

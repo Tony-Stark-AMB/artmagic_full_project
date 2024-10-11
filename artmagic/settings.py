@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'django_filters',
+    'ckeditor',
+    'ckeditor_uploader',
+
 
     'products',
     'users',
@@ -125,8 +128,20 @@ AUTH_PASSWORD_VALIDATORS = [
 NOVA_POSHTA_API_KEY = os.getenv('NOVA_POSHTA_API_KEY')
 LIQPAY_PUBLIC_KEY = os.getenv('LIQPAY_PUBLIC_KEY')
 LIQPAY_PRIVATE_KEY = os.getenv('LIQPAY_PRIVATE_KEY')
+
+# Настройки для Celery
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Europe/Kiev'
+
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
+
 
 LANGUAGE_CODE = 'uk'
 
@@ -201,3 +216,24 @@ CORS_ORIGIN_ALLOW_ALL=True
 
 
 CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS').split(',')
+
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript'],  # Расширенные опции форматирования текста
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'],  # Списки и цитаты
+            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],  # Выровнять текст
+            ['Link', 'Unlink', 'Anchor'],  # Ссылки и якоря
+            ['Image', 'Table', 'HorizontalRule', 'SpecialChar'],  # Вставка изображений, таблиц и специальных символов
+            ['Undo', 'Redo'],  # Отмена и повтор действий
+            ['RemoveFormat', 'Source'],  # Очистить форматирование и просмотр исходного кода
+            ['Maximize'],  # Развернуть редактор на весь экран
+            ['Styles', 'Format', 'Font', 'FontSize'],  # Выбор стилей, форматов текста, шрифта и его размера
+            ['TextColor', 'BGColor'],  # Цвет текста и фона
+        ],
+    }
+}

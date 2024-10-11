@@ -10,119 +10,28 @@
         "model": "products.filtercategory",
         "pk": 2,
         "fields": {
-            "name": "ТЕКСТУРА"
+            "name": "ВИРОБНИК"
         }
     },
     {
         "model": "products.filtercategory",
         "pk": 3,
         "fields": {
-            "name": "ЩIЛЬНIСТЬ"
+            "name": "ПРОДУКТ"
         }
     },
     {
         "model": "products.filtercategory",
         "pk": 4,
         "fields": {
-            "name": "ФОРМАТ"
+            "name": "ОБ'ЄМ"
         }
     },
     {
         "model": "products.filtercategory",
         "pk": 5,
         "fields": {
-            "name": "РОЗМIР"
-        }
-    },
-    {
-        "model": "products.filtercategory",
-        "pk": 6,
-        "fields": {
-            "name": "КIЛЬКIСТЬ АРКУЩIВ"
-        }
-    },
-    {
-        "model": "products.filtercategory",
-        "pk": 7,
-        "fields": {
-            "name": "КIЛЬКIСТЬ У НАБОРI"
-        }
-    },
-    {
-        "model": "products.filtercategory",
-        "pk": 8,
-        "fields": {
-            "name": "ТОВЩИНА ЛIНIЇ"
-        }
-    },
-    {
-        "model": "products.filtercategory",
-        "pk": 9,
-        "fields": {
-            "name": "ОСОБЛИВОСТI"
-        }
-    },
-    {
-        "model": "products.filtercategory",
-        "pk": 10,
-        "fields": {
-            "name": "ВИРОБНИК"
-        }
-    },
-    {
-        "model": "products.filtercategory",
-        "pk": 11,
-        "fields": {
-            "name": "ПІДКАТЕГОРІЯ"
-        }
-    },
-    {
-        "model": "products.filtercategory",
-        "pk": 12,
-        "fields": {
-            "name": "ПАКУВАННЯ"
-        }
-    },
-    {
-        "model": "products.filtercategory",
-        "pk": 13,
-        "fields": {
-            "name": "МОТИВ/СЕРІЯ"
-        }
-    },
-    {
-        "model": "products.filtercategory",
-        "pk": 14,
-        "fields": {
-            "name": "КІЛЬКІСТЬ КОЛЬОРІВ"
-        }
-    },
-    {
-        "model": "products.filtercategory",
-        "pk": 15,
-        "fields": {
-            "name": "ТВЕРДІСТЬ"
-        }
-    },
-    {
-        "model": "products.filtercategory",
-        "pk": 16,
-        "fields": {
-            "name": "ВИСОТА ПОЛОТНА"
-        }
-    },
-    {
-        "model": "products.filtercategory",
-        "pk": 17,
-        "fields": {
-            "name": "ОБ'ЄМ"
-        }
-    },
-    {
-        "model": "products.filtercategory",
-        "pk": 18,
-        "fields": {
-            "name": "ВАГА"
+            "name": "РОЗМІР"
         }
     }
 ]

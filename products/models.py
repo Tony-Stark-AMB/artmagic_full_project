@@ -1,7 +1,10 @@
 from django.db import models
 from django.urls import reverse
+from django.utils.text import slugify
 
+from ckeditor.fields import RichTextField
 from mptt.models import MPTTModel, TreeForeignKey
+from unidecode import unidecode 
 
 
 class Category(MPTTModel):
@@ -165,7 +168,7 @@ class FilterValue(models.Model):
     class Meta:
         verbose_name = "Значення фільтра"
         verbose_name_plural = "Значення фільтрів"
-
+ 
 
 class Products(models.Model):
     name = models.CharField(
@@ -173,7 +176,7 @@ class Products(models.Model):
         unique=True, 
         verbose_name='Назва'
     )
-    description = models.TextField(
+    description = RichTextField(
         null=True, 
         blank=True, 
         verbose_name='Опис'
@@ -210,7 +213,8 @@ class Products(models.Model):
         verbose_name='Виробник'
     )
     status = models.BooleanField(
-        verbose_name='Статус'
+        verbose_name='Статус',
+        null=True
     )
     date_added = models.DateTimeField(
         auto_now_add=True, 
@@ -234,6 +238,14 @@ class Products(models.Model):
         decimal_places=2, 
         verbose_name='Знижка в %'
     )
+
+    def save(self, *args, **kwargs):
+        # Проверяем, если slug пустой, то генерируем его автоматически
+        if not self.slug:
+            self.slug = slugify(unidecode(self.name))  # Генерация slug из названия
+        print(f'Saving product: {self.name}, slug: {self.slug}')
+        super(Products, self).save(*args, **kwargs)
+
 
     class Meta:
         verbose_name = 'Продукт'
