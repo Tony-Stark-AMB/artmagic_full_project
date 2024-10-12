@@ -123,18 +123,8 @@ export class Basket {
     
         // Обработчик увеличения
         productDiv.querySelector(`[data-action="increase"]`).addEventListener("click", async () => {
-            const {storage_quantity} = await this.productManager.fetchStorageQuantity(product.id);
-            if(storage_quantity === product.quantity){
-                Alert("err", `Товару ${product.name} у кількості ${product.quantity + 1}шт. недостатньо на складі.`, 5000);
-                this.productManager.setProductQuantity(product.id, product.quantity);
-                this.productManager.setStorageProducts(this.products);
-            } else {
-                product.addOne();
-                this.renderBasket(); // Обновляем корзину только если проверка прошла успешно 
-            }
-            
-          
-                       
+            product.addOne();
+            this.renderBasket(); // Обновляем корзину только если проверка прошла успешно        
         });
     
         // Обработчик уменьшения
@@ -156,20 +146,9 @@ export class Basket {
             let value = parseInt(e.target.value, 10);
             if (isNaN(value) || value < 0) {
                 value = 0; // Устанавливаем значение 0, если введено некорректное значение
-            }
-            console.log(value)
-            const {storage_quantity} = await this.productManager.fetchStorageQuantity(product.id);
-            if(storage_quantity <= value){
-                Alert("err", `Товару ${product.name} у кількості ${value}шт. недостатньо на складі. Максимально можливе значення ${storage_quantity}`, 5000);
-                this.productManager.setProductQuantity(product.id, storage_quantity);
-                this.productManager.setStorageProducts(this.products);
-                productDiv.querySelector(`[data-action="quantity"]`).value = storage_quantity
-            } else {
-                this.productManager.setProductQuantity(product.id, value);
-                this.updateProductQuantityAndPrice(product.id, productDiv.querySelector(`[data-action="quantity"]`), productDiv.querySelector(".cart__product__price"));
-            }
-
-
+            } 
+            this.productManager.setProductQuantity(product.id, value);
+            this.updateProductQuantityAndPrice(product.id, productDiv.querySelector(`[data-action="quantity"]`), productDiv.querySelector(".cart__product__price"));
         });
     
         return productDiv;
