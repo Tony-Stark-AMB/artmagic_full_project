@@ -37,12 +37,10 @@ export class ProductManager {
     async addProduct({ id, name, price, image, model }) {
         
         const existProduct = this.existProduct(id);
-        if (existProduct){
+        if (existProduct)
             existProduct.addOne();
-        } else {
+        else 
             this.products = [...this.products, new Product(id, name, price, image, model)];
-        }
-        await this.checkInProductQuantity(id)
         this.setStorageProducts(this.products)
     }
 
@@ -115,50 +113,12 @@ export class ProductManager {
         ).join('\n');
     }
 
-    async checkInProductQuantity(id, ) {
-        const { quantity, name } = this.products.find((product) => id === product.id);
-        const { storage_quantity } = await this.fetchStorageQuantity(id);
-    
-        console.log(storage_quantity, quantity, "before")
-
-        const condition = storage_quantity >= quantity;
-
-
-        if(condition)
-            return;
-        Alert("err", `Товару ${name} у кількості ${quantity}шт. недостатньо на складі.`, 5000);
-        this.setProductQuantity(id, quantity - 1);
-        this.setStorageProducts(this.products);
-        console.log(storage_quantity, this.products.find((product) => id === product.id).quantity, "after");
-    }
-
-    async fetchStorageQuantity(id){
-        return fetch(`${PROTOCOL}://${HOST}:${PORT}/add-to-cart-checkin-quantity/?id=${id}`, {
-            method: "GET",
-            mode: "cors"
-        }).then((data) => data.json());
-    }
-
-    // async checkInProductQuantityInBasket(id, type, inputQuantity){
-    //     const { quantity, name } = this.products.find((product) => id === product.id);
-    //     const { storage_quantity } = await this.fetchStorageQuantity(id);
-    //     // console.log(inputQuantity);
-    //     // console.log("quantity", quantity, "storage_quantity", storage_quantity)
-    //     const condition = storage_quantity > quantity;
-
-    //     if(condition)
-    //         return true;
-        
-    //     switch(type){
-    //         case "+":
-    //             console.log("+ condition")
-    //             Alert("err", `Товару ${name} у кількості ${quantity}шт. недостатньо на складі.`, 5000);
-    //             this.setProductQuantity(id, quantity);
-    //             this.setStorageProducts(this.products);
-    //             // console.log(storage_quantity, this.products.find((product) => id === product.id).quantity, "after");
-    //             return false;
-    //         case "input":
-    //             console.log("input condition")
-    //     }
+    // async fetchStorageQuantity(id){
+    //     return fetch(`${PROTOCOL}://${HOST}:${PORT}/add-to-cart-checkin-quantity/?id=${id}`, {
+    //         method: "GET",
+    //         mode: "cors"
+    //     }).then((data) => data.json());
     // }
+
+    
 }
