@@ -202,6 +202,7 @@ class SubProductView(View):
 
         if slug != 'search':
             parent_category = get_object_or_404(Category, slug=slug)
+            print('---------------------------------------', parent_category.pk)
             
 
         if parent_category:
@@ -210,6 +211,7 @@ class SubProductView(View):
             print('------------------------------------------100------------', len(product_ids))
             parent_of_parent_category = parent_category.parent
             products = Products.objects.filter(id__in=product_ids).distinct()
+            print('------------------------------------------10,01------------', len(products))
             if parent_of_parent_category:
                 breadcrumbs.append({'name': parent_of_parent_category.name, 'url': parent_of_parent_category.get_absolute_url()})
 
@@ -285,7 +287,7 @@ class SubProductView(View):
             'text': sorted(list(texts), key=lambda x: alphanumeric_sort(x[1]))  # сортируем по value, а не по id
         } for name, texts in sorted(attributes_dict.items(), key=lambda x: alphanumeric_sort(x[0]))]
 
-        print('///////////////', filters)
+        # print('///////////////', filters)
         return filters
 
 

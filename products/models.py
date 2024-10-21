@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
 
-from ckeditor.fields import RichTextField
+from django_ckeditor_5.fields import CKEditor5Field
 from mptt.models import MPTTModel, TreeForeignKey
 from unidecode import unidecode 
 
@@ -176,7 +176,7 @@ class Products(models.Model):
         unique=True, 
         verbose_name='Назва'
     )
-    description = RichTextField(
+    description = CKEditor5Field(
         null=True, 
         blank=True, 
         verbose_name='Опис'

@@ -27,22 +27,22 @@ from products.models import Category
 #
 
 def about_us(request):
-    informations = AboutUs.objects.all()
-    return render(request, 'main/about_us.html', {'informations': informations})
+    about_us = AboutUs.objects.first()
+    return render(request, 'main/about_us.html', {'about_us': about_us})
 
 
 def payment_delivery(request):
-    informations = PaymentDelivery.objects.all()
-    return render(request, 'main/payment_delivery.html', {'informations': informations})
+    payment_delivery = PaymentDelivery.objects.first()
+    return render(request, 'main/payment_delivery.html', {'payment_delivery': payment_delivery})
 
 
 def safeguards(request):
-    informations = PaymentDelivery.objects.all()
-    return render(request, 'main/safeguards.html', {'informations': informations})
+    safeguards = Safeguards.objects.first()
+    return render(request, 'main/safeguards.html', {'safeguards': safeguards})
 
 def return_a_goods(request):
-    informations = PaymentDelivery.objects.all()
-    return render(request, 'main/return_a_goods.html', {'informations': informations})
+    return_a_goods = ReturnAgoods.objects.first()
+    return render(request, 'main/return_a_goods.html', {'return_a_goods': return_a_goods})
 
 def contact_page(request):
     contact_info = ContactInfo.objects.all()

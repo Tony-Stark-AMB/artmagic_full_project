@@ -1,0 +1,46 @@
+.call__modal{
+    &__content{
+        min-height: 60vh;
+    }
+    &__form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        height: 50vh;
+        // & input[type="text"],
+        // & input[type="telephone"]{
+        //     width: 80%;
+        //     padding: 5px 0 5px 10px;
+        //     border-radius: 8px;
+        //     outline: none;
+        //     border: 1px solid $c5;
+        // }
+        
+    }
+    &__input{
+        width: 137%;
+        padding: 5px 0 5px 10px;
+        border-radius: 8px;
+        outline: none;
+        border: 1px solid $c5;
+        &__content{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        &__wrap{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    &__textarea{
+        width: 67%;
+        height: 30%;
+        &::placeholder{
+            text-align: center;
+        }
+    }
+}

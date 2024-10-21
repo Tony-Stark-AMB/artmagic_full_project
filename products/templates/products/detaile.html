@@ -14,13 +14,9 @@
                     <div class="product-details__status bg23">
                         В наявності
                     </div>
-                {% elif product.quantity < 0 %}
+                {% elif product.quantity <= 0 %}
                     <div class="product-details__status bg21">
                         На замовлення
-                    </div>
-                {% elif product.quantity == 0 %}
-                    <div class="product-details__status bg11">
-                        Немає
                     </div>
                 {% endif %}
                 <div class="product-image__wrap">

@@ -1,0 +1,40 @@
+@import "../../breakpoints/variables",
+        "../../breakpoints/response-fn";
+
+.header-call{
+    margin-right: 20px;
+    @include respond-to(laptop-small){
+        margin-right: 0;
+    }
+    &__wrap{
+        // width: 22%;
+        flex-basis: auto;
+        display: flex;
+        flex-grow: 0.5;
+        flex-direction: column;
+        align-items: center;
+        @include respond-to(laptop-small){
+            flex-grow: 0.3;
+        }
+    }
+    &__main{
+        display: flex;
+        align-items: center;
+    }
+   
+    &__text,
+    &__link{
+        &__wrap{
+            @include respond-to(laptop-small){
+                display: none;
+            }
+        }
+    }
+    &__btn{
+        border: none;
+        outline: none;
+        background: $c6;
+        padding: 0;
+
+    }
+}

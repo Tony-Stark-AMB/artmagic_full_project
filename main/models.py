@@ -1,4 +1,5 @@
 from django.db import models
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 class Carousel(models.Model):
@@ -27,7 +28,7 @@ class Header(models.Model):
 class AboutUs(models.Model):
     # О нас
     title = models.CharField(max_length=100, verbose_name='Титул')
-    description = models.TextField(verbose_name='Опис')
+    description = CKEditor5Field(verbose_name='Опис', config_name='extends')
 
     class Meta:
         verbose_name = 'Информація про нас'
@@ -40,7 +41,7 @@ class AboutUs(models.Model):
 class PaymentDelivery(models.Model):
     # Оплата и доставка
     title = models.CharField(max_length=100, verbose_name='Титул')
-    description = models.TextField(verbose_name='Опис')
+    description = CKEditor5Field(verbose_name='Опис', config_name='extends')
 
     class Meta:
         verbose_name = 'Оплата та доставка'
@@ -53,7 +54,7 @@ class PaymentDelivery(models.Model):
 class Safeguards(models.Model):
     # Гарантии
     title = models.CharField(max_length=100, verbose_name='Титул')
-    description = models.TextField(verbose_name='Опис')
+    description = CKEditor5Field(verbose_name='Опис', config_name='extends')
 
     class Meta:
         verbose_name = 'Гарантії'
@@ -66,7 +67,7 @@ class Safeguards(models.Model):
 class ReturnAgoods(models.Model):
     # Возврат товара
     title = models.CharField(max_length=100, verbose_name='Титул')
-    description = models.TextField(verbose_name='Опис')
+    description = CKEditor5Field(verbose_name='Опис', config_name="extends")
 
     class Meta:
         verbose_name = 'Повернення товару'

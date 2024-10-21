@@ -45,8 +45,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'django_filters',
-    'ckeditor',
-    'ckeditor_uploader',
+    'django_ckeditor_5',
 
 
     'products',
@@ -168,6 +167,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -218,22 +218,139 @@ CORS_ORIGIN_ALLOW_ALL=True
 CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS').split(',')
 
 
-CKEDITOR_UPLOAD_PATH = "uploads/"
-
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': 'Custom',
-        'toolbar_Custom': [
-            ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript'],  # Расширенные опции форматирования текста
-            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'],  # Списки и цитаты
-            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],  # Выровнять текст
-            ['Link', 'Unlink', 'Anchor'],  # Ссылки и якоря
-            ['Image', 'Table', 'HorizontalRule', 'SpecialChar'],  # Вставка изображений, таблиц и специальных символов
-            ['Undo', 'Redo'],  # Отмена и повтор действий
-            ['RemoveFormat', 'Source'],  # Очистить форматирование и просмотр исходного кода
-            ['Maximize'],  # Развернуть редактор на весь экран
-            ['Styles', 'Format', 'Font', 'FontSize'],  # Выбор стилей, форматов текста, шрифта и его размера
-            ['TextColor', 'BGColor'],  # Цвет текста и фона
+customColorPalette = [
+        {
+            'color': 'hsl(4, 90%, 58%)',
+            'label': 'Red'
+        },
+        {
+            'color': 'hsl(340, 82%, 52%)',
+            'label': 'Pink'
+        },
+        {
+            'color': 'hsl(291, 64%, 42%)',
+            'label': 'Purple'
+        },
+        {
+            'color': 'hsl(262, 52%, 47%)',
+            'label': 'Deep Purple'
+        },
+        {
+            'color': 'hsl(231, 48%, 48%)',
+            'label': 'Indigo'
+        },
+        {
+            'color': 'hsl(207, 90%, 54%)',
+            'label': 'Blue'
+        },
+    ]
+CKEDITOR_5_CONFIGS = {
+    'extends': {
+        'toolbar': [
+            'heading', '|', 'bold', 'italic', 'link', 'underline', 'strikethrough',
+            'subscript', 'superscript', 'highlight', 'code', 'codeBlock', '|',
+            'bulletedList', 'numberedList', 'todoList', '|',
+            'blockQuote', 'imageUpload', 'mediaEmbed', '|',
+            'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', '|',
+            'outdent', 'indent', '|', 'insertTable', 'removeFormat', 'sourceEditing'
         ],
+        'fontSize': {
+            'options': [
+                9, 11, 13, 15, 17, 19, 21, 'default', 25, 30  # Добавлены размеры шрифта
+            ],
+            'supportAllValues': True  # Поддержка всех значений размеров
+        },
+        'image': {
+            'toolbar': [
+                'imageTextAlternative', '|',
+                'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight', '|',
+                'imageStyle:side', '|', 'resizeImage'
+            ],
+            'styles': [
+                'full', 'side', 'alignLeft', 'alignRight', 'alignCenter'
+            ],
+            'resizeUnit': '%',  # Включение изменения размера изображений в процентах
+        },
+        'table': {
+            'contentToolbar': [
+                'tableColumn', 'tableRow', 'mergeTableCells', '|',
+                'tableProperties', 'tableCellProperties'
+            ],
+            'tableProperties': {
+                'borderColors': customColorPalette,  # Пользовательские цвета границ
+                'backgroundColors': customColorPalette  # Пользовательские фоны для таблиц
+            },
+            'tableCellProperties': {
+                'borderColors': customColorPalette,
+                'backgroundColors': customColorPalette
+            }
+        },
+        'heading': {
+            'options': [
+                { 'model': 'paragraph', 'title': 'Paragraph', 'class': 'ck-heading_paragraph' },
+                { 'model': 'heading1', 'view': 'h1', 'title': 'Heading 1', 'class': 'ck-heading_heading1' },
+                { 'model': 'heading2', 'view': 'h2', 'title': 'Heading 2', 'class': 'ck-heading_heading2' },
+                { 'model': 'heading3', 'view': 'h3', 'title': 'Heading 3', 'class': 'ck-heading_heading3' }
+            ]
+        },
+        'fontFamily': {
+            'options': ['default', 'Arial, Helvetica, sans-serif', 'Courier New, Courier, monospace', 'Georgia, serif'],
+            'supportAllValues': True
+        },
+        'fontColor': {
+            'colors': [
+                {'color': 'hsl(0, 0%, 0%)', 'label': 'Black'},
+                {'color': 'hsl(0, 0%, 30%)', 'label': 'Dim gray'},
+                {'color': 'hsl(0, 0%, 60%)', 'label': 'Gray'},
+                {'color': 'hsl(0, 0%, 90%)', 'label': 'Light gray'},
+                {'color': 'hsl(0, 0%, 100%)', 'label': 'White'},
+            ],
+            'columns': 5
+        },
+        'fontBackgroundColor': {
+            'colors': [
+                {'color': 'hsl(120, 75%, 60%)', 'label': 'Green'},
+                {'color': 'hsl(360, 75%, 60%)', 'label': 'Red'},
+                {'color': 'hsl(60, 75%, 60%)', 'label': 'Yellow'},
+            ],
+            'columns': 5
+        },
+        'highlight': {
+            'options': [
+                {'model': 'yellowMarker', 'class': 'marker-yellow', 'title': 'Yellow marker', 'color': 'var(--ck-highlight-marker-yellow)', 'type': 'marker'},
+                {'model': 'greenMarker', 'class': 'marker-green', 'title': 'Green marker', 'color': 'var(--ck-highlight-marker-green)', 'type': 'marker'},
+                {'model': 'pinkMarker', 'class': 'marker-pink', 'title': 'Pink marker', 'color': 'var(--ck-highlight-marker-pink)', 'type': 'marker'},
+                {'model': 'redPen', 'class': 'pen-red', 'title': 'Red pen', 'color': 'var(--ck-highlight-pen-red)', 'type': 'pen'},
+                {'model': 'bluePen', 'class': 'pen-blue', 'title': 'Blue pen', 'color': 'var(--ck-highlight-pen-blue)', 'type': 'pen'},
+            ]
+        },
+        'list': {
+            'properties': {
+                'styles': True,
+                'startIndex': True,
+                'reversed': True
+            }
+        },
+        'mediaEmbed': {
+            'previewsInData': True  # Включить предпросмотр встроенных медиа
+        },
+        'removePlugins': ['CKFinderUploadAdapter'],  # Отключить CKFinder
+        'height': 600,  # Высота редактора
+        'width': '100%'  # Ширина редактора
     }
 }
+
+# Пользовательская цветовая палитра для таблиц
+customColorPalette = [
+    {'color': 'hsl(0, 75%, 60%)', 'label': 'Red'},
+    {'color': 'hsl(30, 75%, 60%)', 'label': 'Orange'},
+    {'color': 'hsl(60, 75%, 60%)', 'label': 'Yellow'},
+    {'color': 'hsl(120, 75%, 60%)', 'label': 'Green'},
+    {'color': 'hsl(180, 75%, 60%)', 'label': 'Cyan'},
+    {'color': 'hsl(240, 75%, 60%)', 'label': 'Blue'},
+    {'color': 'hsl(300, 75%, 60%)', 'label': 'Purple'},
+    # Добавить больше пользовательских цветов при необходимости
+]
+
+# Установить ограничения на загрузку файлов
+CKEDITOR_5_FILE_UPLOAD_PERMISSION = "staff"  # "staff", "authenticated", "any"

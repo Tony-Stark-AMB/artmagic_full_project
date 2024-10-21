@@ -10,28 +10,49 @@
         "model": "products.filtercategory",
         "pk": 2,
         "fields": {
-            "name": "ВИРОБНИК"
+            "name": "ЩIЛЬНIСТЬ"
         }
     },
     {
         "model": "products.filtercategory",
         "pk": 3,
         "fields": {
-            "name": "ПРОДУКТ"
+            "name": "ФОРМАТ"
         }
     },
     {
         "model": "products.filtercategory",
         "pk": 4,
         "fields": {
-            "name": "ОБ'ЄМ"
+            "name": "ВИРОБНИК"
         }
     },
     {
         "model": "products.filtercategory",
         "pk": 5,
         "fields": {
-            "name": "РОЗМІР"
+            "name": "ТОВАР"
+        }
+    },
+    {
+        "model": "products.filtercategory",
+        "pk": 6,
+        "fields": {
+            "name": "ПАКУВАННЯ"
+        }
+    },
+    {
+        "model": "products.filtercategory",
+        "pk": 7,
+        "fields": {
+            "name": "ОБ'ЄМ"
+        }
+    },
+    {
+        "model": "products.filtercategory",
+        "pk": 8,
+        "fields": {
+            "name": "ВАГА"
         }
     }
 ]

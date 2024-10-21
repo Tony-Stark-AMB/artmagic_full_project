@@ -29,7 +29,7 @@ urlpatterns = [
     path('delivery/', include('delivery.urls')),
     path('payment/', include('liqpay_app.urls')),
     path('main/', include('main.urls')),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path("ckeditor5/", include('django_ckeditor_5.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

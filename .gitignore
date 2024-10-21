@@ -3,4 +3,5 @@
 media
 static/node_modules
 static/js/common/constants.js
+staticfiles
 venv

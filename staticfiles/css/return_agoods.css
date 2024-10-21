@@ -1,0 +1,16 @@
+.return-agoods {
+  margin: 0 0 40px 0;
+  font-size: 1.2rem;
+  min-height: 56vh;
+}
+.return-agoods__title {
+  text-align: center;
+  margin: 20px 0;
+}
+.return-agoods__subtitle {
+  margin: 15px 0;
+}
+.return-agoods__list {
+  padding-left: 20px;
+  list-style: inside;
+}
