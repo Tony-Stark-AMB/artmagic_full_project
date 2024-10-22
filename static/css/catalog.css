@@ -852,6 +852,35 @@
   padding: 0 !important;
 }
 
+.confirmation-modal__content {
+  max-height: 65vh;
+}
+.confirmation-modal__body {
+  height: auto;
+  overflow-y: auto;
+}
+.confirmation-modal__product-item {
+  margin-bottom: 20px;
+}
+.confirmation-modal__product-image {
+  width: 35% !important;
+}
+.confirmation-modal__product-image-wrap {
+  display: grid;
+  place-items: center;
+}
+.confirmation-modal__product-action {
+  cursor: pointer;
+}
+.confirmation-modal__product-action-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.confirmation-modal__footer {
+  justify-content: center;
+}
+
 .header {
   top: 0;
   left: 0;

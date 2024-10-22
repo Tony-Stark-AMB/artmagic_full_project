@@ -113,29 +113,12 @@ export class ProductManager {
         ).join('\n');
     }
 
-    // async checkInProductQuantity(id, ) {
-    //     const { quantity, name } = this.products.find((product) => id === product.id);
-    //     const { storage_quantity } = await this.fetchStorageQuantity(id);
-    
-    //     console.log(storage_quantity, quantity, "before")
-
-    //     const condition = storage_quantity >= quantity;
-
-
-    //     if(condition)
-    //         return;
-    //     Alert("err", `Товару ${name} у кількості ${quantity}шт. недостатньо на складі.`, 5000);
-    //     this.setProductQuantity(id, quantity - 1);
-    //     this.setStorageProducts(this.products);
-    //     console.log(storage_quantity, this.products.find((product) => id === product.id).quantity, "after");
-    // }
-
-    // async fetchStorageQuantity(id){
-    //     return fetch(`${PROTOCOL}://${HOST}:${PORT}/add-to-cart-checkin-quantity/?id=${id}`, {
-    //         method: "GET",
-    //         mode: "cors"
-    //     }).then((data) => data.json());
-    // }
+    async fetchStorageQuantity(id){
+        return fetch(`${PROTOCOL}://${HOST}:${PORT}/add-to-cart-checkin-quantity/?id=${id}`, {
+            method: "GET",
+            mode: "cors"
+        }).then((data) => data.json());
+    }
 
     
 }

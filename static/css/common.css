@@ -231,6 +231,10 @@
   transition: all 0.3s ease;
 }
 
+button {
+  cursor: pointer !important;
+}
+
 html, body {
   overflow-x: hidden;
 }

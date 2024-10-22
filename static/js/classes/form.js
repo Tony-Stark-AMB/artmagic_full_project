@@ -52,8 +52,7 @@ class Form {
     triggerInput(fieldName) {
         if(fieldName == "description" || fieldName == "amount")
             return;
-        const errorElem = this.errorMessageElement(fieldName);
-
+        const errorElem = this.errorMessageElement(fieldName);  
         this.formData[fieldName].value = this.getField(fieldName).value;
         return !this.validateField(fieldName, errorElem);
     }
@@ -93,28 +92,18 @@ class Form {
             this.triggerInput(field.dataset.field)
         }));
 
-        switch(formContainerId){
-            case "profileForm":
-                const btnsWrappers = Array.from(document.querySelectorAll(".profile-page__user-info__btns-wrap")).map((btnsWrapper) => btnsWrapper.children);
-                btnsWrappers.forEach(([btnEdit, btnClear]) => {
-                    btnEdit.addEventListener("click", () => this.editField(btnEdit.dataset.edit));
-                    btnClear.addEventListener("click", () => this.clearField(btnClear.dataset.clear));
-                })
-                break;
-            case "orderForm":
-                const areaInputWrap = this.orderInputWrap("area");
 
-                this.updateAreaOptions(areaInputWrap);
 
-                const cityInputWrap = this.orderInputWrap("city");
-                const departmentInputWrap = this.orderInputWrap("department");
+        const areaInputWrap = this.orderInputWrap("area");
 
-                this.fetchSomeOptions(areaInputWrap, cityInputWrap, "get_cities", "region_ref", "-- Оберіть Місто --", "cities", undefined, this.areasDataWithNullField);
-                this.fetchSomeOptions(cityInputWrap, departmentInputWrap, "get_branches_and_postomats", "city_ref", "-- Оберіть відділення", "branches", this.filterData)
-                break;
+        this.updateAreaOptions(areaInputWrap);
+
+        const cityInputWrap = this.orderInputWrap("city");
+        const departmentInputWrap = this.orderInputWrap("department");
+
+        this.fetchSomeOptions(areaInputWrap, cityInputWrap, "get_cities", "region_ref", "-- Оберіть Місто --", "cities", undefined, this.areasDataWithNullField);
+        this.fetchSomeOptions(cityInputWrap, departmentInputWrap, "get_branches_and_postomats", "city_ref", "-- Оберіть відділення", "branches", this.filterData)
             
-        };
-
         // Добавляем чуток для новой модалки для заказа (обработка событий)
         if(this.bootstrap){
             const successModalBtnClose = document.querySelector("#successModal .btn-close");
@@ -127,43 +116,90 @@ class Form {
         this.dataSubmitBtn.addEventListener("click", async (e) => {
             e.preventDefault();
             this.showModalLoader();
-           
+        
             let emptyForm = false;
             Object.keys(this.formData).forEach(key => this.triggerInput(key));
-            
-            const submitedFormData = {...this.mapedFormData(obj), ...this.selectedBasketObj};
-            if(formContainerId == "orderForm"){
-                submitedFormData.amount = this.productManager.allProductsTotalPrice(this.productManager.priceOutputFn, 2);
-            }
-            if (this.productManager !== null) submitedFormData.products = 
-                this.productManager.filterProductsByQuantity(this.productManager.getProducts());
-            const productsExistCondition = 
-                submitedFormData.products && submitedFormData.products.length === 0;
+        
+            const submitedFormData = { ...this.mapedFormData(obj), ...this.selectedBasketObj };
+            submitedFormData.amount = this.productManager.allProductsTotalPrice(this.productManager.priceOutputFn, 2);
+        
+            if (this.productManager !== null) 
+                submitedFormData.products = this.productManager.filterProductsByQuantity(this.productManager.getProducts());
+        
+            const productsExistCondition = submitedFormData.products && submitedFormData.products.length === 0;
+        
+            const insufficientProducts = [];
             try {
-                if(formContainerId !== "orderForm"){
-                    Object.keys(this.formData).map(key => {
-                        if(this.formData[key].value === ""){
-                            emptyForm = true;
-                            throw Error();
-                        }
-                    });
-                    
+                if (productsExistCondition || submitedFormData.products.length === 0) 
+                    throw new Error("Відсутні продукти у кошику.");
+        
+                // Создаем массив продуктов, по которым на складе меньше, чем в заказе
+                for (const product of submitedFormData.products) {
+                    const { id, quantity } = product;
+                    const { storage_quantity } = await this.productManager.fetchStorageQuantity(id);
+                    if (quantity > storage_quantity && !product.hasOwnProperty("preorder")) {
+                        insufficientProducts.push({ ...product, available: storage_quantity });
+                    }
                 }
 
-                
+                // Проверяем снова, если после действий нет доступных продуктов, отменяем заказ
+                if (submitedFormData.products.length === 0) 
+                    throw new Error("Відсутні продукти у кошику.");
+                                
+        
+                if (insufficientProducts.length > 0){
+                    // Показываем модальное окно с продуктами
+                    const userActions = await this.showProductListModal(insufficientProducts);
+                    // Обрабатываем действия пользователя
+                    userActions.forEach(action => {
+                        const productIndex = submitedFormData.products.findIndex(p => +p.id === +action.id);
+                        if (productIndex !== -1) {
+                            const userAction = action.action;
+                            const productId = +action.id;
+                            const availableQuantity = insufficientProducts.find(p => p.id === productId).available;
+                            switch(userAction){
+                                case 'buyAvailable':
+                                    // Получаем доступное количество товара
+                                    // Обновляем количество через ProductManager
+                                    submitedFormData.products[productIndex].quantity = availableQuantity;
+                                    break;
 
-                if(formContainerId == "orderForm" && this.selectedBasketObj.selectedPayment == "liqpay"){
+                                case 'buyAndPreorder':
+                                    // Здесь можно добавить логику для обработки предзаказа
+                                    // Например, добавление продукта в список предзаказа
+                                    const productQuantity = submitedFormData.products[productIndex].quantity;
+                                    submitedFormData.products[productIndex].quantity = productQuantity;
+                                    submitedFormData.products[productIndex].preorder = submitedFormData.products[productIndex].quantity - availableQuantity;
+                                    break;
+                                case 'cancel':
+                                    // Удаляем продукт из ProductManager
+                                    submitedFormData.products = submitedFormData.products.filter(product => product.id !== productId);
+                                    this.productManager.deleteProduct(productId)
+                                    break;
+                                default:
+                                    submitedFormData.products[productIndex].quantity = availableQuantity;
+                                    break;
+                            }
+                        }
+                    });
+                    console.log("rerenderBasket")
+                    this.basket.renderBasket();
+                };
+
+
+                // Создание заказа после всех проверок и подтверждений
+                if (this.selectedBasketObj.selectedPayment == "liqpay") {
                     this.formData.description = `
                         ФОП Чикольба Т.Ю.
                         Час замовлення: ${this.getCurrentDateTime()}
                         Продукти: 
                         ${this.productManager.getProductsInfo()}
-                    `
-                    
+                    `;
+        
                     const body = this.formData;
-                    try{
-                        const {formHtml} = await this.fetchData(`payment/create/`, "POST", body);
-                        const liqpayFormContainer = document.getElementById('liqpayForm')
+                    try {
+                        const { formHtml } = await this.fetchData(`payment/create/`, "POST", body);
+                        const liqpayFormContainer = document.getElementById('liqpayForm');
                         liqpayFormContainer.innerHTML = formHtml;
                         liqpayFormContainer.querySelector('form').addEventListener("submit", (e) => {
                             e.preventDefault();
@@ -173,57 +209,42 @@ class Form {
                         console.log(err);
                         this.alert("err", "Неможливо зробити замовлення без обраного товару", animDuration);
                     }
-                    
                 }
-                
-
-                if (productsExistCondition && formContainerId == "orderForm") throw Error();   
-                try{
-                    const {message, orderNumber} = await this.fetchData(path, methodType, submitedFormData);
-                    if(formContainerId == "profileForm")
-                        this.alert("success", message, animDuration)
-                    if(formContainerId == "orderForm" && this.showSuccessModal)
+        
+                // Оформить заказ только один раз после всех подтверждений
+                if(!insufficientProducts.length > 0){
+                    const { orderNumber } = await this.fetchData(path, methodType, submitedFormData);
+                    if (this.showSuccessModal) {
                         this.showSuccessModal("Успіх! Замовлення прийнято",
                             `<p class="text-center">Супер, Ваше замовлення №${orderNumber} прийнято<br><br>Наш менеджер зв'яжеться із вами найближчим часом</p>`
-                        )
-                } catch (err){
-                    const {message} = err;
-                    this.alert("err", message, animDuration)
-                }    
-                
-                this.hideModalLoader();
-                if (clearCond) {
-                    this.clearForm(this.initObj);
-                    if(formContainerId === "orderForm"){
-                        const selectors = document.querySelectorAll("select");
-                        selectors.forEach((el) => el.value = null)
-                        this.userAuthDefaultData();
+                        );
+                        this.hideHoleModals();
                     }
-                    if (this.productManager !== null) {
-                        this.productManager.clearStorageProducts();
-                        this.productManager.clearProducts();
-                        this.basket.renderBasket();
+                    this.hideModalLoader();
+                    if (clearCond) {
+                        this.clearForm(this.initObj);
+                        const selectors = document.querySelectorAll("select");
+                        selectors.forEach((el) => el.value = null);
+                        this.userAuthDefaultData();
+                        if (this.productManager !== null) {
+                            this.productManager.clearStorageProducts();
+                            this.productManager.clearProducts();
+                            this.basket.renderBasket();
+                        }
                     }
                 }
+                
             } catch (err) {
-                this.userAuthDefaultData();
                 this.hideModalLoader();
                 console.log(err);
-                switch(true){
-                    case productsExistCondition && formContainerId == "orderForm":
-                        this.alert("err", "Неможливо зробити замовлення без обраного товару", animDuration);
-                        break;
-                    case emptyForm:
-                        this.alert("err", "Будь ласка заповніть поля форми", animDuration);
-                        break;
-                    default :
-                        this.alert("err", msgObj.errorMessage, animDuration);
-                        break; 
+                if (emptyForm) {
+                    this.alert("err", "Будь ласка заповніть поля форми", animDuration);
+                } else {
+                    this.alert("err", err.message, animDuration);
                 }
-
-
             }
         });
+    
     }
 
     async fetchData(path, methodType, data) {
@@ -379,11 +400,11 @@ class Form {
     }
 
     showModalLoader(){
-        document.getElementById("modal-content").style.display = "flex";
+        document.getElementById("basket-modal-content").style.display = "flex";
     }
 
     hideModalLoader(){
-        document.getElementById("modal-content").style.display = "none"
+        document.getElementById("basket-modal-content").style.display = "none"
     }
 
     showSuccessModal(title, content) {
@@ -421,7 +442,93 @@ class Form {
         })
         if(window.location.pathname == "/")
             return
-        setTimeout(() => window.location.href = "/", 200);
+        setTimeout(() => window.location.href = "/", 10000);
     }
+
+    showConfirmationModal(title, content) {
+        // Изменяем заголовок модалки
+        const modalTitle = document.getElementById('confirmationModalLabel');
+        modalTitle.textContent = title;
+    
+        // Изменяем содержимое модалки
+        const modalBody = document.getElementById('confirmationModalBody');
+        modalBody.innerHTML = content;
+        
+        // Открываем новую модалку
+        const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'), {
+            backdrop: false, // Модалка без закрытия кликом вне окна     
+            focus: false 
+        });
+        confirmationModal.show();
+        
+        return confirmationModal;
+    }
+
+    async showProductListModal(products) {
+        return new Promise((resolve) => {
+            // Создаем содержимое модального окна с продуктами
+            let modalContent = '<div class="confirmation-modal__product-list">';
+            products.forEach(product => {
+                modalContent += `
+                    <div class="confirmation-modal__product-item">
+                        <div class="confirmation-modal__product-image-wrap">
+                            <img src="${product.image}" alt="${product.name}" class="confirmation-modal__product-image"/>
+                        </div>
+                        <p>Товар: ${product.name}</p>
+                        <p>На складе доступно: ${product.available}</p>
+                        <p>Вы заказали: ${product.quantity}</p>
+                        <div class="confirmation-modal__product-action-wrap"> 
+                            <p>Выберите действие:</p>
+                            <select class="confirmation-modal__product-action" data-product-id="${product.id}">
+                                <option value="buyAvailable">Купить ${product.available}</option>
+                                <option value="buyAndPreorder">Купить ${product.available} и дозамовить ${product.quantity - product.available}</option>
+                                <option value="cancel">Отказаться от товара</option>
+                            </select>
+                        </div>
+                    </div>
+                `;
+                
+            });
+            
+        
+            // Показываем модальное окно
+            const modalInstance = this.showConfirmationModal("Недостатньо товарів на складі", modalContent);
+            const images = document.querySelectorAll(".confirmation-modal__product-image")
+            rerenderImage(images);
+
+            const modal = document.getElementById("confirmationModal");
+
+            // modal.closest()
+
+            modal.style.top = '0';
+
+            // Обработчик на кнопку подтверждения
+            if(document.getElementById("confirmChoices"))
+            document.getElementById("confirmChoices").addEventListener("click", () => {
+                const actions = Array.from(document.querySelectorAll(".confirmation-modal__product-action")).map(select => {
+                    return {
+                        id: select.dataset.productId,
+                        action: select.value
+                    };
+                });
+                this.hideModalLoader();
+                this.hideModalsAfterConfirmation();
+                modalInstance.hide();
+                resolve(actions);
+            });
+        });
+
+        
+    }
+
+    hideModalsAfterConfirmation(){
+        const modal = document.getElementById('confirmationModal');
+
+        this.bootstrap.Modal.getInstance(modal).hide();
+        const backdrops = document.querySelectorAll('.modal-backdrop');
+        if(backdrops.length > 2)
+            backdrops[0].remove();
+    }
+   
 
 }

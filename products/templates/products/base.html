@@ -376,6 +376,9 @@
 <div class="modal fade call__modal" id="call__modal" tabindex="-1" aria-labelledby="call__modal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content call__modal__content">
+        <div id="feedback-modal-content" class="loader-overlay-modal" style="display: none;">
+            <div class="loader"></div>
+        </div>
         <div class="modal-header">
             <h5 class="modal-title">Зворотній зв'язок</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -487,6 +490,7 @@
     <script type="module" src="{% static 'js/classes/product-manager.js' %}"></script>
     <script src="{% static 'js/classes/alert.js' %}"></script>
     <script src="{% static 'js/classes/form.js' %}"></script>
+    <script src="{% static 'js/header/feedback/feedback_form.js' %}"></script>
     <script type="module" src="{% static 'js/classes/basket.js' %}"></script>
     <script src="{% static 'js/common/index.js' %}"></script>
     <script src="{% static 'js/common/regexp.js' %}"></script>

@@ -150,7 +150,7 @@
                             <form class="order-choose__form" id="orderForm">
                                 
                                 <div class="order__input__content">
-                                    <div id="modal-content" class="loader-overlay-modal" style="display: none;">
+                                    <div id="basket-modal-content" class="loader-overlay-modal" style="display: none;">
                                         <div class="loader"></div>
                                     </div>
                                     <div class="order__input__wrap">
@@ -246,10 +246,28 @@
       </div>
     </div>
 </div>
+<div class="modal fade" id="confirmationModal" aria-labelledby="confirmationModalLabel" aria-hidden="true" style="z-index: 1200; margin-top: 150px;">
+    <div class="modal-dialog confirmation-modal__dialog">
+      <div class="modal-content confirmation-modal__content">
+        <div class="modal-header confirmation-modal__header">
+          <h5 class="modal-title confirmation-modal__title" id="confirmationModalLabel">Заголовок модалки</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        </div>
+        <div class="modal-body confirmation-modal__body" id="confirmationModalBody" tabindex="0">
+        </div>
+        <div class="modal-footer confirmation-modal__footer">
+          <button type="button" class="btn btn-primary text-center" id="confirmChoices" tabindex="2">Підтвердити</button>
+        </div>
+      </div>
+    </div>
+</div>
 <div class="d-none">
     <p data-user="status">{{user.is_authenticated|yesno:"1,0" }}</p>
     <p data-user="fullName">{{user.first_name}} {{user.last_name}}</p>
     <p data-user="clientPhone">{{user.phone_number}}</p>
     <p data-user="email">{{user.email}}</p>
     <p data-user="address">{{address.address_line1}}</p>
+    <p data-user="firstName">{{user.first_name}}</p>
+    <p data-user="lastName">{{user.last_name}}</p>
+    <p data-user="phone">{{user.phone_number}}</p>
 </div>

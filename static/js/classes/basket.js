@@ -85,8 +85,6 @@ export class Basket {
     }
 
     renderProduct(product) {
-        console.log(product, "inRenderProduct")
-
         const productDiv = document.createElement("div");
         productDiv.classList.add("cart__product");
         productDiv.setAttribute("id", `cart__product__${product.id}`);

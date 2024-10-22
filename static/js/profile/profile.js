@@ -1,5 +1,3 @@
-import { basket, productManager } from "./header/basket/basket.js";
-
 // for images ratio
 initImagesRation(PROFILE);
 // for products working
@@ -38,8 +36,7 @@ const patternsProfile = {
     ]
 };
 
-
-const formProfile = new Form(formDataProfile, patternsProfile, "Profile", Alert, productManager, basket);
+const formProfile = new ProfileForm(formDataProfile, patternsProfile, "Profile", Alert);
 
 formProfile.initForm("profileForm", {
     firstName: "first_name",
