@@ -35,8 +35,8 @@ class ProductRenderer {
     }
 
     mapProducts(arr) {
-        return arr.map(({ name, image, id, price, model }) =>
-            new Product(id, name, price, image, model)
+        return arr.map(({ name, image, id, price, model, storageQuantity }) =>
+            new Product(id, name, price, image, model, storageQuantity)
         );
     }
 

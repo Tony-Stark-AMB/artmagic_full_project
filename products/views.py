@@ -40,16 +40,21 @@ def get_filter_values(request, category_id):
 def add_to_cart(request):
     product_id = int(request.GET["id"])
     try:
-        product = Products.objects.filter(pk=product_id)
+        product = get_object_or_404(Products, pk=product_id)
+        print(product.image)
+        json_data = {
+            'id': product.id,
+            'name': product.name,
+            'image': f'{product.image}'  if not product.image else f'/media/{product.image}',
+            'price': product.price,
+            'model': product.model,
+            'storageQuantity': product.quantity,
+            'preorder': None
+        }
 
-        json_data = list(product.values('id', 'name', 'image', 'price', 'model'))[0]
-        if not json_data['image']:
-            json_data['image']
-        else:
-            json_data['image'] = "/media/" + json_data['image']
         return JsonResponse(json_data, safe=False)
     except Products.DoesNotExist:
-        return JsonResponse(status=404)
+        return JsonResponse({'error': 'Product not found'}, status=404)
 
 
 def parent_categories(request):

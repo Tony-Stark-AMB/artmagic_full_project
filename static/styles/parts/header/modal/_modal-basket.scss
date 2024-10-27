@@ -70,6 +70,13 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        &__wrap{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 120px;
+            width: 20%;
+        }
     }
     &__price{
         width: 30%;

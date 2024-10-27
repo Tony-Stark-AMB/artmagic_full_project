@@ -15,7 +15,6 @@ class Form {
         this.basket = basket ?? null;
         this.userData = userData ?? null;
         this.bootstrap = bootstrap ?? null;
-        this.bootstrap = bootstrap ?? null;
         this.initObj = obj;
         this.formName = formName;
         this.dataSubmitBtn = document.querySelector(`button[data-submit="btn_${formName}"]`);
@@ -128,64 +127,10 @@ class Form {
         
             const productsExistCondition = submitedFormData.products && submitedFormData.products.length === 0;
         
-            const insufficientProducts = [];
+
             try {
                 if (productsExistCondition || submitedFormData.products.length === 0) 
                     throw new Error("Відсутні продукти у кошику.");
-        
-                // Создаем массив продуктов, по которым на складе меньше, чем в заказе
-                for (const product of submitedFormData.products) {
-                    const { id, quantity } = product;
-                    const { storage_quantity } = await this.productManager.fetchStorageQuantity(id);
-                    if (quantity > storage_quantity && !product.hasOwnProperty("preorder")) {
-                        insufficientProducts.push({ ...product, available: storage_quantity });
-                    }
-                }
-
-                // Проверяем снова, если после действий нет доступных продуктов, отменяем заказ
-                if (submitedFormData.products.length === 0) 
-                    throw new Error("Відсутні продукти у кошику.");
-                                
-        
-                if (insufficientProducts.length > 0){
-                    // Показываем модальное окно с продуктами
-                    const userActions = await this.showProductListModal(insufficientProducts);
-                    // Обрабатываем действия пользователя
-                    userActions.forEach(action => {
-                        const productIndex = submitedFormData.products.findIndex(p => +p.id === +action.id);
-                        if (productIndex !== -1) {
-                            const userAction = action.action;
-                            const productId = +action.id;
-                            const availableQuantity = insufficientProducts.find(p => p.id === productId).available;
-                            switch(userAction){
-                                case 'buyAvailable':
-                                    // Получаем доступное количество товара
-                                    // Обновляем количество через ProductManager
-                                    submitedFormData.products[productIndex].quantity = availableQuantity;
-                                    break;
-
-                                case 'buyAndPreorder':
-                                    // Здесь можно добавить логику для обработки предзаказа
-                                    // Например, добавление продукта в список предзаказа
-                                    const productQuantity = submitedFormData.products[productIndex].quantity;
-                                    submitedFormData.products[productIndex].quantity = productQuantity;
-                                    submitedFormData.products[productIndex].preorder = submitedFormData.products[productIndex].quantity - availableQuantity;
-                                    break;
-                                case 'cancel':
-                                    // Удаляем продукт из ProductManager
-                                    submitedFormData.products = submitedFormData.products.filter(product => product.id !== productId);
-                                    this.productManager.deleteProduct(productId)
-                                    break;
-                                default:
-                                    submitedFormData.products[productIndex].quantity = availableQuantity;
-                                    break;
-                            }
-                        }
-                    });
-                    console.log("rerenderBasket")
-                    this.basket.renderBasket();
-                };
-
 
                 // Создание заказа после всех проверок и подтверждений
                 if (this.selectedBasketObj.selectedPayment == "liqpay") {
@@ -210,30 +155,28 @@ class Form {
                         this.alert("err", "Неможливо зробити замовлення без обраного товару", animDuration);
                     }
                 }
-        
-                // Оформить заказ только один раз после всех подтверждений
-                if(!insufficientProducts.length > 0){
-                    const { orderNumber } = await this.fetchData(path, methodType, submitedFormData);
-                    if (this.showSuccessModal) {
-                        this.showSuccessModal("Успіх! Замовлення прийнято",
-                            `<p class="text-center">Супер, Ваше замовлення №${orderNumber} прийнято<br><br>Наш менеджер зв'яжеться із вами найближчим часом</p>`
-                        );
-                        this.hideHoleModals();
-                    }
-                    this.hideModalLoader();
-                    if (clearCond) {
-                        this.clearForm(this.initObj);
-                        const selectors = document.querySelectorAll("select");
-                        selectors.forEach((el) => el.value = null);
-                        this.userAuthDefaultData();
-                        if (this.productManager !== null) {
-                            this.productManager.clearStorageProducts();
-                            this.productManager.clearProducts();
-                            this.basket.renderBasket();
-                        }
+
+                const { orderNumber } = await this.fetchData(path, methodType, submitedFormData);
+                if (this.showSuccessModal) {
+                    this.showSuccessModal("Успіх! Замовлення прийнято",
+                        `<p class="text-center">Супер, Ваше замовлення №${orderNumber} прийнято<br><br>Наш менеджер зв'яжеться із вами найближчим часом</p>`
+                    );
+                }
+                this.hideHoleModals();
+                this.hideModalLoader();
+                if (clearCond) {
+                    this.clearForm(this.initObj);
+                    const selectors = document.querySelectorAll("select");
+                    selectors.forEach((el) => el.value = null);
+                    this.userAuthDefaultData();
+                    if (this.productManager !== null) {
+                        this.productManager.clearStorageProducts();
+                        this.productManager.clearProducts();
+                        this.basket.renderBasket();
                     }
                 }
-                
+
+
             } catch (err) {
                 this.hideModalLoader();
                 console.log(err);
@@ -465,24 +408,33 @@ class Form {
     }
 
     async showProductListModal(products) {
+        
         return new Promise((resolve) => {
+
+            
+
             // Создаем содержимое модального окна с продуктами
             let modalContent = '<div class="confirmation-modal__product-list">';
             products.forEach(product => {
+                const showOptions = product.available !== 0 ?
+                `<option value="buyAvailable">Купити ${product.available}</option>
+                <option value="buyAndPreorder">Купити ${product.available} й дозамовити ${product.quantity - product.available}</option>
+                <option value="cancel">Відмовитись від товару</option>`
+                :  `<option value="buyAndPreorder">Замовити ${product.quantity}</option>
+                <option value="cancel">Відмовитись від товару</option>`
                 modalContent += `
                     <div class="confirmation-modal__product-item">
                         <div class="confirmation-modal__product-image-wrap">
                             <img src="${product.image}" alt="${product.name}" class="confirmation-modal__product-image"/>
                         </div>
                         <p>Товар: ${product.name}</p>
-                        <p>На складе доступно: ${product.available}</p>
-                        <p>Вы заказали: ${product.quantity}</p>
+                        <p>Артикул: ${product.model}</p>
+                        <p>На складі доступно: ${product.available}</p>
+                        <p>Ви замовили: ${product.quantity}</p>
                         <div class="confirmation-modal__product-action-wrap"> 
-                            <p>Выберите действие:</p>
+                            <p>Оберіть дію:</p>
                             <select class="confirmation-modal__product-action" data-product-id="${product.id}">
-                                <option value="buyAvailable">Купить ${product.available}</option>
-                                <option value="buyAndPreorder">Купить ${product.available} и дозамовить ${product.quantity - product.available}</option>
-                                <option value="cancel">Отказаться от товара</option>
+                                `+ showOptions + `
                             </select>
                         </div>
                     </div>
@@ -496,11 +448,15 @@ class Form {
             const images = document.querySelectorAll(".confirmation-modal__product-image")
             rerenderImage(images);
 
-            const modal = document.getElementById("confirmationModal");
+            const modalElement = document.getElementById("confirmationModal");
 
-            // modal.closest()
+            modalElement.addEventListener('hidden.bs.modal', () => {
+                this.hideModalLoader();
+                this.basketModalCarousel.enable();
+                if(this.basketModalCarousel) this.basketModalCarousel.slideTo(0);
+            });
 
-            modal.style.top = '0';
+            modalElement.style.top = '0';
 
             // Обработчик на кнопку подтверждения
             if(document.getElementById("confirmChoices"))
@@ -514,6 +470,11 @@ class Form {
                 this.hideModalLoader();
                 this.hideModalsAfterConfirmation();
                 modalInstance.hide();
+                this.basketModalCarousel.enable();
+                const footerBasketModalBtns = document.querySelector(".modal-footer__btns").children;
+                Array.from(footerBasketModalBtns).forEach(b => b.classList.remove('active'));
+                footerBasketModalBtns[0].classList.add('active');
+                this.basket.renderBasket();
                 resolve(actions);
             });
         });

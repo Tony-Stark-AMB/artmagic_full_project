@@ -620,6 +620,13 @@
   justify-content: space-between;
   align-items: center;
 }
+.cart__product__btns__wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 120px;
+  width: 20%;
+}
 .cart__product__price {
   width: 30%;
   text-align: center;
