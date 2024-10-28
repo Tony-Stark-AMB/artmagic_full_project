@@ -4,7 +4,7 @@ from mptt.admin import MPTTModelAdmin
 from django.utils.safestring import mark_safe
 
 from .models import Products, Category, ProductFilter, FilterCategory, FilterValue, Manufacturer, ProductImage, ProductToCategory, FilterGroup, Stocks
-from .forms import ProductFilterForm
+from .forms import ProductFilterForm, ProductToCategoryForm
 class HiddenModelAdmin(admin.ModelAdmin):
     def get_model_perms(self, request):
         return {}
@@ -115,10 +115,14 @@ class ProductImageInline(admin.TabularInline):
 
 class ProductToCategoryInline(admin.TabularInline):
     model = ProductToCategory
-    verbose_name = "Категорію"
+    form = ProductToCategoryForm
+    verbose_name = "Категорія"
     verbose_name_plural = "Додати категорію"
     extra = 1
 
+    class Media:
+            js = ('js/filter_dynamic.js',)  # Подключаем файл с вашим JS
+            
 @admin.register(Products)
 class ProductsAdmin(admin.ModelAdmin):
     inlines = [ProductToCategoryInline, ProductFilterInline, ProductImageInline]

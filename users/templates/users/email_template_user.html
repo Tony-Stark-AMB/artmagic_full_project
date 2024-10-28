@@ -93,6 +93,33 @@
                 <strong>Итого: {{ total_price }} грн.</strong>
             </div>
         </div>
+        <h2>Товари за попереднім замовленням</h2>
+        <div class="items">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Товар</th>
+                        <th>Артикул</th>
+                        <th>Кількість</th>
+                        <th>Ціна</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in preorder_product %}
+                    <tr>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.model }}</td>
+                        <td>{{ product.preorder }}</td>
+                        <td>{{ product.price }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="totals">
+                <strong>Итого: {{ preorder_total_price }} грн.</strong>
+            </div>
+        </div>
+
         <div class="footer">
             З повагою,<br>
             Артмагия

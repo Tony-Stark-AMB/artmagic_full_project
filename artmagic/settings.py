@@ -128,13 +128,13 @@ NOVA_POSHTA_API_KEY = os.getenv('NOVA_POSHTA_API_KEY')
 LIQPAY_PUBLIC_KEY = os.getenv('LIQPAY_PUBLIC_KEY')
 LIQPAY_PRIVATE_KEY = os.getenv('LIQPAY_PRIVATE_KEY')
 
-# Настройки для Celery
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'Europe/Kiev'
+# # Настройки для Celery
+# CELERY_BROKER_URL = 'redis://localhost:6379/0'
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+# CELERY_ACCEPT_CONTENT = ['json']
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_RESULT_SERIALIZER = 'json'
+# CELERY_TIMEZONE = 'Europe/Kiev'
 
 
 
@@ -164,10 +164,11 @@ AUTH_USER_MODEL = 'users.CustomUser'
 # LOGIN_URL = '/user/login/'
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -212,7 +213,7 @@ CORS_ALLOW_METHODS = (
     "PUT",
 )
 
-CORS_ORIGIN_ALLOW_ALL=True
+# CORS_ORIGIN_ALLOW_ALL=True
 
 
 CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS').split(',')

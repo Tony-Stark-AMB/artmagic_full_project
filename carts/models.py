@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, transaction
 from products.models import Products
 from users.models import CustomUser
 
@@ -48,8 +48,7 @@ class Order(models.Model):
         null=True,
         verbose_name='Користувач'  # User
     )
-    order_number = models.CharField(
-        max_length=20,
+    order_number = models.PositiveIntegerField(
         unique=True,
         editable=False,
         verbose_name='№ замовлення'  # Order Number
@@ -99,9 +98,20 @@ class Order(models.Model):
             self.order_number = self.generate_order_number()
         super(Order, self).save(*args, **kwargs)
 
-    def generate_order_number(self):
-        last_order = Order.objects.all().order_by('id').last()
-        if not last_order:
-            return 'ORDER00001'
-        order_id = last_order.id + 1
-        return f'ORDER{str(order_id).zfill(5)}'
+    @classmethod
+    def generate_order_number(cls):
+        with transaction.atomic():
+            last_order = cls.objects.select_for_update().order_by('-order_number').first()
+            return 1 if last_order is None else last_order.order_number + 1
+        
+
+class PreOrder(Order):
+
+    quantity = models.PositiveIntegerField(
+        verbose_name='Кількість'  # Quantity
+    )
+
+    class Meta:
+        verbose_name = 'Передзамовлення'  # Singular name
+        verbose_name_plural = 'Передзамовлення'  # Plural name
+        ordering = ['-created_at']

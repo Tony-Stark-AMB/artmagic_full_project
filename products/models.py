@@ -172,14 +172,14 @@ class FilterValue(models.Model):
 
 class Products(models.Model):
     name = models.CharField(
-        max_length=299, 
-        unique=True, 
+        max_length=299,
         verbose_name='Назва'
     )
     description = CKEditor5Field(
         null=True, 
         blank=True, 
-        verbose_name='Опис'
+        verbose_name='Опис',
+        config_name='extends'
     )
     model = models.CharField(
         max_length=255, 
@@ -238,13 +238,6 @@ class Products(models.Model):
         decimal_places=2, 
         verbose_name='Знижка в %'
     )
-
-    def save(self, *args, **kwargs):
-        # Проверяем, если slug пустой, то генерируем его автоматически
-        if not self.slug:
-            self.slug = slugify(unidecode(self.name))  # Генерация slug из названия
-        print(f'Saving product: {self.name}, slug: {self.slug}')
-        super(Products, self).save(*args, **kwargs)
 
 
     class Meta:

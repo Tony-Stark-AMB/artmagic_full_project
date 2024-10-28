@@ -1,4 +1,4 @@
-import random
+from django.db.models import Max
 from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
@@ -7,8 +7,10 @@ from carts.models import Order
 from django.views import View
 from django.core.mail import EmailMessage
 from .decryption_ref import get_city_name, get_area_name, get_department_name
+from decimal import Decimal
 import json
 import logging
+
 
 
 logger = logging.getLogger(__name__)
@@ -36,10 +38,10 @@ class ProcessOrderView(View):
             data = self.parse_request_data(request)
             delivery_method, address = self.get_delivery_info(data)
             self.validate_required_fields(data)
-            order_number = self.generate_order_number()
             user = request.user if request.user.is_authenticated else None
             
-            order = self.create_order(data, order_number, user, address)
+            order = self.create_order(data, user, address)
+            order_number = order.order_number
             context = self.prepare_email_context(data, delivery_method, order_number)
 
             self.send_email(self.email_owner, context, f"Замовлення №: {order_number}", 'carts/email_template.html')
@@ -85,15 +87,8 @@ class ProcessOrderView(View):
         if not all(data.get(field) for field in required_fields):
             raise ValueError('Missing required fields in data')
 
-    def generate_order_number(self):
-        while True:
-            order_number = str(random.randint(10000000, 99999999))
-            if not Order.objects.filter(order_number=order_number).exists():
-                return order_number
-
-    def create_order(self, data, order_number, user, address):
+    def create_order(self, data, user, address):
         return Order.objects.create(
-            order_number=order_number,
             user=user,
             name=data.get('name'),
             phone=data.get('phone'),
@@ -105,13 +100,29 @@ class ProcessOrderView(View):
         )
 
     def prepare_email_context(self, data, delivery_method, order_number):
+        prod_pre = data.get('products')
+        for count, item in enumerate(prod_pre):
+            if count % 2 == 0:  # Проверка на чётность
+                item['preorder'] = 5
+
+        preorder_list = []
+        preorder_total_price = Decimal(0)
+        for item in prod_pre:
+            if 'preorder' in item:
+                preorder_list.append(item)
+                price = Decimal(item['price'])  
+                preorder_total_price += price * int(item['preorder'])
+
+        preorder_total_price = preorder_total_price.quantize(Decimal('0.00'))    
         return {
             'name': data.get('name'),
             'phone': data.get('phone'),
             'email': data.get('email'),
             'payment': self.payment_options.get(data.get('selectedPayment', ""), ""),
             'address': data.get('address', ''),
-            'products': data.get('products'),
+            'products': prod_pre,
+            'preorder_product': preorder_list,
+            'preorder_total_price': preorder_total_price,
             'total_price': data.get('amount'),
             'delivery_method': delivery_method,
             'order_number': order_number

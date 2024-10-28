@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from carts.models import Cart, Order
+from carts.models import PreOrder, Order
 
-
+admin.site.register(PreOrder)
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('order_number', 'user', 'name', 'phone', 'email', 'payment', 'total_price', 'created_at', 'display_products')
