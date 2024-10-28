@@ -14,6 +14,7 @@ export class Basket {
             this.productManager.loadProductsFromStorage();
             this.renderBasket()
         })
+        this.rerenderBasketCalled = false;
     }
 
     initialize() {
@@ -28,7 +29,7 @@ export class Basket {
             btn.addEventListener("click", async (e) => {
                 const id = +e.target.closest(`div.product-item`).getAttribute("id");
                 const product = await this.productManager.fetchNewProduct(id);
-                this.productManager.addProduct(product);
+                await this.productManager.addProduct(product)
                 this.renderBasket();
                 this.animateBadge();
             });
@@ -53,11 +54,14 @@ export class Basket {
         this.pageName = pageName;
     }
 
+
+
     renderBasket() {
-        // Очистка контейнера перед новым рендером
         this.productsContainer.innerHTML = '';
 
-        // const products = this.productManager.getStorageProducts();
+
+
+
 
         window.addEventListener("DOMContentLoaded", () => {
             this.productManager.setProducts(this.productManager.getStorageProducts());
@@ -65,9 +69,9 @@ export class Basket {
 
         const products = this.productManager.getProducts();
         
-        if (products.length === 0) {
+        if (products.length === 0) 
             this.productsContainer.innerHTML = '<p>Кошик порожній</p>';
-        } else {
+        else {
             products.forEach((product) => {
                 const productHTML = this.renderProduct(product);
                 this.productsContainer.appendChild(productHTML);
@@ -87,10 +91,38 @@ export class Basket {
     }
 
     renderProduct(product) {
-
         const productDiv = document.createElement("div");
         productDiv.classList.add("cart__product");
         productDiv.setAttribute("id", `cart__product__${product.id}`);
+    
+        // Определяем доступное количество и количество для предзаказа
+        const availableQuantity = Math.min(product.quantity, product.storageQuantity);
+        const preorderQuantity = product.quantity + product.preorder > product.storageQuantity;
+    
+        // Проверяем, нужно ли отображать две пары кнопок
+        const showPreorder = preorderQuantity;
+    
+        let productBtns = `
+            <div class="cart__product__btns__wrap">
+                <p class="text-bold text-center с17">В наявності</p>
+                <div class="cart__product__btns">
+                    <button class="btns__btn" data-id="${product.id}" data-action="decrease">-</button>
+                    <input class="btns__count" data-action="quantity" type="text" value="${availableQuantity}" />
+                    <button class="btns__btn" data-id="${product.id}" data-action="increase">+</button>
+                </div>`;
+    
+        if (showPreorder) {
+            productBtns += `
+                <p class="c11 text-bold text-center">Замовити</p>
+                <div class="cart__product__btns">
+                    <button class="btns__btn" data-id="${product.id}" data-action="decrease-preorder">-</button>
+                    <input class="btns__count с11" data-action="quantity-preorder" type="text" value="${product.preorder}" />
+                    <button class="btns__btn" data-id="${product.id}" data-action="increase-preorder">+</button>
+                </div>`;
+        }
+    
+        productBtns += `</div>`;
+    
         productDiv.innerHTML = `
             <div class="cart__product__overlook">
                 <div class="overlook__img__container">
@@ -102,13 +134,11 @@ export class Basket {
                     <p class="overlook__name">${product.name}</p>
                     <p class="overlook__name">ціна: <b>${product.price}</b> грн</p>
                 </div>
-                <div class="cart__product__btns">
-                    <button class="btns__btn" data-id="${product.id}" data-action="decrease">-</button>
-                    <input class="btns__count" data-action="quantity" type="text" id="btn_count_${product.id}" value="${product.quantity}" />
-                    <button class="btns__btn" data-id="${product.id}" data-action="increase">+</button>
+                ${productBtns}
+                <div class="cart__product__price">
+                    ${this.productManager.priceOutputFn(product.price * product.quantity, 2)} грн
                 </div>
-                <div class="cart__product__price">${this.productManager.priceOutputFn(product.price * product.quantity, 2)} грн</div>
-                <button class="cart__product__garbage__wrap"  data-id="${product.id}" data-action="remove">
+                <button class="cart__product__garbage__wrap" data-id="${product.id}" data-action="remove">
                     <svg class="cart__product__garbage" viewBox="0 0 448 512" fill="currentColor">
                         <path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320
                             32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32
@@ -120,42 +150,54 @@ export class Basket {
                     </svg>
                 </button>
             </div>
-            
         `;
-
-
-
+    
+        // Обработчики событий для управления количеством товара и предзаказа
+        this.setupProductEventListeners(product, productDiv, showPreorder);
+    
+        return productDiv;
+    }
+    
+    // Метод для настройки обработчиков событий
+    setupProductEventListeners(product, productDiv, showPreorder) {
+        // Обработчик увеличения количества
         productDiv.querySelector(`[data-action="increase"]`).addEventListener("click", () => {
             product.addOne();
-            if (product.quantity < 0) {
-                product.quantity = 0;
-            }
-            this.renderBasket();
+            this.renderBasket(); // Обновляем корзину
         });
-
+    
+        // Обработчик уменьшения количества
         productDiv.querySelector(`[data-action="decrease"]`).addEventListener("click", () => {
             product.removeOne();
-            if (product.quantity < 0) {
-                product.quantity = 0;
-            }
-            this.renderBasket();
+            this.renderBasket(); // Обновляем корзину
         });
-
+    
+        // Обработчик удаления продукта
         productDiv.querySelector(`[data-action="remove"]`).addEventListener("click", () => {
             this.productManager.deleteProduct(product.id);
-            this.renderBasket();
+            this.renderBasket(); // Обновляем корзину
         });
-        productDiv.querySelector(`[data-action="quantity"]`).addEventListener("input", (e) => {
-            let value = parseInt(e.target.value, 10);
-            if (isNaN(value) || value < 0) {
-                value = 0; // Устанавливаем значение 0, если введено некорректное значение
-            }
-            e.target.value = value;
-            this.productManager.setProductQuantity(product.id, value);
-            this.updateProductQuantityAndPrice(product.id, productDiv.querySelector(`[data-action="quantity"]`), productDiv.querySelector(".cart__product__price"))
-        });
-        return productDiv;        
+    
+        // Обработчики для предзаказа, если нужно
+        if (showPreorder) {
+            productDiv.querySelector(`[data-action="increase-preorder"]`).addEventListener("click", () => {
+                product.preorder += 1; // Увеличиваем количество предзаказа
+                this.renderBasket();
+            });
+    
+            productDiv.querySelector(`[data-action="decrease-preorder"]`).addEventListener("click", () => {
+                if (product.preorder > 0) {
+                    product.preorder -= 1; // Уменьшаем количество предзаказа, если больше нуля
+                    this.renderBasket();
+                }
+            });
+        }
     }
+    
+    
+    
+
+    
 
     updateProductQuantityAndPrice(productId, quantityInput, totalPriceElement) {
         const product = this.productManager.existProduct(productId);
@@ -176,8 +218,6 @@ export class Basket {
             this.badge.classList.remove("animated");
         }, { once: true });
     }
-
-
 
     
 }

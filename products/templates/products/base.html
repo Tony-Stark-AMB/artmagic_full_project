@@ -6,6 +6,10 @@
 <head>
    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/artmagic_favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/artmagic_favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assetc/artmagic_favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'assets/artmagic_favicon/site.webmanifest' %}">
     <link rel="stylesheet" href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'node_modules/@popperjs/core/lib/popper.js' %}">
     <link rel="stylesheet" href="{% static 'node_modules/@popperjs/core/dist/esm/popper.js' %}">
@@ -172,7 +176,7 @@
             </div>
         </header>
         <div class="divider"></div>
-        {% if request.path == '/' or request.path == '/user/profile/' %}
+        {% if request.path == '/' or request.path == '/user/profile/' or request.path == '/main/about/' or request.path == '/main/contacts/' or request.path == '/main/payment-delivery/' or request.path == '/main/safeguards/' or request.path == '/main/return-agoods/' %}
         {% else %}
             <nav class="breadcrumb-nav-wrap" aria-label="breadcrumb">
                 <p></p>
@@ -364,6 +368,9 @@
 <div class="modal fade call__modal" id="call__modal" tabindex="-1" aria-labelledby="call__modal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content call__modal__content">
+        <div id="feedback-modal-content" class="loader-overlay-modal" style="display: none;">
+            <div class="loader"></div>
+        </div>
         <div class="modal-header">
             <h5 class="modal-title">Зворотній зв'язок</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -475,6 +482,7 @@
     <script type="module" src="{% static 'js/classes/product-manager.js' %}"></script>
     <script src="{% static 'js/classes/alert.js' %}"></script>
     <script src="{% static 'js/classes/form.js' %}"></script>
+    <script src="{% static 'js/header/feedback/feedback_form.js' %}"></script>
     <script type="module" src="{% static 'js/classes/basket.js' %}"></script>
     <script src="{% static 'js/common/index.js' %}"></script>
     <script src="{% static 'js/common/regexp.js' %}"></script>
@@ -495,7 +503,6 @@
         if(loginForm){
             loginForm.addEventListener('submit', function (e) {
                 e.preventDefault();
-                console.log("here login")
                 const formData = new FormData(loginForm);
                 fetch('{% url "user:login" %}', {
                     method: 'POST',
@@ -507,12 +514,12 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.redirect) {
-                        window.location.href = data.redirect;
+                        Alert("success", "Вхід виконано успішно", 2000);
+                        setTimeout(() => window.location.href = data.redirect, 2000);
                     } else {
                         // Обработка ошибок и отображение сообщений
                         const errorsContainer = document.getElementById('login-form-errors');
                         errorsContainer.innerHTML = '';
-                        console.log(data.errors)
                         let errText = ""
                         for (const [key, val] of Object.entries(data.errors)) {
                             errText += `${val}\n\n`
@@ -528,7 +535,6 @@
         if(registerForm){
             registerForm.addEventListener('submit', function (e) {
                 e.preventDefault();
-                console.log("here registr")
                 const formData = new FormData(registerForm);
                 fetch('{% url "user:register" %}', {
                     method: 'POST',
@@ -540,22 +546,17 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.redirect) {
-                        window.location.href = data.redirect;
+                        Alert("success", "Ви успішно зареєстровані", 2000);
+                        setTimeout(() => window.location.href = data.redirect, 2000);
                     } else {
                         // Обработка ошибок и отображение сообщений
-                        if (data.redirect) {
-                        window.location.href = data.redirect;
-                        } else {
-                            // Обработка ошибок и отображение сообщений
-                            const errorsContainer = document.getElementById('login-form-errors');
-                            errorsContainer.innerHTML = '';
-                            console.log(data.errors)
-                            let errText = ""
-                            for (const [key, val] of Object.entries(data.errors)) {
-                                errText += `${val}\n`;
-                            }
-                            Alert("err", errText, 5000)
+                        const errorsContainer = document.getElementById('login-form-errors');
+                        errorsContainer.innerHTML = '';
+                        let errText = ""
+                        for (const [key, val] of Object.entries(data.errors)) {
+                            errText += `${val}\n`;
                         }
+                        Alert("err", errText, 5000)
                     }
                 });
             }); 

@@ -40,7 +40,7 @@ new Swiper(".login__registration", {
   modules: [Navigation]
 });
 
-const basketModalCarousel = new Swiper(".basket__modal__swiper", {
+export const basketModalCarousel = new Swiper(".basket__modal__swiper", {
   speed: 1000,
   allowTouchMove: false,
   noSwiping: false,
@@ -59,7 +59,6 @@ Array.from(footerBasketModalBtns).forEach((btn, i) => btn.addEventListener("clic
   Array.from(footerBasketModalBtns).forEach(b => b.classList.remove('active'));
 
   // Добавляем класс 'active' к выбранной кнопке
-  console.log(btn)
   btn.classList.add('active');
   switch(i){
     case 1:

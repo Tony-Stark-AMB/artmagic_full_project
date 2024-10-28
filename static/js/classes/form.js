@@ -9,11 +9,12 @@ class Form {
                 }
             ])
         );
-        const [productManager, basket, userData] = args;
+        const [productManager, basket, userData, bootstrap] = args;
         this.productManager = productManager ?? null;
         this.alert = alertCl ?? null;
         this.basket = basket ?? null;
         this.userData = userData ?? null;
+        this.bootstrap = bootstrap ?? null;
         this.initObj = obj;
         this.formName = formName;
         this.dataSubmitBtn = document.querySelector(`button[data-submit="btn_${formName}"]`);
@@ -50,8 +51,7 @@ class Form {
     triggerInput(fieldName) {
         if(fieldName == "description" || fieldName == "amount")
             return;
-        const errorElem = this.errorMessageElement(fieldName);
-
+        const errorElem = this.errorMessageElement(fieldName);  
         this.formData[fieldName].value = this.getField(fieldName).value;
         return !this.validateField(fieldName, errorElem);
     }
@@ -91,72 +91,60 @@ class Form {
             this.triggerInput(field.dataset.field)
         }));
 
-        switch(formContainerId){
-            case "profileForm":
-                const btnsWrappers = Array.from(document.querySelectorAll(".profile-page__user-info__btns-wrap")).map((btnsWrapper) => btnsWrapper.children);
-                btnsWrappers.forEach(([btnEdit, btnClear]) => {
-                    btnEdit.addEventListener("click", () => this.editField(btnEdit.dataset.edit));
-                    btnClear.addEventListener("click", () => this.clearField(btnClear.dataset.clear));
-                })
-                break;
-            case "orderForm":
-                const areaInputWrap = this.orderInputWrap("area");
 
-                this.updateAreaOptions(areaInputWrap);
 
-                const cityInputWrap = this.orderInputWrap("city");
-                const departmentInputWrap = this.orderInputWrap("department");
+        const areaInputWrap = this.orderInputWrap("area");
 
-                this.fetchSomeOptions(areaInputWrap, cityInputWrap, "get_cities", "region_ref", "-- Оберіть Місто --", "cities", undefined, this.areasDataWithNullField);
-                this.fetchSomeOptions(cityInputWrap, departmentInputWrap, "get_branches_and_postomats", "city_ref", "-- Оберіть відділення", "branches", this.filterData)
-                break;
+        this.updateAreaOptions(areaInputWrap);
+
+        const cityInputWrap = this.orderInputWrap("city");
+        const departmentInputWrap = this.orderInputWrap("department");
+
+        this.fetchSomeOptions(areaInputWrap, cityInputWrap, "get_cities", "region_ref", "-- Оберіть Місто --", "cities", undefined, this.areasDataWithNullField);
+        this.fetchSomeOptions(cityInputWrap, departmentInputWrap, "get_branches_and_postomats", "city_ref", "-- Оберіть відділення", "branches", this.filterData)
             
-        };
-
-        
-        
+        // Добавляем чуток для новой модалки для заказа (обработка событий)
+        if(this.bootstrap){
+            const successModalBtnClose = document.querySelector("#successModal .btn-close");
+            successModalBtnClose.addEventListener("click", () => this.hideHoleModals());
+            const actionButton = document.querySelector('#successModalBtn');
+            actionButton.addEventListener("click", () => this.hideHoleModals());
+        }
 
 
         this.dataSubmitBtn.addEventListener("click", async (e) => {
             e.preventDefault();
             this.showModalLoader();
-           
+        
             let emptyForm = false;
             Object.keys(this.formData).forEach(key => this.triggerInput(key));
-            
-            const submitedFormData = {...this.mapedFormData(obj), ...this.selectedBasketObj};
-            if(formContainerId == "orderForm"){
-                submitedFormData.amount = this.productManager.allProductsTotalPrice(this.productManager.priceOutputFn, 2);
-            }
-            if (this.productManager !== null) submitedFormData.products = 
-                this.productManager.filterProductsByQuantity(this.productManager.getProducts());
-            const productsExistCondition = 
-                submitedFormData.products && submitedFormData.products.length === 0;
+        
+            const submitedFormData = { ...this.mapedFormData(obj), ...this.selectedBasketObj };
+            submitedFormData.amount = this.productManager.allProductsTotalPrice(this.productManager.priceOutputFn, 2);
+        
+            if (this.productManager !== null) 
+                submitedFormData.products = this.productManager.filterProductsByQuantity(this.productManager.getProducts());
+        
+            const productsExistCondition = submitedFormData.products && submitedFormData.products.length === 0;
+        
+
             try {
-                if(formContainerId !== "orderForm"){
-                    Object.keys(this.formData).map(key => {
-                        if(this.formData[key].value === ""){
-                            emptyForm = true;
-                            throw Error();
-                        }
-                    });
-                    
-                }
+                if (productsExistCondition || submitedFormData.products.length === 0) 
+                    throw new Error("Відсутні продукти у кошику.");
 
-                
-
-                if(formContainerId == "orderForm" && this.selectedBasketObj.selectedPayment == "liqpay"){
+                // Создание заказа после всех проверок и подтверждений
+                if (this.selectedBasketObj.selectedPayment == "liqpay") {
                     this.formData.description = `
                         ФОП Чикольба Т.Ю.
                         Час замовлення: ${this.getCurrentDateTime()}
                         Продукти: 
                         ${this.productManager.getProductsInfo()}
-                    `
-                    
+                    `;
+        
                     const body = this.formData;
-                    try{
-                        const {formHtml} = await this.fetchData(`payment/create/`, "POST", body);
-                        const liqpayFormContainer = document.getElementById('liqpayForm')
+                    try {
+                        const { formHtml } = await this.fetchData(`payment/create/`, "POST", body);
+                        const liqpayFormContainer = document.getElementById('liqpayForm');
                         liqpayFormContainer.innerHTML = formHtml;
                         liqpayFormContainer.querySelector('form').addEventListener("submit", (e) => {
                             e.preventDefault();
@@ -166,47 +154,40 @@ class Form {
                         console.log(err);
                         this.alert("err", "Неможливо зробити замовлення без обраного товару", animDuration);
                     }
-                    
                 }
-                
 
-                if (productsExistCondition && formContainerId == "orderForm") throw Error();           
-                console.log(Object.entries(this.formData))
-                await this.fetchData(path, methodType, submitedFormData);
-                this.alert("success", msgObj.successMessage, animDuration);
+                const { orderNumber } = await this.fetchData(path, methodType, submitedFormData);
+                if (this.showSuccessModal) {
+                    this.showSuccessModal("Успіх! Замовлення прийнято",
+                        `<p class="text-center">Супер, Ваше замовлення №${orderNumber} прийнято<br><br>Наш менеджер зв'яжеться із вами найближчим часом</p>`
+                    );
+                }
+                this.hideHoleModals();
                 this.hideModalLoader();
                 if (clearCond) {
                     this.clearForm(this.initObj);
-                    if(formContainerId === "orderForm"){
-                        const selectors = document.querySelectorAll("select");
-                        selectors.forEach((el) => el.value = null)
-                        this.userAuthDefaultData();
-                    }
+                    const selectors = document.querySelectorAll("select");
+                    selectors.forEach((el) => el.value = null);
+                    this.userAuthDefaultData();
                     if (this.productManager !== null) {
                         this.productManager.clearStorageProducts();
                         this.productManager.clearProducts();
                         this.basket.renderBasket();
                     }
                 }
+
+
             } catch (err) {
-                this.userAuthDefaultData();
                 this.hideModalLoader();
                 console.log(err);
-                switch(true){
-                    case productsExistCondition && formContainerId == "orderForm":
-                        this.alert("err", "Неможливо зробити замовлення без обраного товару", animDuration);
-                        break;
-                    case emptyForm:
-                        this.alert("err", "Будь ласка заповніть поля форми", animDuration);
-                        break;
-                    default :
-                        this.alert("err", msgObj.errorMessage, animDuration);
-                        break; 
+                if (emptyForm) {
+                    this.alert("err", "Будь ласка заповніть поля форми", animDuration);
+                } else {
+                    this.alert("err", err.message, animDuration);
                 }
-
-
             }
         });
+    
     }
 
     async fetchData(path, methodType, data) {
@@ -362,11 +343,153 @@ class Form {
     }
 
     showModalLoader(){
-        document.getElementById("modal-content").style.display = "flex";
+        document.getElementById("basket-modal-content").style.display = "flex";
     }
 
     hideModalLoader(){
-        document.getElementById("modal-content").style.display = "none"
+        document.getElementById("basket-modal-content").style.display = "none"
     }
-}
 
+    showSuccessModal(title, content) {
+        // Изменяем заголовок модалки
+        const modalTitle = document.getElementById('successModalLabel');
+        modalTitle.textContent = title;
+    
+        // Изменяем содержимое модалки
+        const modalBody = document.getElementById('successModalBody');
+        modalBody.innerHTML = content;
+    
+        // Открываем новую модалку
+        const successModal = new bootstrap.Modal(document.getElementById('successModal'), {
+            backdrop: false, // Модалка без закрытия кликом вне окна 
+            focus: false  
+        });
+        successModal.show();
+        
+
+
+        
+        
+    }
+
+    hideHoleModals(){
+        document.querySelectorAll('.modal.show').forEach(modal => {
+            this.bootstrap.Modal.getInstance(modal).hide();
+        });
+        const backdrops = document.querySelectorAll('.modal-backdrop');
+        backdrops.forEach((backdrop) => {
+            if (backdrop){
+                backdrop.remove(); // Remove the backdrop element from the DOM
+            }
+                
+        })
+        if(window.location.pathname == "/")
+            return
+        setTimeout(() => window.location.href = "/", 10000);
+    }
+
+    showConfirmationModal(title, content) {
+        // Изменяем заголовок модалки
+        const modalTitle = document.getElementById('confirmationModalLabel');
+        modalTitle.textContent = title;
+    
+        // Изменяем содержимое модалки
+        const modalBody = document.getElementById('confirmationModalBody');
+        modalBody.innerHTML = content;
+        
+        // Открываем новую модалку
+        const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'), {
+            backdrop: false, // Модалка без закрытия кликом вне окна     
+            focus: false 
+        });
+        confirmationModal.show();
+        
+        return confirmationModal;
+    }
+
+    async showProductListModal(products) {
+        
+        return new Promise((resolve) => {
+
+            
+
+            // Создаем содержимое модального окна с продуктами
+            let modalContent = '<div class="confirmation-modal__product-list">';
+            products.forEach(product => {
+                const showOptions = product.available !== 0 ?
+                `<option value="buyAvailable">Купити ${product.available}</option>
+                <option value="buyAndPreorder">Купити ${product.available} й дозамовити ${product.quantity - product.available}</option>
+                <option value="cancel">Відмовитись від товару</option>`
+                :  `<option value="buyAndPreorder">Замовити ${product.quantity}</option>
+                <option value="cancel">Відмовитись від товару</option>`
+                modalContent += `
+                    <div class="confirmation-modal__product-item">
+                        <div class="confirmation-modal__product-image-wrap">
+                            <img src="${product.image}" alt="${product.name}" class="confirmation-modal__product-image"/>
+                        </div>
+                        <p>Товар: ${product.name}</p>
+                        <p>Артикул: ${product.model}</p>
+                        <p>На складі доступно: ${product.available}</p>
+                        <p>Ви замовили: ${product.quantity}</p>
+                        <div class="confirmation-modal__product-action-wrap"> 
+                            <p>Оберіть дію:</p>
+                            <select class="confirmation-modal__product-action" data-product-id="${product.id}">
+                                `+ showOptions + `
+                            </select>
+                        </div>
+                    </div>
+                `;
+                
+            });
+            
+        
+            // Показываем модальное окно
+            const modalInstance = this.showConfirmationModal("Недостатньо товарів на складі", modalContent);
+            const images = document.querySelectorAll(".confirmation-modal__product-image")
+            rerenderImage(images);
+
+            const modalElement = document.getElementById("confirmationModal");
+
+            modalElement.addEventListener('hidden.bs.modal', () => {
+                this.hideModalLoader();
+                this.basketModalCarousel.enable();
+                if(this.basketModalCarousel) this.basketModalCarousel.slideTo(0);
+            });
+
+            modalElement.style.top = '0';
+
+            // Обработчик на кнопку подтверждения
+            if(document.getElementById("confirmChoices"))
+            document.getElementById("confirmChoices").addEventListener("click", () => {
+                const actions = Array.from(document.querySelectorAll(".confirmation-modal__product-action")).map(select => {
+                    return {
+                        id: select.dataset.productId,
+                        action: select.value
+                    };
+                });
+                this.hideModalLoader();
+                this.hideModalsAfterConfirmation();
+                modalInstance.hide();
+                this.basketModalCarousel.enable();
+                const footerBasketModalBtns = document.querySelector(".modal-footer__btns").children;
+                Array.from(footerBasketModalBtns).forEach(b => b.classList.remove('active'));
+                footerBasketModalBtns[0].classList.add('active');
+                this.basket.renderBasket();
+                resolve(actions);
+            });
+        });
+
+        
+    }
+
+    hideModalsAfterConfirmation(){
+        const modal = document.getElementById('confirmationModal');
+
+        this.bootstrap.Modal.getInstance(modal).hide();
+        const backdrops = document.querySelectorAll('.modal-backdrop');
+        if(backdrops.length > 2)
+            backdrops[0].remove();
+    }
+   
+
+}

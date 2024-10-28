@@ -1,0 +1,33 @@
+.confirmation-modal{
+    &__content{
+        max-height: 65vh;
+    }
+    &__body{
+        height: auto;
+        overflow-y: auto;
+    }
+    &__product{
+        &-item{
+          margin-bottom: 20px;
+        }
+        &-image{
+            width: 35% !important;
+            &-wrap{
+                display: grid;
+                place-items: center;
+    
+            }
+        }
+        &-action{
+            cursor: pointer;
+            &-wrap{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+    }
+    &__footer{
+        justify-content: center;
+    }
+}

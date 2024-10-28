@@ -34,26 +34,28 @@ export class ProductManager {
         localStorage.setItem('products', JSON.stringify([]));
     }
 
-    addProduct({ id, name, price, quantity, image, model }) {
+    async addProduct({ id, name, price, image, model, storageQuantity}) {
         const existProduct = this.existProduct(id);
-        if (existProduct){
+        if (existProduct)
             existProduct.addOne();
-        } else {
-            this.products = [...this.products, new Product(id, name, price, image, model, quantity)];
+        else {
+            const newProduct = new Product(id, name, price, image, model, null, storageQuantity);
+            console.log(newProduct);
+            this.products = [...this.products, newProduct];
         }
         this.setStorageProducts(this.products)
     }
 
     mapObjectsInProducts(products) {
         if (!products) return [];
-        return products.map(({ id, name, price, quantity, image, model }) =>
-            new Product(id, name, price, image, model, quantity)
+        return products.map(({ id, name, price, quantity, image, model, storageQuantity }) =>
+            new Product(id, name, price, image, model, quantity, storageQuantity)
         );
     }
 
-    mapObjectInProduct({id, name, price, image, model, quantity}) {
+    mapObjectInProduct({id, name, price, image, model, quantity, storageQuantity}) {
         if (!id) return null;
-        return new Product(id, name, price, image, model, quantity);
+        return new Product(id, name, price, image, model, quantity, storageQuantity);
     }
 
     async fetchNewProduct(id) {
@@ -62,6 +64,7 @@ export class ProductManager {
             mode: "cors"
         });
         const product = await response.json();
+        console.log(product, "fetched")
         return product;
     }
 
@@ -112,4 +115,5 @@ export class ProductManager {
              Ціна загальна: ${this.currentProductTotalPrice(id, this.priceOutputFn, 2)} грн`
         ).join('\n');
     }
+    
 }

@@ -1,5 +1,3 @@
-import { basket, productManager } from "./header/basket/basket.js";
-
 // for images ratio
 initImagesRation(PROFILE);
 // for products working
@@ -31,15 +29,14 @@ const patternsProfile = {
         { rule: PHONE_UA, errorMsg: "Неправильний номер телефону" }
     ],
     profileAddress: [
-        { rule:  MIN_2_LETTERS_UA, errorMsg: "Мінімум 2 літери UA"},
+        // { rule:  MIN_2_LETTERS_UA, errorMsg: "Мінімум 2 літери UA"},
     ],
     postalCode: [
         { rule: POSTAL_INDEX, errorMsg: "Вкажіть поштовий індекс (49000)"}
     ]
 };
 
-
-const formProfile = new Form(formDataProfile, patternsProfile, "Profile", Alert, productManager, basket);
+const formProfile = new ProfileForm(formDataProfile, patternsProfile, "Profile", Alert);
 
 formProfile.initForm("profileForm", {
     firstName: "first_name",

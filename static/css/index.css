@@ -588,6 +588,10 @@
 .basket__modal__btn {
   align-self: flex-end;
 }
+.basket__modal .modal-header {
+  display: flex;
+  justify-content: space-between;
+}
 
 .cart__product {
   width: 100%;
@@ -614,6 +618,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.cart__product__btns__wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 120px;
+  width: 20%;
 }
 .cart__product__price {
   width: 30%;
@@ -836,6 +847,44 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+}
+
+.custom-backdrop {
+  z-index: 1199;
+}
+
+#successModal,
+#basket__modal {
+  padding: 0 !important;
+}
+
+.confirmation-modal__content {
+  max-height: 65vh;
+}
+.confirmation-modal__body {
+  height: auto;
+  overflow-y: auto;
+}
+.confirmation-modal__product-item {
+  margin-bottom: 20px;
+}
+.confirmation-modal__product-image {
+  width: 35% !important;
+}
+.confirmation-modal__product-image-wrap {
+  display: grid;
+  place-items: center;
+}
+.confirmation-modal__product-action {
+  cursor: pointer;
+}
+.confirmation-modal__product-action-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.confirmation-modal__footer {
   justify-content: center;
 }
 

@@ -192,7 +192,8 @@
         {% endblock %}
     </div>
     {% block js %}
-        <script type="module" src="{% static 'js/profile.js' %}"></script>
+        <script src="{% static 'js/profile/profile_form.js' %}"></script>
+        <script type="module" src="{% static 'js/profile/profile.js' %}"></script>
     {% endblock %}
 </body>
 </html>
