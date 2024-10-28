@@ -9,7 +9,6 @@ const Alert = function (type, text, animDuration){
         
         if(labelTimer){
             clearInterval(labelTimer);
-            console.log("Старый таймер убит")
         }
 
         labelTimer = setTimeout(() => {

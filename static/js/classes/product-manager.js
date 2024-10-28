@@ -39,8 +39,10 @@ export class ProductManager {
         if (existProduct)
             existProduct.addOne();
         else {
-            const newProduct = new Product(id, name, price, image, model, null, storageQuantity);
-            console.log(newProduct);
+            let preorder = 0;
+            if(storageQuantity == 0)
+                preorder = 1;
+            const newProduct = new Product(id, name, price, image, model, null, preorder, storageQuantity);
             this.products = [...this.products, newProduct];
         }
         this.setStorageProducts(this.products)
@@ -48,14 +50,14 @@ export class ProductManager {
 
     mapObjectsInProducts(products) {
         if (!products) return [];
-        return products.map(({ id, name, price, quantity, image, model, storageQuantity }) =>
-            new Product(id, name, price, image, model, quantity, storageQuantity)
+        return products.map(({ id, name, price, quantity, image, model, preorder, storageQuantity }) =>
+            new Product(id, name, price, image, model, quantity, preorder, storageQuantity)
         );
     }
 
-    mapObjectInProduct({id, name, price, image, model, quantity, storageQuantity}) {
+    mapObjectInProduct({id, name, price, image, model, quantity, preorder, storageQuantity}) {
         if (!id) return null;
-        return new Product(id, name, price, image, model, quantity, storageQuantity);
+        return new Product(id, name, price, image, model, quantity, preorder, storageQuantity);
     }
 
     async fetchNewProduct(id) {
@@ -64,7 +66,6 @@ export class ProductManager {
             mode: "cors"
         });
         const product = await response.json();
-        console.log(product, "fetched")
         return product;
     }
 
@@ -103,7 +104,7 @@ export class ProductManager {
 
     
     filterProductsByQuantity(products) {
-        return products.filter(product => product.quantity > 0);
+        return products.filter(product => product.quantity > 0 || product.preorder > 0);
     }
 
     getProductsInfo() {

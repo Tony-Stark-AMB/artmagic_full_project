@@ -47,7 +47,6 @@ class FeedbackForm extends Form{
                 }
                 this.hideModalLoader();
                 this.alert("success", msgObj.successMessage, animDuration);
-                console.log(response);
 
                 
                 if (clearCond) {

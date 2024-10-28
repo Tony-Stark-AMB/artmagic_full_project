@@ -97,8 +97,8 @@ export class Basket {
     
         // Определяем доступное количество и количество для предзаказа
         const availableQuantity = Math.min(product.quantity, product.storageQuantity);
-        const preorderQuantity = product.quantity + product.preorder > product.storageQuantity;
-    
+        product.quantity = availableQuantity;
+        const preorderQuantity = product.quantity >= product.storageQuantity;
         // Проверяем, нужно ли отображать две пары кнопок
         const showPreorder = preorderQuantity;
     
