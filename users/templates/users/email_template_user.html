@@ -15,65 +15,69 @@
                             <h2 style="font-size: 24px; color: #333;">Номер Вашого замовлення {{ order_number }}</h2>
                             <p style="font-size: 16px; color: #333;">Ваше замовлення прийняте в обробку, ми зв'яжемося з Вами в робочі години.</p>
                             <p style="font-size: 16px; color: #333;">Якщо Ви відправили замовлення після 17:00, у суботу чи неділю, не турбуйтесь,</p>
-                            <p style="font-size: 16px; color: #333;">Менеджер обов'язково зв'яжется з Вами найближчого робочого дня</p>
+                            <p style="font-size: 16px; color: #333;">Менеджер обов'язково зв'яжеться з Вами найближчого робочого дня</p>
                         </td>
                     </tr>
-                    <tr>
-                        <td style="padding-top: 20px;">
-                            <p style="font-size: 16px; color: #333;">Ваше замовлення:</p>
-                            <table width="100%" cellpadding="5" cellspacing="0" border="1" style="border-collapse: collapse; border-color: #ccc;">
-                                <thead>
-                                    <tr style="background-color: #f0f0f0;">
-                                        <th style="padding: 8px; text-align: left;">Товар</th>
-                                        <th style="padding: 8px; text-align: left;">Артикул</th>
-                                        <th style="padding: 8px; text-align: left;">Кількість</th>
-                                        <th style="padding: 8px; text-align: left;">Ціна</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for product in products %}
-                                    <tr>
-                                        <td style="padding: 8px;">{{ product.name }}</td>
-                                        <td style="padding: 8px;">{{ product.model }}</td>
-                                        <td style="padding: 8px;">{{ product.quantity }}</td>
-                                        <td style="padding: 8px;">{{ product.price }}</td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                            <div style="text-align: right; padding-top: 10px;">
-                                <strong style="font-size: 16px; color: #333;">Итого: {{ total_price }} грн.</strong>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding-top: 20px;">
-                            <p style="font-size: 16px; color: #333;">Товари за попереднім замовленням:</p>
-                            <table width="100%" cellpadding="5" cellspacing="0" border="1" style="border-collapse: collapse; border-color: #ccc;">
-                                <thead>
-                                    <tr style="background-color: #f0f0f0;">
-                                        <th style="padding: 8px; text-align: left;">Товар</th>
-                                        <th style="padding: 8px; text-align: left;">Артикул</th>
-                                        <th style="padding: 8px; text-align: left;">Кількість</th>
-                                        <th style="padding: 8px; text-align: left;">Ціна</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for product in products %}
-                                    <tr>
-                                        <td style="padding: 8px;">{{ product.name }}</td>
-                                        <td style="padding: 8px;">{{ product.model }}</td>
-                                        <td style="padding: 8px;">{{ product.preorder  }}</td>
-                                        <td style="padding: 8px;">{{ product.price }}</td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                            <div style="text-align: right; padding-top: 10px;">
-                                <strong style="font-size: 16px; color: #333;">Итого: {{ preorder_total_price }} грн.</strong>
-                            </div>
-                        </td>
-                    </tr>
+                    {% if products %}
+                        <tr>
+                            <td style="padding-top: 20px;">
+                                <p style="font-size: 16px; color: #333;">Ваше замовлення:</p>
+                                <table width="100%" cellpadding="5" cellspacing="0" border="1" style="border-collapse: collapse; border-color: #ccc;">
+                                    <thead>
+                                        <tr style="background-color: #f0f0f0;">
+                                            <th style="padding: 8px; text-align: left;">Товар</th>
+                                            <th style="padding: 8px; text-align: left;">Артикул</th>
+                                            <th style="padding: 8px; text-align: left;">Кількість</th>
+                                            <th style="padding: 8px; text-align: left;">Ціна</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for product in products %}
+                                        <tr>
+                                            <td style="padding: 8px;">{{ product.name }}</td>
+                                            <td style="padding: 8px;">{{ product.model }}</td>
+                                            <td style="padding: 8px;">{{ product.quantity }}</td>
+                                            <td style="padding: 8px;">{{ product.price }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                <div style="text-align: right; padding-top: 10px;">
+                                    <strong style="font-size: 16px; color: #333;">Разом: {{ total_price }} грн.</strong>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endif %}
+                    {% if preorder_product %}
+                        <tr>
+                            <td style="padding-top: 20px;">
+                                <p style="font-size: 16px; color: #333;">Товари за попереднім замовленням:</p>
+                                <table width="100%" cellpadding="5" cellspacing="0" border="1" style="border-collapse: collapse; border-color: #ccc;">
+                                    <thead>
+                                        <tr style="background-color: #f0f0f0;">
+                                            <th style="padding: 8px; text-align: left;">Товар</th>
+                                            <th style="padding: 8px; text-align: left;">Артикул</th>
+                                            <th style="padding: 8px; text-align: left;">Кількість</th>
+                                            <th style="padding: 8px; text-align: left;">Ціна</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for product in preorder_product %}
+                                        <tr>
+                                            <td style="padding: 8px;">{{ product.name }}</td>
+                                            <td style="padding: 8px;">{{ product.model }}</td>
+                                            <td style="padding: 8px;">{{ product.preorder  }}</td>
+                                            <td style="padding: 8px;">{{ product.price }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                <div style="text-align: right; padding-top: 10px;">
+                                    <strong style="font-size: 16px; color: #333;">Разом: {{ preorder_total_price }} грн.</strong>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endif %}
                     <tr>
                         <td style="padding-top: 20px; text-align: center; font-size: 14px; color: #555;">
                             З повагою,<br> Артмагия

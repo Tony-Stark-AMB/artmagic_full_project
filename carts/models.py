@@ -1,22 +1,23 @@
-from django.db import models, transaction
+from django.utils import timezone
+from django.db import models, transaction, IntegrityError
 from products.models import Products
 from users.models import CustomUser
 
 
 class CartQueryset(models.QuerySet):
-    
+
     def total_price(self):
         return sum(cart.products_price() for cart in self)
-    
+
     def total_quantity(self):
         if self:
             return sum(cart.quantity for cart in self)
         return 0
-    
+
 
 class Cart(models.Model):
-
-    user = models.ForeignKey(to=CustomUser, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Пользователь')
+    user = models.ForeignKey(to=CustomUser, on_delete=models.CASCADE, blank=True, null=True,
+                             verbose_name='Пользователь')
     product = models.ForeignKey(to=Products, on_delete=models.CASCADE, verbose_name='Товар')
     quantity = models.PositiveSmallIntegerField(default=0, verbose_name='Количество')
     session_key = models.CharField(max_length=32, null=True, blank=True)
@@ -32,11 +33,10 @@ class Cart(models.Model):
     def products_price(self):
         return round(self.product.sell_price() * self.quantity, 2)
 
-
     def __str__(self):
         if self.user:
             return f'Корзина {self.user.username} | Товар {self.product.name} | Количество {self.quantity}'
-            
+
         return f'Анонимная корзина | Товар {self.product.name} | Количество {self.quantity}'
 
 
@@ -91,6 +91,7 @@ class Order(models.Model):
 
     def __str__(self):
         return f"Order {self.order_number} by {self.name}"
+
     # другие поля для заказа
 
     def save(self, *args, **kwargs):
@@ -103,15 +104,59 @@ class Order(models.Model):
         with transaction.atomic():
             last_order = cls.objects.select_for_update().order_by('-order_number').first()
             return 1 if last_order is None else last_order.order_number + 1
-        
 
-class PreOrder(Order):
 
+class PreOrder(models.Model):
+    user = models.ForeignKey(
+        to=CustomUser,
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+        verbose_name='Користувач'  # User
+    )
+    order = models.ForeignKey(
+        to=Order,
+        on_delete=models.CASCADE,
+        related_name='preorders',
+        verbose_name='Замовлення',
+        null=True  # Order
+    )
+    name = models.CharField(
+        max_length=255,
+        verbose_name='ПІБ'  # Name
+    )
+    order_number = models.PositiveIntegerField(
+        unique=True,
+        editable=False,
+        verbose_name='№ замовлення'
+    )# Order Number
+
+    products = models.JSONField(
+        verbose_name='Продукти'  # Products
+    )
     quantity = models.PositiveIntegerField(
-        verbose_name='Кількість'  # Quantity
+        verbose_name='Кількість'  # Quantity of preordered items
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='Дата створення'  # Created At
     )
 
     class Meta:
-        verbose_name = 'Передзамовлення'  # Singular name
-        verbose_name_plural = 'Передзамовлення'  # Plural name
-        ordering = ['-created_at']
+        verbose_name = 'Предзамовлення'  # Singular name
+        verbose_name_plural = 'Предзамовлення'  # Plural name
+        ordering = ['-created_at']  # Optionally add default ordering
+
+    def __str__(self):
+        return f"Предзамовлення {self.order_number}"
+
+    def save(self, *args, **kwargs):
+        if not self.order_number:
+            self.order_number = self.generate_order_number()
+        super(PreOrder, self).save(*args, **kwargs)
+
+    @classmethod
+    def generate_order_number(cls):
+        with transaction.atomic():
+            last_order = cls.objects.select_for_update().order_by('-order_number').first()
+            return 1 if last_order is None else last_order.order_number + 1

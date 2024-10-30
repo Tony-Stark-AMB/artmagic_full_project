@@ -1,17 +1,16 @@
-from django.db.models import Max
-from django.contrib import messages
-from django.http import JsonResponse
-from django.shortcuts import redirect, render
-from django.template.loader import render_to_string
-from carts.models import Order
-from django.views import View
-from django.core.mail import EmailMessage
-from .decryption_ref import get_city_name, get_area_name, get_department_name
-from decimal import Decimal
 import json
 import logging
+from django.http import JsonResponse
+from django.db import IntegrityError
+from django.template.loader import render_to_string
+from django.views import View
+from django.core.mail import EmailMessage
+from decimal import Decimal
 
 
+from artmagic.settings import EMAIL_HOST_USER
+from carts.models import Order, PreOrder
+from .decryption_ref import get_city_name, get_area_name, get_department_name
 
 logger = logging.getLogger(__name__)
 
@@ -31,7 +30,7 @@ class ProcessOrderView(View):
         'ukr_post': "Укрпошта"
     }
 
-    email_owner = 'Asgeron90@gmail.com'
+    email_owner = EMAIL_HOST_USER
 
     def post(self, request):
         try:
@@ -42,12 +41,12 @@ class ProcessOrderView(View):
             
             order = self.create_order(data, user, address)
             order_number = order.order_number
-            context = self.prepare_email_context(data, delivery_method, order_number)
+            context = self.prepare_email_context(data, delivery_method, address, order_number)
 
             self.send_email(self.email_owner, context, f"Замовлення №: {order_number}", 'carts/email_template.html')
             self.send_email(data.get('email'), context, 'Ваше замовлення прийняте', 'users/email_template_user.html')
 
-            return JsonResponse({'status': 'success', 'message': 'Заказ успешно отправлен'}, status=200)
+            return JsonResponse({'status': 'success', 'order_number': order_number}, status=200)
 
         except (json.JSONDecodeError, ValueError) as e:
             logger.error('Error processing order: %s', e)
@@ -79,7 +78,7 @@ class ProcessOrderView(View):
             area_value = get_area_name(data['area'])
             city_value = get_city_name(data['city'])
             address = f'{area_value} область, {city_value}, {address}'
-        
+        print('----------------------=====================', delivery_method, address)
         return delivery_method, address
 
     def validate_required_fields(self, data):
@@ -88,7 +87,8 @@ class ProcessOrderView(View):
             raise ValueError('Missing required fields in data')
 
     def create_order(self, data, user, address):
-        return Order.objects.create(
+        # Создаем основной заказ
+        order = Order.objects.create(
             user=user,
             name=data.get('name'),
             phone=data.get('phone'),
@@ -98,29 +98,57 @@ class ProcessOrderView(View):
             total_price=data.get('amount'),
             products=data.get('products')  # Сохранение продуктов как JSON-объект
         )
-
-    def prepare_email_context(self, data, delivery_method, order_number):
         prod_pre = data.get('products')
-        for count, item in enumerate(prod_pre):
-            if count % 2 == 0:  # Проверка на чётность
-                item['preorder'] = 5
+        preorder_items = []
 
-        preorder_list = []
-        preorder_total_price = Decimal(0)
+        # Collect all pre-order items
         for item in prod_pre:
             if 'preorder' in item:
+                preorder_items.append({
+                    'model': item['model'],
+                    'name': item['name'],
+                    'price': item['price'],
+                    'quantity': item['preorder']
+                })
+
+        # Create a single PreOrder with all pre-order items if any exist
+        if preorder_items:
+            try:
+                PreOrder.objects.create(
+                    user=user,
+                    name=data.get('name'),
+                    products=preorder_items,
+                    quantity=sum(item['quantity'] for item in preorder_items)
+                )
+                logger.debug('Single PreOrder created successfully for all items: %s', preorder_items)
+            except IntegrityError as e:
+                logger.error('Failed to create PreOrder due to IntegrityError: %s', e)
+            except Exception as e:
+                logger.error('Failed to create PreOrder due to unexpected error: %s', e)
+
+        return order
+
+    def prepare_email_context(self, data, delivery_method, address, order_number):
+        prod_pre = data.get('products')
+        preorder_list = []
+
+        product_order = [el for el in prod_pre if el["quantity"] != 0]
+        preorder_total_price = Decimal(0)
+
+        for item in prod_pre:
+            if 'preorder' in item and item['preorder'] != 0:
                 preorder_list.append(item)
                 price = Decimal(item['price'])  
                 preorder_total_price += price * int(item['preorder'])
 
-        preorder_total_price = preorder_total_price.quantize(Decimal('0.00'))    
+        preorder_total_price = preorder_total_price.quantize(Decimal('0.00')) 
         return {
             'name': data.get('name'),
             'phone': data.get('phone'),
             'email': data.get('email'),
             'payment': self.payment_options.get(data.get('selectedPayment', ""), ""),
-            'address': data.get('address', ''),
-            'products': prod_pre,
+            'address': address,
+            'products': product_order,
             'preorder_product': preorder_list,
             'preorder_total_price': preorder_total_price,
             'total_price': data.get('amount'),
