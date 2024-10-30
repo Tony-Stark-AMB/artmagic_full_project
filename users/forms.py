@@ -7,6 +7,7 @@ from django.contrib.auth.password_validation import CommonPasswordValidator
 from django.core.validators import validate_email
 from .models import CustomUser, Address
 from django.contrib.auth import authenticate
+from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
 
 
 
@@ -217,5 +218,29 @@ class FeedbackForm(forms.Form):
     def clean_phone_number(self):
         phone_number = self.cleaned_data['phone_number']
         if not re.match(r'^\+?3?\d{9,14}$', phone_number):
-            raise forms.ValidationError('Введите правильный номер телефона.')
+            raise forms.ValidationError('Будь ласка, введіть дійсний номер телефона.')
         return phone_number
+    
+
+class CustomPasswordResetForm(PasswordResetForm):
+    email = forms.EmailField(
+        max_length=254,
+        error_messages={
+            'invalid': "Будь ласка, введіть дійсну адресу електронної пошти.",
+            'required': "Email є обов'язковим полем."
+        }
+    )
+
+class CustomSetPasswordForm(SetPasswordForm):
+    new_password1 = forms.CharField(
+        widget=forms.PasswordInput,
+        error_messages={
+            'required': "Пароль є обов'язковим полем."
+        }
+    )
+    new_password2 = forms.CharField(
+        widget=forms.PasswordInput,
+        error_messages={
+            'required': "Підтвердження паролю є обов'язковим."
+        }
+    )

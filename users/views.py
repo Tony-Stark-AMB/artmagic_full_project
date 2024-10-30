@@ -12,10 +12,17 @@ from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic.edit import FormView
+from django.contrib.auth.views import (
+    PasswordResetView as BasePasswordResetView,
+    PasswordResetConfirmView as BasePasswordResetConfirmView,
+    PasswordResetDoneView as BasePasswordResetDoneView,
+    PasswordResetCompleteView as BasePasswordResetCompleteView
+)
 
 from .forms import (
     UserLoginForm, FeedbackForm, AddressForm,
-    ProfileForm, RegistrationForm, ChangePasswordForm
+    ProfileForm, RegistrationForm, ChangePasswordForm,
+    CustomPasswordResetForm, CustomSetPasswordForm
 )
 from .models import Address
 from carts.models import Order
@@ -197,3 +204,20 @@ class FeedbackView(View):
         except Exception as e:
             logger.error('Ошибка при обработке запроса: %s', e)
             return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+
+class PasswordResetView(BasePasswordResetView):
+    template_name = 'users/password_reset_form.html'
+    email_template_name = 'users/password_reset_email.html'
+    form_class = CustomPasswordResetForm
+    success_url = reverse_lazy('user:password_reset_done')
+
+class PasswordResetDoneView(BasePasswordResetDoneView):
+    template_name = 'users/password_reset_done.html'
+
+class PasswordResetConfirmView(BasePasswordResetConfirmView):
+    template_name = 'users/password_reset_confirm.html'
+    form_class = CustomSetPasswordForm
+    success_url = reverse_lazy('user:password_reset_complete')
+
+class PasswordResetCompleteView(BasePasswordResetCompleteView):
+    template_name = 'users/password_reset_complete.html'

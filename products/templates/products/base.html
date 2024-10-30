@@ -332,7 +332,7 @@
                                 <input class="login__modal__input" type="password" name="password" placeholder="Пароль">
                                 <p class="error c17 d-hidden" data-error-login="password"></p>
                                 <div class="login__modal__link__wrap">
-                                    <a class="login__modal__link" href="#">Забули пароль?</a>
+                                    <a class="loginmodallink" href="{% url 'user:password_reset' %}">Забули пароль?</a>
                                     <div class="login__modal__link swiper-btn-next">Реєстрація</div>
                                 </div>
                                 <button class="btn btn-primary" type="submit">Увійти</button>
