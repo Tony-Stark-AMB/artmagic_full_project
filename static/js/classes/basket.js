@@ -96,7 +96,9 @@ export class Basket {
         productDiv.setAttribute("id", `cart__product__${product.id}`);
     
         // Определяем доступное количество и количество для предзаказа
+        console.log(product.quantity, product.storageQuantity)
         const availableQuantity = Math.min(product.quantity, product.storageQuantity);
+        console.log(product)
         product.quantity = availableQuantity;
         const preorderQuantity = product.quantity >= product.storageQuantity;
         // Проверяем, нужно ли отображать две пары кнопок

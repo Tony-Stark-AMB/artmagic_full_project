@@ -46,7 +46,7 @@ class ProcessOrderView(View):
             self.send_email(self.email_owner, context, f"Замовлення №: {order_number}", 'carts/email_template.html')
             self.send_email(data.get('email'), context, 'Ваше замовлення прийняте', 'users/email_template_user.html')
 
-            return JsonResponse({'status': 'success', 'order_number': order_number}, status=200)
+            return JsonResponse({'status': 'success', 'orderNumber': order_number}, status=200)
 
         except (json.JSONDecodeError, ValueError) as e:
             logger.error('Error processing order: %s', e)

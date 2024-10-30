@@ -2,7 +2,7 @@ class Product {
     constructor(id, name, price, image, model, quantity, preorder, storageQuantity) {
       this.name = name;
       this.price = price;
-      this.quantity = this.quantity = (storageQuantity === 0) ? 0 : (quantity ? quantity : quantity === 0 ? 0 : 1);      ;
+      this.quantity = (storageQuantity === 0) ? 0 : (quantity ? quantity : quantity === 0 ? 0 : 1); 
       this.image = image !== "" ? image : `/static/product-placeholder.png`;
       this.id = id; // Assigning a unique ID to each object
       this.model = model;

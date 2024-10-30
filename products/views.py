@@ -156,7 +156,7 @@ def add_to_cart(request):
             'image': f'{product.image}' if not product.image else f'/media/{product.image}',
             'price': product.price,
             'model': product.model,
-            'storage_quantity': product.quantity,
+            'storageQuantity': product.quantity,
             'preorder': None
         }
         print(json_data)
