@@ -4,7 +4,7 @@
         "pk": 1,
         "fields": {
             "category": 1,
-            "value": "У блістері для рисунку"
+            "value": "Міні"
         }
     },
     {
@@ -12,7 +12,7 @@
         "pk": 2,
         "fields": {
             "category": 1,
-            "value": "Для малювання"
+            "value": "Для позолоти"
         }
     },
     {
@@ -20,7 +20,7 @@
         "pk": 3,
         "fields": {
             "category": 1,
-            "value": "Графітний"
+            "value": "Для ліногравюри"
         }
     },
     {
@@ -28,7 +28,7 @@
         "pk": 4,
         "fields": {
             "category": 1,
-            "value": "Для живопису"
+            "value": "З глітерами"
         }
     },
     {
@@ -36,7 +36,7 @@
         "pk": 5,
         "fields": {
             "category": 1,
-            "value": "Офортний"
+            "value": "Плакатне"
         }
     },
     {
@@ -44,7 +44,7 @@
         "pk": 6,
         "fields": {
             "category": 1,
-            "value": "Порожні"
+            "value": "Для малюнку"
         }
     },
     {
@@ -52,7 +52,7 @@
         "pk": 7,
         "fields": {
             "category": 1,
-            "value": "Бджолиний"
+            "value": "Графітний"
         }
     },
     {
@@ -60,7 +60,7 @@
         "pk": 8,
         "fields": {
             "category": 1,
-            "value": "Натуральний"
+            "value": "Соболь/синтетика"
         }
     },
     {
@@ -68,7 +68,7 @@
         "pk": 9,
         "fields": {
             "category": 1,
-            "value": "Універсальний"
+            "value": "Для квілінгу"
         }
     },
     {
@@ -76,7 +76,7 @@
         "pk": 10,
         "fields": {
             "category": 1,
-            "value": "Папьє-маше"
+            "value": "Бітумний"
         }
     },
     {
@@ -84,7 +84,7 @@
         "pk": 11,
         "fields": {
             "category": 1,
-            "value": "Водорозчинний"
+            "value": "Для полімерної глини"
         }
     },
     {
@@ -92,7 +92,7 @@
         "pk": 12,
         "fields": {
             "category": 1,
-            "value": "Трансферна"
+            "value": "Для манга"
         }
     },
     {
@@ -100,7 +100,7 @@
         "pk": 13,
         "fields": {
             "category": 1,
-            "value": "Воскова"
+            "value": "Бронзуючий"
         }
     },
     {
@@ -108,7 +108,7 @@
         "pk": 14,
         "fields": {
             "category": 1,
-            "value": "Оздоблювальний"
+            "value": "Масляна"
         }
     },
     {
@@ -116,7 +116,7 @@
         "pk": 15,
         "fields": {
             "category": 1,
-            "value": "Для олії"
+            "value": "Для старого живопису"
         }
     },
     {
@@ -124,7 +124,7 @@
         "pk": 16,
         "fields": {
             "category": 1,
-            "value": "Структурний"
+            "value": "Уповільнююча"
         }
     },
     {
@@ -132,7 +132,7 @@
         "pk": 17,
         "fields": {
             "category": 1,
-            "value": "Для письма та креслення"
+            "value": "Бальзамний"
         }
     },
     {
@@ -140,7 +140,7 @@
         "pk": 18,
         "fields": {
             "category": 1,
-            "value": "Ретушний"
+            "value": "Білка"
         }
     },
     {
@@ -148,7 +148,7 @@
         "pk": 19,
         "fields": {
             "category": 1,
-            "value": "Для сухих i вологих технік"
+            "value": "Скульптурний"
         }
     },
     {
@@ -156,7 +156,7 @@
         "pk": 20,
         "fields": {
             "category": 1,
-            "value": "Настільний"
+            "value": "Для покрытия багетной пасты"
         }
     },
     {
@@ -164,7 +164,7 @@
         "pk": 21,
         "fields": {
             "category": 1,
-            "value": "Для каліграфії"
+            "value": "Для створення ефекту Моху"
         }
     },
     {
@@ -172,7 +172,7 @@
         "pk": 22,
         "fields": {
             "category": 1,
-            "value": "Спиртові"
+            "value": "Суха"
         }
     },
     {
@@ -180,7 +180,7 @@
         "pk": 23,
         "fields": {
             "category": 1,
-            "value": "Скульптора"
+            "value": "Чорнографітний"
         }
     },
     {
@@ -188,7 +188,7 @@
         "pk": 24,
         "fields": {
             "category": 1,
-            "value": "художніх"
+            "value": "Для туб"
         }
     },
     {
@@ -196,7 +196,7 @@
         "pk": 25,
         "fields": {
             "category": 1,
-            "value": "Для дизайну"
+            "value": "Пап'є-маше"
         }
     },
     {
@@ -204,7 +204,7 @@
         "pk": 26,
         "fields": {
             "category": 1,
-            "value": "Для акрилу та олії"
+            "value": "Синтетика"
         }
     },
     {
@@ -212,7 +212,7 @@
         "pk": 27,
         "fields": {
             "category": 1,
-            "value": "Шелак"
+            "value": "Натуральне"
         }
     },
     {
@@ -220,7 +220,7 @@
         "pk": 28,
         "fields": {
             "category": 1,
-            "value": "Масштабно-координатний"
+            "value": "для ескізів"
         }
     },
     {
@@ -228,7 +228,7 @@
         "pk": 29,
         "fields": {
             "category": 1,
-            "value": "Акварельна"
+            "value": "Пудра"
         }
     },
     {
@@ -236,7 +236,7 @@
         "pk": 30,
         "fields": {
             "category": 1,
-            "value": "Британський"
+            "value": "Офортний"
         }
     },
     {
@@ -244,7 +244,7 @@
         "pk": 31,
         "fields": {
             "category": 1,
-            "value": "Для підрамників"
+            "value": "Для каліграфії"
         }
     },
     {
@@ -252,7 +252,7 @@
         "pk": 32,
         "fields": {
             "category": 1,
-            "value": "Для малюнку та ескізів"
+            "value": "Для підрамників"
         }
     },
     {
@@ -260,7 +260,7 @@
         "pk": 33,
         "fields": {
             "category": 1,
-            "value": "Чорнографітний"
+            "value": "Фіксатив"
         }
     },
     {
@@ -268,7 +268,7 @@
         "pk": 34,
         "fields": {
             "category": 1,
-            "value": "Амманітура"
+            "value": "Фарфор"
         }
     },
     {
@@ -276,7 +276,7 @@
         "pk": 35,
         "fields": {
             "category": 1,
-            "value": "Тонований"
+            "value": "Акрил"
         }
     },
     {
@@ -284,7 +284,7 @@
         "pk": 36,
         "fields": {
             "category": 1,
-            "value": "Для малюнку"
+            "value": "Настільний"
         }
     },
     {
@@ -292,7 +292,7 @@
         "pk": 37,
         "fields": {
             "category": 1,
-            "value": "Для золочення"
+            "value": "Ручка"
         }
     },
     {
@@ -300,7 +300,7 @@
         "pk": 38,
         "fields": {
             "category": 1,
-            "value": "Бітумний"
+            "value": "Художній"
         }
     },
     {
@@ -308,7 +308,7 @@
         "pk": 39,
         "fields": {
             "category": 1,
-            "value": "Акварельний"
+            "value": "Для скульптури"
         }
     },
     {
@@ -316,7 +316,7 @@
         "pk": 40,
         "fields": {
             "category": 1,
-            "value": "Забарвлений"
+            "value": "Фанера"
         }
     },
     {
@@ -324,7 +324,7 @@
         "pk": 41,
         "fields": {
             "category": 1,
-            "value": "Для змішаних технік"
+            "value": "Синтетика/щетина"
         }
     },
     {
@@ -332,7 +332,7 @@
         "pk": 42,
         "fields": {
             "category": 1,
-            "value": "Натуральне"
+            "value": "Французький"
         }
     },
     {
@@ -340,7 +340,7 @@
         "pk": 43,
         "fields": {
             "category": 1,
-            "value": "Для пластики"
+            "value": "Бронзове"
         }
     },
     {
@@ -348,7 +348,7 @@
         "pk": 44,
         "fields": {
             "category": 1,
-            "value": "Бронзове"
+            "value": "Для скла та кераміки"
         }
     },
     {
@@ -356,7 +356,7 @@
         "pk": 45,
         "fields": {
             "category": 1,
-            "value": "Для листівок"
+            "value": "Олійна"
         }
     },
     {
@@ -364,7 +364,7 @@
         "pk": 46,
         "fields": {
             "category": 1,
-            "value": "Плакатне"
+            "value": "Восковий"
         }
     },
     {
@@ -372,7 +372,7 @@
         "pk": 47,
         "fields": {
             "category": 1,
-            "value": "Стаціонарний"
+            "value": "Акрилова"
         }
     },
     {
@@ -380,7 +380,7 @@
         "pk": 48,
         "fields": {
             "category": 1,
-            "value": "Для вологих технік"
+            "value": "Стаціонарний"
         }
     },
     {
@@ -388,7 +388,7 @@
         "pk": 49,
         "fields": {
             "category": 1,
-            "value": "Гелевий"
+            "value": "Для патіни"
         }
     },
     {
@@ -396,7 +396,7 @@
         "pk": 50,
         "fields": {
             "category": 1,
-            "value": "Для змішування"
+            "value": "Для акрилових фарб"
         }
     },
     {
@@ -404,7 +404,7 @@
         "pk": 51,
         "fields": {
             "category": 1,
-            "value": "Для декору"
+            "value": "Для виготовлення біжутерії"
         }
     },
     {
@@ -412,7 +412,7 @@
         "pk": 52,
         "fields": {
             "category": 1,
-            "value": "Стеклограф"
+            "value": "Кришталевий"
         }
     },
     {
@@ -420,7 +420,7 @@
         "pk": 53,
         "fields": {
             "category": 1,
-            "value": "З імітацією пергаменту"
+            "value": "Трансферна"
         }
     },
     {
@@ -428,7 +428,7 @@
         "pk": 54,
         "fields": {
             "category": 1,
-            "value": "Для орнаменту"
+            "value": "Для акрилу"
         }
     },
     {
@@ -436,7 +436,7 @@
         "pk": 55,
         "fields": {
             "category": 1,
-            "value": "Для загального письма"
+            "value": "Багетна"
         }
     },
     {
@@ -444,7 +444,7 @@
         "pk": 56,
         "fields": {
             "category": 1,
-            "value": "Рибʼячий"
+            "value": "Вугільний"
         }
     },
     {
@@ -452,7 +452,7 @@
         "pk": 57,
         "fields": {
             "category": 1,
-            "value": "Вільна"
+            "value": "Зникаючий"
         }
     },
     {
@@ -460,7 +460,7 @@
         "pk": 58,
         "fields": {
             "category": 1,
-            "value": "Для ескізів i сухих технік"
+            "value": "Студійний"
         }
     },
     {
@@ -468,7 +468,7 @@
         "pk": 59,
         "fields": {
             "category": 1,
-            "value": "Для сухих техник"
+            "value": "Бджолиний"
         }
     },
     {
@@ -476,7 +476,7 @@
         "pk": 60,
         "fields": {
             "category": 1,
-            "value": "Крафтовий"
+            "value": "Пластик"
         }
     },
     {
@@ -484,7 +484,7 @@
         "pk": 61,
         "fields": {
             "category": 1,
-            "value": "Для спиртових чорнил"
+            "value": "Контурна"
         }
     },
     {
@@ -492,7 +492,7 @@
         "pk": 62,
         "fields": {
             "category": 1,
-            "value": "Для пленера"
+            "value": "Єнот"
         }
     },
     {
@@ -500,7 +500,7 @@
         "pk": 63,
         "fields": {
             "category": 1,
-            "value": "Олійна"
+            "value": "Для скла"
         }
     },
     {
@@ -508,7 +508,7 @@
         "pk": 64,
         "fields": {
             "category": 1,
-            "value": "До механічних олівців"
+            "value": "Для олійної пастелі"
         }
     },
     {
@@ -516,7 +516,7 @@
         "pk": 65,
         "fields": {
             "category": 1,
-            "value": "Для маркерів"
+            "value": "Механічний"
         }
     },
     {
@@ -524,7 +524,7 @@
         "pk": 66,
         "fields": {
             "category": 1,
-            "value": "Восковий"
+            "value": "На лаковій основі"
         }
     },
     {
@@ -532,7 +532,7 @@
         "pk": 67,
         "fields": {
             "category": 1,
-            "value": "Французький"
+            "value": "Ретушний"
         }
     },
     {
@@ -540,7 +540,7 @@
         "pk": 68,
         "fields": {
             "category": 1,
-            "value": "Студійний"
+            "value": "Негрунтоване"
         }
     },
     {
@@ -548,7 +548,7 @@
         "pk": 69,
         "fields": {
             "category": 1,
-            "value": "Для малюнку та креслення"
+            "value": "Універсальний"
         }
     },
     {
@@ -556,7 +556,7 @@
         "pk": 70,
         "fields": {
             "category": 1,
-            "value": "Пастельний"
+            "value": "Крейдяний"
         }
     },
     {
@@ -564,7 +564,7 @@
         "pk": 71,
         "fields": {
             "category": 1,
-            "value": "Ручної роботи"
+            "value": "Канцелярський"
         }
     },
     {
@@ -572,7 +572,7 @@
         "pk": 72,
         "fields": {
             "category": 1,
-            "value": "Кришталевий"
+            "value": "До механічних олівців"
         }
     },
     {
@@ -580,7 +580,7 @@
         "pk": 73,
         "fields": {
             "category": 1,
-            "value": "Для паперу"
+            "value": "Для пленера"
         }
     },
     {
@@ -588,7 +588,7 @@
         "pk": 74,
         "fields": {
             "category": 1,
-            "value": "Дизайнерський"
+            "value": "Грунтоване"
         }
     },
     {
@@ -596,7 +596,7 @@
         "pk": 75,
         "fields": {
             "category": 1,
-            "value": "Художній"
+            "value": "Для олії"
         }
     },
     {
@@ -604,7 +604,7 @@
         "pk": 76,
         "fields": {
             "category": 1,
-            "value": "Пресоване"
+            "value": "Алюмінієвий"
         }
     },
     {
@@ -612,7 +612,7 @@
         "pk": 77,
         "fields": {
             "category": 1,
-            "value": "Фінішний"
+            "value": "Білка/собол"
         }
     },
     {
@@ -620,7 +620,7 @@
         "pk": 78,
         "fields": {
             "category": 1,
-            "value": "Вугільний"
+            "value": "Для кераміки"
         }
     },
     {
@@ -628,7 +628,7 @@
         "pk": 79,
         "fields": {
             "category": 1,
-            "value": "Посібник для створення персонажів"
+            "value": "Взуття та Шкіра"
         }
     },
     {
@@ -636,7 +636,7 @@
         "pk": 80,
         "fields": {
             "category": 1,
-            "value": "Для креслення"
+            "value": "Штучний шовк"
         }
     },
     {
@@ -644,7 +644,7 @@
         "pk": 81,
         "fields": {
             "category": 1,
-            "value": "Декоративний"
+            "value": "Структурний"
         }
     },
     {
@@ -652,7 +652,7 @@
         "pk": 82,
         "fields": {
             "category": 1,
-            "value": "На лаковій основі"
+            "value": "Склоефект-прилипали"
         }
     },
     {
@@ -660,7 +660,7 @@
         "pk": 83,
         "fields": {
             "category": 1,
-            "value": "Для акрила"
+            "value": "Для принтерного друку"
         }
     },
     {
@@ -668,7 +668,7 @@
         "pk": 84,
         "fields": {
             "category": 1,
-            "value": "Академічний"
+            "value": "Покривний"
         }
     },
     {
@@ -676,7 +676,7 @@
         "pk": 85,
         "fields": {
             "category": 1,
-            "value": "Для старого живопису"
+            "value": "Структурна"
         }
     },
     {
@@ -684,7 +684,7 @@
         "pk": 86,
         "fields": {
             "category": 1,
-            "value": "Для записів"
+            "value": "Шелак"
         }
     },
     {
@@ -692,7 +692,7 @@
         "pk": 87,
         "fields": {
             "category": 1,
-            "value": "На спиртовій основі"
+            "value": "Епоксидний"
         }
     },
     {
@@ -700,7 +700,7 @@
         "pk": 88,
         "fields": {
             "category": 1,
-            "value": "Пудра"
+            "value": "Терпентинова"
         }
     },
     {
@@ -708,7 +708,7 @@
         "pk": 89,
         "fields": {
             "category": 1,
-            "value": "Для акварелі"
+            "value": "Блискоутворююча"
         }
     },
     {
@@ -716,7 +716,7 @@
         "pk": 90,
         "fields": {
             "category": 1,
-            "value": "Пластівці"
+            "value": "Амманітура"
         }
     },
     {
@@ -724,7 +724,7 @@
         "pk": 91,
         "fields": {
             "category": 1,
-            "value": "Для акрилу"
+            "value": "Фінішний"
         }
     },
     {
@@ -732,7 +732,7 @@
         "pk": 92,
         "fields": {
             "category": 1,
-            "value": "Сепія"
+            "value": "Для пристарювання"
         }
     },
     {
@@ -740,7 +740,7 @@
         "pk": 93,
         "fields": {
             "category": 1,
-            "value": "Для скетчів"
+            "value": "Порожні"
         }
     },
     {
@@ -748,7 +748,7 @@
         "pk": 94,
         "fields": {
             "category": 1,
-            "value": "Для покрытия багетной пасты"
+            "value": "Академічний"
         }
     },
     {
@@ -756,7 +756,7 @@
         "pk": 95,
         "fields": {
             "category": 1,
-            "value": "Міні"
+            "value": "Для паперу"
         }
     },
     {
@@ -764,7 +764,7 @@
         "pk": 96,
         "fields": {
             "category": 1,
-            "value": "Мінеральний"
+            "value": "Кольоровий"
         }
     },
     {
@@ -772,7 +772,7 @@
         "pk": 97,
         "fields": {
             "category": 1,
-            "value": "Для позолоти"
+            "value": "Мінеральний"
         }
     },
     {
@@ -780,7 +780,7 @@
         "pk": 98,
         "fields": {
             "category": 1,
-            "value": "Чорнильний"
+            "value": "Для оновлення емалі"
         }
     },
     {
@@ -788,7 +788,7 @@
         "pk": 99,
         "fields": {
             "category": 1,
-            "value": "Гофрований"
+            "value": "Для гуаші"
         }
     },
     {
@@ -796,7 +796,7 @@
         "pk": 100,
         "fields": {
             "category": 1,
-            "value": "Для манга"
+            "value": "Чорний грунт"
         }
     },
     {
@@ -804,7 +804,7 @@
         "pk": 101,
         "fields": {
             "category": 1,
-            "value": "Кольоровий"
+            "value": "Макова"
         }
     },
     {
@@ -812,7 +812,7 @@
         "pk": 102,
         "fields": {
             "category": 1,
-            "value": "Для нот"
+            "value": "Для дерева"
         }
     },
     {
@@ -820,7 +820,7 @@
         "pk": 103,
         "fields": {
             "category": 1,
-            "value": "Для каліграфії та леттерінгу"
+            "value": "Британський"
         }
     },
     {
@@ -828,7 +828,7 @@
         "pk": 104,
         "fields": {
             "category": 1,
-            "value": "Зникаючий"
+            "value": "Колонок"
         }
     },
     {
@@ -836,7 +836,7 @@
         "pk": 105,
         "fields": {
             "category": 1,
-            "value": "для ескізів"
+            "value": "Для пластики"
         }
     },
     {
@@ -844,7 +844,7 @@
         "pk": 106,
         "fields": {
             "category": 1,
-            "value": "Суха"
+            "value": "Дерево"
         }
     },
     {
@@ -852,7 +852,7 @@
         "pk": 107,
         "fields": {
             "category": 1,
-            "value": "Олійний"
+            "value": "Для реставрації"
         }
     },
     {
@@ -860,7 +860,7 @@
         "pk": 108,
         "fields": {
             "category": 1,
-            "value": "Шелачний"
+            "value": "Чорнобура лисиця"
         }
     },
     {
@@ -868,7 +868,7 @@
         "pk": 109,
         "fields": {
             "category": 1,
-            "value": "Акриловий"
+            "value": "Для загального письма"
         }
     },
     {
@@ -876,7 +876,7 @@
         "pk": 110,
         "fields": {
             "category": 1,
-            "value": "Для поталі"
+            "value": "Рибʼячий"
         }
     },
     {
@@ -884,7 +884,7 @@
         "pk": 111,
         "fields": {
             "category": 1,
-            "value": "Дамарний"
+            "value": "На алкідній основі"
         }
     },
     {
@@ -892,7 +892,7 @@
         "pk": 112,
         "fields": {
             "category": 1,
-            "value": "Мездровий"
+            "value": "Стеклограф"
         }
     },
     {
@@ -900,7 +900,7 @@
         "pk": 113,
         "fields": {
             "category": 1,
-            "value": "Для дітей"
+            "value": "Для золота"
         }
     },
     {
@@ -908,7 +908,7 @@
         "pk": 114,
         "fields": {
             "category": 1,
-            "value": "Текстурна"
+            "value": "МДФ"
         }
     },
     {
@@ -916,7 +916,7 @@
         "pk": 115,
         "fields": {
             "category": 1,
-            "value": "Для ескізів"
+            "value": "Акриловий ґрунт"
         }
     },
     {
@@ -924,7 +924,7 @@
         "pk": 116,
         "fields": {
             "category": 1,
-            "value": "Для графіки"
+            "value": "Для дітей"
         }
     },
     {
@@ -932,7 +932,7 @@
         "pk": 117,
         "fields": {
             "category": 1,
-            "value": "Моделююча"
+            "value": "Акварельний"
         }
     },
     {
@@ -940,7 +940,7 @@
         "pk": 118,
         "fields": {
             "category": 1,
-            "value": "Аерозоль"
+            "value": "Для поталі"
         }
     },
     {
@@ -948,7 +948,7 @@
         "pk": 119,
         "fields": {
             "category": 1,
-            "value": "Художні"
+            "value": "Для ляльок"
         }
     },
     {
@@ -956,7 +956,7 @@
         "pk": 120,
         "fields": {
             "category": 1,
-            "value": "Крейдяний"
+            "value": "ПВХ"
         }
     },
     {
@@ -964,7 +964,7 @@
         "pk": 121,
         "fields": {
             "category": 1,
-            "value": "Ескізний"
+            "value": "Для запікання"
         }
     },
     {
@@ -972,7 +972,7 @@
         "pk": 122,
         "fields": {
             "category": 1,
-            "value": "Для золота"
+            "value": "Акварель"
         }
     },
     {
@@ -980,7 +980,7 @@
         "pk": 123,
         "fields": {
             "category": 1,
-            "value": "Пастель"
+            "value": "Оздоблювальний"
         }
     },
     {
@@ -988,7 +988,7 @@
         "pk": 124,
         "fields": {
             "category": 1,
-            "value": "Для реставрації"
+            "value": "Дамарний"
         }
     },
     {
@@ -996,7 +996,7 @@
         "pk": 125,
         "fields": {
             "category": 1,
-            "value": "Для гуаші"
+            "value": "Для травлення скла"
         }
     },
     {
@@ -1004,7 +1004,7 @@
         "pk": 126,
         "fields": {
             "category": 1,
-            "value": "Механічний"
+            "value": "Для кругових прорізів"
         }
     },
     {
@@ -1012,7 +1012,7 @@
         "pk": 127,
         "fields": {
             "category": 1,
-            "value": "Для пензлів"
+            "value": "Поні"
         }
     },
     {
@@ -1020,7 +1020,7 @@
         "pk": 128,
         "fields": {
             "category": 1,
-            "value": "Для журналінгу"
+            "value": "Термозакріпляючі"
         }
     },
     {
@@ -1028,7 +1028,7 @@
         "pk": 129,
         "fields": {
             "category": 1,
-            "value": "Копіювальний"
+            "value": "Полімерна"
         }
     },
     {
@@ -1036,7 +1036,7 @@
         "pk": 130,
         "fields": {
             "category": 1,
-            "value": "Для іллюстрацій та акварелі"
+            "value": "Силіконова"
         }
     },
     {
@@ -1044,7 +1044,7 @@
         "pk": 131,
         "fields": {
             "category": 1,
-            "value": "Синтетичний"
+            "value": "Борсук"
         }
     },
     {
@@ -1052,7 +1052,7 @@
         "pk": 132,
         "fields": {
             "category": 1,
-            "value": "Для декоративного шрифта"
+            "value": "Гелевий"
         }
     },
     {
@@ -1060,7 +1060,7 @@
         "pk": 133,
         "fields": {
             "category": 1,
-            "value": "Для пастелі"
+            "value": "Соболь"
         }
     },
     {
@@ -1068,7 +1068,7 @@
         "pk": 134,
         "fields": {
             "category": 1,
-            "value": "Масляна"
+            "value": "Роликовий"
         }
     },
     {
@@ -1076,7 +1076,7 @@
         "pk": 135,
         "fields": {
             "category": 1,
-            "value": "Для олійної фарби"
+            "value": "З магнiтним затискачем"
         }
     },
     {
@@ -1084,7 +1084,7 @@
         "pk": 136,
         "fields": {
             "category": 1,
-            "value": "З грунтованого полотна"
+            "value": "Пресоване"
         }
     },
     {
@@ -1092,3598 +1092,3598 @@
         "pk": 137,
         "fields": {
             "category": 1,
-            "value": "Алюмінієвий"
+            "value": "Для пензлів"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 138,
         "fields": {
-            "category": 2,
-            "value": "Без текстури"
+            "category": 1,
+            "value": "Для акварелі"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 139,
         "fields": {
-            "category": 2,
-            "value": "Дрібне зерно"
+            "category": 1,
+            "value": "Для письма та креслення"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 140,
         "fields": {
-            "category": 2,
-            "value": "Гладка структура"
+            "category": 1,
+            "value": "Пластівці"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 141,
         "fields": {
-            "category": 2,
-            "value": "Середнє зерно"
+            "category": 1,
+            "value": "Для фіксації різьбових з'єднань"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 142,
         "fields": {
-            "category": 2,
-            "value": "Крупне зерно"
+            "category": 1,
+            "value": "Кракелюрний"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 143,
         "fields": {
-            "category": 2,
-            "value": "Дві текстури"
+            "category": 1,
+            "value": "Для олійної фарби"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 144,
         "fields": {
-            "category": 2,
-            "value": "Текстура Сито"
+            "category": 1,
+            "value": "Для акварельних фарб"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 145,
         "fields": {
-            "category": 3,
-            "value": "360 г/м2"
+            "category": 1,
+            "value": "Водорозчинний"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 146,
         "fields": {
-            "category": 3,
-            "value": "400 г/м2"
+            "category": 1,
+            "value": "Олійний"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 147,
         "fields": {
-            "category": 3,
-            "value": "78 г/м2"
+            "category": 1,
+            "value": "Сафлорова"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 148,
         "fields": {
-            "category": 3,
-            "value": "96 г/м2"
+            "category": 1,
+            "value": "Для креслення"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 149,
         "fields": {
-            "category": 3,
-            "value": "130 г/м2"
+            "category": 1,
+            "value": "Для акрилового живопису"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 150,
         "fields": {
-            "category": 3,
-            "value": "320 г/м2"
+            "category": 1,
+            "value": "Для змішування"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 151,
         "fields": {
-            "category": 3,
-            "value": "190 г/м2"
+            "category": 1,
+            "value": "Самозастигаюча"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 152,
         "fields": {
-            "category": 3,
-            "value": "290 г/м2"
+            "category": 1,
+            "value": "Для тиснення"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 153,
         "fields": {
-            "category": 3,
-            "value": "240 г/м2"
+            "category": 1,
+            "value": "Картон та папір"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 154,
         "fields": {
-            "category": 3,
-            "value": "125 г/м2"
+            "category": 1,
+            "value": "По дереву"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 155,
         "fields": {
-            "category": 3,
-            "value": "135 г/м2"
+            "category": 1,
+            "value": "На спиртовій основі"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 156,
         "fields": {
-            "category": 3,
-            "value": "160  г/м2"
+            "category": 1,
+            "value": "Моделююча"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 157,
         "fields": {
-            "category": 3,
-            "value": "630 г/м2"
+            "category": 1,
+            "value": "Полістиролу і Фольги"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 158,
         "fields": {
-            "category": 3,
-            "value": "95 г/м2"
+            "category": 1,
+            "value": "Для графіки"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 159,
         "fields": {
-            "category": 3,
-            "value": "80 г/м2"
+            "category": 1,
+            "value": "Гума та Поролон"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 160,
         "fields": {
-            "category": 3,
-            "value": "253 г/м2"
+            "category": 1,
+            "value": "Вільна"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 161,
         "fields": {
-            "category": 3,
-            "value": "285 г/м2"
+            "category": 1,
+            "value": "Забарвлений"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 162,
         "fields": {
-            "category": 3,
-            "value": "420 г/м2"
+            "category": 1,
+            "value": "На картоні"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 163,
         "fields": {
-            "category": 3,
-            "value": "246 г/м2"
+            "category": 1,
+            "value": "Спрей"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 164,
         "fields": {
-            "category": 3,
-            "value": "260 г/м2"
+            "category": 1,
+            "value": "Для перемички"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 165,
         "fields": {
-            "category": 3,
-            "value": "150 г/м2"
+            "category": 1,
+            "value": "Метал"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 166,
         "fields": {
-            "category": 3,
-            "value": "535 г/м2"
+            "category": 1,
+            "value": "Для Ремонту"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 167,
         "fields": {
-            "category": 3,
-            "value": "308 г/м2"
+            "category": 1,
+            "value": "ДВП"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 168,
         "fields": {
-            "category": 3,
-            "value": "60 г/м2"
+            "category": 1,
+            "value": "Скульптора"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 169,
         "fields": {
-            "category": 3,
-            "value": "224 г/м2"
+            "category": 1,
+            "value": "Для орнаменту"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 170,
         "fields": {
-            "category": 3,
-            "value": "110 г/м2"
+            "category": 1,
+            "value": "Синтетичний"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 171,
         "fields": {
-            "category": 3,
-            "value": "104 г/м2"
+            "category": 1,
+            "value": "Чорнильний"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 172,
         "fields": {
-            "category": 3,
-            "value": "140 г/м2"
+            "category": 1,
+            "value": "Темперна"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 173,
         "fields": {
-            "category": 3,
-            "value": "180 г/м2"
+            "category": 1,
+            "value": "Для золочення"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 174,
         "fields": {
-            "category": 3,
-            "value": "74 г/м2"
+            "category": 1,
+            "value": "Ескізний"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 175,
         "fields": {
-            "category": 3,
-            "value": "200 г/м2"
+            "category": 1,
+            "value": "Для різьблення"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 176,
         "fields": {
-            "category": 3,
-            "value": "640 г/м2"
+            "category": 1,
+            "value": "Шелачний"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 177,
         "fields": {
-            "category": 3,
-            "value": "300 г/м2"
+            "category": 1,
+            "value": "Липова"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 178,
         "fields": {
-            "category": 3,
-            "value": "40 г/м2"
+            "category": 1,
+            "value": "Для олійних фарб"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 179,
         "fields": {
-            "category": 3,
-            "value": "70 г/м2"
+            "category": 1,
+            "value": "Для дизайна"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 180,
         "fields": {
-            "category": 3,
-            "value": "185 г/м2"
+            "category": 1,
+            "value": "Для декору"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 181,
         "fields": {
-            "category": 3,
-            "value": "75 г/м2"
+            "category": 1,
+            "value": "Для акрила"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 182,
         "fields": {
-            "category": 3,
-            "value": "210 г/м2"
+            "category": 1,
+            "value": "Текстурна"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 183,
         "fields": {
-            "category": 3,
-            "value": "235 г/м2"
+            "category": 1,
+            "value": "Щетина"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 184,
         "fields": {
-            "category": 3,
-            "value": "165 г/м2"
+            "category": 1,
+            "value": "Для ескізів"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 185,
         "fields": {
-            "category": 3,
-            "value": "89 г/м2"
+            "category": 1,
+            "value": "Кобальт"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 186,
         "fields": {
-            "category": 3,
-            "value": "480г/м2"
+            "category": 1,
+            "value": "Прозора"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 187,
         "fields": {
-            "category": 3,
-            "value": "90 г/м2"
+            "category": 1,
+            "value": "Акрилит"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 188,
         "fields": {
-            "category": 3,
-            "value": "115 г/м2"
+            "category": 1,
+            "value": "Для мозаїки"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 189,
         "fields": {
-            "category": 3,
-            "value": "220 г/м2"
+            "category": 1,
+            "value": "Лляна"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 190,
         "fields": {
-            "category": 3,
-            "value": "270 г/м2"
+            "category": 1,
+            "value": "Сепія"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 191,
         "fields": {
-            "category": 3,
-            "value": "100 г/м2"
+            "category": 1,
+            "value": "Бітумна"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 192,
         "fields": {
-            "category": 3,
-            "value": "98 г/м2"
+            "category": 1,
+            "value": "Пастель"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 193,
         "fields": {
-            "category": 3,
-            "value": "85 г/м2"
+            "category": 1,
+            "value": "Воскова"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 194,
         "fields": {
-            "category": 3,
-            "value": "155 г/м2"
+            "category": 1,
+            "value": "Для гуашевих фарб"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 195,
         "fields": {
-            "category": 3,
-            "value": "160 г/м2"
+            "category": 1,
+            "value": "Аерозоль"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 196,
         "fields": {
-            "category": 3,
-            "value": "250 г/м2"
+            "category": 1,
+            "value": "Патіна"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 197,
         "fields": {
-            "category": 3,
-            "value": "215 г/м2"
+            "category": 1,
+            "value": "Мездровий"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 198,
         "fields": {
-            "category": 3,
-            "value": "350 г/м2"
+            "category": 1,
+            "value": "Для гравюри"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 199,
         "fields": {
-            "category": 3,
-            "value": "325г/м2"
+            "category": 1,
+            "value": "Спиртові"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 200,
         "fields": {
-            "category": 3,
-            "value": "120 г/м2"
+            "category": 1,
+            "value": "Текстиль"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 201,
         "fields": {
-            "category": 3,
-            "value": "280 г/м2"
+            "category": 1,
+            "value": "Гуаш"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 202,
         "fields": {
-            "category": 3,
-            "value": "230 г/м2"
+            "category": 1,
+            "value": "Пластмаса"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 203,
         "fields": {
-            "category": 4,
-            "value": "А6"
+            "category": 1,
+            "value": "Натуральний"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 204,
         "fields": {
-            "category": 4,
-            "value": "В5"
+            "category": 1,
+            "value": "Для розпису фарфору"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 205,
         "fields": {
-            "category": 4,
-            "value": "А3"
+            "category": 1,
+            "value": "Скло"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 206,
         "fields": {
-            "category": 4,
-            "value": "А4"
+            "category": 1,
+            "value": "Для декоративного шрифта"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 207,
         "fields": {
-            "category": 4,
-            "value": "А2"
+            "category": 2,
+            "value": "350 г/м"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 208,
         "fields": {
-            "category": 4,
-            "value": "А5"
+            "category": 2,
+            "value": "98 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 209,
         "fields": {
-            "category": 4,
-            "value": "А1"
+            "category": 2,
+            "value": "75 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 210,
         "fields": {
-            "category": 4,
-            "value": "В1"
+            "category": 2,
+            "value": "150 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 211,
         "fields": {
-            "category": 4,
-            "value": "В2"
+            "category": 2,
+            "value": "230 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 212,
         "fields": {
-            "category": 5,
-            "value": "9x14 см"
+            "category": 2,
+            "value": "270 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 213,
         "fields": {
-            "category": 5,
-            "value": "5x2,5 см"
+            "category": 2,
+            "value": "260 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 214,
         "fields": {
-            "category": 5,
-            "value": "50x70 см"
+            "category": 2,
+            "value": "246 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 215,
         "fields": {
-            "category": 5,
-            "value": "19,5x19,5 см"
+            "category": 2,
+            "value": "224 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 216,
         "fields": {
-            "category": 5,
-            "value": "92x92x203"
+            "category": 2,
+            "value": "320 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 217,
         "fields": {
-            "category": 5,
-            "value": "15x15 см"
+            "category": 2,
+            "value": "89 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 218,
         "fields": {
-            "category": 5,
-            "value": "35,5х51 см"
+            "category": 2,
+            "value": "350 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 219,
         "fields": {
-            "category": 5,
-            "value": "21x13,5 см"
+            "category": 2,
+            "value": "165 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 220,
         "fields": {
-            "category": 5,
-            "value": "23x31 см"
+            "category": 2,
+            "value": "95 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 221,
         "fields": {
-            "category": 5,
-            "value": "9x9 см"
+            "category": 2,
+            "value": "96 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 222,
         "fields": {
-            "category": 5,
-            "value": "23,5x35 см"
+            "category": 2,
+            "value": "290 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 223,
         "fields": {
-            "category": 5,
-            "value": "10x10 см"
+            "category": 2,
+            "value": "480 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 224,
         "fields": {
-            "category": 5,
-            "value": "17x24 см"
+            "category": 2,
+            "value": "308 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 225,
         "fields": {
-            "category": 5,
-            "value": "30x40 см"
+            "category": 2,
+            "value": "70 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 226,
         "fields": {
-            "category": 5,
-            "value": "45x35"
+            "category": 2,
+            "value": "180 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 227,
         "fields": {
-            "category": 5,
-            "value": "28х35,6 см"
+            "category": 2,
+            "value": "280 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 228,
         "fields": {
-            "category": 5,
-            "value": "23х23 см"
+            "category": 2,
+            "value": "235 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 229,
         "fields": {
-            "category": 5,
-            "value": "24x32 см"
+            "category": 2,
+            "value": "190 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 230,
         "fields": {
-            "category": 5,
-            "value": "56x76 см"
+            "category": 2,
+            "value": "130 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 231,
         "fields": {
-            "category": 5,
-            "value": "32,5x45 см"
+            "category": 2,
+            "value": "185 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 232,
         "fields": {
-            "category": 5,
-            "value": "22,5x32,5 см"
+            "category": 2,
+            "value": "215 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 233,
         "fields": {
-            "category": 5,
-            "value": "30x40"
+            "category": 2,
+            "value": "160  г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 234,
         "fields": {
-            "category": 5,
-            "value": "1,25x10,5x45"
+            "category": 2,
+            "value": "253 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 235,
         "fields": {
-            "category": 5,
-            "value": "29,7x42 см"
+            "category": 2,
+            "value": "175г / м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 236,
         "fields": {
-            "category": 5,
-            "value": "4х5 см"
+            "category": 2,
+            "value": "400 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 237,
         "fields": {
-            "category": 5,
-            "value": "21х14,8 см"
+            "category": 2,
+            "value": "640 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 238,
         "fields": {
-            "category": 5,
-            "value": "10х7 см"
+            "category": 2,
+            "value": "160 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 239,
         "fields": {
-            "category": 5,
-            "value": "21,5x28 см"
+            "category": 2,
+            "value": "220 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 240,
         "fields": {
-            "category": 5,
-            "value": "70x100 см"
+            "category": 2,
+            "value": "285 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 241,
         "fields": {
-            "category": 5,
-            "value": "13x20 см"
+            "category": 2,
+            "value": "78 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 242,
         "fields": {
-            "category": 5,
-            "value": "40,5x29,5x8,5"
+            "category": 2,
+            "value": "140 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 243,
         "fields": {
-            "category": 5,
-            "value": "42х59,4 см"
+            "category": 2,
+            "value": "630 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 244,
         "fields": {
-            "category": 5,
-            "value": "5x10 см"
+            "category": 2,
+            "value": "120 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 245,
         "fields": {
-            "category": 5,
-            "value": "10,5x15 см"
+            "category": 2,
+            "value": "250 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 246,
         "fields": {
-            "category": 5,
-            "value": "4,5x3x1 см"
+            "category": 2,
+            "value": "135 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 247,
         "fields": {
-            "category": 5,
-            "value": "13,5x21 см"
+            "category": 2,
+            "value": "74 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 248,
         "fields": {
-            "category": 5,
-            "value": "42x38x48"
+            "category": 2,
+            "value": "125 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 249,
         "fields": {
-            "category": 5,
-            "value": "19x38 см"
+            "category": 2,
+            "value": "420 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 250,
         "fields": {
-            "category": 5,
-            "value": "21x14,8 см"
+            "category": 2,
+            "value": "325 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 251,
         "fields": {
-            "category": 5,
-            "value": "50,5x70 см"
+            "category": 2,
+            "value": "155 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 252,
         "fields": {
-            "category": 5,
-            "value": "63x36x71"
+            "category": 2,
+            "value": "100 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 253,
         "fields": {
-            "category": 5,
-            "value": "21x15 см"
+            "category": 2,
+            "value": "80 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 254,
         "fields": {
-            "category": 5,
-            "value": "14,8x21 см"
+            "category": 2,
+            "value": "360 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 255,
         "fields": {
-            "category": 5,
-            "value": "21x30 см"
+            "category": 2,
+            "value": "210 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 256,
         "fields": {
-            "category": 5,
-            "value": "24,5x17,6 см"
+            "category": 2,
+            "value": "115 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 257,
         "fields": {
-            "category": 5,
-            "value": "14x14 см"
+            "category": 2,
+            "value": "104 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 258,
         "fields": {
-            "category": 5,
-            "value": "12х16 см"
+            "category": 2,
+            "value": "200 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 259,
         "fields": {
-            "category": 5,
-            "value": "14x21,6 см"
+            "category": 2,
+            "value": "110 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 260,
         "fields": {
-            "category": 5,
-            "value": "57x60x120"
+            "category": 2,
+            "value": "240 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 261,
         "fields": {
-            "category": 5,
-            "value": "42x29 см"
+            "category": 2,
+            "value": "60 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 262,
         "fields": {
-            "category": 5,
-            "value": "34x20x62"
+            "category": 2,
+            "value": "40 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 263,
         "fields": {
-            "category": 5,
-            "value": "17,78x25,4 см"
+            "category": 2,
+            "value": "175 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 264,
         "fields": {
-            "category": 5,
-            "value": "21x21x37"
+            "category": 2,
+            "value": "90 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 265,
         "fields": {
-            "category": 5,
-            "value": "76x56 см"
+            "category": 2,
+            "value": "85 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 266,
         "fields": {
-            "category": 5,
-            "value": "1000x100 см"
+            "category": 2,
+            "value": "535 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 267,
         "fields": {
-            "category": 5,
-            "value": "31x23 см"
+            "category": 2,
+            "value": "300 г/м2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 268,
         "fields": {
-            "category": 5,
-            "value": "35x48 см"
+            "category": 3,
+            "value": "А3"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 269,
         "fields": {
-            "category": 5,
-            "value": "14x14"
+            "category": 3,
+            "value": "А1"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 270,
         "fields": {
-            "category": 5,
-            "value": "52x40x8,5"
+            "category": 3,
+            "value": "В1"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 271,
         "fields": {
-            "category": 5,
-            "value": "50x65 см"
+            "category": 3,
+            "value": "В2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 272,
         "fields": {
-            "category": 5,
-            "value": "42x29,7 см"
+            "category": 3,
+            "value": "А4"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 273,
         "fields": {
-            "category": 5,
-            "value": "10,5x14,8 см"
+            "category": 3,
+            "value": "А5"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 274,
         "fields": {
-            "category": 5,
-            "value": "30x30 см"
+            "category": 3,
+            "value": "В5"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 275,
         "fields": {
-            "category": 5,
-            "value": "70х102 см"
+            "category": 3,
+            "value": "B2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 276,
         "fields": {
-            "category": 5,
-            "value": "28x28 см"
+            "category": 3,
+            "value": "А6"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 277,
         "fields": {
-            "category": 5,
-            "value": "14,7x10,6 см"
+            "category": 3,
+            "value": "А2"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 278,
         "fields": {
-            "category": 5,
-            "value": "100x150x0,15 см"
+            "category": 4,
+            "value": "D.K.ART & CRAFT"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 279,
         "fields": {
-            "category": 5,
-            "value": "14,8x9,5 см"
+            "category": 4,
+            "value": "REMBRANDT"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 280,
         "fields": {
-            "category": 5,
-            "value": "36x48 см"
+            "category": 4,
+            "value": "Derwent"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 281,
         "fields": {
-            "category": 5,
-            "value": "21x21 см"
+            "category": 4,
+            "value": "Axent"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 282,
         "fields": {
-            "category": 5,
-            "value": "75x105 см"
+            "category": 4,
+            "value": "Cheap-Art"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 283,
         "fields": {
-            "category": 5,
-            "value": "22,9x30,5 см"
+            "category": 4,
+            "value": "Inter Tape"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 284,
         "fields": {
-            "category": 5,
-            "value": "6,5x11"
+            "category": 4,
+            "value": "Mungyo"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 285,
         "fields": {
-            "category": 5,
-            "value": "12x12 см"
+            "category": 4,
+            "value": "Marabu"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 286,
         "fields": {
-            "category": 5,
-            "value": "42x56 см"
+            "category": 4,
+            "value": "BREEZE"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 287,
         "fields": {
-            "category": 5,
-            "value": "60x75x125"
+            "category": 4,
+            "value": "Graduate Acrylic Set"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 288,
         "fields": {
-            "category": 5,
-            "value": "27x35 см"
+            "category": 4,
+            "value": "Economix"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 289,
         "fields": {
-            "category": 5,
-            "value": "20x20 см"
+            "category": 4,
+            "value": "ГАММА"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 290,
         "fields": {
-            "category": 5,
-            "value": "33x27,5"
+            "category": 4,
+            "value": "Гознак"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 291,
         "fields": {
-            "category": 5,
-            "value": "20x40 см"
+            "category": 4,
+            "value": "Foamwerks"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 292,
         "fields": {
-            "category": 5,
-            "value": "7x42 см"
+            "category": 4,
+            "value": "Sea colours"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 293,
         "fields": {
-            "category": 5,
-            "value": "30х40"
+            "category": 4,
+            "value": "Intertool"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 294,
         "fields": {
-            "category": 5,
-            "value": "5x50 см"
+            "category": 4,
+            "value": "Kremer"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 295,
         "fields": {
-            "category": 5,
-            "value": "100x300 см"
+            "category": 4,
+            "value": "Unico"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 296,
         "fields": {
-            "category": 5,
-            "value": "30,5x41 см"
+            "category": 4,
+            "value": "Clairefontaine"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 297,
         "fields": {
-            "category": 5,
-            "value": "58x60x154"
+            "category": 4,
+            "value": "GESSO"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 298,
         "fields": {
-            "category": 5,
-            "value": "27x50"
+            "category": 4,
+            "value": "Луч"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 299,
         "fields": {
-            "category": 5,
-            "value": "10x15 см"
+            "category": 4,
+            "value": "NPA"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 300,
         "fields": {
-            "category": 5,
-            "value": "60x80x0,15 см"
+            "category": 4,
+            "value": "Етюд"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 301,
         "fields": {
-            "category": 5,
-            "value": "40x30 см"
+            "category": 4,
+            "value": "ESSDEE"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 302,
         "fields": {
-            "category": 5,
-            "value": "72x101 см"
+            "category": 4,
+            "value": "Blood"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 303,
         "fields": {
-            "category": 5,
-            "value": "20x28 см"
+            "category": 4,
+            "value": "Winsor & Newton"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 304,
         "fields": {
-            "category": 5,
-            "value": "8,5x17"
+            "category": 4,
+            "value": "LINC"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 305,
         "fields": {
-            "category": 5,
-            "value": "30,5х45,5 см"
+            "category": 4,
+            "value": "DR"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 306,
         "fields": {
-            "category": 5,
-            "value": "9x10 см"
+            "category": 4,
+            "value": "ROSA Studio"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 307,
         "fields": {
-            "category": 5,
-            "value": "60x85x115"
+            "category": 4,
+            "value": "Polycolor"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 308,
         "fields": {
-            "category": 5,
-            "value": "20х30 см"
+            "category": 4,
+            "value": "Marco"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 309,
         "fields": {
-            "category": 5,
-            "value": "18x13 см"
+            "category": 4,
+            "value": "Expert"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 310,
         "fields": {
-            "category": 5,
-            "value": "38,5x32,4x6,7"
+            "category": 4,
+            "value": "ROSA TALENT"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 311,
         "fields": {
-            "category": 5,
-            "value": "41,5x31x10"
+            "category": 4,
+            "value": "JUMBO"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 312,
         "fields": {
-            "category": 5,
-            "value": "39x31x8,5"
+            "category": 4,
+            "value": "Royal Talens"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 313,
         "fields": {
-            "category": 5,
-            "value": "16х16 см"
+            "category": 4,
+            "value": "Sakura"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 314,
         "fields": {
-            "category": 5,
-            "value": "40х40 см"
+            "category": 4,
+            "value": "Milan"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 315,
         "fields": {
-            "category": 5,
-            "value": "50,5x72 см"
+            "category": 4,
+            "value": "Маэстро"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 316,
         "fields": {
-            "category": 5,
-            "value": "34x46 см"
+            "category": 4,
+            "value": "Renesans"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 317,
         "fields": {
-            "category": 5,
-            "value": "16x22,5 см"
+            "category": 4,
+            "value": "ROSA Galle"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 318,
         "fields": {
-            "category": 5,
-            "value": "5х21см"
+            "category": 4,
+            "value": "Kissточка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 319,
         "fields": {
-            "category": 5,
-            "value": "14х21см"
+            "category": 4,
+            "value": "VAN GOGH"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 320,
         "fields": {
-            "category": 5,
-            "value": "25x35 см"
+            "category": 4,
+            "value": "KOLOS"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 321,
         "fields": {
-            "category": 5,
-            "value": "22x23x38"
+            "category": 4,
+            "value": "Ліра"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 322,
         "fields": {
-            "category": 5,
-            "value": "1000x150 см"
+            "category": 4,
+            "value": "Bovelacci"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 323,
         "fields": {
-            "category": 5,
-            "value": "23x30,5 см"
+            "category": 4,
+            "value": "Nazionale"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 324,
         "fields": {
-            "category": 5,
-            "value": "24х33 см"
+            "category": 4,
+            "value": "Heyda"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 325,
         "fields": {
-            "category": 5,
-            "value": "21x29,7 см"
+            "category": 4,
+            "value": "Hahnemuhle"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 326,
         "fields": {
-            "category": 5,
-            "value": "20,3х25,4 см"
+            "category": 4,
+            "value": "Сонет"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 327,
         "fields": {
-            "category": 5,
-            "value": "16х21 см"
+            "category": 4,
+            "value": "Sculpey"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 328,
         "fields": {
-            "category": 5,
-            "value": "29x42 см"
+            "category": 4,
+            "value": "Этюд"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 329,
         "fields": {
-            "category": 5,
-            "value": "150x1000 см"
+            "category": 4,
+            "value": "Fimo"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 330,
         "fields": {
-            "category": 5,
-            "value": "6,5x3 см"
+            "category": 4,
+            "value": "Школярик"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 331,
         "fields": {
-            "category": 5,
-            "value": "42x59,4 см"
+            "category": 4,
+            "value": "Kancler"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 332,
         "fields": {
-            "category": 5,
-            "value": "5x20 см"
+            "category": 4,
+            "value": "Подольськ-Арт"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 333,
         "fields": {
-            "category": 5,
-            "value": "43,5x33,5x6"
+            "category": 4,
+            "value": "Magistr Eco"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 334,
         "fields": {
-            "category": 5,
-            "value": "30x21 см"
+            "category": 4,
+            "value": "Derwen"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 335,
         "fields": {
-            "category": 5,
-            "value": "12,5x18 см"
+            "category": 4,
+            "value": "Unico Light"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 336,
         "fields": {
-            "category": 5,
-            "value": "18x24 см"
+            "category": 4,
+            "value": "Pentart"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 337,
         "fields": {
-            "category": 5,
-            "value": "14,8x14,8 см"
+            "category": 4,
+            "value": "Van Pure"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 338,
         "fields": {
-            "category": 5,
-            "value": "29,7x21 см"
+            "category": 4,
+            "value": "Трек"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 339,
         "fields": {
-            "category": 5,
-            "value": "13x21 см"
+            "category": 4,
+            "value": "SANTI"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 340,
         "fields": {
-            "category": 5,
-            "value": "3,5x3,5x1 см"
+            "category": 4,
+            "value": "Smiltainis"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 341,
         "fields": {
-            "category": 5,
-            "value": "15x100"
+            "category": 4,
+            "value": "PintyPlus"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 342,
         "fields": {
-            "category": 5,
-            "value": "16x16"
+            "category": 4,
+            "value": "Lana"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 343,
         "fields": {
-            "category": 5,
-            "value": "32x25x7"
+            "category": 4,
+            "value": "Centropen"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 344,
         "fields": {
-            "category": 5,
-            "value": "2,40x10,5x52"
+            "category": 4,
+            "value": "Makin's"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 345,
         "fields": {
-            "category": 5,
-            "value": "87,8x4000 см"
+            "category": 4,
+            "value": "Таир"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 346,
         "fields": {
-            "category": 6,
-            "value": "36"
+            "category": 4,
+            "value": "Kreska"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 347,
         "fields": {
-            "category": 6,
-            "value": "25"
+            "category": 4,
+            "value": "Маестро"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 348,
         "fields": {
-            "category": 6,
-            "value": "1"
+            "category": 4,
+            "value": "ЗХК"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 349,
         "fields": {
-            "category": 6,
-            "value": "5"
+            "category": 4,
+            "value": "Marvy"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 350,
         "fields": {
-            "category": 6,
-            "value": "70"
+            "category": 4,
+            "value": "P.E.R. Belle Arti"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 351,
         "fields": {
-            "category": 6,
-            "value": "16"
+            "category": 4,
+            "value": "KUM"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 352,
         "fields": {
-            "category": 6,
-            "value": "22"
+            "category": 4,
+            "value": "Арт Хобби Бутик"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 353,
         "fields": {
-            "category": 6,
-            "value": "192"
+            "category": 4,
+            "value": "Вінкс"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 354,
         "fields": {
-            "category": 6,
-            "value": "84"
+            "category": 4,
+            "value": "Китай"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 355,
         "fields": {
-            "category": 6,
-            "value": "48"
+            "category": 4,
+            "value": "Graph'it"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 356,
         "fields": {
-            "category": 6,
-            "value": "26"
+            "category": 4,
+            "value": "ZiBi"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 357,
         "fields": {
-            "category": 6,
-            "value": "90"
+            "category": 4,
+            "value": "УХУ"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 358,
         "fields": {
-            "category": 6,
-            "value": "24"
+            "category": 4,
+            "value": "Edding"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 359,
         "fields": {
-            "category": 6,
-            "value": "96"
+            "category": 4,
+            "value": "Ладога"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 360,
         "fields": {
-            "category": 6,
-            "value": "34"
+            "category": 4,
+            "value": "Luch"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 361,
         "fields": {
-            "category": 6,
-            "value": "15"
+            "category": 4,
+            "value": "Factis"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 362,
         "fields": {
-            "category": 6,
-            "value": "35"
+            "category": 4,
+            "value": "Acrilico"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 363,
         "fields": {
-            "category": 6,
-            "value": "32"
+            "category": 4,
+            "value": "MasterKisti"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 364,
         "fields": {
-            "category": 6,
-            "value": "40"
+            "category": 4,
+            "value": "Cretacolor"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 365,
         "fields": {
-            "category": 6,
-            "value": "150"
+            "category": 4,
+            "value": "Classico"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 366,
         "fields": {
-            "category": 6,
-            "value": "11"
+            "category": 4,
+            "value": "Чехія"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 367,
         "fields": {
-            "category": 6,
-            "value": "30"
+            "category": 4,
+            "value": "Manuscript"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 368,
         "fields": {
-            "category": 6,
-            "value": "60"
+            "category": 4,
+            "value": "Knorr Prandell"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 369,
         "fields": {
-            "category": 6,
-            "value": "120"
+            "category": 4,
+            "value": "Sinar spectra"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 370,
         "fields": {
-            "category": 6,
-            "value": "20"
+            "category": 4,
+            "value": "Pilot"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 371,
         "fields": {
-            "category": 6,
-            "value": "8"
+            "category": 4,
+            "value": "RОSА MODERN"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 372,
         "fields": {
-            "category": 6,
-            "value": "50"
+            "category": 4,
+            "value": "Roubloff"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 373,
         "fields": {
-            "category": 6,
-            "value": "250"
+            "category": 4,
+            "value": "Van Gogh"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 374,
         "fields": {
-            "category": 6,
-            "value": "500"
+            "category": 4,
+            "value": "Margo"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 375,
         "fields": {
-            "category": 6,
-            "value": "200"
+            "category": 4,
+            "value": "Koh-I-Noor"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 376,
         "fields": {
-            "category": 6,
-            "value": "28"
+            "category": 4,
+            "value": "YES"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 377,
         "fields": {
-            "category": 6,
-            "value": "72"
+            "category": 4,
+            "value": "SMILTAINIS"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 378,
         "fields": {
-            "category": 6,
-            "value": "100"
+            "category": 4,
+            "value": "PINTYPLUS"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 379,
         "fields": {
-            "category": 6,
-            "value": "12"
+            "category": 4,
+            "value": "ROSA Talent"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 380,
         "fields": {
-            "category": 6,
-            "value": "75"
+            "category": 4,
+            "value": "Turbo"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 381,
         "fields": {
-            "category": 6,
-            "value": "80"
+            "category": 4,
+            "value": "UkrBoards"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 382,
         "fields": {
-            "category": 6,
-            "value": "18"
+            "category": 4,
+            "value": "BIC MATIC"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 383,
         "fields": {
-            "category": 6,
-            "value": "10"
+            "category": 4,
+            "value": "Finetec"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 384,
         "fields": {
-            "category": 7,
-            "value": "40 шт"
+            "category": 4,
+            "value": "Bruna"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 385,
         "fields": {
-            "category": 7,
-            "value": "25"
+            "category": 4,
+            "value": "Canson"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 386,
         "fields": {
-            "category": 7,
-            "value": "1"
+            "category": 4,
+            "value": "UHU"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 387,
         "fields": {
-            "category": 7,
-            "value": "5"
+            "category": 4,
+            "value": "MUNGYO"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 388,
         "fields": {
-            "category": 7,
-            "value": "120 шт"
+            "category": 4,
+            "value": "Bruynzeel"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 389,
         "fields": {
-            "category": 7,
-            "value": "70"
+            "category": 4,
+            "value": "SANTI Flowers"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 390,
         "fields": {
-            "category": 7,
-            "value": "2"
+            "category": 4,
+            "value": "ТАИР"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 391,
         "fields": {
-            "category": 7,
-            "value": "14"
+            "category": 4,
+            "value": "Primo"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 392,
         "fields": {
-            "category": 7,
-            "value": "9"
+            "category": 4,
+            "value": "DAFA"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 393,
         "fields": {
-            "category": 7,
-            "value": "192"
+            "category": 4,
+            "value": "Creartec"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 394,
         "fields": {
-            "category": 7,
-            "value": "30 шт"
+            "category": 4,
+            "value": "4Art"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 395,
         "fields": {
-            "category": 7,
-            "value": "18 шт"
+            "category": 4,
+            "value": "BuroMAX"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 396,
         "fields": {
-            "category": 7,
-            "value": "20 шт"
+            "category": 4,
+            "value": "Kum"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 397,
         "fields": {
-            "category": 7,
-            "value": "48"
+            "category": 4,
+            "value": "Amaco"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 398,
         "fields": {
-            "category": 7,
-            "value": "2 шт"
+            "category": 4,
+            "value": "1 Вересня"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 399,
         "fields": {
-            "category": 7,
-            "value": "24"
+            "category": 4,
+            "value": "АРТ-39"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 400,
         "fields": {
-            "category": 7,
-            "value": "15"
+            "category": 4,
+            "value": "Decola"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 401,
         "fields": {
-            "category": 7,
-            "value": "35"
+            "category": 4,
+            "value": "ROSA"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 402,
         "fields": {
-            "category": 7,
-            "value": "6 шт"
+            "category": 4,
+            "value": "Glas Marabu"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 403,
         "fields": {
-            "category": 7,
-            "value": "40"
+            "category": 4,
+            "value": "Sadipal"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 404,
         "fields": {
-            "category": 7,
-            "value": "11"
+            "category": 4,
+            "value": "Folia"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 405,
         "fields": {
-            "category": 7,
-            "value": "50 шт"
+            "category": 4,
+            "value": "Padico"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 406,
         "fields": {
-            "category": 7,
-            "value": "60 шт"
+            "category": 4,
+            "value": "Santi Studio"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 407,
         "fields": {
-            "category": 7,
-            "value": "10"
+            "category": 4,
+            "value": "Maimeri"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 408,
         "fields": {
-            "category": 7,
-            "value": "58"
+            "category": 4,
+            "value": "Ki-sign"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 409,
         "fields": {
-            "category": 7,
-            "value": "5 шт"
+            "category": 4,
+            "value": "Strathmore"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 410,
         "fields": {
-            "category": 7,
-            "value": "3 шт"
+            "category": 4,
+            "value": "Україна"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 411,
         "fields": {
-            "category": 7,
-            "value": "60"
+            "category": 4,
+            "value": "Maestro"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 412,
         "fields": {
-            "category": 7,
-            "value": "4 шт"
+            "category": 4,
+            "value": "Albero"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 413,
         "fields": {
-            "category": 7,
-            "value": "20"
+            "category": 4,
+            "value": "Tecnis Copier"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 414,
         "fields": {
-            "category": 7,
-            "value": "8"
+            "category": 4,
+            "value": "Leo Art"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 415,
         "fields": {
-            "category": 7,
-            "value": "50"
+            "category": 4,
+            "value": "TART"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 416,
         "fields": {
-            "category": 7,
-            "value": "10шт"
+            "category": 4,
+            "value": "St. Cuthberts Mill"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 417,
         "fields": {
-            "category": 7,
-            "value": "48 шт"
+            "category": 4,
+            "value": "GAMMA"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 418,
         "fields": {
-            "category": 7,
-            "value": "80 шт"
+            "category": 4,
+            "value": "Fabriano"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 419,
         "fields": {
-            "category": 7,
-            "value": "36 шт"
+            "category": 4,
+            "value": "ROSA START"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 420,
         "fields": {
-            "category": 7,
-            "value": "10 шт"
+            "category": 4,
+            "value": "ROSA Gallery"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 421,
         "fields": {
-            "category": 7,
-            "value": "72 шт"
+            "category": 4,
+            "value": "SCHIZZI"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 422,
         "fields": {
-            "category": 7,
-            "value": "72"
+            "category": 4,
+            "value": "Brunnen"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 423,
         "fields": {
-            "category": 7,
-            "value": "4"
+            "category": 4,
+            "value": "ArtCreation"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 424,
         "fields": {
-            "category": 7,
-            "value": "3"
+            "category": 4,
+            "value": "Лилия Холдинг"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 425,
         "fields": {
-            "category": 7,
-            "value": "12"
+            "category": 4,
+            "value": "Fengda"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 426,
         "fields": {
-            "category": 7,
-            "value": "17"
+            "category": 4,
+            "value": "Daler-Rowney"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 427,
         "fields": {
-            "category": 7,
-            "value": "27"
+            "category": 4,
+            "value": "Santi Sensation"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 428,
         "fields": {
-            "category": 7,
-            "value": "8 шт"
+            "category": 4,
+            "value": "Ukraine"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 429,
         "fields": {
-            "category": 7,
-            "value": "168 шт"
+            "category": 5,
+            "value": "Стержень для клейового пістолета"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 430,
         "fields": {
-            "category": 7,
-            "value": "6"
+            "category": 5,
+            "value": "Банка-спрей"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 431,
         "fields": {
-            "category": 7,
-            "value": "36"
+            "category": 5,
+            "value": "Файл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 432,
         "fields": {
-            "category": 8,
-            "value": "0,8 мм"
+            "category": 5,
+            "value": "Табурет розкладний"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 433,
         "fields": {
-            "category": 8,
-            "value": " 0,4-0,5 мм"
+            "category": 5,
+            "value": "Трикутник"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 434,
         "fields": {
-            "category": 8,
-            "value": "5"
+            "category": 5,
+            "value": "Листівка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 435,
         "fields": {
-            "category": 8,
-            "value": "2 мм"
+            "category": 5,
+            "value": "Пластикові форми"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 436,
         "fields": {
-            "category": 8,
-            "value": "0,4 мм"
+            "category": 5,
+            "value": "Скоби"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 437,
         "fields": {
-            "category": 8,
-            "value": "0,02 мм"
+            "category": 5,
+            "value": "Дошка магнітна"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 438,
         "fields": {
-            "category": 8,
-            "value": "0,5/0,8 мм"
+            "category": 5,
+            "value": "Наждачний папір"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 439,
         "fields": {
-            "category": 8,
-            "value": "1 мм"
+            "category": 5,
+            "value": "Пістолет клеєвий"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 440,
         "fields": {
-            "category": 8,
-            "value": "0,4/0,5 мм"
+            "category": 5,
+            "value": "Сумка-чохол"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 441,
         "fields": {
-            "category": 8,
-            "value": "4,5 мм"
+            "category": 5,
+            "value": "Кювета"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 442,
         "fields": {
-            "category": 8,
-            "value": "0,4/1 мм"
+            "category": 5,
+            "value": "Блок"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 443,
         "fields": {
-            "category": 8,
-            "value": "0,05 мм"
+            "category": 5,
+            "value": "Борд"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 444,
         "fields": {
-            "category": 8,
-            "value": "1,2 мм"
+            "category": 5,
+            "value": "Модулін"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 445,
         "fields": {
-            "category": 8,
-            "value": "0,03 мм"
+            "category": 5,
+            "value": "Основа пiд годинник"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 446,
         "fields": {
-            "category": 8,
-            "value": "0,45 мм"
+            "category": 5,
+            "value": "Комод"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 447,
         "fields": {
-            "category": 8,
-            "value": "3-4 мм"
+            "category": 5,
+            "value": "Інструмент"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 448,
         "fields": {
-            "category": 8,
-            "value": "1-2 мм"
+            "category": 5,
+            "value": "Скетчбук"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 449,
         "fields": {
-            "category": 8,
-            "value": "0,35 мм"
+            "category": 5,
+            "value": "Фарба-спрей"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 450,
         "fields": {
-            "category": 8,
-            "value": "0,3 мм"
+            "category": 5,
+            "value": "Стрази та перлини"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 451,
         "fields": {
-            "category": 8,
-            "value": "0,25 мм"
+            "category": 5,
+            "value": "Лупа"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 452,
         "fields": {
-            "category": 8,
-            "value": "0,6 мм"
+            "category": 5,
+            "value": "Текстурний лист"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 453,
         "fields": {
-            "category": 8,
-            "value": "0,75 мм, 1-6 мм"
+            "category": 5,
+            "value": "Порпоріна"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 454,
         "fields": {
-            "category": 8,
-            "value": "15 мм"
+            "category": 5,
+            "value": "Коробка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 455,
         "fields": {
-            "category": 8,
-            "value": "0,75 мм"
+            "category": 5,
+            "value": "Склейка-блок"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 456,
         "fields": {
-            "category": 8,
-            "value": "0,7"
+            "category": 5,
+            "value": "Сухi бiлила"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 457,
         "fields": {
-            "category": 8,
-            "value": "0,1 мм"
+            "category": 5,
+            "value": "Маска"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 458,
         "fields": {
-            "category": 8,
-            "value": "2 мм/3,5 мм"
+            "category": 5,
+            "value": "Стек-петля"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 459,
         "fields": {
-            "category": 8,
-            "value": "0,5 мм"
+            "category": 5,
+            "value": "Гравірувальна машина"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 460,
         "fields": {
-            "category": 8,
-            "value": "0,2 мм"
+            "category": 5,
+            "value": "Стержень"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 461,
         "fields": {
-            "category": 8,
-            "value": "0,3/0,5 мм"
+            "category": 5,
+            "value": "Терпентин"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 462,
         "fields": {
-            "category": 8,
-            "value": "3 мм"
+            "category": 5,
+            "value": "Блокнот"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 463,
         "fields": {
-            "category": 8,
-            "value": "1-2 мм, 2-4 мм"
+            "category": 5,
+            "value": "Мозаїка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 464,
         "fields": {
-            "category": 9,
-            "value": "Двосторонній"
+            "category": 5,
+            "value": "Склейка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 465,
         "fields": {
-            "category": 9,
-            "value": "односторонній"
+            "category": 5,
+            "value": "Каолін"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 466,
         "fields": {
-            "category": 9,
-            "value": "двосторонній"
+            "category": 5,
+            "value": "Очищувач"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 467,
         "fields": {
-            "category": 10,
-            "value": "Graph'i"
+            "category": 5,
+            "value": "Капітель"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 468,
         "fields": {
-            "category": 10,
-            "value": "Maimeri"
+            "category": 5,
+            "value": "Мордан"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 469,
         "fields": {
-            "category": 10,
-            "value": "Van Gogh"
+            "category": 5,
+            "value": "Вугілля"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 470,
         "fields": {
-            "category": 10,
-            "value": "Sadipal"
+            "category": 5,
+            "value": "Лінійка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 471,
         "fields": {
-            "category": 10,
-            "value": "Santi."
+            "category": 5,
+            "value": "Мольберт"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 472,
         "fields": {
-            "category": 10,
-            "value": "ТАИР"
+            "category": 5,
+            "value": "Гончарний круг"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 473,
         "fields": {
-            "category": 10,
-            "value": "Bruynzeel"
+            "category": 5,
+            "value": "Грунт"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 474,
         "fields": {
-            "category": 10,
-            "value": "D.K.ART & CRAFT"
+            "category": 5,
+            "value": "Лінолеум"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 475,
         "fields": {
-            "category": 10,
-            "value": "Manuscript"
+            "category": 5,
+            "value": "Коректор"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 476,
         "fields": {
-            "category": 10,
-            "value": "Kum"
+            "category": 5,
+            "value": "Браслет"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 477,
         "fields": {
-            "category": 10,
-            "value": "Kremer"
+            "category": 5,
+            "value": "Стек"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 478,
         "fields": {
-            "category": 10,
-            "value": "Van Pure"
+            "category": 5,
+            "value": "Ручка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 479,
         "fields": {
-            "category": 10,
-            "value": "Brunnen"
+            "category": 5,
+            "value": "Мольберт-планшет"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 480,
         "fields": {
-            "category": 10,
-            "value": "St. Cuthberts Mill"
+            "category": 5,
+            "value": "Перо"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 481,
         "fields": {
-            "category": 10,
-            "value": "Cretacolor"
+            "category": 5,
+            "value": "Пом'якшувач"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 482,
         "fields": {
-            "category": 10,
-            "value": "Cretacolor 1(6)"
+            "category": 5,
+            "value": "Декоративні 3Д кульки"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 483,
         "fields": {
-            "category": 10,
-            "value": "ROSA Gallery"
+            "category": 5,
+            "value": "Піднос"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 484,
         "fields": {
-            "category": 10,
-            "value": "LINC"
+            "category": 5,
+            "value": "Порошок"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 485,
         "fields": {
-            "category": 10,
-            "value": "Fabriano"
+            "category": 5,
+            "value": "Гумка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 486,
         "fields": {
-            "category": 10,
-            "value": "Axent"
+            "category": 5,
+            "value": "Контур-резерв"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 487,
         "fields": {
-            "category": 10,
-            "value": "Graph'it"
+            "category": 5,
+            "value": "Готовальня"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 488,
         "fields": {
-            "category": 10,
-            "value": "Сонет"
+            "category": 5,
+            "value": "Блоки для різьблення"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 489,
         "fields": {
-            "category": 10,
-            "value": "BuroMAX"
+            "category": 5,
+            "value": "Пемза"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 490,
         "fields": {
-            "category": 10,
-            "value": "PINTYPLUS"
+            "category": 5,
+            "value": "Шпатель"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 491,
         "fields": {
-            "category": 10,
-            "value": "Clairefontaine"
+            "category": 5,
+            "value": "Самоклеюча плівка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 492,
         "fields": {
-            "category": 10,
-            "value": "AXENT"
+            "category": 5,
+            "value": "Клеючі Подушечки"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 493,
         "fields": {
-            "category": 10,
-            "value": "Sakura"
+            "category": 5,
+            "value": "Ролики"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 494,
         "fields": {
-            "category": 10,
-            "value": "Cretacolor 1(12)"
+            "category": 5,
+            "value": "Мульти-лайнер"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 495,
         "fields": {
-            "category": 10,
-            "value": "Winsor and Newton"
+            "category": 5,
+            "value": "Кнопки"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 496,
         "fields": {
-            "category": 10,
-            "value": "Mungyo"
+            "category": 5,
+            "value": "Ніж"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 497,
         "fields": {
-            "category": 10,
-            "value": "Школярик"
+            "category": 5,
+            "value": "Віск"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 498,
         "fields": {
-            "category": 10,
-            "value": "JUMBO"
+            "category": 5,
+            "value": "Ніж гофрований"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 499,
         "fields": {
-            "category": 10,
-            "value": "SCHIZZI"
+            "category": 5,
+            "value": "Фігурки з пінопласту"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 500,
         "fields": {
-            "category": 10,
-            "value": "Santi"
+            "category": 5,
+            "value": "Лак"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 501,
         "fields": {
-            "category": 10,
-            "value": "Ліра"
+            "category": 5,
+            "value": "Болюс"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 502,
         "fields": {
-            "category": 10,
-            "value": "YES"
+            "category": 5,
+            "value": "Альбом-склейка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 503,
         "fields": {
-            "category": 10,
-            "value": "Marvy"
+            "category": 5,
+            "value": "Гіпсова модель"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 504,
         "fields": {
-            "category": 10,
-            "value": "Kreska"
+            "category": 5,
+            "value": "Ніж макетний"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 505,
         "fields": {
-            "category": 10,
-            "value": "SANTI Flowers"
+            "category": 5,
+            "value": "Стрижень"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 506,
         "fields": {
-            "category": 10,
-            "value": "Creatacolor"
+            "category": 5,
+            "value": "Прискорювач висихання"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 507,
         "fields": {
-            "category": 10,
-            "value": "Strathmore"
+            "category": 5,
+            "value": "Анатомічні деталі"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 508,
         "fields": {
-            "category": 10,
-            "value": "Чехія"
+            "category": 5,
+            "value": "Машинка для пластики"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 509,
         "fields": {
-            "category": 10,
-            "value": "ESSDEE"
+            "category": 5,
+            "value": "Засіб"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 510,
         "fields": {
-            "category": 10,
-            "value": "ROSA Galle"
+            "category": 5,
+            "value": "Набір очі рухомі"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 511,
         "fields": {
-            "category": 10,
-            "value": "Canson"
+            "category": 5,
+            "value": "Годинниковий механізм"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 512,
         "fields": {
-            "category": 10,
-            "value": "D.K.ART &amp; СRAFT"
+            "category": 5,
+            "value": "Сітка перспектива"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 513,
         "fields": {
-            "category": 10,
-            "value": "Centropen"
+            "category": 5,
+            "value": "Контурний гель"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 514,
         "fields": {
-            "category": 10,
-            "value": "Kancler"
+            "category": 5,
+            "value": "Скоба"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 515,
         "fields": {
-            "category": 10,
-            "value": "Sea colours"
+            "category": 5,
+            "value": "Килимок"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 516,
         "fields": {
-            "category": 10,
-            "value": "Heyda"
+            "category": 5,
+            "value": "Скребок"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 517,
         "fields": {
-            "category": 10,
-            "value": "Pentart"
+            "category": 5,
+            "value": "Геометрічна фігура"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 518,
         "fields": {
-            "category": 10,
-            "value": "DR"
+            "category": 5,
+            "value": "Інструмент для пастелі"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 519,
         "fields": {
-            "category": 10,
-            "value": "Royal Talens"
+            "category": 5,
+            "value": "Булавки"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 520,
         "fields": {
-            "category": 10,
-            "value": "Таир"
+            "category": 5,
+            "value": "Розріджувач"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 521,
         "fields": {
-            "category": 10,
-            "value": "Cretacolo"
+            "category": 5,
+            "value": "Фурнітура"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 522,
         "fields": {
-            "category": 10,
-            "value": "KOH-I-NOOR"
+            "category": 5,
+            "value": "Коррегуючий роллер"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 523,
         "fields": {
-            "category": 10,
-            "value": "Margo"
+            "category": 5,
+            "value": "Cпонж"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 524,
         "fields": {
-            "category": 10,
-            "value": "Вінкс"
+            "category": 5,
+            "value": "Гофрокартон"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 525,
         "fields": {
-            "category": 10,
-            "value": "Daler-Rowney"
+            "category": 5,
+            "value": "Маркер"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 526,
         "fields": {
-            "category": 10,
-            "value": "Derwen"
+            "category": 5,
+            "value": "Політура"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 527,
         "fields": {
-            "category": 10,
-            "value": "Factis"
+            "category": 5,
+            "value": "Станок"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 528,
         "fields": {
-            "category": 10,
-            "value": "Koh-i-Noor"
+            "category": 5,
+            "value": "Транспортир"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 529,
         "fields": {
-            "category": 10,
-            "value": "АРТ-39"
+            "category": 5,
+            "value": "Папір"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 530,
         "fields": {
-            "category": 10,
-            "value": "Гознак"
+            "category": 5,
+            "value": "Ватман"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 531,
         "fields": {
-            "category": 10,
-            "value": "Decola"
+            "category": 5,
+            "value": "Пурінг"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 532,
         "fields": {
-            "category": 10,
-            "value": "BIC MATIC"
+            "category": 5,
+            "value": "Шприц"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 533,
         "fields": {
-            "category": 10,
-            "value": "ЗХК"
+            "category": 5,
+            "value": "Серветниця"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 534,
         "fields": {
-            "category": 10,
-            "value": "Арт Хобби Бутик"
+            "category": 5,
+            "value": "Глина"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 535,
         "fields": {
-            "category": 10,
-            "value": "NPA"
+            "category": 5,
+            "value": "Пенал-палітра"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 536,
         "fields": {
-            "category": 10,
-            "value": "Creatcolor"
+            "category": 5,
+            "value": "Біндер"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 537,
         "fields": {
-            "category": 10,
-            "value": "SANTI"
+            "category": 5,
+            "value": "Планка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 538,
         "fields": {
-            "category": 10,
-            "value": "TART"
+            "category": 5,
+            "value": "Смужки паперу"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 539,
         "fields": {
-            "category": 10,
-            "value": "Tecnis Copier"
+            "category": 5,
+            "value": "Пластика"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 540,
         "fields": {
-            "category": 10,
-            "value": "Pilot"
+            "category": 5,
+            "value": "Фартух"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 541,
         "fields": {
-            "category": 10,
-            "value": "ROSA Studio"
+            "category": 5,
+            "value": "Шпаківня"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 542,
         "fields": {
-            "category": 10,
-            "value": "ГОЗНАК"
+            "category": 5,
+            "value": "Підрамник"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 543,
         "fields": {
-            "category": 10,
-            "value": "SMILTAINIS"
+            "category": 5,
+            "value": "Маскуюча рiдина"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 544,
         "fields": {
-            "category": 10,
-            "value": "KOLOS"
+            "category": 5,
+            "value": "Двунитка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 545,
         "fields": {
-            "category": 10,
-            "value": "Marco"
+            "category": 5,
+            "value": "Катери"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 546,
         "fields": {
-            "category": 10,
-            "value": "D.K.ART &amp; GRAFT"
+            "category": 5,
+            "value": "Кольорові пластівці"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 547,
         "fields": {
-            "category": 10,
-            "value": "GAMMA"
+            "category": 5,
+            "value": "Леза"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 548,
         "fields": {
-            "category": 10,
-            "value": "1 Вересня"
+            "category": 5,
+            "value": "Щипці"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 549,
         "fields": {
-            "category": 10,
-            "value": "Лилия Холдинг"
+            "category": 5,
+            "value": "Листи"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 550,
         "fields": {
-            "category": 10,
-            "value": "Fimo"
+            "category": 5,
+            "value": "Оліфа"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 551,
         "fields": {
-            "category": 10,
-            "value": "REMBRANDT"
+            "category": 5,
+            "value": "Крейда"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 552,
         "fields": {
-            "category": 10,
-            "value": "Primo"
+            "category": 5,
+            "value": "Олiя"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 553,
         "fields": {
-            "category": 10,
-            "value": "Derwent"
+            "category": 5,
+            "value": "Штамп"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 554,
         "fields": {
-            "category": 10,
-            "value": "Hahnemuhle"
+            "category": 5,
+            "value": "Зошит"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 555,
         "fields": {
-            "category": 10,
-            "value": "Sinar spectra"
+            "category": 5,
+            "value": "Дирокол"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 556,
         "fields": {
-            "category": 10,
-            "value": "D.K.ART &amp; CRAFT"
+            "category": 5,
+            "value": "Скринька"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 557,
         "fields": {
-            "category": 10,
-            "value": "ROSA Talent"
+            "category": 5,
+            "value": "Сикатив"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 558,
         "fields": {
-            "category": 10,
-            "value": "ROSA START"
+            "category": 5,
+            "value": "Картина за номерами"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 559,
         "fields": {
-            "category": 10,
-            "value": "Nazionale"
+            "category": 5,
+            "value": "Холст"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 560,
         "fields": {
-            "category": 10,
-            "value": "MUNGYO"
+            "category": 5,
+            "value": "Добавка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 561,
         "fields": {
-            "category": 10,
-            "value": "D.K. Art and Craft"
+            "category": 5,
+            "value": "Олійниця"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 562,
         "fields": {
-            "category": 10,
-            "value": "Renesans"
+            "category": 5,
+            "value": "Бiрочка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 563,
         "fields": {
-            "category": 10,
-            "value": "Lana"
+            "category": 5,
+            "value": "Годівничка для птахів"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 564,
         "fields": {
-            "category": 10,
-            "value": "ROSA TALENT"
+            "category": 5,
+            "value": "Медіум"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 565,
         "fields": {
-            "category": 10,
-            "value": "Turbo"
+            "category": 5,
+            "value": "Маскуюча рідина"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 566,
         "fields": {
-            "category": 10,
-            "value": "Ukraine"
+            "category": 5,
+            "value": "Чантинг"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 567,
         "fields": {
-            "category": 10,
-            "value": "Подольськ-Арт"
+            "category": 5,
+            "value": "Поталь"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 568,
         "fields": {
-            "category": 10,
-            "value": "Трек"
+            "category": 5,
+            "value": "Волосся для ляльок"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 569,
         "fields": {
-            "category": 10,
-            "value": "Marabu"
+            "category": 5,
+            "value": "Пігмент"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 570,
         "fields": {
-            "category": 10,
-            "value": "D.K.ART and CRAFT"
+            "category": 5,
+            "value": "Клейкий олівець"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 571,
         "fields": {
-            "category": 10,
-            "value": "Folia"
+            "category": 5,
+            "value": "Клейовий патрон"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 572,
         "fields": {
-            "category": 10,
-            "value": "Bruna"
+            "category": 5,
+            "value": "Насадка для печатки"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 573,
         "fields": {
-            "category": 11,
-            "value": "Пігмент"
+            "category": 5,
+            "value": "Розтушовка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 574,
         "fields": {
-            "category": 11,
-            "value": "Розріджувач"
+            "category": 5,
+            "value": "Коррегуючий олівець"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 575,
         "fields": {
-            "category": 11,
-            "value": "Паста"
+            "category": 5,
+            "value": "Акварель"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 576,
         "fields": {
-            "category": 11,
-            "value": "Розчинник"
+            "category": 5,
+            "value": "Проклейка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 577,
         "fields": {
-            "category": 11,
-            "value": "Маркер"
+            "category": 5,
+            "value": "Стержні для клеєвого пістолета"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 578,
         "fields": {
-            "category": 11,
-            "value": "Віск"
+            "category": 5,
+            "value": "Інструмент для скульптури"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 579,
         "fields": {
-            "category": 11,
-            "value": "Лак"
+            "category": 5,
+            "value": "Резервуар"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 580,
         "fields": {
-            "category": 11,
-            "value": "Сангіна"
+            "category": 5,
+            "value": "Ящик"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 581,
         "fields": {
-            "category": 11,
-            "value": "Блокнот"
+            "category": 5,
+            "value": "Палички"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 582,
         "fields": {
-            "category": 11,
-            "value": "Мольберт-планшет"
+            "category": 5,
+            "value": "Домішка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 583,
         "fields": {
-            "category": 11,
-            "value": "Фломастери"
+            "category": 5,
+            "value": "Манекен"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 584,
         "fields": {
-            "category": 11,
-            "value": "Курант"
+            "category": 5,
+            "value": "Брусок"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 585,
         "fields": {
-            "category": 11,
-            "value": "Вугілля"
+            "category": 5,
+            "value": "Пензель"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 586,
         "fields": {
-            "category": 11,
+            "category": 5,
             "value": "Блокнот-склейка"
         }
     },
@@ -4691,1104 +4691,1384 @@
         "model": "products.filtervalue",
         "pk": 587,
         "fields": {
-            "category": 11,
-            "value": "Циркуль"
+            "category": 5,
+            "value": "Гранулюючий"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 588,
         "fields": {
-            "category": 11,
-            "value": "Підставка"
+            "category": 5,
+            "value": "Посібник"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 589,
         "fields": {
-            "category": 11,
-            "value": "Бітум"
+            "category": 5,
+            "value": "Губка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 590,
         "fields": {
-            "category": 11,
-            "value": "Болюс"
+            "category": 5,
+            "value": "Контур"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 591,
         "fields": {
-            "category": 11,
-            "value": "Склейка-блок"
+            "category": 5,
+            "value": "Фоаміран"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 592,
         "fields": {
-            "category": 11,
-            "value": "Точилка"
+            "category": 5,
+            "value": "Декоративна поличка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 593,
         "fields": {
-            "category": 11,
-            "value": "Дошка магнітна"
+            "category": 5,
+            "value": "Нiж"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 594,
         "fields": {
-            "category": 11,
-            "value": "Скетчбук"
+            "category": 5,
+            "value": "Шаблон для перенесення на рисунок"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 595,
         "fields": {
-            "category": 11,
-            "value": "Ручка"
+            "category": 5,
+            "value": "Колiрне коло"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 596,
         "fields": {
-            "category": 11,
-            "value": "Рідкий метал"
+            "category": 5,
+            "value": "Портфель"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 597,
         "fields": {
-            "category": 11,
-            "value": "Гель"
+            "category": 5,
+            "value": "Розчинник"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 598,
         "fields": {
-            "category": 11,
-            "value": "Посібник"
+            "category": 5,
+            "value": "Трафарет"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 599,
         "fields": {
-            "category": 11,
-            "value": "Очисник"
+            "category": 5,
+            "value": "Полотно"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 600,
         "fields": {
-            "category": 11,
-            "value": "Мульти-лайнер"
+            "category": 5,
+            "value": "Інструменти"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 601,
         "fields": {
-            "category": 11,
-            "value": "Розтушовка"
+            "category": 5,
+            "value": "Прес-форма"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 602,
         "fields": {
-            "category": 11,
-            "value": "Папка"
+            "category": 5,
+            "value": "Альбом"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 603,
         "fields": {
-            "category": 11,
-            "value": "Стрижень"
+            "category": 5,
+            "value": "Чорнило"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 604,
         "fields": {
-            "category": 11,
-            "value": "Станок"
+            "category": 5,
+            "value": "Очі для ляльок"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 605,
         "fields": {
-            "category": 11,
-            "value": "Кольорові пластівці"
+            "category": 5,
+            "value": "Склянка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 606,
         "fields": {
-            "category": 11,
-            "value": "Калька"
+            "category": 5,
+            "value": "Маскуючий порошок"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 607,
         "fields": {
-            "category": 11,
-            "value": "Мордан"
+            "category": 5,
+            "value": "Сповільнювач висихання"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 608,
         "fields": {
-            "category": 11,
-            "value": "Картон"
+            "category": 5,
+            "value": "Дощечка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 609,
         "fields": {
-            "category": 11,
-            "value": "Політура"
+            "category": 5,
+            "value": "Магніти"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 610,
         "fields": {
-            "category": 11,
-            "value": "Папір"
+            "category": 5,
+            "value": "Фарба"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 611,
         "fields": {
-            "category": 11,
-            "value": "Трафарет"
+            "category": 5,
+            "value": "Скотч"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 612,
         "fields": {
-            "category": 11,
-            "value": "Олівець"
+            "category": 5,
+            "value": "Грифель"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 613,
         "fields": {
-            "category": 11,
-            "value": "Лінійка"
+            "category": 5,
+            "value": "Навчальна модель"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 614,
         "fields": {
-            "category": 11,
-            "value": "Готовальня"
+            "category": 5,
+            "value": "Набір для моделювання"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 615,
         "fields": {
-            "category": 11,
-            "value": "Стержень"
+            "category": 5,
+            "value": "Згущувач"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 616,
         "fields": {
-            "category": 11,
-            "value": "Гумка"
+            "category": 5,
+            "value": "Основа для випалювання"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 617,
         "fields": {
-            "category": 11,
-            "value": "Склеювання"
+            "category": 5,
+            "value": "Мольберт-тринога"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 618,
         "fields": {
-            "category": 11,
-            "value": "Мольберт-тринога"
+            "category": 5,
+            "value": "Гіпсова фігура"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 619,
         "fields": {
-            "category": 11,
-            "value": "Поталь"
+            "category": 5,
+            "value": "Контейнер"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 620,
         "fields": {
-            "category": 11,
-            "value": "Порошок"
+            "category": 5,
+            "value": "Мастихін"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 621,
         "fields": {
-            "category": 11,
-            "value": "Листівка"
+            "category": 5,
+            "value": "Олівець"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 622,
         "fields": {
-            "category": 11,
-            "value": "Чорнило"
+            "category": 5,
+            "value": "Пінен"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 623,
         "fields": {
-            "category": 11,
-            "value": "Ластик"
+            "category": 5,
+            "value": "Пензлі"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 624,
         "fields": {
-            "category": 11,
-            "value": "Наждачний папір"
+            "category": 5,
+            "value": "Розпилювач"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 625,
         "fields": {
-            "category": 11,
-            "value": "Лінер"
+            "category": 5,
+            "value": "Пістолет"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 626,
         "fields": {
-            "category": 11,
-            "value": "Сепія"
+            "category": 5,
+            "value": "Насадки-контури"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 627,
         "fields": {
-            "category": 11,
-            "value": "Каолін"
+            "category": 5,
+            "value": "Масло"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 628,
         "fields": {
-            "category": 11,
-            "value": "Пензлі"
+            "category": 5,
+            "value": "Планшет"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 629,
         "fields": {
-            "category": 11,
-            "value": "Папка-коробка"
+            "category": 5,
+            "value": "Папка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 630,
         "fields": {
-            "category": 11,
-            "value": "Грунт"
+            "category": 5,
+            "value": "Тубус"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 631,
         "fields": {
-            "category": 11,
-            "value": "Перо"
+            "category": 5,
+            "value": "Ластик"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 632,
         "fields": {
-            "category": 11,
-            "value": "Матеріали"
+            "category": 5,
+            "value": "Картон"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 633,
         "fields": {
-            "category": 11,
-            "value": "Інструмент для пастелі"
+            "category": 5,
+            "value": "Валик"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 634,
         "fields": {
-            "category": 11,
-            "value": "Гофрокартон"
+            "category": 5,
+            "value": "Штамп для вибійки"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 635,
         "fields": {
-            "category": 11,
-            "value": "Пенал"
+            "category": 5,
+            "value": "Сизаль"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 636,
         "fields": {
-            "category": 11,
-            "value": "Резервуар"
+            "category": 5,
+            "value": "Склеювання"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 637,
         "fields": {
-            "category": 11,
-            "value": "стержнів"
+            "category": 5,
+            "value": "Гель"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 638,
         "fields": {
-            "category": 11,
-            "value": "Альбом-склейка"
+            "category": 5,
+            "value": "ДВП"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 639,
         "fields": {
-            "category": 11,
-            "value": "Трикутник"
+            "category": 5,
+            "value": "Ізорозчинник"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 640,
         "fields": {
-            "category": 11,
-            "value": "Ватман"
+            "category": 5,
+            "value": "Очисник"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 641,
         "fields": {
-            "category": 11,
-            "value": "Склейка"
+            "category": 5,
+            "value": "Блок папіру"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 642,
         "fields": {
-            "category": 11,
-            "value": "Утримувач"
+            "category": 5,
+            "value": "Гранули"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 643,
         "fields": {
-            "category": 11,
-            "value": "Мольберт"
+            "category": 5,
+            "value": "Палітра"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 644,
         "fields": {
-            "category": 11,
-            "value": "Клей"
+            "category": 5,
+            "value": "Наповнювач декоративний"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 645,
         "fields": {
-            "category": 11,
-            "value": "Альбом"
+            "category": 5,
+            "value": "Пензлик"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 646,
         "fields": {
-            "category": 11,
-            "value": "Cпонжи"
+            "category": 5,
+            "value": "Резерв"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 647,
         "fields": {
-            "category": 11,
-            "value": "Туш"
+            "category": 5,
+            "value": "Лінер"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 648,
         "fields": {
-            "category": 11,
-            "value": "Грифель"
+            "category": 5,
+            "value": "Шило"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 649,
         "fields": {
-            "category": 11,
-            "value": "Палички"
+            "category": 5,
+            "value": "Шовкова наволочка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 650,
         "fields": {
-            "category": 12,
-            "value": "Поштучно"
+            "category": 5,
+            "value": "Пенал"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 651,
         "fields": {
-            "category": 12,
-            "value": "У наборі"
+            "category": 5,
+            "value": "Петля"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 652,
         "fields": {
-            "category": 12,
-            "value": "Рулон"
+            "category": 5,
+            "value": "Випалювач по дереву"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 653,
         "fields": {
-            "category": 12,
-            "value": "Набір"
+            "category": 5,
+            "value": "Пензлемийка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 654,
         "fields": {
-            "category": 13,
-            "value": "Кухня"
+            "category": 5,
+            "value": "Гуміарабік"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 655,
         "fields": {
-            "category": 13,
-            "value": "Закохані серця"
+            "category": 5,
+            "value": "Барвник"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 656,
         "fields": {
-            "category": 13,
-            "value": "Love"
+            "category": 5,
+            "value": "Розм'якшувач-пластифікатор"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 657,
         "fields": {
-            "category": 13,
-            "value": "Текстури"
+            "category": 5,
+            "value": "Точилка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 658,
         "fields": {
-            "category": 13,
-            "value": "Kids"
+            "category": 5,
+            "value": "Фломастери"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 659,
         "fields": {
-            "category": 13,
-            "value": "Ажур"
+            "category": 5,
+            "value": "Туш"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 660,
         "fields": {
-            "category": 13,
-            "value": "Квіти"
+            "category": 5,
+            "value": "Сангіна"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 661,
         "fields": {
-            "category": 13,
-            "value": "Архітектура"
+            "category": 5,
+            "value": "Олія"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 662,
         "fields": {
-            "category": 13,
-            "value": "Тварини"
+            "category": 5,
+            "value": "Клей"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 663,
         "fields": {
-            "category": 13,
-            "value": "Літо"
+            "category": 5,
+            "value": "Дошка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 664,
         "fields": {
-            "category": 13,
-            "value": "Floral Poem"
+            "category": 5,
+            "value": "Паста"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 665,
         "fields": {
-            "category": 13,
-            "value": "Рамки"
+            "category": 5,
+            "value": "Баночка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 666,
         "fields": {
-            "category": 13,
-            "value": "Новий рік"
+            "category": 5,
+            "value": "Гумміарабік"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 667,
         "fields": {
-            "category": 14,
-            "value": "24"
+            "category": 5,
+            "value": "Сепія"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 668,
         "fields": {
-            "category": 14,
-            "value": "72"
+            "category": 5,
+            "value": "Рідкий метал"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 669,
         "fields": {
-            "category": 14,
-            "value": "60"
+            "category": 5,
+            "value": "Пастель"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 670,
         "fields": {
-            "category": 14,
-            "value": "15"
+            "category": 5,
+            "value": "Бітум"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 671,
         "fields": {
-            "category": 14,
-            "value": "25"
+            "category": 5,
+            "value": "Утримувач"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 672,
         "fields": {
-            "category": 14,
-            "value": "120"
+            "category": 5,
+            "value": "Маса для моделювання"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 673,
         "fields": {
-            "category": 14,
-            "value": "12"
+            "category": 5,
+            "value": "Модуль"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 674,
         "fields": {
-            "category": 14,
-            "value": "8"
+            "category": 5,
+            "value": "Рамка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 675,
         "fields": {
-            "category": 14,
-            "value": "50"
+            "category": 5,
+            "value": "Підставка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 676,
         "fields": {
-            "category": 14,
-            "value": "16"
+            "category": 5,
+            "value": "Пластилін"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 677,
         "fields": {
-            "category": 14,
-            "value": "18"
+            "category": 5,
+            "value": "Курант"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 678,
         "fields": {
-            "category": 14,
-            "value": "6"
+            "category": 5,
+            "value": "Папка-коробка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 679,
         "fields": {
-            "category": 14,
-            "value": "48"
+            "category": 5,
+            "value": "Різці"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 680,
         "fields": {
-            "category": 14,
-            "value": "30"
+            "category": 5,
+            "value": "Заготівка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 681,
         "fields": {
-            "category": 14,
-            "value": "36"
+            "category": 5,
+            "value": "Брелок"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 682,
         "fields": {
-            "category": 15,
-            "value": "Полутверда"
+            "category": 5,
+            "value": "Фольга"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 683,
         "fields": {
-            "category": 15,
-            "value": "М'яка"
+            "category": 5,
+            "value": "Грунт-антирозтікач"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 684,
         "fields": {
-            "category": 16,
-            "value": "138"
+            "category": 5,
+            "value": "Клеючий рідкий олівець"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 685,
         "fields": {
-            "category": 16,
-            "value": "125"
+            "category": 5,
+            "value": "Рама"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 686,
         "fields": {
-            "category": 16,
-            "value": "154"
+            "category": 5,
+            "value": "Стрази"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 687,
         "fields": {
-            "category": 16,
-            "value": "120"
+            "category": 5,
+            "value": "Основа для картин"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 688,
         "fields": {
-            "category": 16,
-            "value": "78"
+            "category": 5,
+            "value": "Сумка"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 689,
         "fields": {
-            "category": 16,
-            "value": "45"
+            "category": 5,
+            "value": "Калька"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 690,
         "fields": {
-            "category": 16,
-            "value": "50"
+            "category": 5,
+            "value": "ЗD-гель"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 691,
         "fields": {
-            "category": 16,
-            "value": "83"
+            "category": 5,
+            "value": "Матеріали"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 692,
         "fields": {
-            "category": 16,
-            "value": "11"
+            "category": 5,
+            "value": "Циркуль"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 693,
         "fields": {
-            "category": 16,
-            "value": "17"
+            "category": 6,
+            "value": "Поштучно"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 694,
         "fields": {
-            "category": 16,
-            "value": "87"
+            "category": 6,
+            "value": "У наборі"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 695,
         "fields": {
-            "category": 16,
-            "value": "80"
+            "category": 6,
+            "value": "Рулон"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 696,
         "fields": {
-            "category": 16,
-            "value": "53"
+            "category": 7,
+            "value": "125 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 697,
         "fields": {
-            "category": 16,
-            "value": "48"
+            "category": 7,
+            "value": "5 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 698,
         "fields": {
-            "category": 16,
-            "value": "30"
+            "category": 7,
+            "value": "140 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 699,
         "fields": {
-            "category": 17,
-            "value": "125"
+            "category": 7,
+            "value": "750 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 700,
         "fields": {
-            "category": 17,
-            "value": "25"
+            "category": 7,
+            "value": "60 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 701,
         "fields": {
-            "category": 17,
-            "value": "400"
+            "category": 7,
+            "value": "230 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 702,
         "fields": {
-            "category": 17,
-            "value": "35"
+            "category": 7,
+            "value": "30 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 703,
         "fields": {
-            "category": 17,
-            "value": "30"
+            "category": 7,
+            "value": "240 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 704,
         "fields": {
-            "category": 17,
-            "value": "60"
+            "category": 7,
+            "value": "225 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 705,
         "fields": {
-            "category": 17,
-            "value": "120"
+            "category": 7,
+            "value": "8 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 706,
         "fields": {
-            "category": 17,
-            "value": "20"
+            "category": 7,
+            "value": "35 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 707,
         "fields": {
-            "category": 17,
-            "value": "50"
+            "category": 7,
+            "value": "12 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 708,
         "fields": {
-            "category": 17,
-            "value": "250"
+            "category": 7,
+            "value": "500 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 709,
         "fields": {
-            "category": 17,
-            "value": "140"
+            "category": 7,
+            "value": "600 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 710,
         "fields": {
-            "category": 17,
-            "value": "500"
+            "category": 7,
+            "value": "250 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 711,
         "fields": {
-            "category": 17,
-            "value": "110"
+            "category": 7,
+            "value": "40 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 712,
         "fields": {
-            "category": 17,
-            "value": "230"
+            "category": 7,
+            "value": "50 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 713,
         "fields": {
-            "category": 17,
-            "value": "200"
+            "category": 7,
+            "value": "1000 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 714,
         "fields": {
-            "category": 17,
-            "value": "225"
+            "category": 7,
+            "value": "200 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 715,
         "fields": {
-            "category": 17,
-            "value": "100"
+            "category": 7,
+            "value": "59 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 716,
         "fields": {
-            "category": 17,
-            "value": "75"
+            "category": 7,
+            "value": "100 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 717,
         "fields": {
-            "category": 17,
-            "value": "280"
+            "category": 7,
+            "value": "490 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 718,
         "fields": {
-            "category": 18,
-            "value": "25"
+            "category": 7,
+            "value": "46 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 719,
         "fields": {
-            "category": 18,
-            "value": "5"
+            "category": 7,
+            "value": "150 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 720,
         "fields": {
-            "category": 18,
-            "value": "100"
+            "category": 7,
+            "value": "400 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 721,
         "fields": {
-            "category": 18,
-            "value": "1000"
+            "category": 7,
+            "value": "25 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 722,
         "fields": {
-            "category": 18,
-            "value": "40"
+            "category": 7,
+            "value": "280 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 723,
         "fields": {
-            "category": 18,
-            "value": "50"
+            "category": 7,
+            "value": "18 мл"
         }
     },
     {
         "model": "products.filtervalue",
         "pk": 724,
         "fields": {
-            "category": 18,
-            "value": "30"
+            "category": 7,
+            "value": "20 мл"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 725,
+        "fields": {
+            "category": 7,
+            "value": "15 мл"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 726,
+        "fields": {
+            "category": 7,
+            "value": "300 мл"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 727,
+        "fields": {
+            "category": 7,
+            "value": "28 мл"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 728,
+        "fields": {
+            "category": 7,
+            "value": "3 мл"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 729,
+        "fields": {
+            "category": 7,
+            "value": "45 мл"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 730,
+        "fields": {
+            "category": 7,
+            "value": "10 мл"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 731,
+        "fields": {
+            "category": 7,
+            "value": "120 мл"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 732,
+        "fields": {
+            "category": 7,
+            "value": "22 мл"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 733,
+        "fields": {
+            "category": 7,
+            "value": "220 мл"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 734,
+        "fields": {
+            "category": 7,
+            "value": "75 мл"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 735,
+        "fields": {
+            "category": 7,
+            "value": "110 мл"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 736,
+        "fields": {
+            "category": 7,
+            "value": "80 мл"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 737,
+        "fields": {
+            "category": 8,
+            "value": "245 г"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 738,
+        "fields": {
+            "category": 8,
+            "value": "100 г"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 739,
+        "fields": {
+            "category": 8,
+            "value": "454 г"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 740,
+        "fields": {
+            "category": 8,
+            "value": "270 г"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 741,
+        "fields": {
+            "category": 8,
+            "value": "5 г"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 742,
+        "fields": {
+            "category": 8,
+            "value": "85 г"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 743,
+        "fields": {
+            "category": 8,
+            "value": "200 г"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 744,
+        "fields": {
+            "category": 8,
+            "value": "10 г"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 745,
+        "fields": {
+            "category": 8,
+            "value": "1000 г"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 746,
+        "fields": {
+            "category": 8,
+            "value": "800 г"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 747,
+        "fields": {
+            "category": 8,
+            "value": "20 г"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 748,
+        "fields": {
+            "category": 8,
+            "value": "400 г"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 749,
+        "fields": {
+            "category": 8,
+            "value": "25 г"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 750,
+        "fields": {
+            "category": 8,
+            "value": "250 г"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 751,
+        "fields": {
+            "category": 8,
+            "value": "350 г"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 752,
+        "fields": {
+            "category": 8,
+            "value": "30 г"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 753,
+        "fields": {
+            "category": 8,
+            "value": "60 г"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 754,
+        "fields": {
+            "category": 8,
+            "value": "500 г"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 755,
+        "fields": {
+            "category": 8,
+            "value": "50 г"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 756,
+        "fields": {
+            "category": 8,
+            "value": "40 г"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 757,
+        "fields": {
+            "category": 8,
+            "value": "300 г"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 758,
+        "fields": {
+            "category": 8,
+            "value": "57 г"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 759,
+        "fields": {
+            "category": 8,
+            "value": "600 г"
         }
     }
 ]

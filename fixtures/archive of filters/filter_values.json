@@ -1,0 +1,5794 @@
+[
+    {
+        "model": "products.filtervalue",
+        "pk": 1,
+        "fields": {
+            "category": 1,
+            "value": "У блістері для рисунку"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 2,
+        "fields": {
+            "category": 1,
+            "value": "Для малювання"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 3,
+        "fields": {
+            "category": 1,
+            "value": "Графітний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 4,
+        "fields": {
+            "category": 1,
+            "value": "Для живопису"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 5,
+        "fields": {
+            "category": 1,
+            "value": "Офортний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 6,
+        "fields": {
+            "category": 1,
+            "value": "Порожні"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 7,
+        "fields": {
+            "category": 1,
+            "value": "Бджолиний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 8,
+        "fields": {
+            "category": 1,
+            "value": "Натуральний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 9,
+        "fields": {
+            "category": 1,
+            "value": "Універсальний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 10,
+        "fields": {
+            "category": 1,
+            "value": "Папьє-маше"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 11,
+        "fields": {
+            "category": 1,
+            "value": "Водорозчинний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 12,
+        "fields": {
+            "category": 1,
+            "value": "Трансферна"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 13,
+        "fields": {
+            "category": 1,
+            "value": "Воскова"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 14,
+        "fields": {
+            "category": 1,
+            "value": "Оздоблювальний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 15,
+        "fields": {
+            "category": 1,
+            "value": "Для олії"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 16,
+        "fields": {
+            "category": 1,
+            "value": "Структурний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 17,
+        "fields": {
+            "category": 1,
+            "value": "Для письма та креслення"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 18,
+        "fields": {
+            "category": 1,
+            "value": "Ретушний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 19,
+        "fields": {
+            "category": 1,
+            "value": "Для сухих i вологих технік"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 20,
+        "fields": {
+            "category": 1,
+            "value": "Настільний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 21,
+        "fields": {
+            "category": 1,
+            "value": "Для каліграфії"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 22,
+        "fields": {
+            "category": 1,
+            "value": "Спиртові"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 23,
+        "fields": {
+            "category": 1,
+            "value": "Скульптора"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 24,
+        "fields": {
+            "category": 1,
+            "value": "художніх"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 25,
+        "fields": {
+            "category": 1,
+            "value": "Для дизайну"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 26,
+        "fields": {
+            "category": 1,
+            "value": "Для акрилу та олії"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 27,
+        "fields": {
+            "category": 1,
+            "value": "Шелак"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 28,
+        "fields": {
+            "category": 1,
+            "value": "Масштабно-координатний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 29,
+        "fields": {
+            "category": 1,
+            "value": "Акварельна"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 30,
+        "fields": {
+            "category": 1,
+            "value": "Британський"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 31,
+        "fields": {
+            "category": 1,
+            "value": "Для підрамників"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 32,
+        "fields": {
+            "category": 1,
+            "value": "Для малюнку та ескізів"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 33,
+        "fields": {
+            "category": 1,
+            "value": "Чорнографітний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 34,
+        "fields": {
+            "category": 1,
+            "value": "Амманітура"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 35,
+        "fields": {
+            "category": 1,
+            "value": "Тонований"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 36,
+        "fields": {
+            "category": 1,
+            "value": "Для малюнку"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 37,
+        "fields": {
+            "category": 1,
+            "value": "Для золочення"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 38,
+        "fields": {
+            "category": 1,
+            "value": "Бітумний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 39,
+        "fields": {
+            "category": 1,
+            "value": "Акварельний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 40,
+        "fields": {
+            "category": 1,
+            "value": "Забарвлений"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 41,
+        "fields": {
+            "category": 1,
+            "value": "Для змішаних технік"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 42,
+        "fields": {
+            "category": 1,
+            "value": "Натуральне"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 43,
+        "fields": {
+            "category": 1,
+            "value": "Для пластики"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 44,
+        "fields": {
+            "category": 1,
+            "value": "Бронзове"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 45,
+        "fields": {
+            "category": 1,
+            "value": "Для листівок"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 46,
+        "fields": {
+            "category": 1,
+            "value": "Плакатне"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 47,
+        "fields": {
+            "category": 1,
+            "value": "Стаціонарний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 48,
+        "fields": {
+            "category": 1,
+            "value": "Для вологих технік"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 49,
+        "fields": {
+            "category": 1,
+            "value": "Гелевий"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 50,
+        "fields": {
+            "category": 1,
+            "value": "Для змішування"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 51,
+        "fields": {
+            "category": 1,
+            "value": "Для декору"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 52,
+        "fields": {
+            "category": 1,
+            "value": "Стеклограф"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 53,
+        "fields": {
+            "category": 1,
+            "value": "З імітацією пергаменту"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 54,
+        "fields": {
+            "category": 1,
+            "value": "Для орнаменту"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 55,
+        "fields": {
+            "category": 1,
+            "value": "Для загального письма"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 56,
+        "fields": {
+            "category": 1,
+            "value": "Рибʼячий"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 57,
+        "fields": {
+            "category": 1,
+            "value": "Вільна"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 58,
+        "fields": {
+            "category": 1,
+            "value": "Для ескізів i сухих технік"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 59,
+        "fields": {
+            "category": 1,
+            "value": "Для сухих техник"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 60,
+        "fields": {
+            "category": 1,
+            "value": "Крафтовий"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 61,
+        "fields": {
+            "category": 1,
+            "value": "Для спиртових чорнил"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 62,
+        "fields": {
+            "category": 1,
+            "value": "Для пленера"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 63,
+        "fields": {
+            "category": 1,
+            "value": "Олійна"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 64,
+        "fields": {
+            "category": 1,
+            "value": "До механічних олівців"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 65,
+        "fields": {
+            "category": 1,
+            "value": "Для маркерів"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 66,
+        "fields": {
+            "category": 1,
+            "value": "Восковий"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 67,
+        "fields": {
+            "category": 1,
+            "value": "Французький"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 68,
+        "fields": {
+            "category": 1,
+            "value": "Студійний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 69,
+        "fields": {
+            "category": 1,
+            "value": "Для малюнку та креслення"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 70,
+        "fields": {
+            "category": 1,
+            "value": "Пастельний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 71,
+        "fields": {
+            "category": 1,
+            "value": "Ручної роботи"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 72,
+        "fields": {
+            "category": 1,
+            "value": "Кришталевий"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 73,
+        "fields": {
+            "category": 1,
+            "value": "Для паперу"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 74,
+        "fields": {
+            "category": 1,
+            "value": "Дизайнерський"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 75,
+        "fields": {
+            "category": 1,
+            "value": "Художній"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 76,
+        "fields": {
+            "category": 1,
+            "value": "Пресоване"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 77,
+        "fields": {
+            "category": 1,
+            "value": "Фінішний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 78,
+        "fields": {
+            "category": 1,
+            "value": "Вугільний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 79,
+        "fields": {
+            "category": 1,
+            "value": "Посібник для створення персонажів"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 80,
+        "fields": {
+            "category": 1,
+            "value": "Для креслення"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 81,
+        "fields": {
+            "category": 1,
+            "value": "Декоративний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 82,
+        "fields": {
+            "category": 1,
+            "value": "На лаковій основі"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 83,
+        "fields": {
+            "category": 1,
+            "value": "Для акрила"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 84,
+        "fields": {
+            "category": 1,
+            "value": "Академічний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 85,
+        "fields": {
+            "category": 1,
+            "value": "Для старого живопису"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 86,
+        "fields": {
+            "category": 1,
+            "value": "Для записів"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 87,
+        "fields": {
+            "category": 1,
+            "value": "На спиртовій основі"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 88,
+        "fields": {
+            "category": 1,
+            "value": "Пудра"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 89,
+        "fields": {
+            "category": 1,
+            "value": "Для акварелі"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 90,
+        "fields": {
+            "category": 1,
+            "value": "Пластівці"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 91,
+        "fields": {
+            "category": 1,
+            "value": "Для акрилу"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 92,
+        "fields": {
+            "category": 1,
+            "value": "Сепія"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 93,
+        "fields": {
+            "category": 1,
+            "value": "Для скетчів"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 94,
+        "fields": {
+            "category": 1,
+            "value": "Для покрытия багетной пасты"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 95,
+        "fields": {
+            "category": 1,
+            "value": "Міні"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 96,
+        "fields": {
+            "category": 1,
+            "value": "Мінеральний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 97,
+        "fields": {
+            "category": 1,
+            "value": "Для позолоти"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 98,
+        "fields": {
+            "category": 1,
+            "value": "Чорнильний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 99,
+        "fields": {
+            "category": 1,
+            "value": "Гофрований"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 100,
+        "fields": {
+            "category": 1,
+            "value": "Для манга"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 101,
+        "fields": {
+            "category": 1,
+            "value": "Кольоровий"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 102,
+        "fields": {
+            "category": 1,
+            "value": "Для нот"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 103,
+        "fields": {
+            "category": 1,
+            "value": "Для каліграфії та леттерінгу"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 104,
+        "fields": {
+            "category": 1,
+            "value": "Зникаючий"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 105,
+        "fields": {
+            "category": 1,
+            "value": "для ескізів"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 106,
+        "fields": {
+            "category": 1,
+            "value": "Суха"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 107,
+        "fields": {
+            "category": 1,
+            "value": "Олійний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 108,
+        "fields": {
+            "category": 1,
+            "value": "Шелачний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 109,
+        "fields": {
+            "category": 1,
+            "value": "Акриловий"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 110,
+        "fields": {
+            "category": 1,
+            "value": "Для поталі"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 111,
+        "fields": {
+            "category": 1,
+            "value": "Дамарний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 112,
+        "fields": {
+            "category": 1,
+            "value": "Мездровий"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 113,
+        "fields": {
+            "category": 1,
+            "value": "Для дітей"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 114,
+        "fields": {
+            "category": 1,
+            "value": "Текстурна"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 115,
+        "fields": {
+            "category": 1,
+            "value": "Для ескізів"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 116,
+        "fields": {
+            "category": 1,
+            "value": "Для графіки"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 117,
+        "fields": {
+            "category": 1,
+            "value": "Моделююча"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 118,
+        "fields": {
+            "category": 1,
+            "value": "Аерозоль"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 119,
+        "fields": {
+            "category": 1,
+            "value": "Художні"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 120,
+        "fields": {
+            "category": 1,
+            "value": "Крейдяний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 121,
+        "fields": {
+            "category": 1,
+            "value": "Ескізний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 122,
+        "fields": {
+            "category": 1,
+            "value": "Для золота"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 123,
+        "fields": {
+            "category": 1,
+            "value": "Пастель"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 124,
+        "fields": {
+            "category": 1,
+            "value": "Для реставрації"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 125,
+        "fields": {
+            "category": 1,
+            "value": "Для гуаші"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 126,
+        "fields": {
+            "category": 1,
+            "value": "Механічний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 127,
+        "fields": {
+            "category": 1,
+            "value": "Для пензлів"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 128,
+        "fields": {
+            "category": 1,
+            "value": "Для журналінгу"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 129,
+        "fields": {
+            "category": 1,
+            "value": "Копіювальний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 130,
+        "fields": {
+            "category": 1,
+            "value": "Для іллюстрацій та акварелі"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 131,
+        "fields": {
+            "category": 1,
+            "value": "Синтетичний"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 132,
+        "fields": {
+            "category": 1,
+            "value": "Для декоративного шрифта"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 133,
+        "fields": {
+            "category": 1,
+            "value": "Для пастелі"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 134,
+        "fields": {
+            "category": 1,
+            "value": "Масляна"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 135,
+        "fields": {
+            "category": 1,
+            "value": "Для олійної фарби"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 136,
+        "fields": {
+            "category": 1,
+            "value": "З грунтованого полотна"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 137,
+        "fields": {
+            "category": 1,
+            "value": "Алюмінієвий"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 138,
+        "fields": {
+            "category": 2,
+            "value": "Без текстури"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 139,
+        "fields": {
+            "category": 2,
+            "value": "Дрібне зерно"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 140,
+        "fields": {
+            "category": 2,
+            "value": "Гладка структура"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 141,
+        "fields": {
+            "category": 2,
+            "value": "Середнє зерно"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 142,
+        "fields": {
+            "category": 2,
+            "value": "Крупне зерно"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 143,
+        "fields": {
+            "category": 2,
+            "value": "Дві текстури"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 144,
+        "fields": {
+            "category": 2,
+            "value": "Текстура Сито"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 145,
+        "fields": {
+            "category": 3,
+            "value": "360 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 146,
+        "fields": {
+            "category": 3,
+            "value": "400 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 147,
+        "fields": {
+            "category": 3,
+            "value": "78 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 148,
+        "fields": {
+            "category": 3,
+            "value": "96 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 149,
+        "fields": {
+            "category": 3,
+            "value": "130 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 150,
+        "fields": {
+            "category": 3,
+            "value": "320 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 151,
+        "fields": {
+            "category": 3,
+            "value": "190 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 152,
+        "fields": {
+            "category": 3,
+            "value": "290 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 153,
+        "fields": {
+            "category": 3,
+            "value": "240 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 154,
+        "fields": {
+            "category": 3,
+            "value": "125 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 155,
+        "fields": {
+            "category": 3,
+            "value": "135 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 156,
+        "fields": {
+            "category": 3,
+            "value": "160  г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 157,
+        "fields": {
+            "category": 3,
+            "value": "630 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 158,
+        "fields": {
+            "category": 3,
+            "value": "95 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 159,
+        "fields": {
+            "category": 3,
+            "value": "80 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 160,
+        "fields": {
+            "category": 3,
+            "value": "253 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 161,
+        "fields": {
+            "category": 3,
+            "value": "285 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 162,
+        "fields": {
+            "category": 3,
+            "value": "420 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 163,
+        "fields": {
+            "category": 3,
+            "value": "246 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 164,
+        "fields": {
+            "category": 3,
+            "value": "260 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 165,
+        "fields": {
+            "category": 3,
+            "value": "150 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 166,
+        "fields": {
+            "category": 3,
+            "value": "535 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 167,
+        "fields": {
+            "category": 3,
+            "value": "308 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 168,
+        "fields": {
+            "category": 3,
+            "value": "60 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 169,
+        "fields": {
+            "category": 3,
+            "value": "224 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 170,
+        "fields": {
+            "category": 3,
+            "value": "110 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 171,
+        "fields": {
+            "category": 3,
+            "value": "104 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 172,
+        "fields": {
+            "category": 3,
+            "value": "140 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 173,
+        "fields": {
+            "category": 3,
+            "value": "180 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 174,
+        "fields": {
+            "category": 3,
+            "value": "74 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 175,
+        "fields": {
+            "category": 3,
+            "value": "200 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 176,
+        "fields": {
+            "category": 3,
+            "value": "640 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 177,
+        "fields": {
+            "category": 3,
+            "value": "300 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 178,
+        "fields": {
+            "category": 3,
+            "value": "40 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 179,
+        "fields": {
+            "category": 3,
+            "value": "70 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 180,
+        "fields": {
+            "category": 3,
+            "value": "185 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 181,
+        "fields": {
+            "category": 3,
+            "value": "75 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 182,
+        "fields": {
+            "category": 3,
+            "value": "210 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 183,
+        "fields": {
+            "category": 3,
+            "value": "235 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 184,
+        "fields": {
+            "category": 3,
+            "value": "165 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 185,
+        "fields": {
+            "category": 3,
+            "value": "89 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 186,
+        "fields": {
+            "category": 3,
+            "value": "480г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 187,
+        "fields": {
+            "category": 3,
+            "value": "90 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 188,
+        "fields": {
+            "category": 3,
+            "value": "115 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 189,
+        "fields": {
+            "category": 3,
+            "value": "220 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 190,
+        "fields": {
+            "category": 3,
+            "value": "270 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 191,
+        "fields": {
+            "category": 3,
+            "value": "100 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 192,
+        "fields": {
+            "category": 3,
+            "value": "98 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 193,
+        "fields": {
+            "category": 3,
+            "value": "85 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 194,
+        "fields": {
+            "category": 3,
+            "value": "155 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 195,
+        "fields": {
+            "category": 3,
+            "value": "160 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 196,
+        "fields": {
+            "category": 3,
+            "value": "250 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 197,
+        "fields": {
+            "category": 3,
+            "value": "215 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 198,
+        "fields": {
+            "category": 3,
+            "value": "350 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 199,
+        "fields": {
+            "category": 3,
+            "value": "325г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 200,
+        "fields": {
+            "category": 3,
+            "value": "120 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 201,
+        "fields": {
+            "category": 3,
+            "value": "280 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 202,
+        "fields": {
+            "category": 3,
+            "value": "230 г/м2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 203,
+        "fields": {
+            "category": 4,
+            "value": "А6"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 204,
+        "fields": {
+            "category": 4,
+            "value": "В5"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 205,
+        "fields": {
+            "category": 4,
+            "value": "А3"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 206,
+        "fields": {
+            "category": 4,
+            "value": "А4"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 207,
+        "fields": {
+            "category": 4,
+            "value": "А2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 208,
+        "fields": {
+            "category": 4,
+            "value": "А5"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 209,
+        "fields": {
+            "category": 4,
+            "value": "А1"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 210,
+        "fields": {
+            "category": 4,
+            "value": "В1"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 211,
+        "fields": {
+            "category": 4,
+            "value": "В2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 212,
+        "fields": {
+            "category": 5,
+            "value": "9x14 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 213,
+        "fields": {
+            "category": 5,
+            "value": "5x2,5 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 214,
+        "fields": {
+            "category": 5,
+            "value": "50x70 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 215,
+        "fields": {
+            "category": 5,
+            "value": "19,5x19,5 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 216,
+        "fields": {
+            "category": 5,
+            "value": "92x92x203"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 217,
+        "fields": {
+            "category": 5,
+            "value": "15x15 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 218,
+        "fields": {
+            "category": 5,
+            "value": "35,5х51 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 219,
+        "fields": {
+            "category": 5,
+            "value": "21x13,5 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 220,
+        "fields": {
+            "category": 5,
+            "value": "23x31 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 221,
+        "fields": {
+            "category": 5,
+            "value": "9x9 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 222,
+        "fields": {
+            "category": 5,
+            "value": "23,5x35 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 223,
+        "fields": {
+            "category": 5,
+            "value": "10x10 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 224,
+        "fields": {
+            "category": 5,
+            "value": "17x24 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 225,
+        "fields": {
+            "category": 5,
+            "value": "30x40 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 226,
+        "fields": {
+            "category": 5,
+            "value": "45x35"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 227,
+        "fields": {
+            "category": 5,
+            "value": "28х35,6 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 228,
+        "fields": {
+            "category": 5,
+            "value": "23х23 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 229,
+        "fields": {
+            "category": 5,
+            "value": "24x32 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 230,
+        "fields": {
+            "category": 5,
+            "value": "56x76 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 231,
+        "fields": {
+            "category": 5,
+            "value": "32,5x45 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 232,
+        "fields": {
+            "category": 5,
+            "value": "22,5x32,5 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 233,
+        "fields": {
+            "category": 5,
+            "value": "30x40"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 234,
+        "fields": {
+            "category": 5,
+            "value": "1,25x10,5x45"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 235,
+        "fields": {
+            "category": 5,
+            "value": "29,7x42 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 236,
+        "fields": {
+            "category": 5,
+            "value": "4х5 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 237,
+        "fields": {
+            "category": 5,
+            "value": "21х14,8 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 238,
+        "fields": {
+            "category": 5,
+            "value": "10х7 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 239,
+        "fields": {
+            "category": 5,
+            "value": "21,5x28 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 240,
+        "fields": {
+            "category": 5,
+            "value": "70x100 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 241,
+        "fields": {
+            "category": 5,
+            "value": "13x20 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 242,
+        "fields": {
+            "category": 5,
+            "value": "40,5x29,5x8,5"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 243,
+        "fields": {
+            "category": 5,
+            "value": "42х59,4 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 244,
+        "fields": {
+            "category": 5,
+            "value": "5x10 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 245,
+        "fields": {
+            "category": 5,
+            "value": "10,5x15 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 246,
+        "fields": {
+            "category": 5,
+            "value": "4,5x3x1 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 247,
+        "fields": {
+            "category": 5,
+            "value": "13,5x21 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 248,
+        "fields": {
+            "category": 5,
+            "value": "42x38x48"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 249,
+        "fields": {
+            "category": 5,
+            "value": "19x38 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 250,
+        "fields": {
+            "category": 5,
+            "value": "21x14,8 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 251,
+        "fields": {
+            "category": 5,
+            "value": "50,5x70 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 252,
+        "fields": {
+            "category": 5,
+            "value": "63x36x71"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 253,
+        "fields": {
+            "category": 5,
+            "value": "21x15 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 254,
+        "fields": {
+            "category": 5,
+            "value": "14,8x21 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 255,
+        "fields": {
+            "category": 5,
+            "value": "21x30 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 256,
+        "fields": {
+            "category": 5,
+            "value": "24,5x17,6 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 257,
+        "fields": {
+            "category": 5,
+            "value": "14x14 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 258,
+        "fields": {
+            "category": 5,
+            "value": "12х16 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 259,
+        "fields": {
+            "category": 5,
+            "value": "14x21,6 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 260,
+        "fields": {
+            "category": 5,
+            "value": "57x60x120"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 261,
+        "fields": {
+            "category": 5,
+            "value": "42x29 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 262,
+        "fields": {
+            "category": 5,
+            "value": "34x20x62"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 263,
+        "fields": {
+            "category": 5,
+            "value": "17,78x25,4 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 264,
+        "fields": {
+            "category": 5,
+            "value": "21x21x37"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 265,
+        "fields": {
+            "category": 5,
+            "value": "76x56 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 266,
+        "fields": {
+            "category": 5,
+            "value": "1000x100 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 267,
+        "fields": {
+            "category": 5,
+            "value": "31x23 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 268,
+        "fields": {
+            "category": 5,
+            "value": "35x48 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 269,
+        "fields": {
+            "category": 5,
+            "value": "14x14"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 270,
+        "fields": {
+            "category": 5,
+            "value": "52x40x8,5"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 271,
+        "fields": {
+            "category": 5,
+            "value": "50x65 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 272,
+        "fields": {
+            "category": 5,
+            "value": "42x29,7 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 273,
+        "fields": {
+            "category": 5,
+            "value": "10,5x14,8 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 274,
+        "fields": {
+            "category": 5,
+            "value": "30x30 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 275,
+        "fields": {
+            "category": 5,
+            "value": "70х102 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 276,
+        "fields": {
+            "category": 5,
+            "value": "28x28 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 277,
+        "fields": {
+            "category": 5,
+            "value": "14,7x10,6 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 278,
+        "fields": {
+            "category": 5,
+            "value": "100x150x0,15 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 279,
+        "fields": {
+            "category": 5,
+            "value": "14,8x9,5 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 280,
+        "fields": {
+            "category": 5,
+            "value": "36x48 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 281,
+        "fields": {
+            "category": 5,
+            "value": "21x21 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 282,
+        "fields": {
+            "category": 5,
+            "value": "75x105 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 283,
+        "fields": {
+            "category": 5,
+            "value": "22,9x30,5 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 284,
+        "fields": {
+            "category": 5,
+            "value": "6,5x11"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 285,
+        "fields": {
+            "category": 5,
+            "value": "12x12 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 286,
+        "fields": {
+            "category": 5,
+            "value": "42x56 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 287,
+        "fields": {
+            "category": 5,
+            "value": "60x75x125"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 288,
+        "fields": {
+            "category": 5,
+            "value": "27x35 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 289,
+        "fields": {
+            "category": 5,
+            "value": "20x20 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 290,
+        "fields": {
+            "category": 5,
+            "value": "33x27,5"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 291,
+        "fields": {
+            "category": 5,
+            "value": "20x40 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 292,
+        "fields": {
+            "category": 5,
+            "value": "7x42 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 293,
+        "fields": {
+            "category": 5,
+            "value": "30х40"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 294,
+        "fields": {
+            "category": 5,
+            "value": "5x50 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 295,
+        "fields": {
+            "category": 5,
+            "value": "100x300 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 296,
+        "fields": {
+            "category": 5,
+            "value": "30,5x41 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 297,
+        "fields": {
+            "category": 5,
+            "value": "58x60x154"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 298,
+        "fields": {
+            "category": 5,
+            "value": "27x50"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 299,
+        "fields": {
+            "category": 5,
+            "value": "10x15 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 300,
+        "fields": {
+            "category": 5,
+            "value": "60x80x0,15 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 301,
+        "fields": {
+            "category": 5,
+            "value": "40x30 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 302,
+        "fields": {
+            "category": 5,
+            "value": "72x101 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 303,
+        "fields": {
+            "category": 5,
+            "value": "20x28 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 304,
+        "fields": {
+            "category": 5,
+            "value": "8,5x17"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 305,
+        "fields": {
+            "category": 5,
+            "value": "30,5х45,5 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 306,
+        "fields": {
+            "category": 5,
+            "value": "9x10 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 307,
+        "fields": {
+            "category": 5,
+            "value": "60x85x115"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 308,
+        "fields": {
+            "category": 5,
+            "value": "20х30 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 309,
+        "fields": {
+            "category": 5,
+            "value": "18x13 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 310,
+        "fields": {
+            "category": 5,
+            "value": "38,5x32,4x6,7"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 311,
+        "fields": {
+            "category": 5,
+            "value": "41,5x31x10"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 312,
+        "fields": {
+            "category": 5,
+            "value": "39x31x8,5"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 313,
+        "fields": {
+            "category": 5,
+            "value": "16х16 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 314,
+        "fields": {
+            "category": 5,
+            "value": "40х40 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 315,
+        "fields": {
+            "category": 5,
+            "value": "50,5x72 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 316,
+        "fields": {
+            "category": 5,
+            "value": "34x46 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 317,
+        "fields": {
+            "category": 5,
+            "value": "16x22,5 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 318,
+        "fields": {
+            "category": 5,
+            "value": "5х21см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 319,
+        "fields": {
+            "category": 5,
+            "value": "14х21см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 320,
+        "fields": {
+            "category": 5,
+            "value": "25x35 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 321,
+        "fields": {
+            "category": 5,
+            "value": "22x23x38"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 322,
+        "fields": {
+            "category": 5,
+            "value": "1000x150 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 323,
+        "fields": {
+            "category": 5,
+            "value": "23x30,5 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 324,
+        "fields": {
+            "category": 5,
+            "value": "24х33 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 325,
+        "fields": {
+            "category": 5,
+            "value": "21x29,7 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 326,
+        "fields": {
+            "category": 5,
+            "value": "20,3х25,4 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 327,
+        "fields": {
+            "category": 5,
+            "value": "16х21 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 328,
+        "fields": {
+            "category": 5,
+            "value": "29x42 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 329,
+        "fields": {
+            "category": 5,
+            "value": "150x1000 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 330,
+        "fields": {
+            "category": 5,
+            "value": "6,5x3 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 331,
+        "fields": {
+            "category": 5,
+            "value": "42x59,4 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 332,
+        "fields": {
+            "category": 5,
+            "value": "5x20 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 333,
+        "fields": {
+            "category": 5,
+            "value": "43,5x33,5x6"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 334,
+        "fields": {
+            "category": 5,
+            "value": "30x21 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 335,
+        "fields": {
+            "category": 5,
+            "value": "12,5x18 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 336,
+        "fields": {
+            "category": 5,
+            "value": "18x24 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 337,
+        "fields": {
+            "category": 5,
+            "value": "14,8x14,8 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 338,
+        "fields": {
+            "category": 5,
+            "value": "29,7x21 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 339,
+        "fields": {
+            "category": 5,
+            "value": "13x21 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 340,
+        "fields": {
+            "category": 5,
+            "value": "3,5x3,5x1 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 341,
+        "fields": {
+            "category": 5,
+            "value": "15x100"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 342,
+        "fields": {
+            "category": 5,
+            "value": "16x16"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 343,
+        "fields": {
+            "category": 5,
+            "value": "32x25x7"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 344,
+        "fields": {
+            "category": 5,
+            "value": "2,40x10,5x52"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 345,
+        "fields": {
+            "category": 5,
+            "value": "87,8x4000 см"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 346,
+        "fields": {
+            "category": 6,
+            "value": "36"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 347,
+        "fields": {
+            "category": 6,
+            "value": "25"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 348,
+        "fields": {
+            "category": 6,
+            "value": "1"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 349,
+        "fields": {
+            "category": 6,
+            "value": "5"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 350,
+        "fields": {
+            "category": 6,
+            "value": "70"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 351,
+        "fields": {
+            "category": 6,
+            "value": "16"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 352,
+        "fields": {
+            "category": 6,
+            "value": "22"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 353,
+        "fields": {
+            "category": 6,
+            "value": "192"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 354,
+        "fields": {
+            "category": 6,
+            "value": "84"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 355,
+        "fields": {
+            "category": 6,
+            "value": "48"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 356,
+        "fields": {
+            "category": 6,
+            "value": "26"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 357,
+        "fields": {
+            "category": 6,
+            "value": "90"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 358,
+        "fields": {
+            "category": 6,
+            "value": "24"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 359,
+        "fields": {
+            "category": 6,
+            "value": "96"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 360,
+        "fields": {
+            "category": 6,
+            "value": "34"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 361,
+        "fields": {
+            "category": 6,
+            "value": "15"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 362,
+        "fields": {
+            "category": 6,
+            "value": "35"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 363,
+        "fields": {
+            "category": 6,
+            "value": "32"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 364,
+        "fields": {
+            "category": 6,
+            "value": "40"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 365,
+        "fields": {
+            "category": 6,
+            "value": "150"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 366,
+        "fields": {
+            "category": 6,
+            "value": "11"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 367,
+        "fields": {
+            "category": 6,
+            "value": "30"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 368,
+        "fields": {
+            "category": 6,
+            "value": "60"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 369,
+        "fields": {
+            "category": 6,
+            "value": "120"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 370,
+        "fields": {
+            "category": 6,
+            "value": "20"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 371,
+        "fields": {
+            "category": 6,
+            "value": "8"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 372,
+        "fields": {
+            "category": 6,
+            "value": "50"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 373,
+        "fields": {
+            "category": 6,
+            "value": "250"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 374,
+        "fields": {
+            "category": 6,
+            "value": "500"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 375,
+        "fields": {
+            "category": 6,
+            "value": "200"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 376,
+        "fields": {
+            "category": 6,
+            "value": "28"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 377,
+        "fields": {
+            "category": 6,
+            "value": "72"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 378,
+        "fields": {
+            "category": 6,
+            "value": "100"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 379,
+        "fields": {
+            "category": 6,
+            "value": "12"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 380,
+        "fields": {
+            "category": 6,
+            "value": "75"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 381,
+        "fields": {
+            "category": 6,
+            "value": "80"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 382,
+        "fields": {
+            "category": 6,
+            "value": "18"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 383,
+        "fields": {
+            "category": 6,
+            "value": "10"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 384,
+        "fields": {
+            "category": 7,
+            "value": "40 шт"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 385,
+        "fields": {
+            "category": 7,
+            "value": "25"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 386,
+        "fields": {
+            "category": 7,
+            "value": "1"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 387,
+        "fields": {
+            "category": 7,
+            "value": "5"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 388,
+        "fields": {
+            "category": 7,
+            "value": "120 шт"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 389,
+        "fields": {
+            "category": 7,
+            "value": "70"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 390,
+        "fields": {
+            "category": 7,
+            "value": "2"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 391,
+        "fields": {
+            "category": 7,
+            "value": "14"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 392,
+        "fields": {
+            "category": 7,
+            "value": "9"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 393,
+        "fields": {
+            "category": 7,
+            "value": "192"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 394,
+        "fields": {
+            "category": 7,
+            "value": "30 шт"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 395,
+        "fields": {
+            "category": 7,
+            "value": "18 шт"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 396,
+        "fields": {
+            "category": 7,
+            "value": "20 шт"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 397,
+        "fields": {
+            "category": 7,
+            "value": "48"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 398,
+        "fields": {
+            "category": 7,
+            "value": "2 шт"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 399,
+        "fields": {
+            "category": 7,
+            "value": "24"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 400,
+        "fields": {
+            "category": 7,
+            "value": "15"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 401,
+        "fields": {
+            "category": 7,
+            "value": "35"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 402,
+        "fields": {
+            "category": 7,
+            "value": "6 шт"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 403,
+        "fields": {
+            "category": 7,
+            "value": "40"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 404,
+        "fields": {
+            "category": 7,
+            "value": "11"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 405,
+        "fields": {
+            "category": 7,
+            "value": "50 шт"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 406,
+        "fields": {
+            "category": 7,
+            "value": "60 шт"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 407,
+        "fields": {
+            "category": 7,
+            "value": "10"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 408,
+        "fields": {
+            "category": 7,
+            "value": "58"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 409,
+        "fields": {
+            "category": 7,
+            "value": "5 шт"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 410,
+        "fields": {
+            "category": 7,
+            "value": "3 шт"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 411,
+        "fields": {
+            "category": 7,
+            "value": "60"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 412,
+        "fields": {
+            "category": 7,
+            "value": "4 шт"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 413,
+        "fields": {
+            "category": 7,
+            "value": "20"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 414,
+        "fields": {
+            "category": 7,
+            "value": "8"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 415,
+        "fields": {
+            "category": 7,
+            "value": "50"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 416,
+        "fields": {
+            "category": 7,
+            "value": "10шт"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 417,
+        "fields": {
+            "category": 7,
+            "value": "48 шт"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 418,
+        "fields": {
+            "category": 7,
+            "value": "80 шт"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 419,
+        "fields": {
+            "category": 7,
+            "value": "36 шт"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 420,
+        "fields": {
+            "category": 7,
+            "value": "10 шт"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 421,
+        "fields": {
+            "category": 7,
+            "value": "72 шт"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 422,
+        "fields": {
+            "category": 7,
+            "value": "72"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 423,
+        "fields": {
+            "category": 7,
+            "value": "4"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 424,
+        "fields": {
+            "category": 7,
+            "value": "3"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 425,
+        "fields": {
+            "category": 7,
+            "value": "12"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 426,
+        "fields": {
+            "category": 7,
+            "value": "17"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 427,
+        "fields": {
+            "category": 7,
+            "value": "27"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 428,
+        "fields": {
+            "category": 7,
+            "value": "8 шт"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 429,
+        "fields": {
+            "category": 7,
+            "value": "168 шт"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 430,
+        "fields": {
+            "category": 7,
+            "value": "6"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 431,
+        "fields": {
+            "category": 7,
+            "value": "36"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 432,
+        "fields": {
+            "category": 8,
+            "value": "0,8 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 433,
+        "fields": {
+            "category": 8,
+            "value": " 0,4-0,5 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 434,
+        "fields": {
+            "category": 8,
+            "value": "5"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 435,
+        "fields": {
+            "category": 8,
+            "value": "2 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 436,
+        "fields": {
+            "category": 8,
+            "value": "0,4 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 437,
+        "fields": {
+            "category": 8,
+            "value": "0,02 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 438,
+        "fields": {
+            "category": 8,
+            "value": "0,5/0,8 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 439,
+        "fields": {
+            "category": 8,
+            "value": "1 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 440,
+        "fields": {
+            "category": 8,
+            "value": "0,4/0,5 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 441,
+        "fields": {
+            "category": 8,
+            "value": "4,5 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 442,
+        "fields": {
+            "category": 8,
+            "value": "0,4/1 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 443,
+        "fields": {
+            "category": 8,
+            "value": "0,05 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 444,
+        "fields": {
+            "category": 8,
+            "value": "1,2 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 445,
+        "fields": {
+            "category": 8,
+            "value": "0,03 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 446,
+        "fields": {
+            "category": 8,
+            "value": "0,45 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 447,
+        "fields": {
+            "category": 8,
+            "value": "3-4 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 448,
+        "fields": {
+            "category": 8,
+            "value": "1-2 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 449,
+        "fields": {
+            "category": 8,
+            "value": "0,35 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 450,
+        "fields": {
+            "category": 8,
+            "value": "0,3 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 451,
+        "fields": {
+            "category": 8,
+            "value": "0,25 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 452,
+        "fields": {
+            "category": 8,
+            "value": "0,6 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 453,
+        "fields": {
+            "category": 8,
+            "value": "0,75 мм, 1-6 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 454,
+        "fields": {
+            "category": 8,
+            "value": "15 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 455,
+        "fields": {
+            "category": 8,
+            "value": "0,75 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 456,
+        "fields": {
+            "category": 8,
+            "value": "0,7"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 457,
+        "fields": {
+            "category": 8,
+            "value": "0,1 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 458,
+        "fields": {
+            "category": 8,
+            "value": "2 мм/3,5 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 459,
+        "fields": {
+            "category": 8,
+            "value": "0,5 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 460,
+        "fields": {
+            "category": 8,
+            "value": "0,2 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 461,
+        "fields": {
+            "category": 8,
+            "value": "0,3/0,5 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 462,
+        "fields": {
+            "category": 8,
+            "value": "3 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 463,
+        "fields": {
+            "category": 8,
+            "value": "1-2 мм, 2-4 мм"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 464,
+        "fields": {
+            "category": 9,
+            "value": "Двосторонній"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 465,
+        "fields": {
+            "category": 9,
+            "value": "односторонній"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 466,
+        "fields": {
+            "category": 9,
+            "value": "двосторонній"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 467,
+        "fields": {
+            "category": 10,
+            "value": "Graph'i"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 468,
+        "fields": {
+            "category": 10,
+            "value": "Maimeri"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 469,
+        "fields": {
+            "category": 10,
+            "value": "Van Gogh"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 470,
+        "fields": {
+            "category": 10,
+            "value": "Sadipal"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 471,
+        "fields": {
+            "category": 10,
+            "value": "Santi."
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 472,
+        "fields": {
+            "category": 10,
+            "value": "ТАИР"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 473,
+        "fields": {
+            "category": 10,
+            "value": "Bruynzeel"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 474,
+        "fields": {
+            "category": 10,
+            "value": "D.K.ART & CRAFT"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 475,
+        "fields": {
+            "category": 10,
+            "value": "Manuscript"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 476,
+        "fields": {
+            "category": 10,
+            "value": "Kum"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 477,
+        "fields": {
+            "category": 10,
+            "value": "Kremer"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 478,
+        "fields": {
+            "category": 10,
+            "value": "Van Pure"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 479,
+        "fields": {
+            "category": 10,
+            "value": "Brunnen"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 480,
+        "fields": {
+            "category": 10,
+            "value": "St. Cuthberts Mill"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 481,
+        "fields": {
+            "category": 10,
+            "value": "Cretacolor"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 482,
+        "fields": {
+            "category": 10,
+            "value": "Cretacolor 1(6)"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 483,
+        "fields": {
+            "category": 10,
+            "value": "ROSA Gallery"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 484,
+        "fields": {
+            "category": 10,
+            "value": "LINC"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 485,
+        "fields": {
+            "category": 10,
+            "value": "Fabriano"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 486,
+        "fields": {
+            "category": 10,
+            "value": "Axent"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 487,
+        "fields": {
+            "category": 10,
+            "value": "Graph'it"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 488,
+        "fields": {
+            "category": 10,
+            "value": "Сонет"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 489,
+        "fields": {
+            "category": 10,
+            "value": "BuroMAX"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 490,
+        "fields": {
+            "category": 10,
+            "value": "PINTYPLUS"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 491,
+        "fields": {
+            "category": 10,
+            "value": "Clairefontaine"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 492,
+        "fields": {
+            "category": 10,
+            "value": "AXENT"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 493,
+        "fields": {
+            "category": 10,
+            "value": "Sakura"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 494,
+        "fields": {
+            "category": 10,
+            "value": "Cretacolor 1(12)"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 495,
+        "fields": {
+            "category": 10,
+            "value": "Winsor and Newton"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 496,
+        "fields": {
+            "category": 10,
+            "value": "Mungyo"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 497,
+        "fields": {
+            "category": 10,
+            "value": "Школярик"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 498,
+        "fields": {
+            "category": 10,
+            "value": "JUMBO"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 499,
+        "fields": {
+            "category": 10,
+            "value": "SCHIZZI"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 500,
+        "fields": {
+            "category": 10,
+            "value": "Santi"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 501,
+        "fields": {
+            "category": 10,
+            "value": "Ліра"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 502,
+        "fields": {
+            "category": 10,
+            "value": "YES"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 503,
+        "fields": {
+            "category": 10,
+            "value": "Marvy"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 504,
+        "fields": {
+            "category": 10,
+            "value": "Kreska"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 505,
+        "fields": {
+            "category": 10,
+            "value": "SANTI Flowers"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 506,
+        "fields": {
+            "category": 10,
+            "value": "Creatacolor"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 507,
+        "fields": {
+            "category": 10,
+            "value": "Strathmore"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 508,
+        "fields": {
+            "category": 10,
+            "value": "Чехія"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 509,
+        "fields": {
+            "category": 10,
+            "value": "ESSDEE"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 510,
+        "fields": {
+            "category": 10,
+            "value": "ROSA Galle"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 511,
+        "fields": {
+            "category": 10,
+            "value": "Canson"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 512,
+        "fields": {
+            "category": 10,
+            "value": "D.K.ART &amp; СRAFT"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 513,
+        "fields": {
+            "category": 10,
+            "value": "Centropen"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 514,
+        "fields": {
+            "category": 10,
+            "value": "Kancler"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 515,
+        "fields": {
+            "category": 10,
+            "value": "Sea colours"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 516,
+        "fields": {
+            "category": 10,
+            "value": "Heyda"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 517,
+        "fields": {
+            "category": 10,
+            "value": "Pentart"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 518,
+        "fields": {
+            "category": 10,
+            "value": "DR"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 519,
+        "fields": {
+            "category": 10,
+            "value": "Royal Talens"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 520,
+        "fields": {
+            "category": 10,
+            "value": "Таир"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 521,
+        "fields": {
+            "category": 10,
+            "value": "Cretacolo"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 522,
+        "fields": {
+            "category": 10,
+            "value": "KOH-I-NOOR"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 523,
+        "fields": {
+            "category": 10,
+            "value": "Margo"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 524,
+        "fields": {
+            "category": 10,
+            "value": "Вінкс"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 525,
+        "fields": {
+            "category": 10,
+            "value": "Daler-Rowney"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 526,
+        "fields": {
+            "category": 10,
+            "value": "Derwen"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 527,
+        "fields": {
+            "category": 10,
+            "value": "Factis"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 528,
+        "fields": {
+            "category": 10,
+            "value": "Koh-i-Noor"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 529,
+        "fields": {
+            "category": 10,
+            "value": "АРТ-39"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 530,
+        "fields": {
+            "category": 10,
+            "value": "Гознак"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 531,
+        "fields": {
+            "category": 10,
+            "value": "Decola"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 532,
+        "fields": {
+            "category": 10,
+            "value": "BIC MATIC"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 533,
+        "fields": {
+            "category": 10,
+            "value": "ЗХК"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 534,
+        "fields": {
+            "category": 10,
+            "value": "Арт Хобби Бутик"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 535,
+        "fields": {
+            "category": 10,
+            "value": "NPA"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 536,
+        "fields": {
+            "category": 10,
+            "value": "Creatcolor"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 537,
+        "fields": {
+            "category": 10,
+            "value": "SANTI"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 538,
+        "fields": {
+            "category": 10,
+            "value": "TART"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 539,
+        "fields": {
+            "category": 10,
+            "value": "Tecnis Copier"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 540,
+        "fields": {
+            "category": 10,
+            "value": "Pilot"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 541,
+        "fields": {
+            "category": 10,
+            "value": "ROSA Studio"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 542,
+        "fields": {
+            "category": 10,
+            "value": "ГОЗНАК"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 543,
+        "fields": {
+            "category": 10,
+            "value": "SMILTAINIS"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 544,
+        "fields": {
+            "category": 10,
+            "value": "KOLOS"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 545,
+        "fields": {
+            "category": 10,
+            "value": "Marco"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 546,
+        "fields": {
+            "category": 10,
+            "value": "D.K.ART &amp; GRAFT"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 547,
+        "fields": {
+            "category": 10,
+            "value": "GAMMA"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 548,
+        "fields": {
+            "category": 10,
+            "value": "1 Вересня"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 549,
+        "fields": {
+            "category": 10,
+            "value": "Лилия Холдинг"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 550,
+        "fields": {
+            "category": 10,
+            "value": "Fimo"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 551,
+        "fields": {
+            "category": 10,
+            "value": "REMBRANDT"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 552,
+        "fields": {
+            "category": 10,
+            "value": "Primo"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 553,
+        "fields": {
+            "category": 10,
+            "value": "Derwent"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 554,
+        "fields": {
+            "category": 10,
+            "value": "Hahnemuhle"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 555,
+        "fields": {
+            "category": 10,
+            "value": "Sinar spectra"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 556,
+        "fields": {
+            "category": 10,
+            "value": "D.K.ART &amp; CRAFT"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 557,
+        "fields": {
+            "category": 10,
+            "value": "ROSA Talent"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 558,
+        "fields": {
+            "category": 10,
+            "value": "ROSA START"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 559,
+        "fields": {
+            "category": 10,
+            "value": "Nazionale"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 560,
+        "fields": {
+            "category": 10,
+            "value": "MUNGYO"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 561,
+        "fields": {
+            "category": 10,
+            "value": "D.K. Art and Craft"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 562,
+        "fields": {
+            "category": 10,
+            "value": "Renesans"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 563,
+        "fields": {
+            "category": 10,
+            "value": "Lana"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 564,
+        "fields": {
+            "category": 10,
+            "value": "ROSA TALENT"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 565,
+        "fields": {
+            "category": 10,
+            "value": "Turbo"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 566,
+        "fields": {
+            "category": 10,
+            "value": "Ukraine"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 567,
+        "fields": {
+            "category": 10,
+            "value": "Подольськ-Арт"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 568,
+        "fields": {
+            "category": 10,
+            "value": "Трек"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 569,
+        "fields": {
+            "category": 10,
+            "value": "Marabu"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 570,
+        "fields": {
+            "category": 10,
+            "value": "D.K.ART and CRAFT"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 571,
+        "fields": {
+            "category": 10,
+            "value": "Folia"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 572,
+        "fields": {
+            "category": 10,
+            "value": "Bruna"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 573,
+        "fields": {
+            "category": 11,
+            "value": "Пігмент"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 574,
+        "fields": {
+            "category": 11,
+            "value": "Розріджувач"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 575,
+        "fields": {
+            "category": 11,
+            "value": "Паста"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 576,
+        "fields": {
+            "category": 11,
+            "value": "Розчинник"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 577,
+        "fields": {
+            "category": 11,
+            "value": "Маркер"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 578,
+        "fields": {
+            "category": 11,
+            "value": "Віск"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 579,
+        "fields": {
+            "category": 11,
+            "value": "Лак"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 580,
+        "fields": {
+            "category": 11,
+            "value": "Сангіна"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 581,
+        "fields": {
+            "category": 11,
+            "value": "Блокнот"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 582,
+        "fields": {
+            "category": 11,
+            "value": "Мольберт-планшет"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 583,
+        "fields": {
+            "category": 11,
+            "value": "Фломастери"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 584,
+        "fields": {
+            "category": 11,
+            "value": "Курант"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 585,
+        "fields": {
+            "category": 11,
+            "value": "Вугілля"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 586,
+        "fields": {
+            "category": 11,
+            "value": "Блокнот-склейка"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 587,
+        "fields": {
+            "category": 11,
+            "value": "Циркуль"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 588,
+        "fields": {
+            "category": 11,
+            "value": "Підставка"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 589,
+        "fields": {
+            "category": 11,
+            "value": "Бітум"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 590,
+        "fields": {
+            "category": 11,
+            "value": "Болюс"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 591,
+        "fields": {
+            "category": 11,
+            "value": "Склейка-блок"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 592,
+        "fields": {
+            "category": 11,
+            "value": "Точилка"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 593,
+        "fields": {
+            "category": 11,
+            "value": "Дошка магнітна"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 594,
+        "fields": {
+            "category": 11,
+            "value": "Скетчбук"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 595,
+        "fields": {
+            "category": 11,
+            "value": "Ручка"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 596,
+        "fields": {
+            "category": 11,
+            "value": "Рідкий метал"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 597,
+        "fields": {
+            "category": 11,
+            "value": "Гель"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 598,
+        "fields": {
+            "category": 11,
+            "value": "Посібник"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 599,
+        "fields": {
+            "category": 11,
+            "value": "Очисник"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 600,
+        "fields": {
+            "category": 11,
+            "value": "Мульти-лайнер"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 601,
+        "fields": {
+            "category": 11,
+            "value": "Розтушовка"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 602,
+        "fields": {
+            "category": 11,
+            "value": "Папка"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 603,
+        "fields": {
+            "category": 11,
+            "value": "Стрижень"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 604,
+        "fields": {
+            "category": 11,
+            "value": "Станок"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 605,
+        "fields": {
+            "category": 11,
+            "value": "Кольорові пластівці"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 606,
+        "fields": {
+            "category": 11,
+            "value": "Калька"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 607,
+        "fields": {
+            "category": 11,
+            "value": "Мордан"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 608,
+        "fields": {
+            "category": 11,
+            "value": "Картон"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 609,
+        "fields": {
+            "category": 11,
+            "value": "Політура"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 610,
+        "fields": {
+            "category": 11,
+            "value": "Папір"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 611,
+        "fields": {
+            "category": 11,
+            "value": "Трафарет"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 612,
+        "fields": {
+            "category": 11,
+            "value": "Олівець"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 613,
+        "fields": {
+            "category": 11,
+            "value": "Лінійка"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 614,
+        "fields": {
+            "category": 11,
+            "value": "Готовальня"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 615,
+        "fields": {
+            "category": 11,
+            "value": "Стержень"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 616,
+        "fields": {
+            "category": 11,
+            "value": "Гумка"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 617,
+        "fields": {
+            "category": 11,
+            "value": "Склеювання"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 618,
+        "fields": {
+            "category": 11,
+            "value": "Мольберт-тринога"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 619,
+        "fields": {
+            "category": 11,
+            "value": "Поталь"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 620,
+        "fields": {
+            "category": 11,
+            "value": "Порошок"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 621,
+        "fields": {
+            "category": 11,
+            "value": "Листівка"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 622,
+        "fields": {
+            "category": 11,
+            "value": "Чорнило"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 623,
+        "fields": {
+            "category": 11,
+            "value": "Ластик"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 624,
+        "fields": {
+            "category": 11,
+            "value": "Наждачний папір"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 625,
+        "fields": {
+            "category": 11,
+            "value": "Лінер"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 626,
+        "fields": {
+            "category": 11,
+            "value": "Сепія"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 627,
+        "fields": {
+            "category": 11,
+            "value": "Каолін"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 628,
+        "fields": {
+            "category": 11,
+            "value": "Пензлі"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 629,
+        "fields": {
+            "category": 11,
+            "value": "Папка-коробка"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 630,
+        "fields": {
+            "category": 11,
+            "value": "Грунт"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 631,
+        "fields": {
+            "category": 11,
+            "value": "Перо"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 632,
+        "fields": {
+            "category": 11,
+            "value": "Матеріали"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 633,
+        "fields": {
+            "category": 11,
+            "value": "Інструмент для пастелі"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 634,
+        "fields": {
+            "category": 11,
+            "value": "Гофрокартон"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 635,
+        "fields": {
+            "category": 11,
+            "value": "Пенал"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 636,
+        "fields": {
+            "category": 11,
+            "value": "Резервуар"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 637,
+        "fields": {
+            "category": 11,
+            "value": "стержнів"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 638,
+        "fields": {
+            "category": 11,
+            "value": "Альбом-склейка"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 639,
+        "fields": {
+            "category": 11,
+            "value": "Трикутник"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 640,
+        "fields": {
+            "category": 11,
+            "value": "Ватман"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 641,
+        "fields": {
+            "category": 11,
+            "value": "Склейка"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 642,
+        "fields": {
+            "category": 11,
+            "value": "Утримувач"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 643,
+        "fields": {
+            "category": 11,
+            "value": "Мольберт"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 644,
+        "fields": {
+            "category": 11,
+            "value": "Клей"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 645,
+        "fields": {
+            "category": 11,
+            "value": "Альбом"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 646,
+        "fields": {
+            "category": 11,
+            "value": "Cпонжи"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 647,
+        "fields": {
+            "category": 11,
+            "value": "Туш"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 648,
+        "fields": {
+            "category": 11,
+            "value": "Грифель"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 649,
+        "fields": {
+            "category": 11,
+            "value": "Палички"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 650,
+        "fields": {
+            "category": 12,
+            "value": "Поштучно"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 651,
+        "fields": {
+            "category": 12,
+            "value": "У наборі"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 652,
+        "fields": {
+            "category": 12,
+            "value": "Рулон"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 653,
+        "fields": {
+            "category": 12,
+            "value": "Набір"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 654,
+        "fields": {
+            "category": 13,
+            "value": "Кухня"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 655,
+        "fields": {
+            "category": 13,
+            "value": "Закохані серця"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 656,
+        "fields": {
+            "category": 13,
+            "value": "Love"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 657,
+        "fields": {
+            "category": 13,
+            "value": "Текстури"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 658,
+        "fields": {
+            "category": 13,
+            "value": "Kids"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 659,
+        "fields": {
+            "category": 13,
+            "value": "Ажур"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 660,
+        "fields": {
+            "category": 13,
+            "value": "Квіти"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 661,
+        "fields": {
+            "category": 13,
+            "value": "Архітектура"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 662,
+        "fields": {
+            "category": 13,
+            "value": "Тварини"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 663,
+        "fields": {
+            "category": 13,
+            "value": "Літо"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 664,
+        "fields": {
+            "category": 13,
+            "value": "Floral Poem"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 665,
+        "fields": {
+            "category": 13,
+            "value": "Рамки"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 666,
+        "fields": {
+            "category": 13,
+            "value": "Новий рік"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 667,
+        "fields": {
+            "category": 14,
+            "value": "24"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 668,
+        "fields": {
+            "category": 14,
+            "value": "72"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 669,
+        "fields": {
+            "category": 14,
+            "value": "60"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 670,
+        "fields": {
+            "category": 14,
+            "value": "15"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 671,
+        "fields": {
+            "category": 14,
+            "value": "25"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 672,
+        "fields": {
+            "category": 14,
+            "value": "120"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 673,
+        "fields": {
+            "category": 14,
+            "value": "12"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 674,
+        "fields": {
+            "category": 14,
+            "value": "8"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 675,
+        "fields": {
+            "category": 14,
+            "value": "50"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 676,
+        "fields": {
+            "category": 14,
+            "value": "16"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 677,
+        "fields": {
+            "category": 14,
+            "value": "18"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 678,
+        "fields": {
+            "category": 14,
+            "value": "6"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 679,
+        "fields": {
+            "category": 14,
+            "value": "48"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 680,
+        "fields": {
+            "category": 14,
+            "value": "30"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 681,
+        "fields": {
+            "category": 14,
+            "value": "36"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 682,
+        "fields": {
+            "category": 15,
+            "value": "Полутверда"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 683,
+        "fields": {
+            "category": 15,
+            "value": "М'яка"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 684,
+        "fields": {
+            "category": 16,
+            "value": "138"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 685,
+        "fields": {
+            "category": 16,
+            "value": "125"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 686,
+        "fields": {
+            "category": 16,
+            "value": "154"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 687,
+        "fields": {
+            "category": 16,
+            "value": "120"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 688,
+        "fields": {
+            "category": 16,
+            "value": "78"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 689,
+        "fields": {
+            "category": 16,
+            "value": "45"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 690,
+        "fields": {
+            "category": 16,
+            "value": "50"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 691,
+        "fields": {
+            "category": 16,
+            "value": "83"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 692,
+        "fields": {
+            "category": 16,
+            "value": "11"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 693,
+        "fields": {
+            "category": 16,
+            "value": "17"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 694,
+        "fields": {
+            "category": 16,
+            "value": "87"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 695,
+        "fields": {
+            "category": 16,
+            "value": "80"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 696,
+        "fields": {
+            "category": 16,
+            "value": "53"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 697,
+        "fields": {
+            "category": 16,
+            "value": "48"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 698,
+        "fields": {
+            "category": 16,
+            "value": "30"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 699,
+        "fields": {
+            "category": 17,
+            "value": "125"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 700,
+        "fields": {
+            "category": 17,
+            "value": "25"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 701,
+        "fields": {
+            "category": 17,
+            "value": "400"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 702,
+        "fields": {
+            "category": 17,
+            "value": "35"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 703,
+        "fields": {
+            "category": 17,
+            "value": "30"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 704,
+        "fields": {
+            "category": 17,
+            "value": "60"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 705,
+        "fields": {
+            "category": 17,
+            "value": "120"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 706,
+        "fields": {
+            "category": 17,
+            "value": "20"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 707,
+        "fields": {
+            "category": 17,
+            "value": "50"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 708,
+        "fields": {
+            "category": 17,
+            "value": "250"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 709,
+        "fields": {
+            "category": 17,
+            "value": "140"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 710,
+        "fields": {
+            "category": 17,
+            "value": "500"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 711,
+        "fields": {
+            "category": 17,
+            "value": "110"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 712,
+        "fields": {
+            "category": 17,
+            "value": "230"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 713,
+        "fields": {
+            "category": 17,
+            "value": "200"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 714,
+        "fields": {
+            "category": 17,
+            "value": "225"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 715,
+        "fields": {
+            "category": 17,
+            "value": "100"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 716,
+        "fields": {
+            "category": 17,
+            "value": "75"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 717,
+        "fields": {
+            "category": 17,
+            "value": "280"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 718,
+        "fields": {
+            "category": 18,
+            "value": "25"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 719,
+        "fields": {
+            "category": 18,
+            "value": "5"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 720,
+        "fields": {
+            "category": 18,
+            "value": "100"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 721,
+        "fields": {
+            "category": 18,
+            "value": "1000"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 722,
+        "fields": {
+            "category": 18,
+            "value": "40"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 723,
+        "fields": {
+            "category": 18,
+            "value": "50"
+        }
+    },
+    {
+        "model": "products.filtervalue",
+        "pk": 724,
+        "fields": {
+            "category": 18,
+            "value": "30"
+        }
+    }
+]

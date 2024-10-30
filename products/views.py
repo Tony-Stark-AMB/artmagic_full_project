@@ -3,6 +3,15 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.views import View
+from rest_framework.views import APIView
+from rest_framework import status
+from rest_framework.response import Response
+from unidecode import unidecode    
+from django.utils.text import slugify
+from django.db import IntegrityError
+
+import logging
+from rest_framework.decorators import api_view
 
 
 from .models import (Products,
@@ -14,9 +23,11 @@ from .models import (Products,
                      FilterValue,
                      ProductImage,
                      Stocks)  # Обновлено
-from main.models import Carousel
+from main.models import Carousel, ContactInfo
 from .filters import ProductsFilter
 
+
+logger = logging.getLogger(__name__)
 
 def alphanumeric_sort(text):
     """Функция для сортировки строк, содержащих как буквы, так и цифры."""
@@ -27,31 +38,128 @@ def alphanumeric_sort(text):
     return [convert(c) for c in re.split('([0-9]+)', text)]
 
 
-def get_filter_values(request, category_id):
-    print('-----========----------============----------------==================-----------')
-    print(category_id)
-    filter_values = FilterValue.objects.filter(category_id=category_id)
-    sorted_filter_values = sorted(filter_values, key=lambda fv: alphanumeric_sort(fv.value))
-    values = [{'id': value.id, 'value': value.value} for value in sorted_filter_values]
-    print(values)
-    return JsonResponse({'values': values})
+from django.http import JsonResponse
+from .models import FilterCategory, ProductFilter
 
+from django.http import JsonResponse
+
+def get_subcategories(request, parent_id):
+    subcategories = Category.objects.filter(parent_id=parent_id)
+    data = {
+        'subcategories': [{'id': sub.id, 'name': sub.name} for sub in subcategories]
+    }
+    return JsonResponse(data)
+
+from django.http import JsonResponse
+from .models import FilterCategory, FilterValue, ProductFilter
+
+
+
+
+def update_filter_data_on_change(request, group_id):
+    # Получаем данные из запроса
+    product_id = request.GET.get('product_id')
+    category_id = request.GET.get('category_id')
+    value_id = request.GET.get('value_id')
+    # Устанавливаем выбранную категорию и значение, если они указаны
+    selected_category_id = int(category_id) if category_id else None
+    selected_value_id = int(value_id) if value_id else None
+
+    # Получаем категории фильтров, связанные с группой
+    if group_id == 0:
+        filter_categories = FilterCategory.objects.all().order_by('name')
+    else:
+        filter_categories = FilterCategory.objects.filter(group_id=group_id).order_by('name')
+
+    # Формируем список категорий, выделяя выбранную категорию
+    categories = [{
+        'id': category.id,
+        'name': category.name,
+        'selected': category.id == selected_category_id
+    } for category in filter_categories]
+    if not category_id:
+        category_id = categories[0]['id']
+    # Получаем значения фильтров только для выбранной категории, если она указана
+    values = []
+    if category_id:
+        filter_values = FilterValue.objects.filter(category_id=category_id)
+        sorted_filter_values = sorted(filter_values, key=lambda fv: alphanumeric_sort(fv.value))
+        values = [{
+            'id': value.id,
+            'value': value.value,
+            'selected': value.id == selected_value_id
+        } for value in sorted_filter_values]
+
+    # Возвращаем категории и значения в формате JSON
+    return JsonResponse({'categories': categories, 'values': values})
+
+
+
+def load_initial_filter_data(request, group_id):
+    # Получаем данные из запроса
+    product_id = request.GET.get('product_id')
+    category_id = request.GET.get('category_id')
+    value_id = request.GET.get('value_id')
+    # Проверка на наличие выбранного значения категории
+    selected_category_id = int(category_id) if category_id else None
+    selected_value_id = int(value_id) if value_id else None
+
+    # Получаем список категорий фильтров, связанных с текущей группой
+    if group_id == 0:
+        filter_categories = FilterCategory.objects.all().order_by('name')
+    else:
+        filter_categories = FilterCategory.objects.filter(group_id=group_id).order_by('name')
+
+    # Если product_id, category_id и value_id указаны, проверяем, есть ли такая запись в ProductFilter
+    if product_id and category_id and value_id:
+        try:
+            product_filter = ProductFilter.objects.get(
+                product_id=product_id, 
+                filter_category_id=category_id, 
+                filter_value_id=value_id
+            )
+            # Устанавливаем выбранные категории и значения
+            selected_category_id = product_filter.filter_category_id
+            selected_value_id = product_filter.filter_value_id
+        except ProductFilter.DoesNotExist:
+            # Если не найдено, ничего не меняем, используем текущие значения
+            print("ProductFilter для указанных данных не найден.")
+
+    # Формируем список категорий с учетом выбранной
+    categories = [{
+        'id': category.id,
+        'name': category.name,
+        'selected': category.id == selected_category_id
+    } for category in filter_categories]
+    
+    # Получаем значения для выбранной категории, если она указана
+    values = []
+    if category_id:
+        filter_values = FilterValue.objects.filter(category_id=category_id)
+        sorted_filter_values = sorted(filter_values, key=lambda fv: alphanumeric_sort(fv.value))
+        values = [{
+            'id': value.id,
+            'value': value.value,
+            'selected': value.id == selected_value_id
+        } for value in sorted_filter_values]
+    # Возвращаем категории и значения в формате JSON
+    return JsonResponse({'categories': categories, 'values': values})
 
 def add_to_cart(request):
     product_id = int(request.GET["id"])
     try:
         product = get_object_or_404(Products, pk=product_id)
-        print(product.image)
+        
         json_data = {
             'id': product.id,
             'name': product.name,
-            'image': f'{product.image}'  if not product.image else f'/media/{product.image}',
+            'image': f'{product.image}' if not product.image else f'/media/{product.image}',
             'price': product.price,
             'model': product.model,
-            'storageQuantity': product.quantity,
+            'storage_quantity': product.quantity,
             'preorder': None
         }
-
+        print(json_data)
         return JsonResponse(json_data, safe=False)
     except Products.DoesNotExist:
         return JsonResponse({'error': 'Product not found'}, status=404)
@@ -128,6 +236,7 @@ class SubProductView(View):
 
         if slug != 'search':
             parent_category = get_object_or_404(Category, slug=slug)
+            print('---------------------------------------', parent_category.pk)
             
 
         if parent_category:
@@ -136,6 +245,7 @@ class SubProductView(View):
             print('------------------------------------------100------------', len(product_ids))
             parent_of_parent_category = parent_category.parent
             products = Products.objects.filter(id__in=product_ids).distinct()
+            print('------------------------------------------10,01------------', len(products))
             if parent_of_parent_category:
                 breadcrumbs.append({'name': parent_of_parent_category.name, 'url': parent_of_parent_category.get_absolute_url()})
 
@@ -147,12 +257,16 @@ class SubProductView(View):
                 {'name': "Пошук", 'url': ''},  # Текущая категория
             ]
         print('------------------------------------------101------------', len(products))
-        # , products.filter(filters__filter_value__value="Маркер")
         product_filter = ProductsFilter(request.GET, queryset=products)
         filtered_queryset = product_filter.qs()
         filtered_queryset = filtered_queryset.values('id', 'name', 'image', 'price', 'model')
         filters = self.build_filters(filtered_queryset)
         print('------------------------------------------filtered_queryset------------', len(filtered_queryset))
+        
+
+        if len(filtered_queryset)==0:
+            return render(request, 'products/not_find_products.html')
+        
         # Пагинация
         paginate_by = request.GET.get('productsPerPage', 10)
         paginator = Paginator(filtered_queryset, paginate_by)
@@ -211,7 +325,7 @@ class SubProductView(View):
             'text': sorted(list(texts), key=lambda x: alphanumeric_sort(x[1]))  # сортируем по value, а не по id
         } for name, texts in sorted(attributes_dict.items(), key=lambda x: alphanumeric_sort(x[0]))]
 
-        print('///////////////', filters)
+        # print('///////////////', filters)
         return filters
 
 
@@ -273,9 +387,13 @@ class DetaileProductView(View):
     
     def get_breadcrumbs(self, categories):
         breadcrumbs = [{'name': 'Головна', 'url': '/'}]
-        print('categories', categories)
+        if not categories:
+            breadcrumbs.append({'name': '', 'url': ''})
+            return breadcrumbs
+        print('-----------------------------------------------------categories', categories)
         parent = categories[0].category_id.parent
-        print('parent', parent)
+        print('-----------------------------------------------------parent', parent)
+
         breadcrumbs.append({
             'name': parent.name,
             'url': parent.get_absolute_url()})
@@ -295,11 +413,39 @@ class DetaileProductView(View):
                 })
         print(breadcrumbs)        
         return breadcrumbs
-
-def quantity_check_product(request):
-    product_id = request.GET.get('id')
-    # quantity_to_add = int(request.GET.get('quantity', 1))
-    product = get_object_or_404(Products, id=product_id)
-
-    return JsonResponse({'storage_quantity': product.quantity}, status=200)
     
+
+@api_view(['POST'])
+def upsert_product(request):
+    """
+    API для обновления или создания продуктов.
+    """
+    data = request.data  # Получаем данные из запроса
+    responses = []
+
+    for product_data in data:
+        model = product_data.get('model')
+        if not model:
+            responses.append({'error': 'Model is required'})
+            continue
+
+        try:
+            # Обновляем или создаем продукт на основе уникального поля model
+            product, created = Products.objects.update_or_create(
+                model=model,
+                defaults={
+                    'slug': slugify(unidecode(product_data.get('name', ''))),
+                    'name': product_data.get('name', ''),
+                    'price': product_data.get('price', 0),
+                    'quantity': float(product_data.get('quantity', 0)),
+                }
+            )
+
+            action = 'created' if created else 'updated'
+            responses.append({'message': f'Product {model} was {action}', 'product_id': product.id})
+
+        except IntegrityError as e:
+            logger.error(f"Failed to upsert product {model}: {str(e)}")
+            responses.append({'error': f'Failed to upsert product {model}: {str(e)}'})
+
+    return Response(responses, status=status.HTTP_200_OK)

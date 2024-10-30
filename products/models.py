@@ -1,7 +1,10 @@
 from django.db import models
 from django.urls import reverse
+from django.utils.text import slugify
 
+from django_ckeditor_5.fields import CKEditor5Field
 from mptt.models import MPTTModel, TreeForeignKey
+from unidecode import unidecode 
 
 
 class Category(MPTTModel):
@@ -111,11 +114,15 @@ class Category(MPTTModel):
 
 class Stocks(models.Model):
     image = models.ImageField(upload_to='stocks/', null=True, max_length=300, blank=True)
-    title = models.CharField(max_length=100, verbose_name='Тітул')
+    title = models.CharField(max_length=100, verbose_name='Титул')
     description = models.TextField(verbose_name='Опис')
 
     def __str__(self):
         return self.title
+    
+    class Meta:
+        verbose_name = "Акційна пропозиція"
+        verbose_name_plural = "Акційні пропозиції"
 
 class Manufacturer(models.Model):
     name = models.CharField(max_length=255, verbose_name="Назва виробника")
@@ -129,15 +136,19 @@ class Manufacturer(models.Model):
         verbose_name_plural = "Виробники"
 
 
-class StockStatus(models.Model):
-    name = models.CharField(max_length=255)
+class FilterGroup(models.Model):
+    name = models.CharField(max_length=100, unique=True, verbose_name="Група категорій фільтрів")
 
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "Група категорій фільтрів"
+        verbose_name_plural = "Групи категорій фільтрів"
 
 class FilterCategory(models.Model):
     name = models.CharField(max_length=100, unique=True, verbose_name="Категорія фільтрів")
+    group = models.ForeignKey(FilterGroup, on_delete=models.CASCADE, null=True, related_name="categories", verbose_name="Група категорій фільтрів")
 
     def __str__(self):
         return self.name
@@ -148,7 +159,7 @@ class FilterCategory(models.Model):
 
 
 class FilterValue(models.Model):
-    category = models.ForeignKey(FilterCategory, on_delete=models.PROTECT, related_name="values", verbose_name="Категорія фільтра")
+    category = models.ForeignKey(FilterCategory, on_delete=models.CASCADE, related_name="values", verbose_name="Категорія фільтра")
     value = models.CharField(max_length=100, verbose_name="Значення фільтра")
 
     def __str__(self):
@@ -157,18 +168,18 @@ class FilterValue(models.Model):
     class Meta:
         verbose_name = "Значення фільтра"
         verbose_name_plural = "Значення фільтрів"
-
+ 
 
 class Products(models.Model):
     name = models.CharField(
-        max_length=299, 
-        unique=True, 
+        max_length=299,
         verbose_name='Назва'
     )
-    description = models.TextField(
+    description = CKEditor5Field(
         null=True, 
         blank=True, 
-        verbose_name='Опис'
+        verbose_name='Опис',
+        config_name='extends'
     )
     model = models.CharField(
         max_length=255, 
@@ -180,12 +191,6 @@ class Products(models.Model):
         null=True, 
         blank=True, 
         verbose_name='Кількість'
-    )
-    stock_status_id = models.ForeignKey(
-        StockStatus, 
-        on_delete=models.CASCADE, 
-        max_length=300,
-        verbose_name='Статус на складі'
     )
     image = models.ImageField(
         upload_to='catalog/', 
@@ -208,7 +213,8 @@ class Products(models.Model):
         verbose_name='Виробник'
     )
     status = models.BooleanField(
-        verbose_name='Статус'
+        verbose_name='Статус',
+        null=True
     )
     date_added = models.DateTimeField(
         auto_now_add=True, 
@@ -232,6 +238,7 @@ class Products(models.Model):
         decimal_places=2, 
         verbose_name='Знижка в %'
     )
+
 
     class Meta:
         verbose_name = 'Продукт'
