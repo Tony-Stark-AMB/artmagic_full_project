@@ -20,15 +20,17 @@
         flex-direction: column;
         align-items: flex-start;
         margin-top: 10px;
+        @media (max-width: 450px) {
+          width: 100%;
+        }
     }
     .contact-options {
-        width: 80%;
+        width: 100%;
         display: flex;
         justify-content: space-around;
         list-style-type: none;
         padding: 0;
-        margin-top: 5px;
-        margin-left: 20px; /* Отступ от левой границы */
+        margin: 0;
     }
     .contact-option {
         margin-bottom: 10px; /* Отступ между пунктами */
@@ -47,6 +49,7 @@
         background-color: #0d6efd;
     }
     .contacts-page-content{
+      flex: 1;
       min-height: 57.5vh;
     }
 
@@ -57,9 +60,9 @@
   <div class="container__extra__small">
     <div class="contacts-page">
           <h3 class="contacts-page__title">Не знайшли потрібний товар?</h3>
-          <p>Наші спеціалісти готові допомогти Вам знайти потрібне!<br>Залиште свої контактні дані, і ми з Вами зв'яжемось!</p>
+          <p class="text-center">Наші спеціалісти готові допомогти Вам знайти потрібне!<br>Залиште свої контактні дані, і ми з Вами зв'яжемось!</p>
           
-          <h5>Обрати зручний спосіб зв’язку:</h5>
+          <h5 class="text-center">Обрати зручний спосіб зв’язку:</h5>
           <div class="contact-method">
             <div class="contact-options">
                 <div class="contact-option">

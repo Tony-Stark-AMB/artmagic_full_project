@@ -12,6 +12,7 @@ from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic.edit import FormView
+from artmagic.settings import EMAIL_HOST_USER
 from django.contrib.auth.views import (
     PasswordResetView as BasePasswordResetView,
     PasswordResetConfirmView as BasePasswordResetConfirmView,
@@ -190,11 +191,11 @@ class FeedbackView(View):
                     'message': message,
                 })
 
-                recipient_list = ['Asgeron90@gmail.com']
+                recipient_list = [EMAIL_HOST_USER]
                 email = EmailMessage(
                     subject=subject,
                     body=html_message,
-                    from_email='Asgeron90@gmail.com',
+                    from_email=EMAIL_HOST_USER,
                     to=recipient_list
                 )
                 email.content_subtype = "html"
