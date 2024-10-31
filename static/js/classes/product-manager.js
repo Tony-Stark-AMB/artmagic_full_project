@@ -34,26 +34,30 @@ export class ProductManager {
         localStorage.setItem('products', JSON.stringify([]));
     }
 
-    async addProduct({ id, name, price, image, model }) {
-        
+    async addProduct({ id, name, price, image, model, storageQuantity}) {
         const existProduct = this.existProduct(id);
         if (existProduct)
             existProduct.addOne();
-        else 
-            this.products = [...this.products, new Product(id, name, price, image, model)];
+        else {
+            let preorder = 0;
+            if(storageQuantity == 0)
+                preorder = 1;
+            const newProduct = new Product(id, name, price, image, model, null, preorder, storageQuantity);
+            this.products = [...this.products, newProduct];
+        }
         this.setStorageProducts(this.products)
     }
 
     mapObjectsInProducts(products) {
         if (!products) return [];
-        return products.map(({ id, name, price, quantity, image, model }) =>
-            new Product(id, name, price, image, model, quantity)
+        return products.map(({ id, name, price, quantity, image, model, preorder, storageQuantity }) =>
+            new Product(id, name, price, image, model, quantity, preorder, storageQuantity)
         );
     }
 
-    mapObjectInProduct({id, name, price, image, model, quantity}) {
+    mapObjectInProduct({id, name, price, image, model, quantity, preorder, storageQuantity}) {
         if (!id) return null;
-        return new Product(id, name, price, image, model, quantity);
+        return new Product(id, name, price, image, model, quantity, preorder, storageQuantity);
     }
 
     async fetchNewProduct(id) {
@@ -100,7 +104,7 @@ export class ProductManager {
 
     
     filterProductsByQuantity(products) {
-        return products.filter(product => product.quantity > 0);
+        return products.filter(product => product.quantity > 0 || product.preorder > 0);
     }
 
     getProductsInfo() {
@@ -112,13 +116,5 @@ export class ProductManager {
              Ціна загальна: ${this.currentProductTotalPrice(id, this.priceOutputFn, 2)} грн`
         ).join('\n');
     }
-
-    // async fetchStorageQuantity(id){
-    //     return fetch(`${PROTOCOL}://${HOST}:${PORT}/add-to-cart-checkin-quantity/?id=${id}`, {
-    //         method: "GET",
-    //         mode: "cors"
-    //     }).then((data) => data.json());
-    // }
-
     
 }

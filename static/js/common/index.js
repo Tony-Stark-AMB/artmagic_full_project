@@ -26,7 +26,6 @@ const rerenderImage = function(images) {
 const isFloat = (value) => (typeof value === 'number' && value % 1 !== 0);
 
 const initImagesRation = (page) => {
-    console.log("initImagesRation")
     try{
         const images = document.querySelectorAll(`.products-${page}__item__img`)
 

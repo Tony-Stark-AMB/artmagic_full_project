@@ -59,25 +59,27 @@
                         <div class="pagination pagination-index"></div>
                     </div>
                 </section>
-                <section class="main-index__promotion">
-                    <h3 data-aos="fade-down" class="promotion__title">
-                        Акційні пропозиції
-                    </h3>
-                    <div class="promotion__content">
-                        <div class="promotion__card">
-                            <div class="">
-                                <img src="{{ stocks.0.image.url }}" class="img-fluid rounded-start" alt="...">
-                            </div>
-                            <div class="">
-                                <div class="card-body">
-                                <h5 class="card-title">{{ stocks.0.title }}</h5>
-                                <p class="card-text">{{ stocks.0.description }}</p>
+                {%if stocks%}
+                    <section class="main-index__promotion">
+                        <h3 data-aos="fade-down" class="promotion__title">
+                            Акційні пропозиції
+                        </h3>
+                        <div class="promotion__content">
+                            <div class="promotion__card">
+                                <div class="">
+                                    <img src="{{ stocks.0.image.url }}" class="img-fluid rounded-start" alt="...">
                                 </div>
+                                <div class="">
+                                    <div class="card-body">
+                                    <h5 class="card-title">{{ stocks.0.title }}</h5>
+                                    <p class="card-text">{{ stocks.0.description }}</p>
+                                    </div>
+                                </div>
+                                    
                             </div>
-                                
                         </div>
-                    </div>
-                </section>
+                    </section>
+                {%endif%}
             </main>
             <aside class="aside-index__wrap">
                     <section class="aside-index">

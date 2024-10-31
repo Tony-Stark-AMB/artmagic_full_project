@@ -1,4 +1,5 @@
 // FORM INIT DATA MUST HAVE UNIC KEYS
+
 const {REQUIRED, MIN_2_LETTERS_UA, PHONE_UA } = regexp
 
 const formDataFeedback = {
@@ -26,7 +27,16 @@ const patternsFeedback = {
     ],
 };
 
-const formFeedback = new Form(formDataFeedback, patternsFeedback, "Feedback", Alert);
+const userData = new Map();
+
+Array.from(document.querySelectorAll("[data-user]")).map(el => {
+    const key = el.dataset.user;
+    const val = el.textContent;
+    userData.set(key, val)
+    return userData
+});
+
+const formFeedback = new FeedbackForm(formDataFeedback, patternsFeedback, "Feedback", Alert, null, null, userData, null);
 
 formFeedback.initForm("feedbackForm", {
     firstName: "first_name",

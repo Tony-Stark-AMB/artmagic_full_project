@@ -7,6 +7,7 @@ from django.contrib.auth.password_validation import CommonPasswordValidator
 from django.core.validators import validate_email
 from .models import CustomUser, Address
 from django.contrib.auth import authenticate
+from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
 
 
 
@@ -82,13 +83,13 @@ class RegistrationForm(UserCreationForm):
         if not re.match(r'^[a-zA-Z0-9!@#$%^&*()_+{}\[\]:;"\'<>,.?/]+$', password1):
             raise ValidationError("Пароль може містити лише латинські літери та символи.")
         if len(password1) < 8:
-            raise ValidationError("Вибачте, але ваш пароль занадто короткий. Він має містити щонайменше 8 символів.")
+            raise ValidationError("Вибачте, але Ваш пароль занадто короткий. Він має містити щонайменше 8 символів.")
 
         common_password_validator = CommonPasswordValidator()
         try:
             common_password_validator.validate(password1)
         except ValidationError:
-            raise ValidationError(("Вибачте, але обраний вами пароль занадто простий."))
+            raise ValidationError(("Вибачте, але обраний Вами пароль занадто простий."))
 
 
         return password1
@@ -102,13 +103,13 @@ class RegistrationForm(UserCreationForm):
             raise ValidationError(("Паролі не співпадають."))
         
         if len(password2) < 8:
-            raise ValidationError("Вибачте, але ваш пароль занадто короткий. Він має містити щонайменше 8 символів.")
+            raise ValidationError("Вибачте, але Ваш пароль занадто короткий. Він має містити щонайменше 8 символів.")
 
         common_password_validator = CommonPasswordValidator()
         try:
             common_password_validator.validate(password2)
         except ValidationError:
-            raise ValidationError(("Вибачте, але обраний вами пароль занадто простий."))
+            raise ValidationError(("Вибачте, але обраний Вами пароль занадто простий."))
 
         return password2
 
@@ -157,12 +158,12 @@ class ProfileForm(forms.ModelForm):
 
     first_name = forms.CharField(
         min_length=2,
-        max_length=10,
+        max_length=20,
         required=True
     )
     last_name = forms.CharField(
         min_length=2,
-        max_length=10
+        max_length=20
     )
     phone_number = forms.CharField(
         max_length=15,
@@ -217,5 +218,29 @@ class FeedbackForm(forms.Form):
     def clean_phone_number(self):
         phone_number = self.cleaned_data['phone_number']
         if not re.match(r'^\+?3?\d{9,14}$', phone_number):
-            raise forms.ValidationError('Введите правильный номер телефона.')
+            raise forms.ValidationError('Будь ласка, введіть дійсний номер телефона.')
         return phone_number
+    
+
+class CustomPasswordResetForm(PasswordResetForm):
+    email = forms.EmailField(
+        max_length=254,
+        error_messages={
+            'invalid': "Будь ласка, введіть дійсну адресу електронної пошти.",
+            'required': "Email є обов'язковим полем."
+        }
+    )
+
+class CustomSetPasswordForm(SetPasswordForm):
+    new_password1 = forms.CharField(
+        widget=forms.PasswordInput,
+        error_messages={
+            'required': "Пароль є обов'язковим полем."
+        }
+    )
+    new_password2 = forms.CharField(
+        widget=forms.PasswordInput,
+        error_messages={
+            'required': "Підтвердження паролю є обов'язковим."
+        }
+    )

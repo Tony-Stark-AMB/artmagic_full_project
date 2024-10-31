@@ -24,7 +24,7 @@
                         <a class="btn btn-primary" href="{% url 'user:logout' %}">Вийти</a>
                     </div>
                     <form class="profile-page__user-info" id="profileForm">
-                       <h1 class="profile-page__user-info__title">Інформація вашого профілю</h1>
+                       <h1 class="profile-page__user-info__title">Інформація Вашого профілю</h1>
                         <div class="profile-page__user-info__input-wrap">
                             <span class="profile-page__user-info__label">Ваше ім'я: </span>
                             <input class="profile-page__user-info__input" 
@@ -192,7 +192,8 @@
         {% endblock %}
     </div>
     {% block js %}
-        <script type="module" src="{% static 'js/profile.js' %}"></script>
+        <script src="{% static 'js/profile/profile_form.js' %}"></script>
+        <script type="module" src="{% static 'js/profile/profile.js' %}"></script>
     {% endblock %}
 </body>
 </html>

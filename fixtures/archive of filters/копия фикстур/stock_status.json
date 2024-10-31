@@ -1,0 +1,16 @@
+[
+    {
+        "model": "products.stockstatus",
+        "pk": 7,
+        "fields": {
+            "name": "В наявності"
+        }
+    },
+    {
+        "model": "products.stockstatus",
+        "pk": 6,
+        "fields": {
+            "name": "На замовлення"
+        }
+    }
+]

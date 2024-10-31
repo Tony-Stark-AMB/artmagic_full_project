@@ -2,19 +2,103 @@
 {% load static %}
 {% load mptt_tags %}
 
-    {% block css %}
-        <link rel="stylesheet" href="{% static 'css/index.css' %}"> 
-    {% endblock %}
-    {% block content %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
+  <link rel="stylesheet" href="{% static 'css/footer/about_us.css' %}">
+  <link rel="stylesheet" href="{% static 'css/contacts.css' %}">
+  <style>
+    .contacts-page{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-    <div>    
-       <h1>Товари відсутні</h1>
-    </div>
-    
-      {% endblock %}
-  {% block js %}
-    <script src="{% static 'js/index/index.js' %}"></script>
-    <script type="module" src="{% static 'js/index/index-carousel.js' %}"></script>
+    .contact-method {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 10px;
+        @media (max-width: 450px) {
+          width: 100%;
+        }
+    }
+    .contact-options {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    .contact-option {
+        margin-bottom: 10px; /* Отступ между пунктами */
+    }
+    .contact-option a {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #0d6efd;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+    .contact-option a:hover {
+        background-color: #0d6efd;
+    }
+    .contacts-page-content{
+      flex: 1;
+      min-height: 57.5vh;
+    }
+
+</style>
+{% endblock %}
+{% block content %}
+<main class="contacts-page-content">
+  <div class="container__extra__small">
+    <div class="contacts-page">
+          <h3 class="contacts-page__title">Не знайшли потрібний товар?</h3>
+          <p class="text-center">Наші спеціалісти готові допомогти Вам знайти потрібне!<br>Залиште свої контактні дані, і ми з Вами зв'яжемось!</p>
+          
+          <h5 class="text-center">Обрати зручний спосіб зв’язку:</h5>
+          <div class="contact-method">
+            <div class="contact-options">
+                <div class="contact-option">
+                  <button class="header-call__btn" type="button" data-bs-toggle="modal" data-bs-target="#call__modal">
+                      <a class="c6">Передзвоніть</a>
+                  </button>                    
+                </div>
+                <div class="contact-option">
+                  <a href="viber://chat?number=+380680174075">Viber</a>
+                </div>
+            </div>
+        </div>  
+      </div>     
+    </div>      
+  </main>          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+  
+
   {% endblock %}
+{% block js %}
+  <script src="{% static 'js/index/index.js' %}"></script>
+  <script type="module" src="{% static 'js/index/index-carousel.js' %}"></script>
+{% endblock %}
     
     
