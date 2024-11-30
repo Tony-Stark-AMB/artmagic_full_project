@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
         if (paymentRealInput.checked) {
+            console.log(paymentRealInput.checked);
             paymentRealInput.checked = false;
             formOrder.setSelectedPayment(null); // Сбросить выбор оплаты в вашей логике
         }
