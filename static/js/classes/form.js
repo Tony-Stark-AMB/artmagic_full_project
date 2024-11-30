@@ -142,6 +142,7 @@ class Form {
                     `;
         
                     const body = this.formData;
+                    body.amount = this.productManager.allProductsTotalPrice(this.productManager.priceOutputFn, 2);
                     try {
                         const { formHtml } = await this.fetchData(`payment/create/`, "POST", body);
                         const liqpayFormContainer = document.getElementById('liqpayForm');
@@ -150,6 +151,7 @@ class Form {
                             e.preventDefault();
                         });
                         setTimeout(() => liqpayFormContainer.querySelector('form').submit(), 1000);
+                        
                     } catch (err) {
                         console.log(err);
                         this.alert("err", "Неможливо зробити замовлення без обраного товару", animDuration);

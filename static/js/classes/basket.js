@@ -134,7 +134,8 @@ export class Basket {
                 </div>
                 <div class="overlook__name__wrap">
                     <p class="overlook__name">${product.name}</p>
-                    <p class="overlook__name">ціна: <b>${product.price}</b> грн</p>
+                    <p class="overlook__name">Артикул: <b class="c17">${product.model}</b></p>
+                    <p class="overlook__name">Ціна: <b>${product.price}  грн</b></p>
                 </div>
                 ${productBtns}
                 <div class="cart__product__price">

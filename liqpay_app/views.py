@@ -24,9 +24,12 @@ class OrderIDGenerator:
 order_id_liqpay = OrderIDGenerator()
 
 def create_payment(request):
+    print(request)
     if request.method == 'POST':
         body_data = json.loads(request.body)
         amount = body_data.get('amount', '')
+        if not amount or float(amount) <= 0:  # Validate the amount
+            return JsonResponse({'error': 'Invalid amount'}, status=400)
         email = body_data.get('email', '')
         description = body_data.get('description', '')
         
@@ -87,5 +90,12 @@ def payment_status(request, order_id):
 
     payment.status = response.get('status', 'error')
     payment.save()
+    if payment.status == 'success':
+        send_order_confirmation(payment)
 
     return render(request, 'liqpay_app/payment_status.html', {'payment': payment, 'response': response})
+
+def send_order_confirmation(payment):
+    # Логика для отправки уведомления пользователю и интернет-магазину
+    logger.info(f"Order {payment.order_id} has been paid. User: {payment.user.email}, Amount: {payment.amount}")
+    # Здесь можно использовать django.core.mail для отправки email

@@ -190,6 +190,14 @@
   background-color: rgb(115, 96, 242);
 }
 
+.c25 {
+  color: #E63125;
+}
+
+.bg25 {
+  background-color: #E63125;
+}
+
 .color-inh {
   color: inherit;
 }
@@ -1336,7 +1344,7 @@
 }
 .footer__bottom {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
   border-top: 1px solid #ddd;
@@ -1348,7 +1356,12 @@
     justify-content: space-around;
   }
 }
-
+.footer__approve {
+  width: 25%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
 .footer__underground {
   padding: 10px 0;
 }
