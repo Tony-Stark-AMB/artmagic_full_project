@@ -3,7 +3,27 @@ import { formOrder } from "./order.js";
 document.addEventListener("DOMContentLoaded", () => {
     const notification = document.getElementById('notification');
     const formContainer = document.querySelector('.order-choose__form');
-    const btnSubmitOrder = document.querySelector(`[data-submit="btn_Order"]`)
+    const btnSubmitOrder = document.querySelector(`[data-submit="btn_Order"]`);
+    const paymentRealRadio = document.querySelector('#payment_real').parentElement;
+
+    // Функция для отображения или скрытия радио-кнопки "У точці видачі"
+    const updatePaymentRealVisibility = () => {
+        if (selectedDelivery === "artmagic_department") {
+            // Показывать, если выбран "Самовивіз"
+            paymentRealRadio.classList.remove('d-none');
+            paymentRealRadio.classList.add('d-block');
+        } else {
+            // Скрывать для других способов доставки
+            paymentRealRadio.classList.remove('d-block');
+            paymentRealRadio.classList.add('d-none');
+
+        }
+        if (paymentRealInput.checked) {
+            paymentRealInput.checked = false;
+            formOrder.setSelectedPayment(null); // Сбросить выбор оплаты в вашей логике
+        }
+        
+    };
 
     let selectedDelivery = null;
     let selectedPayment = null;
@@ -71,6 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     icon.classList.remove('c20');
                     icon.classList.add('c8');
                     break;
+                    
             }
         });
     }
@@ -107,6 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             updateNotification();
             updateFormFields();
+            updatePaymentRealVisibility(); // Обновить видимость "У точці видачі"
         });
     });
 
@@ -214,6 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     initializeFormFields();
     updateFormFields();
+    updatePaymentRealVisibility(); // Обновить видимость "У точці видачі"
 });
 
 

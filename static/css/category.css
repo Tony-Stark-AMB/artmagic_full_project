@@ -757,7 +757,7 @@
   }
 }
 .order-choose__payment label {
-  width: 33%;
+  width: 100%;
 }
 .order-choose__title {
   text-align: center;
