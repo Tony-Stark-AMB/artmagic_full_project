@@ -143,8 +143,14 @@ class Form {
         
                     const body = this.formData;
                     body.amount = this.productManager.allProductsTotalPrice(this.productManager.priceOutputFn, 2);
+                    body.products = this.productManager.filterProductsByQuantity(this.productManager.getProducts());
+                    body.selectedDelivery = this.selectedBasketObj.selectedDelivery;
+                    body.selectedPayment = this.selectedBasketObj.selectedPayment;
+
                     try {
-                        const { formHtml } = await this.fetchData(`payment/create/`, "POST", body);
+                        const { formHtml, orderNumber } = await this.fetchData(`payment/create/`, "POST", body);
+
+                        submitedFormData.orderNumber = orderNumber;
                         const liqpayFormContainer = document.getElementById('liqpayForm');
                         liqpayFormContainer.innerHTML = formHtml;
                         liqpayFormContainer.querySelector('form').addEventListener("submit", (e) => {
@@ -159,7 +165,7 @@ class Form {
                 }
 
                 const { orderNumber } = await this.fetchData(path, methodType, submitedFormData);
-                if (this.showSuccessModal) {
+                if (this.showSuccessModal && this.selectedBasketObj.selectedPayment !== "liqpay") {
                     this.showSuccessModal("Успіх! Замовлення прийнято",
                         `<p class="text-center">Супер, Ваше замовлення №${orderNumber} прийнято<br><br>Наш менеджер зв'яжеться із вами найближчим часом</p>`
                     );

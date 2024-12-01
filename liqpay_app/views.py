@@ -7,95 +7,120 @@ from .models import Payment
 from users.models import CustomUser, Address
 from liqpay.liqpay3 import LiqPay
 from datetime import datetime
-from django.http import JsonResponse
-import re
+from django.http import JsonResponse, HttpRequest
+from django.forms.models import model_to_dict
+import time
 import json
 
+
+from carts.utils import parse_request_data, get_delivery_info, validate_required_fields, create_order, prepare_email_context, send_email, prepare_email_context_liqpay
+from artmagic.settings import EMAIL_HOST_USER
 logger = logging.getLogger(__name__)
 
-class OrderIDGenerator:
-    def __init__(self):
-        self.current_id = 0
-
-    def get_next_id(self):
-        self.current_id += 1
-        return f"{self.current_id:06d}"
-
-order_id_liqpay = OrderIDGenerator()
 
 def create_payment(request):
     print(request)
     if request.method == 'POST':
-        body_data = json.loads(request.body)
-        amount = body_data.get('amount', '')
-        if not amount or float(amount) <= 0:  # Validate the amount
-            return JsonResponse({'error': 'Invalid amount'}, status=400)
-        email = body_data.get('email', '')
-        description = body_data.get('description', '')
         
-        # Assuming you have some function to get the next order ID
-        order_id = order_id_liqpay.get_next_id()
-
-        liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
-        params = {
-            'public_key': settings.LIQPAY_PUBLIC_KEY,
-            'action': 'pay',
-            'amount': amount,
-            'currency': 'UAH',
-            'description': description,
-            'order_id': order_id,
-            'version': '3',
-            'server_url': request.build_absolute_uri('/liqpay-callback/'),
-            'result_url': request.build_absolute_uri('/payment-success/'),
+        body_data = parse_request_data(request)
+        data = {
+            'name': body_data.get('fullName', '')['value'],
+            'phone': body_data.get('clientPhone', '')['value'],
+            'email': body_data.get('email', '')['value'],
+            'products': body_data.get('products', ''),
+            'city': body_data.get('city', '')['value'],
+            'address': body_data.get('address', '')['value'],
+            'area': body_data.get('area', '')['value'],
+            'department': body_data.get('department', '')['value'],
+            'amount': body_data.get('amount', ''),
+            'selectedDelivery': body_data.get('selectedDelivery', ''),
+            'selectedPayment': body_data.get('selectedPayment', '')
         }
+        delivery_method, address = get_delivery_info(data)
+        validate_required_fields(data)
+        user = request.user if request.user.is_authenticated else None
         
-        # Generate the form HTML
-        form_html = liqpay.cnb_form(params)
-        
-        form_html = form_html.replace('<form', '<form target="_blank"')
+        order = create_order(data, user, address)
+        order_number = order.order_number
 
-        # Return the form HTML in a JSON response
-        response_data = {
-            'status': 200,
-            'formHtml': form_html
-        }
-        
-        return JsonResponse(response_data)
+        try:
+            
+            amount = body_data.get('amount', '')
+            description = body_data.get('description', '')
 
-    user = request.user if request.user.is_authenticated else None
-    address = user.address if user and hasattr(user, 'address') else None
+            # Генерируем форму LiqPay
+            liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
+            params = {
+                'public_key': settings.LIQPAY_PUBLIC_KEY,
+                'action': 'pay',
+                'amount': amount,
+                'currency': 'UAH',
+                'description': description,
+                'order_id': f'{order_number}-{body_data.get('selectedDelivery')}',
+                'version': '3',
+                'server_url': 'https://d3d8-178-215-168-165.ngrok-free.app/payment/liqpay-callback/',
+                'result_url': request.build_absolute_uri('/'),
+            }
+
+            # Генерируем HTML форму
+            form_html = liqpay.cnb_form(params)
+            form_html = form_html.replace('<form', '<form target="_blank"')
+
+            # Возвращаем форму в JSON ответе
+            response_data = {
+                'status': 'success',
+                'formHtml': form_html,
+                'orderNumber': order_number
+            }
+            return JsonResponse(response_data, status=200)
+
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+
     return HttpResponse("GET method not supported for payment creation", status=405)
 # def create_payment(request):
 
-@login_required
-def payment_status(request, order_id):
-    try:
-        payment = Payment.objects.get(order_id=order_id)
-    except Payment.DoesNotExist:
-        logger.error(f"Payment not found for order_id: {order_id}")
-        return HttpResponse("Payment not found", status=404)
+from carts.views import ProcessOrderView
+from django.views.decorators.csrf import csrf_exempt
+import base64
+import hashlib
+import json
+from django.http import JsonResponse, HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+from liqpay.liqpay3 import LiqPay
+from django.conf import settings
+import logging
 
-    liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
-    params = {
-        'action': 'status',
-        'order_id': order_id,
-        'version': '3',
-    }
 
-    logger.info(f"Checking payment status for order_id: {order_id}")
+@csrf_exempt
+def payment_status(request):
 
-    response = liqpay.api("request", params)
+    
 
-    logger.info(f"LiqPay response for order_id: {order_id}, response: {response}")
+    email_owner = EMAIL_HOST_USER
+    data = request.POST.get('data', '')
+    signature = request.POST.get('signature', '')
+    expected_signature = base64.b64encode(
+        hashlib.sha1(f"{settings.LIQPAY_PRIVATE_KEY}{data}{settings.LIQPAY_PRIVATE_KEY}".encode()).digest()
+    ).decode()
+    
+    if signature != expected_signature:
+        logger.error("Invalid signature")
+        return HttpResponse("Invalid signature", status=403)
 
-    payment.status = response.get('status', 'error')
-    payment.save()
-    if payment.status == 'success':
-        send_order_confirmation(payment)
+    # 4. Декодируем данные
+    decoded_data = json.loads(base64.b64decode(data).decode('utf-8'))
+    order_id = decoded_data.get('order_id', None).split('-')[0]
 
-    return render(request, 'liqpay_app/payment_status.html', {'payment': payment, 'response': response})
+    status = decoded_data.get('status', None)
 
-def send_order_confirmation(payment):
-    # Логика для отправки уведомления пользователю и интернет-магазину
-    logger.info(f"Order {payment.order_id} has been paid. User: {payment.user.email}, Amount: {payment.amount}")
-    # Здесь можно использовать django.core.mail для отправки email
+
+    if status == 'success':
+        fields, email = prepare_email_context_liqpay(decoded_data, order_id)
+    
+
+        # # Отправка писем
+        send_email(email_owner, fields, f"Замовлення №: {order_id}", 'carts/email_template.html')
+        send_email(email, fields, 'Ваше замовлення прийняте', 'users/email_template_user.html')
+
+        return HttpResponse("OK", status=200)
