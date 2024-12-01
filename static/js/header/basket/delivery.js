@@ -4,30 +4,34 @@ document.addEventListener("DOMContentLoaded", () => {
     const notification = document.getElementById('notification');
     const formContainer = document.querySelector('.order-choose__form');
     const btnSubmitOrder = document.querySelector(`[data-submit="btn_Order"]`);
-    const paymentRealRadio = document.querySelector('#payment_real').parentElement;
+    const paymentRealRadioInput = document.querySelector('#payment_real')
+    const paymentRealRadioInputContainer = paymentRealRadioInput.parentElement;
+
+    let selectedDelivery = null;
+    let selectedPayment = null;
 
     // Функция для отображения или скрытия радио-кнопки "У точці видачі"
     const updatePaymentRealVisibility = () => {
         if (selectedDelivery === "artmagic_department") {
             // Показывать, если выбран "Самовивіз"
-            paymentRealRadio.classList.remove('d-none');
-            paymentRealRadio.classList.add('d-block');
+            paymentRealRadioInputContainer.classList.remove('d-none');
+            paymentRealRadioInputContainer.classList.add('d-block');
         } else {
             // Скрывать для других способов доставки
-            paymentRealRadio.classList.remove('d-block');
-            paymentRealRadio.classList.add('d-none');
+            paymentRealRadioInputContainer.classList.remove('d-block');
+            paymentRealRadioInputContainer.classList.add('d-none');
 
         }
-        if (paymentRealInput.checked) {
-            console.log(paymentRealInput.checked);
-            paymentRealInput.checked = false;
+        console.log(paymentRealRadioInput.checked)
+        if (selectedDelivery !== "artmagic_department" && paymentRealRadioInput.checked) {
+            paymentRealRadioInput.checked = false;
             formOrder.setSelectedPayment(null); // Сбросить выбор оплаты в вашей логике
+            selectedPayment = null;
         }
         
     };
 
-    let selectedDelivery = null;
-    let selectedPayment = null;
+
 
     const updateNotification = () => {
         switch (true) {
@@ -127,9 +131,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         break;
                 }
             }
+            updatePaymentRealVisibility(); // Обновить видимость "У точці видачі"
             updateNotification();
             updateFormFields();
-            updatePaymentRealVisibility(); // Обновить видимость "У точці видачі"
         });
     });
 
@@ -188,6 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         break;
                 }
             }
+            updatePaymentRealVisibility();
             updateNotification();
             updateFormFields();
         });
@@ -235,9 +240,9 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector('[data-field="city"]').value = 'null';
     };
 
+    updatePaymentRealVisibility(); // Обновить видимость "У точці видачі"
     initializeFormFields();
     updateFormFields();
-    updatePaymentRealVisibility(); // Обновить видимость "У точці видачі"
 });
 
 
