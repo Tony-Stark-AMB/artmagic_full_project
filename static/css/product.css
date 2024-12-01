@@ -750,7 +750,7 @@
   }
 }
 .order-choose__payment label {
-  width: 33%;
+  width: 100%;
 }
 .order-choose__title {
   text-align: center;
@@ -1337,7 +1337,7 @@
 }
 .footer__bottom {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
   border-top: 1px solid #ddd;
@@ -1349,7 +1349,12 @@
     justify-content: space-around;
   }
 }
-
+.footer__approve {
+  width: 25%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
 .footer__underground {
   padding: 10px 0;
 }
