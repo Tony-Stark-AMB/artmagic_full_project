@@ -1,4 +1,5 @@
 import re  # Обновлено
+import json
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.http import JsonResponse
@@ -8,10 +9,10 @@ from rest_framework import status
 from rest_framework.response import Response
 from unidecode import unidecode    
 from django.utils.text import slugify
-from django.db import IntegrityError
+from rest_framework.decorators import api_view
+from rest_framework.exceptions import PermissionDenied
 
 import logging
-from rest_framework.decorators import api_view
 
 
 from .models import (Products,
@@ -24,6 +25,7 @@ from .models import (Products,
                      ProductImage,
                      Stocks)  # Обновлено
 from main.models import Carousel, ContactInfo
+from django.conf import settings
 from .filters import ProductsFilter
 
 
@@ -156,7 +158,7 @@ def add_to_cart(request):
             'image': f'{product.image}' if not product.image else f'/media/{product.image}',
             'price': product.price,
             'model': product.model,
-            'storage_quantity': product.quantity,
+            'storageQuantity': product.quantity,
             'preorder': None
         }
         print(json_data)
@@ -413,39 +415,158 @@ class DetaileProductView(View):
                 })
         print(breadcrumbs)        
         return breadcrumbs
-    
+
+
 
 @api_view(['POST'])
 def upsert_product(request):
-    """
-    API для обновления или создания продуктов.
-    """
-    data = request.data  # Получаем данные из запроса
-    responses = []
+    # Проверка специального ключа для 1С
 
-    for product_data in data:
-        model = product_data.get('model')
-        if not model:
-            responses.append({'error': 'Model is required'})
-            continue
+
+    onec_api_key = request.headers.get('X-1C-API-Key')
+    if not onec_api_key or onec_api_key != settings.ONEC_API_KEY:
+        raise PermissionDenied('Invalid 1C API key')
+
+    try:
+        # Получаем сырые данные
+        byte_string = request.body
+        logger.debug(f"Received raw data length: {len(byte_string)}")
 
         try:
-            # Обновляем или создаем продукт на основе уникального поля model
-            product, created = Products.objects.update_or_create(
-                model=model,
-                defaults={
-                    'slug': slugify(unidecode(product_data.get('name', ''))),
-                    'name': product_data.get('name', ''),
-                    'price': product_data.get('price', 0),
-                    'quantity': float(product_data.get('quantity', 0)),
-                }
-            )
+            # Декодируем и очищаем данные
+            raw_data = byte_string.decode('utf-8')
+            
+            # Очищаем JSON от проблемных символов
+            raw_data = raw_data.replace('\n', '')
+            raw_data = raw_data.replace('\r', '')
+            raw_data = raw_data.replace('\t', '')
+            raw_data = re.sub(r'\s*,\s*]', ']', raw_data)  # Убираем запятую перед закрывающей скобкой
+            raw_data = re.sub(r',\s*}', '}', raw_data)     # Убираем запятую перед закрывающей фигурной скобкой
+            
+            # Проверяем, что JSON начинается и заканчивается правильно
+            raw_data = raw_data.strip()
+            if not raw_data.startswith('['):
+                raw_data = '[' + raw_data
+            if not raw_data.endswith(']'):
+                raw_data = raw_data + ']'
 
-            action = 'created' if created else 'updated'
-            responses.append({'message': f'Product {model} was {action}', 'product_id': product.id})
+            logger.debug(f"Cleaned data: {raw_data[:200]}...")  # Логируем первые 200 символов
 
-        except IntegrityError as e:
-            logger.error(f"Failed to upsert product {model}: {str(e)}")
-            responses.append({'error': f'Failed to upsert product {model}: {str(e)}'})
+            try:
+                # Пробуем распарсить JSON
+                data = json.loads(raw_data)
+                logger.debug("JSON successfully parsed")
+            except json.JSONDecodeError as e:
+                # Если не получилось, пробуем исправить возможные проблемы
+                logger.error(f"First JSON parse attempt failed: {str(e)}")
+                
+                # Попытка исправить проблемы с JSON
+                raw_data = re.sub(r'}\s*{', '},{', raw_data)  # Исправляем отсутствующие запятые между объектами
+                raw_data = re.sub(r'\}\s*\]', '}]', raw_data)  # Убираем пробелы перед закрывающей скобкой
+                
+                # Пробуем снова распарсить
+                data = json.loads(raw_data)
+                logger.debug("JSON parsed after cleanup")
 
-    return Response(responses, status=status.HTTP_200_OK)
+        except UnicodeDecodeError as e:
+            logger.error(f"Unicode decode error: {str(e)}")
+            return Response({
+                'status': 'error',
+                'message': 'Unable to decode data',
+                'error': str(e)
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        # Проверяем результат
+        if not isinstance(data, list):
+            data = [data]
+
+        responses = []
+        success_count = 0
+        error_count = 0
+
+        for product_data in data:
+            try:
+                if not product_data.get('model'):
+                    error_count += 1
+                    responses.append({
+                        'status': 'error',
+                        'message': 'Model is required',
+                        'data': product_data
+                    })
+                    continue
+                
+                model = product_data.get('model')
+                name = product_data.get('name', '').strip()
+
+                # Безопасное преобразование числовых значений
+                try:
+                    price = float(product_data.get('price', 0))
+                except (ValueError, TypeError):
+                    price = 0
+                    logger.warning(f"Invalid price for model {model}")
+
+                try:
+                    quantity = float(product_data.get('quantity', 0))
+                except (ValueError, TypeError):
+                    quantity = 0
+                    logger.warning(f"Invalid quantity for model {model}")
+
+                product, created = Products.objects.update_or_create(
+                    model=model,
+                    defaults={
+                        'slug': slugify(unidecode(name)),
+                        'name': name,
+                        'price': price,
+                        'quantity': quantity
+                    }
+                )
+
+                success_count += 1
+                responses.append({
+                    'status': 'success',
+                    'message': f'Product {model} was {"created" if created else "updated"}',
+                    'product_id': product.id
+                })
+
+            except Exception as e:
+                error_count += 1
+                logger.error(f"Error processing product {model}: {str(e)}")
+                responses.append({
+                    'status': 'error',
+                    'message': 'Error processing product',
+                    'error': str(e),
+                    'data': product_data
+                })
+
+        return Response({
+            'status': 'completed',
+            'summary': {
+                'total': len(responses),
+                'successful': success_count,
+                'failed': error_count
+            },
+            'details': responses
+        })
+
+    except json.JSONDecodeError as e:
+        logger.error(f"JSON decode error: {str(e)}")
+        # Возвращаем больше информации для отладки
+        return Response({
+            'status': 'error',
+            'message': 'Invalid JSON format',
+            'error': str(e),
+            'received_data': raw_data[:500] if 'raw_data' in locals() else None,
+            'error_position': {
+                'line': e.lineno,
+                'column': e.colno,
+                'char_position': e.pos
+            }
+        }, status=status.HTTP_400_BAD_REQUEST)
+
+    except Exception as e:
+        logger.error(f"Unexpected error: {str(e)}")
+        return Response({
+            'status': 'error',
+            'message': 'Unexpected error during processing',
+            'error': str(e)
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

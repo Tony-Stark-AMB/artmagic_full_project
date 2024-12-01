@@ -220,6 +220,9 @@ CORS_ALLOW_METHODS = (
 CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS').split(',')
 
 
+ONEC_API_KEY = os.getenv('ONEC_API_KEY')
+
+
 customColorPalette = [
         {
             'color': 'hsl(4, 90%, 58%)',
