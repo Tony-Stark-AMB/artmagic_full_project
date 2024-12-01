@@ -3,10 +3,37 @@ import { formOrder } from "./order.js";
 document.addEventListener("DOMContentLoaded", () => {
     const notification = document.getElementById('notification');
     const formContainer = document.querySelector('.order-choose__form');
-    const btnSubmitOrder = document.querySelector(`[data-submit="btn_Order"]`)
+    const btnSubmitOrder = document.querySelector(`[data-submit="btn_Order"]`);
+    const paymentRealRadioInput = document.querySelector('#payment_real')
+    const paymentRealRadioInputContainer = paymentRealRadioInput.parentElement;
 
     let selectedDelivery = null;
     let selectedPayment = null;
+
+    // Функция для отображения или скрытия радио-кнопки "У точці видачі"
+    const updatePaymentRealVisibility = () => {
+        if (selectedDelivery === "artmagic_department") {
+            // Показывать, если выбран "Самовивіз"
+            paymentRealRadioInputContainer.classList.remove('d-none');
+            paymentRealRadioInputContainer.classList.add('d-block');
+        } else {
+            // Скрывать для других способов доставки
+            paymentRealRadioInputContainer.classList.remove('d-block');
+            paymentRealRadioInputContainer.classList.add('d-none');
+
+        }
+        
+        if (selectedDelivery !== "artmagic_department" && paymentRealRadioInput.checked) {
+            console.log("no artmagic_department")
+            paymentRealRadioInput.checked = false;
+            formOrder.setSelectedPayment(null); // Сбросить выбор оплаты в вашей логике
+            selectedPayment = null;
+            removePaymentActiveClass();
+        }
+        
+    };
+
+
 
     const updateNotification = () => {
         switch (true) {
@@ -71,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     icon.classList.remove('c20');
                     icon.classList.add('c8');
                     break;
+                    
             }
         });
     }
@@ -105,6 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         break;
                 }
             }
+            updatePaymentRealVisibility(); // Обновить видимость "У точці видачі"
             updateNotification();
             updateFormFields();
         });
@@ -165,6 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         break;
                 }
             }
+            updatePaymentRealVisibility();
             updateNotification();
             updateFormFields();
         });
@@ -212,6 +242,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector('[data-field="city"]').value = 'null';
     };
 
+    updatePaymentRealVisibility(); // Обновить видимость "У точці видачі"
     initializeFormFields();
     updateFormFields();
 });
