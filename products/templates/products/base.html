@@ -176,7 +176,6 @@
             </div>
         </header>
         <div class="divider"></div>
-        {% if request.path == '/' or request.path == '/user/profile/' or request.path == '/main/about/' or request.path == '/main/contacts/' or request.path == '/main/payment-delivery/' or request.path == '/main/safeguards/' or request.path == '/main/return-agoods/' or request.path == '/main/password-reset/' or request.resolver_match.url_name == 'sub_categories'%}
         {% if request.path == '/' or request.path == '/user/profile/' or request.path == '/main/about/' or request.path == '/main/contacts/' or request.path == '/main/payment-delivery/' or request.path == '/main/safeguards/' or request.path == '/main/return-agoods/' or request.path == '/user/password-reset/' or request.path == '/user/password-reset/done/' or request.path == '/user/reset/done/' or request.resolver_match.url_name == 'password_reset_confirm' %}
         {% else %}
             <nav class="breadcrumb-nav-wrap" aria-label="breadcrumb">

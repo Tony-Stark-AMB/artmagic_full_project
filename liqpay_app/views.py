@@ -56,7 +56,7 @@ def create_payment(request):
                 'amount': amount,
                 'currency': 'UAH',
                 'description': description,
-                'order_id': f'{order_number}-{body_data.get('selectedDelivery')}',
+                'order_id': f'{order_number}-{body_data.get("selectedDelivery")}',
                 'version': '3',
                 'server_url': 'https://d3d8-178-215-168-165.ngrok-free.app/payment/liqpay-callback/',
                 'result_url': request.build_absolute_uri('/'),
