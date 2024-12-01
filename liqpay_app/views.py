@@ -41,7 +41,6 @@ def create_payment(request):
         
         order = create_order(data, user, address)
         order_number = order.order_number
-        print('-----------order_number-----------', order_number)
 
         try:
             
@@ -118,7 +117,6 @@ def payment_status(request):
     if status == 'success':
         fields, email = prepare_email_context_liqpay(decoded_data, order_id)
     
-        print('fields----', fields)
 
         # # Отправка писем
         send_email(email_owner, fields, f"Замовлення №: {order_id}", 'carts/email_template.html')
