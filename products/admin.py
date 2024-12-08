@@ -5,6 +5,8 @@ from django.utils.safestring import mark_safe
 
 from .models import Products, Category, ProductFilter, FilterCategory, FilterValue, Manufacturer, ProductImage, ProductToCategory, FilterGroup, Stocks
 from .forms import ProductFilterForm, ProductToCategoryForm
+
+
 class HiddenModelAdmin(admin.ModelAdmin):
     def get_model_perms(self, request):
         return {}
@@ -83,6 +85,8 @@ class CategoryAdmin(MPTTModelAdmin):
     mptt_level_indent = 20
     list_editable = ('is_active',)
     readonly_fields = ('date_added', 'date_modified')
+    extra = 1
+    ordering = ('name',)
 
     fieldsets = (
         (None, {
@@ -161,8 +165,19 @@ class FilterCategoryAdmin(admin.ModelAdmin):
 @admin.register(FilterValue)
 class FilterValueAdmin(admin.ModelAdmin):
     list_filter = ('category',)
+    extra = 1
+    ordering = ('value',)
     
+
+
+
+
 admin.site.register(Manufacturer, HiddenModelAdmin)
+# @admin.register(Manufacturer)
+# class ManufacturerAdmin(admin.ModelAdmin):
+#     list_filter = ('name',)  # Фильтрация по имени производителя
+#     ordering = ('name',)
+    
 admin.site.register(FilterGroup)
 
 admin.site.register(Stocks)
