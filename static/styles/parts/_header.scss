@@ -63,11 +63,13 @@
         cursor: pointer;
         transition: color .3s ease;
         &:hover,
-        &:hover > svg{
-            color: $c6;
+        &:hover > svg,
+        &:hover &-link{
+            color: $c26;
         }
         &-link{
-            color: $c9;
+            transition: color .3s ease-in;
+            color: $c17;
         }
     }
     &-item > svg{
@@ -126,6 +128,7 @@
 }
 
 .arrow-icon{
+    color: $c17;
     width: 35px;
     height: 35px;
 }
