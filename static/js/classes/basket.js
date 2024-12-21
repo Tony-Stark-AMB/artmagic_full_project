@@ -105,13 +105,15 @@ export class Basket {
         const showPreorder = preorderQuantity;
     
         let productBtns = `
-            <div class="cart__product__btns__wrap">
-                <p class="text-bold text-center с17">В наявності</p>
-                <div class="cart__product__btns">
-                    <button class="btns__btn" data-id="${product.id}" data-action="decrease">-</button>
-                    <input class="btns__count" data-action="quantity" type="text" value="${availableQuantity}" />
-                    <button class="btns__btn" data-id="${product.id}" data-action="increase">+</button>
-                </div>`;
+            <div class="cart__product__btns__wrap-container">
+                <div class="cart__product__btns__wrap">
+                    <p class="text-bold text-center с17">В наявності</p>
+                    <div class="cart__product__btns">
+                        <button class="btns__btn" data-id="${product.id}" data-action="decrease">-</button>
+                        <input class="btns__count" data-action="quantity" type="text" value="${availableQuantity}" />
+                        <button class="btns__btn" data-id="${product.id}" data-action="increase">+</button>
+                    </div>
+                `;
     
         if (showPreorder) {
             productBtns += `
@@ -123,7 +125,7 @@ export class Basket {
                 </div>`;
         }
     
-        productBtns += `</div>`;
+        productBtns += `</div></div>`;
     
         productDiv.innerHTML = `
             <div class="cart__product__overlook">
