@@ -355,7 +355,7 @@ p {
 }
 
 .modal {
-  top: 20%;
+  top: 10%;
 }
 
 body.modal-open {
