@@ -7,6 +7,7 @@ export class Basket {
         this.allProductCostElement = document.querySelector(".modal-footer__text");
         this.images = document.querySelectorAll(".overlook__img");
         this.pageName = "index";
+        this.liqpayIconContainer = document.querySelector("#liqpay").parentNode;
         window.onbeforeunload = () => {
             this.productManager.setStorageProducts(this.productManager.getProducts());
         };
@@ -57,11 +58,10 @@ export class Basket {
 
 
     renderBasket() {
+        if(this.productManager.products.length != 0)
+            this.showOrHideLiqpayIcon();
+
         this.productsContainer.innerHTML = '';
-
-
-
-
 
         window.addEventListener("DOMContentLoaded", () => {
             this.productManager.setProducts(this.productManager.getStorageProducts());
@@ -223,6 +223,17 @@ export class Basket {
             this.badge.classList.remove("animated");
         }, { once: true });
     }
+
+    showOrHideLiqpayIcon(){
+        if (this.productManager.isOrderedStoreProduct()) {
+            this.liqpayIconContainer.classList.remove("d-none");
+            this.liqpayIconContainer.classList.add("d-block");
+        } else {
+            this.liqpayIconContainer.classList.remove("d-block");
+            this.liqpayIconContainer.classList.add("d-none");
+        }
+    }
+    
 
     
 }

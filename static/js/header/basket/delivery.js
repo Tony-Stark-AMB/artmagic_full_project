@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
             paymentRealRadioInputContainer.classList.add('d-none');
 
         }
-        console.log(paymentRealRadioInput.checked)
         if (selectedDelivery !== "artmagic_department" && paymentRealRadioInput.checked) {
             paymentRealRadioInput.checked = false;
             formOrder.setSelectedPayment(null); // Сбросить выбор оплаты в вашей логике

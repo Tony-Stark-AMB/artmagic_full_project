@@ -35,6 +35,7 @@ export class ProductManager {
     }
 
     async addProduct({ id, name, price, image, model, storageQuantity}) {
+        
         const existProduct = this.existProduct(id);
         if (existProduct)
             existProduct.addOne();
@@ -46,6 +47,7 @@ export class ProductManager {
             this.products = [...this.products, newProduct];
         }
         this.setStorageProducts(this.products)
+        console.log(this.isOrderedStoreProduct(), "isOrderedStoreProduct");
     }
 
     mapObjectsInProducts(products) {
@@ -115,6 +117,10 @@ export class ProductManager {
              Кільіксть: ${quantity}
              Ціна загальна: ${this.currentProductTotalPrice(id, this.priceOutputFn, 2)} грн`
         ).join('\n');
+    }
+
+    isOrderedStoreProduct(){
+        return this.products.some(product => product.quantity > 0);
     }
     
 }
