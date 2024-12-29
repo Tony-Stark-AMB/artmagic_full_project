@@ -35,7 +35,7 @@ class ProfileForm extends Form{
         this.dataSubmitBtn.addEventListener("click", async (e) => {
             e.preventDefault();
             
-            Object.keys(this.formData).forEach(key => console.log(this.triggerInput(key)));
+            Object.keys(this.formData).forEach(key => this.triggerInput(key));
             
             const submitedFormData = {...this.mapedFormData(obj), ...this.selectedBasketObj};
             let emptyForm = false;

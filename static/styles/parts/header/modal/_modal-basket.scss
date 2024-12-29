@@ -61,10 +61,12 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex: 1 1 0;
         @include respond-to(phone-large){
             flex-wrap: wrap;
-            height: 150px;
+            height: 240px;
         }
+        
     }
     &__btns{
         display: flex;
@@ -75,7 +77,10 @@
             flex-direction: column;
             justify-content: center;
             height: 120px;
-            width: 20%;
+            width: 90px;
+            &-container{
+                width: 35%;
+            }
         }
     }
     &__price{
@@ -120,13 +125,16 @@
             width: 30%;
             display: grid;
             place-items: center;
+            @include respond-to(phone-large){
+                order: 0;
+            }
         }
     }
     &__name{
         &__wrap{
-            width: 60%;
-            @include respond-to(phone-large){
-                width: 40%;
+            width: 50%;
+            @media (max-width: 520px){
+                width: 60%;
             }
         }
     }
@@ -201,10 +209,7 @@
             width: 100%;
         }
         & label{
-            width: 33%;
-            // @include respond-to(phone-small){
-            //     width: 33%;
-            // }
+            width: 100%;
         }
     }
     

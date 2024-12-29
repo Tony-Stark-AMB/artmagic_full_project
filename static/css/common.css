@@ -223,6 +223,22 @@
   background-color: rgb(115, 96, 242);
 }
 
+.c25 {
+  color: #E63125;
+}
+
+.bg25 {
+  background-color: #E63125;
+}
+
+.c26 {
+  color: #0f4272;
+}
+
+.bg26 {
+  background-color: #0f4272;
+}
+
 .color-inh {
   color: inherit;
 }
@@ -339,7 +355,7 @@ p {
 }
 
 .modal {
-  top: 20%;
+  top: 10%;
 }
 
 body.modal-open {

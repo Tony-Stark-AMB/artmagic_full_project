@@ -19,6 +19,7 @@ logger = logging.getLogger(__name__)
 
 
 def create_payment(request):
+    print(request)
     if request.method == 'POST':
         
         body_data = parse_request_data(request)
@@ -55,12 +56,12 @@ def create_payment(request):
                 'amount': amount,
                 'currency': 'UAH',
                 'description': description,
-                'order_id': f'{order_number}-{body_data.get('selectedDelivery')}',
+                'order_id': f'{order_number}-{body_data.get("selectedDelivery")}',
                 'version': '3',
                 'server_url': 'https://artmagic.com.ua/payment/liqpay-callback/',
                 'result_url': request.build_absolute_uri('/'),
             }
-
+            print(f'------------>{params}<-------------')
             # Генерируем HTML форму
             form_html = liqpay.cnb_form(params)
             form_html = form_html.replace('<form', '<form target="_blank"')
@@ -115,11 +116,12 @@ def payment_status(request):
 
 
     if status == 'success':
+        print(f'{status}, <----------Status-----------')
         fields, email = prepare_email_context_liqpay(decoded_data, order_id)
-    
+        print(f'Fields : {fields}')
 
         # # Отправка писем
         send_email(email_owner, fields, f"Замовлення №: {order_id}", 'carts/email_template.html')
         send_email(email, fields, 'Ваше замовлення прийняте', 'users/email_template_user.html')
-
+        print('Email SEND')
         return HttpResponse("OK", status=200)

@@ -7,6 +7,7 @@ export class Basket {
         this.allProductCostElement = document.querySelector(".modal-footer__text");
         this.images = document.querySelectorAll(".overlook__img");
         this.pageName = "index";
+        this.liqpayIconContainer = document.querySelector("#liqpay").parentNode;
         window.onbeforeunload = () => {
             this.productManager.setStorageProducts(this.productManager.getProducts());
         };
@@ -57,11 +58,10 @@ export class Basket {
 
 
     renderBasket() {
+        if(this.productManager.products.length != 0)
+            this.showOrHideLiqpayIcon();
+
         this.productsContainer.innerHTML = '';
-
-
-
-
 
         window.addEventListener("DOMContentLoaded", () => {
             this.productManager.setProducts(this.productManager.getStorageProducts());
@@ -96,20 +96,24 @@ export class Basket {
         productDiv.setAttribute("id", `cart__product__${product.id}`);
     
         // Определяем доступное количество и количество для предзаказа
+        console.log(product.quantity, product.storageQuantity)
         const availableQuantity = Math.min(product.quantity, product.storageQuantity);
-        const preorderQuantity = product.quantity + product.preorder > product.storageQuantity;
-    
+        console.log(product)
+        product.quantity = availableQuantity;
+        const preorderQuantity = product.quantity >= product.storageQuantity;
         // Проверяем, нужно ли отображать две пары кнопок
         const showPreorder = preorderQuantity;
     
         let productBtns = `
-            <div class="cart__product__btns__wrap">
-                <p class="text-bold text-center с17">В наявності</p>
-                <div class="cart__product__btns">
-                    <button class="btns__btn" data-id="${product.id}" data-action="decrease">-</button>
-                    <input class="btns__count" data-action="quantity" type="text" value="${availableQuantity}" />
-                    <button class="btns__btn" data-id="${product.id}" data-action="increase">+</button>
-                </div>`;
+            <div class="cart__product__btns__wrap-container">
+                <div class="cart__product__btns__wrap">
+                    <p class="text-bold text-center с17">В наявності</p>
+                    <div class="cart__product__btns">
+                        <button class="btns__btn" data-id="${product.id}" data-action="decrease">-</button>
+                        <input class="btns__count" data-action="quantity" type="text" value="${availableQuantity}" />
+                        <button class="btns__btn" data-id="${product.id}" data-action="increase">+</button>
+                    </div>
+                `;
     
         if (showPreorder) {
             productBtns += `
@@ -121,7 +125,7 @@ export class Basket {
                 </div>`;
         }
     
-        productBtns += `</div>`;
+        productBtns += `</div></div>`;
     
         productDiv.innerHTML = `
             <div class="cart__product__overlook">
@@ -132,7 +136,8 @@ export class Basket {
                 </div>
                 <div class="overlook__name__wrap">
                     <p class="overlook__name">${product.name}</p>
-                    <p class="overlook__name">ціна: <b>${product.price}</b> грн</p>
+                    <p class="overlook__name">Артикул: <b class="c17">${product.model}</b></p>
+                    <p class="overlook__name">Ціна: <b>${product.price}  грн</b></p>
                 </div>
                 ${productBtns}
                 <div class="cart__product__price">
@@ -218,6 +223,17 @@ export class Basket {
             this.badge.classList.remove("animated");
         }, { once: true });
     }
+
+    showOrHideLiqpayIcon(){
+        if (this.productManager.isOrderedStoreProduct()) {
+            this.liqpayIconContainer.classList.remove("d-none");
+            this.liqpayIconContainer.classList.add("d-block");
+        } else {
+            this.liqpayIconContainer.classList.remove("d-block");
+            this.liqpayIconContainer.classList.add("d-none");
+        }
+    }
+    
 
     
 }

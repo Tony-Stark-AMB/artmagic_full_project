@@ -66,32 +66,14 @@
             {% endif %}
 
         </div>
+        <!-- Модалка для увеличенного изображения -->
+        <div id="productImageModal" class="product-modal">
+            <span class="product-modal__close">&times;</span>
+            <img class="product-modal__content" id="productModalImage">
+        </div>
     </main>
 </div>
 {% endblock %}
-<!-- <script>
-    $(document).ready(function(){
-        $('.product-details__btn__add-to-cart').click(function(){
-            var product_id = "{{ product.id }}";
-            $.ajax({
-                type: "POST",
-                url: "{% url 'products:cart_add' %}",
-                data: {
-                    'product_id': product_id,
-                    'csrfmiddlewaretoken': '{{ csrf_token }}'
-                },
-                dataType: 'json',
-                success: function(data){
-                    $('#basket__modal').modal('show');
-                    $('#basket-products').html(data.cart_items_html);
-                },
-                error: function(xhr, errmsg, err){
-                    console.log(xhr.status + ": " + xhr.responseText);
-                }
-            });
-        });
-    });
-</script> -->
 {% block js %}
     <script src="{% static 'js/detaile/detaile.js' %}"></script>
     <script type="module" src="{% static 'js/detaile/detaile-btn.js' %}"></script>

@@ -5,7 +5,7 @@
     z-index: 1100; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
-    background-color: $c8; /* Black*/
+    background-color: $c2; /* Black*/
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
@@ -15,9 +15,10 @@
   .sidenav{
     & > a,
     & > li{
+        transition: color .3s ease-in;
         text-decoration: none;
         font-size: 15px;
-        color: $c2;
+        color: $c8;
         display: inline-block;
         transition: 0.3s;
         padding: 4px 0;
@@ -28,7 +29,7 @@
   /* When you mouse over the navigation links, change their color */
   .sidenav > li:hover > a,
   .sidenav > li:hover > img{
-    color: #f1f1f1;
+    color: $c17;
   }
   
   /* Position and style the close button (top right corner) */
@@ -40,7 +41,3 @@
     margin-left: 50px;
   }
   
-//   @media screen and (max-height: 450px) {
-//     .sidenav {padding-top: 15px;}
-//     .sidenav a {font-size: 18px;}
-//   }

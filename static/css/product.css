@@ -191,6 +191,22 @@
   background-color: rgb(115, 96, 242);
 }
 
+.c25 {
+  color: #E63125;
+}
+
+.bg25 {
+  background-color: #E63125;
+}
+
+.c26 {
+  color: #0f4272;
+}
+
+.bg26 {
+  background-color: #0f4272;
+}
+
 .color-inh {
   color: inherit;
 }
@@ -226,7 +242,7 @@
 }
 .header-basket__wrap {
   margin-left: 10px;
-  width: 5%;
+  width: 10%;
   flex-grow: 0.3;
   display: grid;
   place-items: center;
@@ -399,7 +415,7 @@
   z-index: 1100; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
-  background-color: #777; /* Black*/
+  background-color: #f2f2f2; /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
@@ -407,9 +423,10 @@
 
 /* The navigation menu links */
 .sidenav > a, .sidenav > li {
+  transition: color 0.3s ease-in;
   text-decoration: none;
   font-size: 15px;
-  color: #f2f2f2;
+  color: #777;
   display: inline-block;
   transition: 0.3s;
   padding: 4px 0;
@@ -418,7 +435,7 @@
 /* When you mouse over the navigation links, change their color */
 .sidenav > li:hover > a,
 .sidenav > li:hover > img {
-  color: #f1f1f1;
+  color: #3e77aa;
 }
 
 /* Position and style the close button (top right corner) */
@@ -608,11 +625,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex: 1 1 0;
 }
 @media (max-width: 576px) {
   .cart__product__overlook {
     flex-wrap: wrap;
-    height: 150px;
+    height: 240px;
   }
 }
 .cart__product__btns {
@@ -625,7 +643,10 @@
   flex-direction: column;
   justify-content: center;
   height: 120px;
-  width: 20%;
+  width: 90px;
+}
+.cart__product__btns__wrap-container {
+  width: 35%;
 }
 .cart__product__price {
   width: 30%;
@@ -672,12 +693,17 @@
   display: grid;
   place-items: center;
 }
-.overlook__name__wrap {
-  width: 60%;
-}
 @media (max-width: 576px) {
+  .overlook__img__container {
+    order: 0;
+  }
+}
+.overlook__name__wrap {
+  width: 50%;
+}
+@media (max-width: 520px) {
   .overlook__name__wrap {
-    width: 40%;
+    width: 60%;
   }
 }
 
@@ -750,7 +776,7 @@
   }
 }
 .order-choose__payment label {
-  width: 33%;
+  width: 100%;
 }
 .order-choose__title {
   text-align: center;
@@ -930,11 +956,12 @@
   cursor: pointer;
   transition: color 0.3s ease;
 }
-.header-sidemenu__item:hover, .header-sidemenu__item:hover > svg {
-  color: #fff;
+.header-sidemenu__item:hover, .header-sidemenu__item:hover > svg, .header-sidemenu__item:hover .header-sidemenu__item-link {
+  color: #0f4272;
 }
 .header-sidemenu__item-link {
-  color: #000;
+  transition: color 0.3s ease-in;
+  color: #3e77aa;
 }
 .header-sidemenu-item > svg {
   width: 15px;
@@ -986,6 +1013,7 @@
 }
 
 .arrow-icon {
+  color: #3e77aa;
   width: 35px;
   height: 35px;
 }
@@ -1045,11 +1073,61 @@
   box-shadow: inset -3px -3px 4px rgba(0, 0, 0, 0.1); /* Adjust the values as needed */
 }
 .product-image__wrap {
-  width: 250px;
-  margin: 50px 0;
   position: relative;
+  max-width: 250px;
+  margin-top: 50px;
+  padding: 25px;
   display: grid;
   place-items: center;
+}
+
+.product-modal {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  padding-top: 50px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Стили для увеличенного изображения */
+.product-modal__content {
+  margin: 5% auto;
+  display: block;
+  max-width: 90%;
+  max-height: 90%;
+}
+@media (max-width: 992px) {
+  .product-modal__content {
+    margin: 10% auto;
+  }
+}
+@media (max-width: 576px) {
+  .product-modal__content {
+    margin: 20% auto;
+  }
+}
+
+/* Кнопка закрытия модалки */
+.product-modal__close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.product-modal__close:hover,
+.product-modal__close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .product-thumbnails {
@@ -1147,7 +1225,7 @@
 }
 @media (max-width: 940px) {
   .product-details__status {
-    width: 40%;
+    width: 50%;
   }
 }
 .product-details__btn__add-to-cart, .product-details__btn__continue-shopping {
@@ -1349,7 +1427,12 @@
     justify-content: space-around;
   }
 }
-
+.footer__approve {
+  width: 25%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
 .footer__underground {
   padding: 10px 0;
 }

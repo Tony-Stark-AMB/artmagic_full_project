@@ -42,5 +42,26 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     
-   
+    const productImage = document.querySelector(".products-detaile__item__img");
+    const modal = document.getElementById("productImageModal");
+    const modalImage = document.getElementById("productModalImage");
+    const closeButton = document.querySelector(".product-modal__close");
+
+    // Открытие модалки при клике на изображение
+    productImage.addEventListener("click", () => {
+        modal.style.display = "block";
+        modalImage.src = productImage.src;
+    });
+
+    // Закрытие модалки при клике на кнопку закрытия
+    closeButton.addEventListener("click", () => {
+        modal.style.display = "none";
+    });
+
+    // Закрытие модалки при клике вне изображения
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+            modal.style.display = "none";
+        }
+    });
 })

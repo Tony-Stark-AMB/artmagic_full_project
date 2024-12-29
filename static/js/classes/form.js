@@ -157,6 +157,7 @@ class Form {
                             e.preventDefault();
                         });
                         setTimeout(() => liqpayFormContainer.querySelector('form').submit(), 1000);
+                        
                     } catch (err) {
                         console.log(err);
                         this.alert("err", "Неможливо зробити замовлення без обраного товару", animDuration);
