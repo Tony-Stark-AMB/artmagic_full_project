@@ -185,9 +185,11 @@ def send_email(recipient, context, subject, template_path):
 
 def prepare_email_context_liqpay(decoded_data, order_id):
     delivery_options = {
+        'artmagic_department': "Самовивіз",
         'new_post_department': "Відділення Нової пошти",
         'new_post_packing': "Поштомат Нової пошти",
-        'new_post_address': "Кур'єрська доставка Нової пошти"
+        'new_post_address': "Кур'єрська доставка Нової пошти",
+        'ukr_post': "Укрпошта"
     }
 
     if order_id:
