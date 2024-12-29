@@ -98,64 +98,48 @@
 //         }
 //     });
 // });
+
 document.addEventListener("DOMContentLoaded", function () {
-    // Отслеживаем селекторы для родительской категории
-    const categorySelects = document.querySelectorAll('select[id$="-parent_category"]'); 
-    // console.log("Найденные элементы для родительской категории:", categorySelects);
+    // Выбираем все поля родительской категории
+    const categorySelects = document.querySelectorAll('select[id$="-parent_category"]');
 
+    // Обрабатываем изменения в родительских категориях
     categorySelects.forEach(function (categorySelect) {
-        const subCategorySelect = categorySelect.closest('tr').querySelector('select[id$="-category_id"]'); 
-        // console.log("Найденное поле подкатегории:", subCategorySelect);
+        const subCategorySelect = categorySelect.closest('tr').querySelector('select[id$="-category_id"]');
 
-        // Инициализация подкатегорий при загрузке страницы
-        const initialCategoryId = categorySelect.value;
-
-        if (initialCategoryId) {
-            console.log("Загрузка подкатегорий при загрузке страницы для категории:", initialCategoryId);
-            loadSubcategories(initialCategoryId, subCategorySelect);
-        }
-
-        // Слушаем изменение поля родительской категории
+        // Обработчик изменения родительской категории
         categorySelect.addEventListener('change', function () {
-            const selectedCategoryId = this.value;
-            console.log("Выбрана родительская категория:", selectedCategoryId);
-
-            // Очищаем подкатегории перед загрузкой новых значений
-            subCategorySelect.innerHTML = '<option value="" selected="">---------</option>';
+            const selectedCategoryId = this.value;  // Получаем выбранную родительскую категорию
+            subCategorySelect.innerHTML = '<option value="" selected="">---------</option>';  // Очищаем старые подкатегории
 
             if (selectedCategoryId) {
+                // Загружаем подкатегории для выбранной родительской категории
                 loadSubcategories(selectedCategoryId, subCategorySelect);
             }
         });
     });
-
-    // Функция загрузки подкатегорий
-    function loadSubcategories(categoryId, subCategorySelect) {
-        console.log("Отправка запроса на подкатегории для категории:", categoryId);
-        fetch(`/get-subcategories/${categoryId}/`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log("Получены подкатегории:", data);  // Отладка данных
-                // Очищаем предыдущие значения
-                subCategorySelect.innerHTML = '<option value="" selected="">---------</option>';  
-                data.subcategories.forEach(subCategory => {
-                    const option = document.createElement('option');
-                    option.value = subCategory.id;
-                    option.textContent = subCategory.name;
-                    subCategorySelect.appendChild(option);
-                });
-            })
-            .catch(error => {
-                console.error('Ошибка при загрузке подкатегорий:', error);
-                // Вы можете добавить обработку ошибки, например, показать сообщение пользователю
-            });
-    }
 });
+
+// Функция для загрузки подкатегорий
+function loadSubcategories(categoryId, subCategorySelect, callback) {
+    fetch(`/get-subcategories/${categoryId}/`)  // Запрашиваем подкатегории по родительской категории
+        .then(response => response.json())
+        .then(data => {
+            subCategorySelect.innerHTML = '<option value="" selected="">---------</option>';  // Очищаем старые подкатегории
+            data.subcategories.forEach(subCategory => {
+                const option = document.createElement('option');
+                option.value = subCategory.id;
+                option.textContent = subCategory.name;
+                subCategorySelect.appendChild(option);
+            });
+
+            // Вызываем callback после загрузки подкатегорий
+            if (callback) callback();
+        })
+        .catch(error => {
+            console.error('Ошибка при загрузке подкатегорий:', error);
+        });
+}
 
 
 // При загрузке страницы: первый скрипт загружает фильтры для уже выбранных значений.

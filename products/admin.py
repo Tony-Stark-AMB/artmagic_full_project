@@ -1,20 +1,15 @@
 from django.contrib import admin
-from django import forms
 from mptt.admin import MPTTModelAdmin
 from django.utils.safestring import mark_safe
 
 from .models import Products, Category, ProductFilter, FilterCategory, FilterValue, Manufacturer, ProductImage, ProductToCategory, FilterGroup, Stocks
 from .forms import ProductFilterForm, ProductToCategoryForm
+
+
 class HiddenModelAdmin(admin.ModelAdmin):
     def get_model_perms(self, request):
         return {}
     
-
-from django.contrib import admin
-from django.contrib.admin import SimpleListFilter
-from .models import Category
-from django.contrib.admin import SimpleListFilter
-import time
 
 class CategoryFilter(admin.SimpleListFilter):
     template = 'admin/filters/filter.html'
@@ -83,6 +78,8 @@ class CategoryAdmin(MPTTModelAdmin):
     mptt_level_indent = 20
     list_editable = ('is_active',)
     readonly_fields = ('date_added', 'date_modified')
+    extra = 1
+    ordering = ('name',)
 
     fieldsets = (
         (None, {
@@ -135,6 +132,10 @@ class ProductsAdmin(admin.ModelAdmin):
     readonly_fields = ('date_added', 'date_modified')
     ordering = ('-date_added',)
 
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "manufacturer":  # Замените на фактическое имя поля
+            kwargs["queryset"] = db_field.related_model.objects.order_by("name")  # Сортировка по имени
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
     
     def get_categories(self, obj):
         categories = [category.category_id.name for category in obj.producttocategory_set.all()]
@@ -153,17 +154,26 @@ class ProductsAdmin(admin.ModelAdmin):
         }),
     )
 
+
+@admin.register(FilterGroup)
+class FilterGroupAdmin(admin.ModelAdmin):
+    ordering = ('name',)
+    
 @admin.register(FilterCategory)
 class FilterCategoryAdmin(admin.ModelAdmin):
     list_filter = ('group__name',)
-
+    ordering = ('name',)
 
 @admin.register(FilterValue)
 class FilterValueAdmin(admin.ModelAdmin):
+    search_fields = ('value',)
     list_filter = ('category',)
+    extra = 1
+    ordering = ('value',)
     
-admin.site.register(Manufacturer, HiddenModelAdmin)
-admin.site.register(FilterGroup)
 
+
+
+admin.site.register(Manufacturer, HiddenModelAdmin)
 admin.site.register(Stocks)
 admin.site.register(ProductFilter, HiddenModelAdmin)

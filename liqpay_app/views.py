@@ -57,7 +57,7 @@ def create_payment(request):
                 'description': description,
                 'order_id': f'{order_number}-{body_data.get('selectedDelivery')}',
                 'version': '3',
-                'server_url': 'https://d3d8-178-215-168-165.ngrok-free.app/payment/liqpay-callback/',
+                'server_url': 'https://artmagic.com.ua/payment/liqpay-callback/',
                 'result_url': request.build_absolute_uri('/'),
             }
 

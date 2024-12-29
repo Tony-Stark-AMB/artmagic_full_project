@@ -40,22 +40,12 @@ def alphanumeric_sort(text):
     return [convert(c) for c in re.split('([0-9]+)', text)]
 
 
-from django.http import JsonResponse
-from .models import FilterCategory, ProductFilter
-
-from django.http import JsonResponse
-
 def get_subcategories(request, parent_id):
     subcategories = Category.objects.filter(parent_id=parent_id)
     data = {
         'subcategories': [{'id': sub.id, 'name': sub.name} for sub in subcategories]
     }
     return JsonResponse(data)
-
-from django.http import JsonResponse
-from .models import FilterCategory, FilterValue, ProductFilter
-
-
 
 
 def update_filter_data_on_change(request, group_id):
@@ -80,7 +70,8 @@ def update_filter_data_on_change(request, group_id):
         'selected': category.id == selected_category_id
     } for category in filter_categories]
     if not category_id:
-        category_id = categories[0]['id']
+        category_id = None
+        # category_id = categories[0]['id']
     # Получаем значения фильтров только для выбранной категории, если она указана
     values = []
     if category_id:
@@ -188,10 +179,6 @@ class SubCategoriesView(View):
         descendants = parent_category.get_descendants(include_self=True)
         category_ids = [descendant.pk for descendant in descendants]
         
-        print('=---SubCategoriesView---------------------', category_ids, parent_category.pk,
-              len(ProductToCategory.objects.filter(category_id=parent_category.pk).distinct()))
-        
-
         products = Products.objects.filter(
             producttocategory__category_id__in=category_ids).distinct()  # .values_list('product_id', flat=True) # Обновлено
 
@@ -238,16 +225,14 @@ class SubProductView(View):
 
         if slug != 'search':
             parent_category = get_object_or_404(Category, slug=slug)
-            print('---------------------------------------', parent_category.pk)
             
 
         if parent_category:
             product_ids = ProductToCategory.objects.filter(category_id=parent_category.pk).values_list('product_id',
                                                                                                        flat=True)
-            print('------------------------------------------100------------', len(product_ids))
+            
             parent_of_parent_category = parent_category.parent
             products = Products.objects.filter(id__in=product_ids).distinct()
-            print('------------------------------------------10,01------------', len(products))
             if parent_of_parent_category:
                 breadcrumbs.append({'name': parent_of_parent_category.name, 'url': parent_of_parent_category.get_absolute_url()})
 
@@ -258,12 +243,11 @@ class SubProductView(View):
                 {'name': 'Головна', 'url': '/'},
                 {'name': "Пошук", 'url': ''},  # Текущая категория
             ]
-        print('------------------------------------------101------------', len(products))
+        
         product_filter = ProductsFilter(request.GET, queryset=products)
         filtered_queryset = product_filter.qs()
         filtered_queryset = filtered_queryset.values('id', 'name', 'image', 'price', 'model')
         filters = self.build_filters(filtered_queryset)
-        print('------------------------------------------filtered_queryset------------', len(filtered_queryset))
         
 
         if len(filtered_queryset)==0:
@@ -290,7 +274,6 @@ class SubProductView(View):
             }
             return JsonResponse(json_data)
 
-        # http://127.0.0.1:8000/product/bloknoti-dlja-esk%D1%96z%D1%96v-ta-maljunku-tverda-obkladinka/
 
         print('222', filters)
         return render(request, self.template_name, {
@@ -327,7 +310,6 @@ class SubProductView(View):
             'text': sorted(list(texts), key=lambda x: alphanumeric_sort(x[1]))  # сортируем по value, а не по id
         } for name, texts in sorted(attributes_dict.items(), key=lambda x: alphanumeric_sort(x[0]))]
 
-        # print('///////////////', filters)
         return filters
 
 
@@ -366,8 +348,6 @@ class DetaileProductView(View):
 
         product = Products.objects.get(id=id)
         att = ProductFilter.objects.filter(product_id=product.pk)
-        print('----------', att)
-        print('----------', id)
         images = ProductImage.objects.filter(product=product.pk)
         all_images = self.build_images(product, images)
         
@@ -392,9 +372,7 @@ class DetaileProductView(View):
         if not categories:
             breadcrumbs.append({'name': '', 'url': ''})
             return breadcrumbs
-        print('-----------------------------------------------------categories', categories)
         parent = categories[0].category_id.parent
-        print('-----------------------------------------------------parent', parent)
 
         breadcrumbs.append({
             'name': parent.name,
