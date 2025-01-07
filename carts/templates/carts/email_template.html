@@ -63,12 +63,14 @@
                                     </thead>
                                     <tbody>
                                         {% for product in products %}
-                                        <tr>
-                                            <td style="padding: 8px;">{{ product.name }}</td>
-                                            <td style="padding: 8px;">{{ product.model }}</td>
-                                            <td style="padding: 8px;">{{ product.quantity }}</td>
-                                            <td style="padding: 8px;">{{ product.price }}</td>
-                                        </tr>
+                                            {% if product.quantity != 0 %}
+                                                <tr>
+                                                    <td style="padding: 8px;">{{ product.name }}</td>
+                                                    <td style="padding: 8px;">{{ product.model }}</td>
+                                                    <td style="padding: 8px;">{{ product.quantity }}</td>
+                                                    <td style="padding: 8px;">{{ product.price }}</td>
+                                                </tr>
+                                            {% endif %}
                                         {% endfor %}
                                     </tbody>
                                 </table>
@@ -93,12 +95,14 @@
                                     </thead>
                                     <tbody>
                                         {% for product in preorder_product %}
-                                        <tr>
-                                            <td style="padding: 8px;">{{ product.name }}</td>
-                                            <td style="padding: 8px;">{{ product.model }}</td>
-                                            <td style="padding: 8px;">{{ product.preorder  }}</td>
-                                            <td style="padding: 8px;">{{ product.price }}</td>
-                                        </tr>
+                                            {% if product.preorder != 0 %}
+                                                <tr>
+                                                    <td style="padding: 8px;">{{ product.name }}</td>
+                                                    <td style="padding: 8px;">{{ product.model }}</td>
+                                                    <td style="padding: 8px;">{{ product.preorder  }}</td>
+                                                    <td style="padding: 8px;">{{ product.price }}</td>
+                                                </tr>
+                                            {% endif %}
                                         {% endfor %}
                                     </tbody>
                                 </table>

@@ -35,47 +35,7 @@ class ProcessOrderView(View):
         """
         Обработка оплаты через LiqPay
         """
-        # liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
-        # params = {
-        #     'action': 'status',
-        #     'order_id': order_id,
-        #     'version': '3',
-        # }
-
-        # logger.info(f"Checking payment status for order_id: {order_id}")
-
-        # # Механизм повторной проверки статуса
-        # for attempt in range(10):  # Проверяем до 10 раз с интервалом
-        #     response = liqpay.api("request", params)
-        #     logger.info(f"LiqPay response for order_id: {order_id}, response: {response}")
-
-        #     if response.get('status') == 'success':
-        #         logger.info(f"Payment successful for order_id: {order_id}")
-                
-        #         # Если статус "успешно", отправляем письма и возвращаем ответ
-        #         try:
-
-        #             delivery_method, address = get_delivery_info(data)
-        #             validate_required_fields(data)
-        #             user = request.user if request.user.is_authenticated else None
-        #             context = prepare_email_context(data, delivery_method, address, order_id)
-
-        #             # Отправка писем
-        #             send_email(self.email_owner, context, f"Замовлення №: {order_id}", 'carts/email_template.html')
-        #             send_email(data.get('email'), context, 'Ваше замовлення прийняте', 'users/email_template_user.html')
-
-        #             return JsonResponse({'status': 'success', 'orderNumber': order_id}, status=200)
-
-        #         except Exception as e:
-        #             logger.error(f"Error during post-payment handling for order_id {order_id}: {e}")
-        #             return JsonResponse({'status': 'error', 'message': 'Ошибка при обработке заказа после оплаты'}, status=500)
-
-        #     logger.info(f"Payment not confirmed yet for order_id: {order_id}, attempt {attempt + 1}")
-        #     time.sleep(5)  # Пауза 5 секунд перед следующей проверкой
-
-        # Если после всех попыток статус не "успешно", возвращаем ошибку
-        # logger.error(f"Payment not confirmed after multiple attempts for order_id: {order_id}")
-        # return JsonResponse({'status': 'error', 'message': 'Оплата не подтверждена'}, status=400)
+        
 
     def handle_manual_payment(self, request, data):
         """

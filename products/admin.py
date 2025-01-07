@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django import forms
 from mptt.admin import MPTTModelAdmin
 from django.utils.safestring import mark_safe
 
@@ -11,12 +10,6 @@ class HiddenModelAdmin(admin.ModelAdmin):
     def get_model_perms(self, request):
         return {}
     
-
-from django.contrib import admin
-from django.contrib.admin import SimpleListFilter
-from .models import Category
-from django.contrib.admin import SimpleListFilter
-import time
 
 class CategoryFilter(admin.SimpleListFilter):
     template = 'admin/filters/filter.html'
@@ -139,6 +132,10 @@ class ProductsAdmin(admin.ModelAdmin):
     readonly_fields = ('date_added', 'date_modified')
     ordering = ('-date_added',)
 
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "manufacturer":  # Замените на фактическое имя поля
+            kwargs["queryset"] = db_field.related_model.objects.order_by("name")  # Сортировка по имени
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
     
     def get_categories(self, obj):
         categories = [category.category_id.name for category in obj.producttocategory_set.all()]
@@ -157,13 +154,19 @@ class ProductsAdmin(admin.ModelAdmin):
         }),
     )
 
+
+@admin.register(FilterGroup)
+class FilterGroupAdmin(admin.ModelAdmin):
+    ordering = ('name',)
+    
 @admin.register(FilterCategory)
 class FilterCategoryAdmin(admin.ModelAdmin):
     list_filter = ('group__name',)
-
+    ordering = ('name',)
 
 @admin.register(FilterValue)
 class FilterValueAdmin(admin.ModelAdmin):
+    search_fields = ('value',)
     list_filter = ('category',)
     extra = 1
     ordering = ('value',)
@@ -171,14 +174,6 @@ class FilterValueAdmin(admin.ModelAdmin):
 
 
 
-
 admin.site.register(Manufacturer, HiddenModelAdmin)
-# @admin.register(Manufacturer)
-# class ManufacturerAdmin(admin.ModelAdmin):
-#     list_filter = ('name',)  # Фильтрация по имени производителя
-#     ordering = ('name',)
-    
-admin.site.register(FilterGroup)
-
 admin.site.register(Stocks)
 admin.site.register(ProductFilter, HiddenModelAdmin)
