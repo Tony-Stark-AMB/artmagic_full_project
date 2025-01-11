@@ -47,7 +47,7 @@ export class ProductManager {
             this.products = [...this.products, newProduct];
         }
         this.setStorageProducts(this.products)
-        console.log(this.isOrderedStoreProduct(), "isOrderedStoreProduct");
+        // console.log(this.isOrderedStoreProduct(), "isOrderedStoreProduct");
     }
 
     mapObjectsInProducts(products) {

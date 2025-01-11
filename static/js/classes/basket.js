@@ -16,15 +16,18 @@ export class Basket {
             this.renderBasket()
         })
         this.rerenderBasketCalled = false;
+        this.handleBasketBtnsBuyInited = false;
     }
 
     initialize() {
         this.initProductsBuyBtns();
+        this.handleBasketBtnsBuyInited = true;
         this.renderBasket();
     }
 
     initProductsBuyBtns(page = 1){
         const productList = document.querySelectorAll(`.products-${this.pageName}__list`)[page - 1];
+        // console.log(productList) 
         const btns = productList.querySelectorAll(`button[data-item="product_btn"]`);
         btns.forEach((btn) => {
             btn.addEventListener("click", async (e) => {
@@ -96,9 +99,9 @@ export class Basket {
         productDiv.setAttribute("id", `cart__product__${product.id}`);
     
         // Определяем доступное количество и количество для предзаказа
-        console.log(product.quantity, product.storageQuantity)
+        // console.log(product.quantity, product.storageQuantity)
         const availableQuantity = Math.min(product.quantity, product.storageQuantity);
-        console.log(product)
+        // console.log(product)
         product.quantity = availableQuantity;
         const preorderQuantity = product.quantity >= product.storageQuantity;
         // Проверяем, нужно ли отображать две пары кнопок

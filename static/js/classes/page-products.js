@@ -239,8 +239,14 @@ export class PageProducts {
                 }
                 this.applyFilters(); // Применяем фильтры при изменении
                 this.swiper.activeIndex = 0;
+                
+                // const element = document.querySelectorAll(`.products-${this.pageName}__list`)[0];
+                // if(element)
+                //     this.basket.initProductsBuyBtns(1)
+                    
             }
         }
+
     }
 
     setProductsPerPage() {
@@ -283,11 +289,10 @@ export class PageProducts {
     applyFilters = async () => {
         // Добваление слушателя, для формирования строки
         document.querySelectorAll("[data-parent]").forEach(
-            (parent) => parent.addEventListener("change", this.handleCheckboxChange));
+            async (parent) => parent.addEventListener("change", this.handleCheckboxChange));
         // Сброс текущих продуктов и пагинации
         this.swiperWrapper.innerHTML = "";
         this.swiperPagination.currentPageGroup = 0;
-    
         // Получаем данные с новыми фильтрами
         const { products, productsAmount, productsPerPage } = await this.fetchProducts(1);
     
@@ -298,5 +303,10 @@ export class PageProducts {
         this.renderGroup10Buttons();
         this.renderPaginationBullets();
         this.setActivePaginationBullet(this.swiper.activeIndex);
+
+        if(this.basket.handleBasketBtnsBuyInited)
+            this.basket.initProductsBuyBtns(1);
+        
+        
     }
 }
