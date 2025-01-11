@@ -7,4 +7,4 @@ staticfiles
 venv
 __pycache__/
 *.pyc
-artmagic/settings.py
+/artmagic/settings.py
