@@ -21,6 +21,7 @@ class Category(MPTTModel):
     meta_title = models.CharField(
         max_length=255, 
         null=True, 
+        blank=True,
         verbose_name='Meta Title'
     )
     meta_description = models.TextField(
