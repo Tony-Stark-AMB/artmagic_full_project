@@ -240,9 +240,6 @@ export class PageProducts {
                 this.applyFilters(); // Применяем фильтры при изменении
                 this.swiper.activeIndex = 0;
                 
-                // const element = document.querySelectorAll(`.products-${this.pageName}__list`)[0];
-                // if(element)
-                //     this.basket.initProductsBuyBtns(1)
                     
             }
         }

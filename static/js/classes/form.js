@@ -86,10 +86,12 @@ class Form {
 
         this.userAuthDefaultData();
 
+    
+
         const fields = formContainer.querySelectorAll("[data-field]");
-        fields.forEach((field) => field.addEventListener("input", (e) => {
+        fields.forEach((field) => field.addEventListener("input", (e) => 
             this.triggerInput(field.dataset.field)
-        }));
+        ));
 
 
 
@@ -177,6 +179,7 @@ class Form {
                     const selectors = document.querySelectorAll("select");
                     selectors.forEach((el) => el.value = null);
                     this.userAuthDefaultData();
+
                     if (this.productManager !== null) {
                         this.productManager.clearStorageProducts();
                         this.productManager.clearProducts();
@@ -337,17 +340,27 @@ class Form {
     }
 
     userAuthDefaultData(){
-        if(this.userData && this.userData.get("status") === "1"){
+        if (this.userData && this.userData.get("status") === "1") {
             this.formData = Object.fromEntries(
                 Object.entries(this.formData).map(([key, value]) => {
-                    // Check if the key exists in userData and update the value accordingly
-                    const newValue = this.userData.has(key) ? this.userData.get(key) : "";
-                    if(this.userData.has(key))
-                    this.getField(key).value = newValue;
+                    // Получаем значение из userData, если оно есть, иначе ""
+                    let newValue = this.userData.has(key) ? this.userData.get(key) : "";
+        
+                    // Если значение - один пробел или только пробелы, устанавливаем пустую строку
+                    if (newValue.trim() === "") {
+                        newValue = "";
+                    }
+        
+                    // Обновляем поле формы
+                    if (this.userData.has(key)) {
+                        this.getField(key).value = newValue;
+                    }
+        
                     return [key, { ...value, value: newValue }];
                 })
-            ); 
+            );
         }
+        
     }
 
     showModalLoader(){
