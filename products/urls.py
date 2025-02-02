@@ -1,7 +1,18 @@
 from django.urls import path
+from django.views.decorators.cache import cache_page
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import StaticViewSitemap, CategorySitemap, ProductSitemap, SubCategorySitemap
+
 from . import views
 from .views import SubProductView, SubCategoriesView, DetaileProductView
 # , SyncProductsAPIView
+
+sitemaps = {
+    'static': StaticViewSitemap,      # Главная и о нас
+    'categories': CategorySitemap,   # Категории
+    'sub_categories': SubCategorySitemap,
+    'products': ProductSitemap       # Продукты
+}
 
 urlpatterns = [
     path('', views.parent_categories, name='parent_categories'),
@@ -17,5 +28,6 @@ urlpatterns = [
     path('load-initial-filter-data/<int:group_id>/', views.load_initial_filter_data, name='load_initial_filter_data'),
     path('update-filter-data-on-change/<int:group_id>/', views.update_filter_data_on_change, name='update_filter_data_on_change'),
     path('sync-products/', views.upsert_product, name='sync_products'),  # для приема данных из 1С
+    path('sitemap.xml', cache_page(60 * 60)(sitemap), {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     # для получения данных из 1С
 ]

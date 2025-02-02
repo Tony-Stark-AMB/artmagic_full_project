@@ -2,6 +2,16 @@ from django import forms
 
 from .models import ProductFilter, FilterGroup, FilterCategory, ProductToCategory, Category
 
+
+class CategoryAdminForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['parent'].queryset = Category.objects.filter(parent=None)
+
 class ProductToCategoryForm(forms.ModelForm):
     parent_category = forms.ModelChoiceField(
         queryset=Category.objects.filter(parent=None),  # Только те категории, которые не имеют родителя
