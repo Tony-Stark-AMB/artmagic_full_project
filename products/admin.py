@@ -3,7 +3,7 @@ from mptt.admin import MPTTModelAdmin
 from django.utils.safestring import mark_safe
 
 from .models import Products, Category, ProductFilter, FilterCategory, FilterValue, Manufacturer, ProductImage, ProductToCategory, FilterGroup, Stocks
-from .forms import ProductFilterForm, ProductToCategoryForm
+from .forms import ProductFilterForm, ProductToCategoryForm, CategoryAdminForm
 
 
 class HiddenModelAdmin(admin.ModelAdmin):
@@ -70,6 +70,8 @@ class ParentCategoryFilter(admin.SimpleListFilter):
 
 @admin.register(Category)
 class CategoryAdmin(MPTTModelAdmin):
+    form = CategoryAdminForm 
+
     list_display = ('name', 'parent', 'is_active', 'date_added', 'date_modified')
     list_filter = ('is_active', ParentCategoryFilter)
     search_fields = ('name',)
@@ -79,7 +81,7 @@ class CategoryAdmin(MPTTModelAdmin):
     list_editable = ('is_active',)
     readonly_fields = ('date_added', 'date_modified')
     extra = 1
-    ordering = ('name',)
+    # ordering = ('name',)
 
     fieldsets = (
         (None, {
@@ -115,7 +117,7 @@ class ProductToCategoryInline(admin.TabularInline):
     form = ProductToCategoryForm
     verbose_name = "Категорія"
     verbose_name_plural = "Додати категорію"
-    extra = 1
+    extra = 2
 
     class Media:
             js = ('js/filter_dynamic.js',)  # Подключаем файл с вашим JS
