@@ -6,6 +6,7 @@ from .models import Category, Products
 class StaticViewSitemap(Sitemap):
     priority = 1.0
     changefreq = 'weekly'
+    protocol = "https"
 
     def items(self):
         return ['parent_categories', 'main:about_detail', 'main:contacts_detail'] 
@@ -18,6 +19,7 @@ class StaticViewSitemap(Sitemap):
 class CategorySitemap(Sitemap):
     priority = 0.8
     changefreq = 'daily'
+    protocol = "https"
 
     def items(self):
         return Category.objects.filter(parent=None, is_active=True)
@@ -29,6 +31,7 @@ class CategorySitemap(Sitemap):
 class SubCategorySitemap(Sitemap):
     priority = 0.8
     changefreq = 'daily'
+    protocol = "https"
 
     def items(self):
         return Category.objects.exclude(parent=None, is_active=True)
@@ -43,6 +46,7 @@ class SubCategorySitemap(Sitemap):
 class ProductSitemap(Sitemap):
     priority = 0.6
     changefreq = 'daily'
+    protocol = "https"
 
     def items(self):
         return Products.objects.all().order_by('id') 
