@@ -22,8 +22,19 @@
         align-items: center;
     }
    
-    &__text,
+    &__text{
+        display: flex;
+        align-items: center;
+        &:nth-child(2){
+            justify-content: space-around;
+        }
+    }
     &__link{
+        color: rgba(13, 110, 253);
+        transition: color .3s ease-in-out;
+        &:hover{
+            color: rgba(10,88,202);
+        }
         &__wrap{
             @include respond-to(laptop-small){
                 display: none;

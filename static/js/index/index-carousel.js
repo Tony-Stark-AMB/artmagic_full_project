@@ -29,7 +29,7 @@ class IndexProducts extends PageProducts{
     const productHTML = `
         <div class="products-${this.pageName}__item product-item" id="${id}">
             <div class="products-${this.pageName}__item__img__wrap">
-                <img class="products-${this.pageName}__item__img" src="${image}" />
+                <img class="products-${this.pageName}__item__img" src="${image}" alt="${name}" />
             </div>
             <div class="products-index__item__content">
                 <p class="products-${this.pageName}__item__title">${name}</p>

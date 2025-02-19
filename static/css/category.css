@@ -322,8 +322,22 @@
   display: flex;
   align-items: center;
 }
+.header-call__text {
+  display: flex;
+  align-items: center;
+}
+.header-call__text:nth-child(2) {
+  justify-content: space-around;
+}
+.header-call__link {
+  color: rgb(13, 110, 253);
+  transition: color 0.3s ease-in-out;
+}
+.header-call__link:hover {
+  color: rgb(10, 88, 202);
+}
 @media (max-width: 1260px) {
-  .header-call__text__wrap, .header-call__link__wrap {
+  .header-call__link__wrap {
     display: none;
   }
 }
