@@ -30,4 +30,5 @@ urlpatterns = [
     path('sync-products/', views.upsert_product, name='sync_products'),  # для приема данных из 1С
     path('sitemap.xml', cache_page(60 * 60)(sitemap), {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     # для получения данных из 1С
+    path('products-feed.xml', cache_page(60 * 60)(views.generate_google_merchant_feed), name='google_merchant_feed'),
 ]
