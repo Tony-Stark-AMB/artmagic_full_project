@@ -548,3 +548,48 @@ def upsert_product(request):
             'message': 'Unexpected error during processing',
             'error': str(e)
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+from django.http import HttpResponse
+from django.utils.html import strip_tags
+import xml.etree.ElementTree as ET
+
+def generate_google_merchant_feed(request):
+    
+    rss = ET.Element("rss", attrib={"version": "2.0", "xmlns:g": "http://base.google.com/ns/1.0"})
+    channel = ET.SubElement(rss, "channel")
+    
+    ET.SubElement(channel, "title").text = "АртМагія"
+    ET.SubElement(channel, "link").text = "https://artmagic.com.ua"
+    ET.SubElement(channel, "description").text = "Ми працюємо для вас з 2008 рокуі вже завоювали серця клієнтів по всій Україні. Ми найбільш цікавий продавець художніх матеріалів для всіх, хто займається творчістю. Ми можемо задовольнити всі творчі потреби художників, студентів, дизайнерів, аматорів, у нас є все для хобі. Ми надихаємо людей займатися улюбленою справою."
+
+    products = Products.objects.all()
+    
+    for product in products:
+        item = ET.SubElement(channel, "item")
+
+        category = ProductToCategory.objects.filter(product_id=product.id).first()
+        result_category = (
+            f"{category.category_id.parent} > {category}"
+            if category and category.category_id.parent
+            else None
+        )
+
+        brand = ProductFilter.objects.filter(product_id=product.id, filter_category=4).first()
+        brand_name = brand.filter_value.value if brand else None
+        
+        ET.SubElement(item, "g:id").text = str(product.id)
+        ET.SubElement(item, "g:title").text = product.name
+        ET.SubElement(item, "g:description").text = strip_tags(product.description)[:500] if product.description else None
+        ET.SubElement(item, "g:link").text = f'https://artmagic.com.ua/product/detaile-product/{product.id}/'
+        ET.SubElement(item, "g:image_link").text = f'https://artmagic.com.ua/media/{product.image}' if product.image else None
+        ET.SubElement(item, "g:price").text = f"{product.price} USD"
+        ET.SubElement(item, "g:product_type").text = result_category
+        ET.SubElement(item, "g:brand").text = brand_name
+        ET.SubElement(item, "g:availability").text = "in_stock" if product.quantity != None and product.quantity>0 else "backorder"
+
+    tree = ET.ElementTree(rss)
+
+    response = HttpResponse(content_type='application/xml')
+    tree.write(response, encoding="UTF-8", xml_declaration=True)
+    return response
+
