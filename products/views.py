@@ -27,18 +27,10 @@ from .models import (Products,
 from main.models import Carousel, ContactInfo
 from django.conf import settings
 from .filters import ProductsFilter
+from .utils import alphanumeric_sort, get_sorted_product_attributes
 
 
 logger = logging.getLogger(__name__)
-
-def alphanumeric_sort(text):
-    """Функция для сортировки строк, содержащих как буквы, так и цифры."""
-
-    def convert(text):
-        return int(text) if text.isdigit() else text.lower()
-
-    return [convert(c) for c in re.split('([0-9]+)', text)]
-
 
 def get_subcategories(request, parent_id):
     subcategories = Category.objects.filter(parent_id=parent_id)
@@ -337,24 +329,26 @@ def get_new_arrivals(request):
         'productsPerPage': paginator.per_page,
         'productsAmount': paginator.count,  # Добавить общее количество продуктов
     }
-    print(json_data)
     return JsonResponse(json_data)
 
 
 class DetaileProductView(View):
     template_name = 'products/detaile.html'
 
-    def get(self, request, id):
+    def get(self, request, id):        
+        
+        product = get_object_or_404(Products, id=id)
+        product_attribute = ProductFilter.objects.filter(product_id=product.pk)
+        
+        attributes = get_sorted_product_attributes(product_attribute)
 
-        product = Products.objects.get(id=id)
-        att = ProductFilter.objects.filter(product_id=product.pk)
         images = ProductImage.objects.filter(product=product.pk)
         all_images = self.build_images(product, images)
         
         categories = ProductToCategory.objects.filter(product_id=product).select_related('category_id')
         breadcrumbs = self.get_breadcrumbs(categories)
 
-        return render(request, self.template_name, {'product': product, 'att': att, 'all_images': all_images, 'breadcrumbs': breadcrumbs})
+        return render(request, self.template_name, {'product': product, 'attributes': attributes, 'all_images': all_images, 'breadcrumbs': breadcrumbs})
 
     def build_images(self, product, images):
         all_images = []
@@ -560,12 +554,15 @@ def generate_google_merchant_feed(request):
     
     ET.SubElement(channel, "title").text = "АртМагія"
     ET.SubElement(channel, "link").text = "https://artmagic.com.ua"
-    ET.SubElement(channel, "description").text = "Ми працюємо для вас з 2008 рокуі вже завоювали серця клієнтів по всій Україні. Ми найбільш цікавий продавець художніх матеріалів для всіх, хто займається творчістю. Ми можемо задовольнити всі творчі потреби художників, студентів, дизайнерів, аматорів, у нас є все для хобі. Ми надихаємо людей займатися улюбленою справою."
+    ET.SubElement(channel, "description").text = "Ми працюємо для вас з 2008 року і вже завоювали серця клієнтів по всій Україні. Ми найбільш цікавий продавець художніх матеріалів для всіх, хто займається творчістю. Ми можемо задовольнити всі творчі потреби художників, студентів, дизайнерів, аматорів, у нас є все для хобі. Ми надихаємо людей займатися улюбленою справою."
 
-    products = Products.objects.all()
-    
+    products = Products.objects.filter(quantity__isnull=False, quantity__gt=0)
+
     for product in products:
         item = ET.SubElement(channel, "item")
+
+        image = f'https://artmagic.com.ua/media/{product.image}'
+        no_image = f'https://artmagic.com.ua/static/product-placeholder.png'
 
         category = ProductToCategory.objects.filter(product_id=product.id).first()
         result_category = (
@@ -573,7 +570,6 @@ def generate_google_merchant_feed(request):
             if category and category.category_id.parent
             else None
         )
-
         brand = ProductFilter.objects.filter(product_id=product.id, filter_category=4).first()
         brand_name = brand.filter_value.value if brand else None
         
@@ -581,11 +577,11 @@ def generate_google_merchant_feed(request):
         ET.SubElement(item, "g:title").text = product.name
         ET.SubElement(item, "g:description").text = strip_tags(product.description)[:500] if product.description else None
         ET.SubElement(item, "g:link").text = f'https://artmagic.com.ua/product/detaile-product/{product.id}/'
-        ET.SubElement(item, "g:image_link").text = f'https://artmagic.com.ua/media/{product.image}' if product.image else None
-        ET.SubElement(item, "g:price").text = f"{product.price} USD"
+        ET.SubElement(item, "g:image_link").text = image if product.image else no_image
+        ET.SubElement(item, "g:price").text = f'{product.price} USD'
         ET.SubElement(item, "g:product_type").text = result_category
         ET.SubElement(item, "g:brand").text = brand_name
-        ET.SubElement(item, "g:availability").text = "in_stock" if product.quantity != None and product.quantity>0 else "backorder"
+        ET.SubElement(item, "g:availability").text = 'in_stock'
 
     tree = ET.ElementTree(rss)
 
