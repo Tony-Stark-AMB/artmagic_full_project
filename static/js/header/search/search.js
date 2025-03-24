@@ -5,7 +5,7 @@ searchInputBtn.addEventListener("click", async () => searchInputLogic())
 
 searchInput.addEventListener('input', function() {
     // Заменяем все символы "/" и "\" на пустую строку
-    this.value = this.value.replace(/[\/\\]/g, '');
+    this.value = this.value.replace(/[\/\\]/g, match => match === '/' ? '%2F' : '%5C');
 });
 
 searchInput.addEventListener("keypress", async (e) => {
