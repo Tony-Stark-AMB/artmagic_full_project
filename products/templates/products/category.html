@@ -20,7 +20,7 @@
                                         <img class="category-others__img" src="{{ sub_category.image.url }}" alt="{{ sub_category.name }}">
                                         {% else %}
                                         <!-- Если изображение отсутствует, вы можете добавить здесь замену или оставить пустым -->
-                                        <img class="category-others__img" src="{% static 'placeholder_image.jpg' %}" alt="No Image">
+                                        <img class="category-others__img" src="{% static 'product-placeholder.png' %}" alt="No Image">
                                         {% endif %}
                                     </div>
                                     <span class="category-others__link__text">{{ sub_category.name }}</span>

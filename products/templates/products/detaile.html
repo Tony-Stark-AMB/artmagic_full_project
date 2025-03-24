@@ -47,11 +47,15 @@
                     <p class="product-details__price">Ціна: <span class="fw-bold">{{product.price}} грн</span> </p>
                     <h5 class="text-center">Характеристика товару</h5>
                     <table class="product-detailes__atributes">
-                        {% for el in att %}
+                        {% for el in attributes %}
                             <tr>
-                                <th class="atributes-row">{{ el.filter_category }}</th>
-                                <td class="atributes-row atributes-row__value">{{ el.filter_value }}</td>
-                            <tr>
+                                <th class="atributes-row">{{ el.name }}</th>
+                                <td class="atributes-row atributes-row__value">
+                                    {% for value in el.text %}
+                                        {{ value }}{% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                </td>
+                            </tr>
                         {% endfor %}
                     </table>
                 </div>  
