@@ -5,7 +5,10 @@
     {% block css %}
         <link rel="stylesheet" href="{% static 'css/category.css' %}">
     {% endblock %}
-
+        {% block head %}
+            <title>{{parent_category}} — купити в Дніпрі | інтернет-магазині Артмагія</title>
+            <meta name="description" content="Купити {{parent_category}} в ⭐️ Артмагії ⭐️ — художні матеріали для студентів і митців ✔️ Доставка по Україні. ✔️ Широкий асортимент ✆ 0661494273">
+        {% endblock %}
         {% block content %}
         <div class="main-category__wrap container__custom">
             <main class="main-category">                               

@@ -6,30 +6,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Google Site Verification -->
-    <meta name="google-site-verification" content="nQUF4QJE3UgY9V282sBI0h-ANKERSWQirAMXVUWyQDI" />
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JFN2PDBB5R"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-JFN2PDBB5R');
-    </script>
-    <meta name="description" content="ArtMagic — интернет-магазин уникальных картин, скульптур и художественных работ. Бесплатная доставка по Украине. Эксклюзивные изделия ручной работы для вашего интерьера." />
-    <meta name="keywords" content="картины, скульптуры, ручная работа, декор для интерьера, ArtMagic, Украина, художественные изделия" />
-    <meta name="language" content="uk-UA" />
-    <meta property="og:title" content="ArtMagic - Уникальные картины и скульптуры" />
-    <meta property="og:description" content="Эксклюзивные изделия ручной работы для вашего интерьера. Закажите картины и скульптуры на ArtMagic с доставкой по Украине." />
-    <!-- <meta property="og:image" content="https://artmagic.com.ua/images/og-image.jpg" /> -->
-    <meta property="og:url" content="https://artmagic.com.ua/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="uk_UA" />
-    <link rel="canonical" href="https://artmagic.com.ua/" />
-    <meta name="robots" content="index, follow" />
+    {% if request.path == '/' %}
+        <title>Артмагія — Купити художні матеріали для творчості і дизайну в Україні</title>
+        <meta name="description" content="⭐️ Артсклад в Дніпрі⭐️ : Доставка художніх матеріалів по всій Україні! ✔️ Фарби, пензлі, підрамники, мольберти, товари для дизайну та хобі ✆ 0661494273">
+    {% endif %}
+    {% block head %}{% endblock %}
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/artmagic_favicon/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/artmagic_favicon/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assetc/artmagic_favicon/favicon-16x16.png' %}">
@@ -46,7 +27,6 @@
     <link rel="stylesheet" href="{% static 'css/common.css' %}">
     <link rel="stylesheet" href="{% static 'css/breadcrumb.css' %}">
     {% block css %}{% endblock %}    
-    <title>Артмагія</title>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
