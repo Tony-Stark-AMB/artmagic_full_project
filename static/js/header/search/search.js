@@ -5,7 +5,8 @@ searchInputBtn.addEventListener("click", async () => searchInputLogic())
 
 searchInput.addEventListener('input', function() {
     // Заменяем все символы "/" и "\" на пустую строку
-    this.value = this.value.replace(/[\/\\]/g, match => match === '/' ? '%2F' : '%5C');
+    console.log(this.value)
+    // this.value = this.value.replace(/[\/\\]/g, match => match === '/' ? '%2F' : '%5C');
 });
 
 searchInput.addEventListener("keypress", async (e) => {
@@ -21,7 +22,8 @@ const searchInputLogic = () => {
         return;
     
     localStorage.setItem("searchInputValue", searchInputValue);
-    window.location.href = `${PROTOCOL}://${HOST}:${PORT}/product/search/?query=${searchInputValue}`;
+    const searchInputCorrect = searchInputValue.replace(/[\/\\]/g, match => match === '/' ? '%2F' : '%5C');
+    window.location.href = `${PROTOCOL}://${HOST}:${PORT}/product/search/?query=${searchInputCorrect}`;
     
 }
 
