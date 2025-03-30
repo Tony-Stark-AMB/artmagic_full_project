@@ -4,7 +4,10 @@
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/product.css' %}">
 {% endblock %}
-
+{% block head %}
+    <title>{{product.name}} — купити в Україні | інтернет-магазині Артмагія</title>
+    <meta name="description" content="Купити {{product.name}} в Дніпрі. 🚛 Доставка по Україні ⭐️ Артмагія — художні матеріали ✔️ Асортимент для художників та дизайнерів  ✆ 0661494273">
+{% endblock %}
 {% block content %}
 <div class="main__wrap" >
     <main class="main container__small">

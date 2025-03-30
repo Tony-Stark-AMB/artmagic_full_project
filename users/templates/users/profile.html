@@ -3,16 +3,11 @@
 {% load mptt_tags %}
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% block css %}<link rel="stylesheet" href="{% static 'css/profile.css' %}">{% endblock %}
-    
-    
-    <title>Profile</title>
-</head>
+{% block head %}
+    <title>Артмагія — Особистий кабінет</title>
+    <meta name="description" content="⭐️ Артсклад в Дніпрі⭐️ : Доставка художніх матеріалів по всій Україні! ✔️ Фарби, пензлі, підрамники, мольберти, товари для дизайну та хобі ✆ 0661494273">
+{% endblock %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/profile.css' %}">{% endblock %}
 <body>
     <div class="full-content">
         {% block content %}

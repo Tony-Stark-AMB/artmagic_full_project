@@ -6,6 +6,11 @@
 <head>
    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if request.path == '/' %}
+        <title>Артмагія — Купити художні матеріали для творчості і дизайну в Україні</title>
+        <meta name="description" content="⭐️ Артсклад в Дніпрі⭐️ : Доставка художніх матеріалів по всій Україні! ✔️ Фарби, пензлі, підрамники, мольберти, товари для дизайну та хобі ✆ 0661494273">
+    {% endif %}
+    {% block head %}{% endblock %}
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/artmagic_favicon/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/artmagic_favicon/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assetc/artmagic_favicon/favicon-16x16.png' %}">
@@ -22,7 +27,6 @@
     <link rel="stylesheet" href="{% static 'css/common.css' %}">
     <link rel="stylesheet" href="{% static 'css/breadcrumb.css' %}">
     {% block css %}{% endblock %}    
-    <title>Артмагія</title>
 </head>
 <body>
     <div class="full-content">
