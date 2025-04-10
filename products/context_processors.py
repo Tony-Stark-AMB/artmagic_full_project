@@ -7,7 +7,7 @@ from datetime import datetime
 def current_categories(request):
 
     categories = Category.objects.filter(parent=None)
-    full_url = request.build_absolute_uri()
+    full_url = request.path
 
     user = request.user
 
