@@ -2,7 +2,7 @@
 {% load mptt_tags %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,7 +40,7 @@
 
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/artmagic_favicon/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/artmagic_favicon/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assetc/artmagic_favicon/favicon-16x16.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/artmagic_favicon/favicon-16x16.png' %}">
     <link rel="manifest" href="{% static 'assets/artmagic_favicon/site.webmanifest' %}">
     <link rel="stylesheet" href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'node_modules/@popperjs/core/lib/popper.js' %}">
@@ -97,7 +97,11 @@
                 <div class="container__custom">
                     <div class="header-main__content">
                         <div class="logo__wrap">
-                            <a class="logo__link" href="/">
+                            {% if request.path == '/' %}
+                                <a class="logo__link">
+                            {% else %} 
+                                <a class="logo__link" href="/">
+                            {% endif %}
                                 <img class="logo" src="{% static 'assets/logo/artmagic.png' %}" alt="">
                                 <p class="logo__text">
                                     <span class="text-wrapper">
@@ -233,14 +237,14 @@
                     <div class="breadcrumb-nav">
                         {% for crumb in breadcrumbs %}
                             {% if not forloop.last %}
-                                <span class="breadcrumb-nav-item">
+                                <h1 class="breadcrumb-nav-item">
                                     <a href="{{ crumb.url }}">{{ crumb.name }}</a>
-                                </span>
-                                <span class="breadcrumb-nav-separator"> / </span>
+                                </h1>
+                                <h1 class="breadcrumb-nav-separator"> / </h1>
                             {% else %}
-                                <span class="breadcrumb-nav-item" aria-current="page">
+                                <h1 class="breadcrumb-nav-item" aria-current="page">
                                     {{ crumb.name }}
-                                </span>
+                                </h1>
                             {% endif %}
                         {% endfor %}
                     </div>
@@ -360,7 +364,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Авторизація та Реєстрація</h5>
+                <h4 class="modal-title">Авторизація та Реєстрація</h4>
                 <button tabindex="-1" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="swiper login__registration">
@@ -416,7 +420,7 @@
             <div class="loader"></div>
         </div>
         <div class="modal-header">
-            <h5 class="modal-title">Зворотній зв'язок</h5>
+            <h4 class="modal-title">Зворотній зв'язок</h4>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">

@@ -1,15 +1,27 @@
 .breadcrumb-nav{
+    font-size: 1.5rem; 
+    font-weight: 500;
+    display: flex;
+    align-items: center;
     &-wrap{
         width: 100vw;
         padding: 20px 0;   
-        font-size: 1.5rem; 
-        font-weight: 500;
+        font-size: inherit;
+        font-weight: inherit;
     }
     &-list{
-    
+        font-size: inherit;
+        font-weight: inherit;
     }
     &-item{
-    
+        font-size: inherit;
+        font-weight: inherit;
+        margin: 0;
+    }
+    &-separator{
+        margin: 0 10px;
+        font-size: 1.5rem;
+        font-weight: inherit;
     }
     
 }
