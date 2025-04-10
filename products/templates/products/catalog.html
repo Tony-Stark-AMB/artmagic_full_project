@@ -10,6 +10,15 @@
         {% block head %}
             <title>{{parent_category}} — купити в Дніпрі | інтернет-магазині Артмагія</title>
             <meta name="description" content="Купити {{parent_category}} в ⭐️ Артмагії ⭐️ — художні матеріали для студентів і митців ✔️ Доставка по Україні. ✔️ Широкий асортимент ✆ 0661494273">
+            
+            <meta property="og:title" content="{{parent_category}} — купити в Дніпрі | інтернет-магазині Артмагія">
+            <meta property="og:description" content="Купити {{parent_category}} в ⭐️ Артмагії ⭐️ — художні матеріали для студентів і митців ✔️ Доставка по Україні. ✔️ Широкий асортимент ✆ 0661494273">
+            
+            {% if parent_category.image %}
+                <meta property="og:image" content="https://artmagic.com.ua/media/{{parent_category.image}}">
+            {% else %}
+                <meta property="og:image" content="https://artmagic.com.ua/static/product-placeholder.png">
+            {% endif %}
         {% endblock %}
         {% block content %}
         <div class="main-catalog__wrap container__custom">
@@ -154,5 +163,32 @@
         {% block js %}
             <script type="module" src="{% static 'js/catalog/catalog-carousel.js' %}"></script>
             <script src="{% static 'js/catalog/catalog.js' %}"></script>
+        
+            <script type="application/ld+json">
+                {
+                  "@context": "https://schema.org",
+                  "@type": "BreadcrumbList",
+                  "itemListElement": [
+                    {
+                      "@type": "ListItem",
+                      "position": 1,
+                      "name": "Головна",
+                      "item": "https://artmagic.com.ua"
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 2,
+                      "name": "{{ breadcrumbs.1.name }}",
+                      "item": "https://artmagic.com.ua{{ breadcrumbs.1.url }}"
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 3,
+                      "name": "{{ breadcrumbs.2.name }}",
+                      "item": "https://artmagic.com.ua{{ breadcrumbs.2.url }}"
+                    }
+                  ]
+                }
+            </script>
         {% endblock %}
             

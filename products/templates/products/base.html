@@ -6,13 +6,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="language" content="uk-UA" />
     {% if request.path == '/' %}
         <title>Артмагія — Купити художні матеріали для творчості і дизайну в Україні</title>
         <meta name="description" content="⭐️ Артсклад в Дніпрі⭐️ : Доставка художніх матеріалів по всій Україні! ✔️ Фарби, пензлі, підрамники, мольберти, товари для дизайну та хобі ✆ 0661494273">
+        
+        <meta property="og:title" content="Артмагія — Купити художні матеріали для творчості і дизайну в Україні">
+        <meta property="og:description" content="⭐️ Артсклад в Дніпрі⭐️ : Доставка художніх матеріалів по всій Україні! ✔️ Фарби, пензлі, підрамники, мольберти, товари для дизайну та хобі ✆ 0661494273">
+        <meta property="og:image" content="https://artmagic.com.ua/static/assets/logo/artmagic.png">
+        <meta property="og:url" content="https://artmagic.com.ua" />
+        <link rel="canonical" href="https://artmagic.com.ua" />
+    {% else %}
+        <meta property="og:url" content="{{ full_url }}" />
+        <link rel="canonical" href="{{ full_url }}" />
     {% endif %}
     {% block head %}{% endblock %}
-    <meta name="google-site-verification" content="nQUF4QJE3UgY9V282sBI0h-ANKERSWQirAMXVUWyQDI" />
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="uk_UA" />    
+    <meta name="robots" content="index, follow" />
 
+
+    <meta name="google-site-verification" content="nQUF4QJE3UgY9V282sBI0h-ANKERSWQirAMXVUWyQDI" />
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JFN2PDBB5R"></script>
         <script>
@@ -22,14 +37,7 @@
     
             gtag('config', 'G-JFN2PDBB5R');
         </script>
-    
-    
-    <meta name="language" content="uk-UA" />
-    <meta property="og:url" content="https://artmagic.com.ua/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="uk_UA" />
-    <link rel="canonical" href="https://artmagic.com.ua/" />
-    <meta name="robots" content="index, follow" />
+
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/artmagic_favicon/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/artmagic_favicon/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assetc/artmagic_favicon/favicon-16x16.png' %}">
@@ -340,7 +348,7 @@
                         Artmagic - товари для художників та творчості © 2008 
                         <a id="adminLink">
                             <i class="fa fa-lock lock-small c8"></i>
-                        </a>2024.
+                        </a>{{ year }}.
                     </p>
                 </div>
             </div>
@@ -601,6 +609,27 @@
         
         
     </script>
+    {% if request.path == '/' %}
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "Артмагія",
+                "url": "https://artmagic.com.ua",
+                "logo": "https://artmagic.com.ua/static/assets/logo/artmagic.png",
+                "description": "Ми працюємо для вас з 2008 року і вже завоювали серця клієнтів по всій Україні. Ми найбільш цікавий продавець художніх матеріалів для всіх, хто займається творчістю. Ми можемо задовольнити всі творчі потреби художників, студентів, дизайнерів, аматорів, у нас є все для хобі. Ми надихаємо людей займатися улюбленою справою.",
+                "sameAs": [
+                    "https://www.facebook.com/artmagic.com.ua/",
+                    "https://www.instagram.com/artmagic07/"
+                ],                
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "telephone": "+380661494273",
+                    "availableLanguage": ["Ukrainian"]
+                }
+            }
+        </script>
+    {% endif %}
     {% block js %}{% endblock %}
 </div>
 </body>

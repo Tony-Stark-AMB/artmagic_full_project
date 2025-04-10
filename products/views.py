@@ -348,7 +348,28 @@ class DetaileProductView(View):
         categories = ProductToCategory.objects.filter(product_id=product).select_related('category_id')
         breadcrumbs = self.get_breadcrumbs(categories)
 
-        return render(request, self.template_name, {'product': product, 'attributes': attributes, 'all_images': all_images, 'breadcrumbs': breadcrumbs})
+        if product.image:
+            image_address = f"https://artmagic.com.ua/media/{product.image}"
+        else:
+            image_address = "https://artmagic.com.ua/static/product-placeholder.png"
+
+        brand = ProductFilter.objects.filter(product_id=product.id, filter_category=4).first()
+        brand_name = brand.filter_value.value if brand else ""        
+        description = product.description if product.description else ""
+        prod_quantity = "https://schema.org/InStock" if product.quantity > 0 else "https://schema.org/PreOrder"
+
+        context = {
+            'product': product,
+            'description': description.replace('&nbsp;', ''),
+            'prod_quantity': prod_quantity,
+            'attributes': attributes,
+            'all_images': all_images,
+            'breadcrumbs': breadcrumbs,
+            'image_address': image_address,
+            'brand_name': brand_name
+        }
+
+        return render(request, self.template_name, context=context)
 
     def build_images(self, product, images):
         all_images = []
@@ -552,7 +573,7 @@ def generate_google_merchant_feed(request):
     rss = ET.Element("rss", attrib={"version": "2.0", "xmlns:g": "http://base.google.com/ns/1.0"})
     channel = ET.SubElement(rss, "channel")
     
-    ET.SubElement(channel, "title").text = "АртМагія"
+    ET.SubElement(channel, "title").text = "Артмагія"
     ET.SubElement(channel, "link").text = "https://artmagic.com.ua"
     ET.SubElement(channel, "description").text = "Ми працюємо для вас з 2008 року і вже завоювали серця клієнтів по всій Україні. Ми найбільш цікавий продавець художніх матеріалів для всіх, хто займається творчістю. Ми можемо задовольнити всі творчі потреби художників, студентів, дизайнерів, аматорів, у нас є все для хобі. Ми надихаємо людей займатися улюбленою справою."
 
@@ -578,7 +599,7 @@ def generate_google_merchant_feed(request):
         ET.SubElement(item, "g:description").text = strip_tags(product.description)[:500] if product.description else None
         ET.SubElement(item, "g:link").text = f'https://artmagic.com.ua/product/detaile-product/{product.id}/'
         ET.SubElement(item, "g:image_link").text = image if product.image else no_image
-        ET.SubElement(item, "g:price").text = f'{product.price} USD'
+        ET.SubElement(item, "g:price").text = f'{product.price} UAH'
         ET.SubElement(item, "g:product_type").text = result_category
         ET.SubElement(item, "g:brand").text = brand_name
         ET.SubElement(item, "g:availability").text = 'in_stock'

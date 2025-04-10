@@ -2,10 +2,12 @@ from django.shortcuts import render
 from .models import Category
 from users.models import Address
 from django.contrib.auth.models import AnonymousUser
+from datetime import datetime
 
 def current_categories(request):
 
     categories = Category.objects.filter(parent=None)
+    full_url = request.build_absolute_uri()
 
     user = request.user
 
@@ -18,4 +20,4 @@ def current_categories(request):
         except Address.DoesNotExist:
             address = None  # Если адрес не найден, устанавливаем в None
 
-    return {'categories': categories, 'user': user, 'address': address}
+    return {'categories': categories, 'user': user, 'address': address, 'year': datetime.now().year, 'full_url': full_url}
