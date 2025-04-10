@@ -17,8 +17,8 @@
         <meta property="og:url" content="https://artmagic.com.ua" />
         <link rel="canonical" href="https://artmagic.com.ua" />
     {% else %}
-        <meta property="og:url" content="{{ full_url }}" />
-        <link rel="canonical" href="{{ full_url }}" />
+        <meta property="og:url" content="https://artmagic.com.ua{{ full_url }}" />
+        <link rel="canonical" href="https://artmagic.com.ua{{ full_url }}" />
     {% endif %}
     {% block head %}{% endblock %}
     
