@@ -614,35 +614,35 @@ def generate_google_merchant_feed(request):
 def custom_page_not_found_view(request, exception):
     return redirect('/')
 
-def custom_error_500(request):
-    path = request.path
-    invalid_paths = load_invalid_paths_500()
+# def custom_error_500(request):
+#     path = request.path
+#     invalid_paths = load_invalid_paths_500()
 
-    if path in invalid_paths:
-        print(f'[500 handler] Redirecting invalid path: {path}')
-        return HttpResponsePermanentRedirect('/')  # или просто redirect('/')
+#     if path in invalid_paths:
+#         print(f'[500 handler] Redirecting invalid path: {path}')
+#         return HttpResponsePermanentRedirect('/')  # или просто redirect('/')
 
-    # Если путь не найден — можно отдать шаблон или тоже редиректнуть
-    return redirect('/')
+#     # Если путь не найден — можно отдать шаблон или тоже редиректнуть
+#     return redirect('/')
 
-def load_invalid_paths_500():
-    csv_path = os.path.join(settings.BASE_DIR, 'invalid_urls_500.csv')
-    invalid = set()
-    try:
-        with open(csv_path, newline='', encoding='utf-8') as csvfile:
-            reader = csv.reader(csvfile)
-            for row in reader:
-                if not row:
-                    continue
-                url = row[0]
-                if url.startswith('http'):
-                    path = '/' + url.split('://')[-1].split('/', 1)[-1]
-                    if '?' in path:
-                        path = path.split('?', 1)[0]
-                    invalid.add('/' + path.strip('/'))
-                else:
-                    invalid.add(url.strip())
-        return invalid
-    except FileNotFoundError:
-        print('[500 handler] CSV файл не найден!')
-        return set()
+# def load_invalid_paths_500():
+#     csv_path = os.path.join(settings.BASE_DIR, 'invalid_urls_500.csv')
+#     invalid = set()
+#     try:
+#         with open(csv_path, newline='', encoding='utf-8') as csvfile:
+#             reader = csv.reader(csvfile)
+#             for row in reader:
+#                 if not row:
+#                     continue
+#                 url = row[0]
+#                 if url.startswith('http'):
+#                     path = '/' + url.split('://')[-1].split('/', 1)[-1]
+#                     if '?' in path:
+#                         path = path.split('?', 1)[0]
+#                     invalid.add('/' + path.strip('/'))
+#                 else:
+#                     invalid.add(url.strip())
+#         return invalid
+#     except FileNotFoundError:
+#         print('[500 handler] CSV файл не найден!')
+#         return set()
