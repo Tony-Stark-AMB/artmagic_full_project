@@ -32,7 +32,7 @@ urlpatterns = [
 ]
 
 handler404 = 'products.views.custom_page_not_found_view'
-handler500 = 'products.views.custom_error_500'
+# handler500 = 'products.views.custom_error_500'
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
