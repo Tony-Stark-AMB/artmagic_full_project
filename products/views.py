@@ -252,7 +252,7 @@ class SubProductView(View):
         page_number = request.GET.get('page', 1)
         page_obj = paginator.get_page(page_number)
 
-        if request.headers['Content-Type'] == 'application/json':
+        if request.headers.get('Content-Type', '') == 'application/json':
             products_data = list(page_obj)
             for product in products_data:
                 if not product['image']:
