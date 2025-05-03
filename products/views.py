@@ -175,7 +175,8 @@ class SubCategoriesView(View):
             producttocategory__category_id__in=category_ids).distinct()  # .values_list('product_id', flat=True) # Обновлено
 
 
-        if request.headers['Content-Type'] == 'application/json':
+        # if request.headers['Content-Type'] == 'application/json':
+        if request.headers.get('Content-Type', '') == 'application/json':
             # add-category/<str:slug>/
 
             print('-----123---', len(products))
