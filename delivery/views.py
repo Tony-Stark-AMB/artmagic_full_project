@@ -35,11 +35,15 @@ def delivery_options(request):
 
 def get_regions(request):
     logger.debug("Fetching regions")
-    regions = NovaPoshtaAPI.get_regions()
-    logger.debug("Regions: %s", regions)
-    return JsonResponse({
-        'regions': regions.get('data', []),
-    })
+
+    try:
+        regions = NovaPoshtaAPI.get_regions()
+        data = regions.get('data', [])
+    except Exception as e:
+        logger.error(f"Error fetching regions: {e}")
+        return JsonResponse({'error': 'Failed to fetch regions'}, status=500)
+
+    return JsonResponse({'regions': data})
 
 def get_cities(request):
     region_ref = request.GET.get('region_ref')

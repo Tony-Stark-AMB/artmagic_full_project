@@ -16,11 +16,18 @@ class NovaPoshtaAPI:
             "calledMethod": "getAreas",
             "methodProperties": {}
         }
-        response = requests.post(cls.BASE_URL, json=payload)
-        response.encoding = 'utf-8'
-        response_data = response.json()
-        logger.debug("get_regions response: %s", response_data)
-        return response_data
+
+        try:
+            response = requests.post(cls.BASE_URL, json=payload, timeout=10)
+            response.encoding = 'utf-8'
+            response_data = response.json()
+            return response_data
+        except requests.exceptions.RequestException as e:
+            logger.error(f"Request failed: {e}")
+            raise
+        except ValueError as e:
+            logger.error(f"Invalid JSON response: {e}")
+            raise
 
     @classmethod
     def get_cities(cls, region_ref):
