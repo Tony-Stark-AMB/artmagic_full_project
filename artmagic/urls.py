@@ -31,7 +31,7 @@ urlpatterns = [
     path("ckeditor5/", include('django_ckeditor_5.urls')),
 ]
 
-handler404 = 'products.views.custom_page_not_found_view'
+# handler404 = 'products.views.custom_page_not_found_view'
 # handler500 = 'products.views.custom_error_500'
 
 if settings.DEBUG:
