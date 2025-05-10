@@ -160,53 +160,56 @@ class SubCategoriesView(View):
     template_name = 'products/category.html'
 
     def get(self, request, slug):
-        parent_category = get_object_or_404(Category, slug=slug)
-        sub_categories = parent_category.children.all()
-        breadcrumbs = [
-            {'name': 'Головна', 'url': '/'},
-            {'name': parent_category.name, 'url': request.path},  # Текущая категория
-        ]
+        try:
+            parent_category = get_object_or_404(Category, slug=slug)
+            sub_categories = parent_category.children.all()
+            breadcrumbs = [
+                {'name': 'Головна', 'url': '/'},
+                {'name': parent_category.name, 'url': request.path},
+            ]
 
+            descendants = parent_category.get_descendants(include_self=True)
+            category_ids = [descendant.pk for descendant in descendants]
 
-        descendants = parent_category.get_descendants(include_self=True)
-        category_ids = [descendant.pk for descendant in descendants]
-        
-        products = Products.objects.filter(
-            producttocategory__category_id__in=category_ids).distinct()  # .values_list('product_id', flat=True) # Обновлено
+            products = Products.objects.filter(
+                producttocategory__category_id__in=category_ids
+            ).distinct()
 
+        except Exception as e:
+            logger.error(f"Ошибка при получении данных категории: {e}")
+            return JsonResponse({'error': 'Ошибка загрузки данных категории'}, status=500)
 
-        # if request.headers['Content-Type'] == 'application/json':
-        if request.headers.get('Accept', '') == 'application/json':
-            # add-category/<str:slug>/
+        if 'add-category' in request.path:
+            try:
+                products_values = products.values('id', 'name', 'image', 'price', 'model')
+                paginate_by = int(request.GET.get('productsPerPage', 10))
+                paginator = Paginator(products_values, paginate_by)
+                page_number = request.GET.get('page', 1)
+                page_obj = paginator.get_page(page_number)
 
-            print('-----123---', len(products))
-            products_values = products.values('id', 'name', 'image', 'price', 'model')
+                products_data = list(page_obj)
+                for product in products_data:
+                    if product.get('image'):
+                        product['image'] = "/media/" + product['image']
+                    else:
+                        product['image'] = ""
 
-            # Пагинация
-            paginate_by = request.GET.get('productsPerPage', 10)
-            paginator = Paginator(products_values, paginate_by)
-            page_number = request.GET.get('page', 1)
-            page_obj = paginator.get_page(page_number)
-
-            products_data = list(page_obj)
-            for product in products_data:
-                if not product['image']:
-                    product['image']
-                else:
-                    product['image'] = "/media/" + product['image']
-            json_data = {
-                'products': products_data,
-                'productsPerPage': paginator.per_page,
-                'productsAmount': paginator.count,
-                'currentPage': page_obj.number,
-            }
-            return JsonResponse(json_data)
-
-        return render(request, self.template_name, {
-            'parent_category': parent_category,
-            'sub_categories': sub_categories,
-            'breadcrumbs': breadcrumbs
-        })
+                json_data = {
+                    'products': products_data,
+                    'productsPerPage': paginator.per_page,
+                    'productsAmount': paginator.count,
+                    'currentPage': page_obj.number,
+                }
+                return JsonResponse(json_data)
+            except Exception as e:
+                logger.error(f"Ошибка при обработке продуктов или пагинации: {e}")
+                return JsonResponse({'error': 'Ошибка загрузки продуктов'}, status=500)
+        else:
+            return render(request, self.template_name, {
+                'parent_category': parent_category,
+                'sub_categories': sub_categories,
+                'breadcrumbs': breadcrumbs
+            })
 
 
 class SubProductView(View):
