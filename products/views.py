@@ -254,8 +254,9 @@ class SubProductView(View):
         paginator = Paginator(filtered_queryset, paginate_by)
         page_number = request.GET.get('page', 1)
         page_obj = paginator.get_page(page_number)
-
-        if request.headers.get('Accept', '') == 'application/json':
+        
+        if 'add-filters' in request.path:
+        # if request.headers.get('Accept', '') == 'application/json':
             products_data = list(page_obj)
             for product in products_data:
                 if not product['image']:
