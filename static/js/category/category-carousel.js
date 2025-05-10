@@ -36,7 +36,7 @@ class CategoryProducts extends PageProducts {
       method: "GET",
       mode: "cors",
       headers: {
-        "Content-Type": "application/json"
+        "Accept": "application/json"
       }
     });
     return await response.json();

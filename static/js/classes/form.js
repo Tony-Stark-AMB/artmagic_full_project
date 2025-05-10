@@ -241,7 +241,10 @@ class Form {
         const data = await fetch(`${PROTOCOL}://${HOST}:${PORT}/delivery/${path}?${query}`, 
             {
                 method: "GET",
-                mode: "cors"
+                mode: "cors",
+                headers: {
+                    "Accept": "application/json"
+                }
             }
         )
             .then((data) => {
@@ -288,11 +291,11 @@ class Form {
 
     async updateAreaOptions(container){
         const areasData = (await this.fetchNewPostAPIData("get_regions")).regions;
-    
         areasData.forEach((area) => {
             const element = document.createElement("option");
             element.value = area.Ref;
             element.textContent = area.Description;
+            
             container.appendChild(element);
         });
     }
