@@ -80,6 +80,17 @@
                         </div>
                     </section>
                 {%endif%}
+                {% if informations %}
+                    <div class="card">
+                      <div class="card-header">
+                        Featured
+                      </div>
+                      <div class="card-body">
+                        <h5 class="card-title">{{ informations.0.title }}</h5>
+                        <p class="card-text">{{ informations.0.description }}</p>
+                      </div>
+                    </div>
+                {% endif %}
             </main>
             <aside class="aside-index__wrap">
                     <section class="aside-index">

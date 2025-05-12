@@ -24,7 +24,7 @@ from .models import (Products,
                      FilterValue,
                      ProductImage,
                      Stocks)  # Обновлено
-from main.models import Carousel, ContactInfo
+from main.models import Carousel, ContactInfo, Informations
 from django.conf import settings
 from .filters import ProductsFilter
 from .utils import alphanumeric_sort, get_sorted_product_attributes
@@ -154,7 +154,8 @@ def parent_categories(request):
     categories = Category.objects.filter(parent=None)
     stocks = Stocks.objects.all()
     carousel = Carousel.objects.all()
-    return render(request, 'products/index.html', {'categories': categories, 'stocks': stocks, 'carousel': carousel})
+    informations = Informations.objects.all()
+    return render(request, 'products/index.html', {'categories': categories, 'stocks': stocks, 'carousel': carousel, 'informations': informations})
 
 class SubCategoriesView(View):
     template_name = 'products/category.html'

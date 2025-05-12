@@ -90,3 +90,10 @@ class ContactInfo(models.Model):
 
 
 
+class Informations(models.Model):
+    title = models.CharField(max_length=100, verbose_name='Титул')
+    description = CKEditor5Field(verbose_name='Опис', config_name='extends')
+
+    class Meta:
+        verbose_name = 'Информація'
+        verbose_name_plural = 'Информація'
