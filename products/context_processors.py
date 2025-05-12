@@ -9,7 +9,7 @@ def current_categories(request):
     categories = Category.objects.filter(parent=None)
     full_url = request.path
 
-    user = request.user
+    user = getattr(request, 'user', AnonymousUser()) 
 
     if isinstance(user, AnonymousUser):
         address = None  # Нет адреса для анонимного пользователя
