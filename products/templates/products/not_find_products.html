@@ -2,8 +2,25 @@
 {% load static %}
 {% load mptt_tags %}
 {% block head %}
-<title>Артмагія — Купити художні матеріали для творчості і дизайну в Україні</title>
-<meta name="description" content="⭐️ Артсклад в Дніпрі⭐️ : Доставка художніх матеріалів по всій Україні! ✔️ Фарби, пензлі, підрамники, мольберти, товари для дизайну та хобі ✆ 0661494273">
+  {% if request.path == '/product/search/' %}
+      <title>Артмагія — Результати пошуку: "{{searchquery}}" </title>
+      <meta name="description" content="Купити {{searchquery}} в ⭐️ Артмагії ⭐️ — художні матеріали для студентів і митців ✔️ Доставка по Україні. ✔️ Широкий асортимент ✆ 0661494273">
+      
+      <meta property="og:title" content="{{searchquery}} — купити в Дніпрі | інтернет-магазині Артмагія">
+      <meta property="og:description" content="Купити {{searchquery}} в ⭐️ Артмагії ⭐️ — художні матеріали для студентів і митців ✔️ Доставка по Україні. ✔️ Широкий асортимент ✆ 0661494273">
+  {% else %}
+      <title>{{parent_category}} — купити в Дніпрі | інтернет-магазині Артмагія</title>
+      <meta name="description" content="Купити {{parent_category}} в ⭐️ Артмагії ⭐️ — художні матеріали для студентів і митців ✔️ Доставка по Україні. ✔️ Широкий асортимент ✆ 0661494273">
+      
+      <meta property="og:title" content="{{parent_category}} — купити в Дніпрі | інтернет-магазині Артмагія">
+      <meta property="og:description" content="Купити {{parent_category}} в ⭐️ Артмагії ⭐️ — художні матеріали для студентів і митців ✔️ Доставка по Україні. ✔️ Широкий асортимент ✆ 0661494273">
+  {% endif %}    
+  
+  {% if parent_category.image %}
+      <meta property="og:image" content="https://artmagic.com.ua/media/{{parent_category.image}}">
+  {% else %}
+      <meta property="og:image" content="https://artmagic.com.ua/static/product-placeholder.png">
+  {% endif %}
 {% endblock %}
 {% block css %}
   <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
@@ -80,28 +97,62 @@
         </div>  
       </div>     
     </div>      
-  </main>          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-  
+  </main>  
 
-  {% endblock %}
+
+{% endblock %}
 {% block js %}
-  <script src="{% static 'js/index/index.js' %}"></script>
-  <script type="module" src="{% static 'js/index/index-carousel.js' %}"></script>
+<script src="{% static 'js/index/index.js' %}"></script>
+<script type="module" src="{% static 'js/index/index-carousel.js' %}"></script>
+{% if request.path == '/product/search/' %}
+  <script type="application/ld+json">
+      {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+          {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Головна",
+          "item": "https://artmagic.com.ua"
+          },
+          {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Пошук",
+          "item": "https://artmagic.com.ua/product/search/"
+          }
+      ]
+      }
+  </script>
+{% else %}
+  <script type="application/ld+json">
+      {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+          {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Головна",
+          "item": "https://artmagic.com.ua"
+          },
+          {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{{ breadcrumbs.1.name }}",
+          "item": "https://artmagic.com.ua{{ breadcrumbs.1.url }}"
+          },
+          {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "{{ breadcrumbs.2.name }}",
+          "item": "https://artmagic.com.ua{{ breadcrumbs.2.url }}"
+          }
+      ]
+      }
+  </script>
+{% endif %}
 {% endblock %}
     
     
