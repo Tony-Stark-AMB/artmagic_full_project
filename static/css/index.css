@@ -1248,7 +1248,7 @@
 
 .main-index {
   grid-area: main;
-  margin: 0 0 0 40px;
+  margin: 0 0 40px 40px;
   grid-column: span 3;
 }
 @media (max-width: 1260px) {
