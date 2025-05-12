@@ -32,7 +32,7 @@ urlpatterns = [
 ]
 
 handler404 = 'products.views.tr_handler404'
-handler500 = 'products.views.tr_handler500'
+# handler500 = 'products.views.tr_handler500'
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
