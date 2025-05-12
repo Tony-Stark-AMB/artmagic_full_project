@@ -9,4 +9,4 @@ __pycache__/
 *.pyc
 **settings.py
 **/migrations/
-**!/migrations/init.py
+!**/migrations/init.py
