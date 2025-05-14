@@ -82,13 +82,12 @@
                 {%endif%}
                 {% if informations %}
                     <div class="card">
-                      <div class="card-header">
-                        Featured
-                      </div>
-                      <div class="card-body">
-                        <h5 class="card-title">{{ informations.0.title }}</h5>
-                        <p class="card-text">{{ informations.0.description }}</p>
-                      </div>
+                    <h5 class="card-header">
+                        {{ informations.title }}
+                    </h5>
+                    <div class="card-body">
+                        <p class="card-text">{{ informations.description|striptags }}</p>
+                    </div>
                     </div>
                 {% endif %}
             </main>
