@@ -1,5 +1,4 @@
 asgiref==3.8.1
-backports.zoneinfo==0.2.1
 Django==4.2.11
 django-cors-headers==4.3.1
 django-js-asset==2.2.0
@@ -8,3 +7,8 @@ pillow==10.3.0
 sqlparse==0.5.0
 typing-extensions==4.11.0
 tzdata==2024.1
+django-filter
+django-ckeditor-5
+python-dotenv
+psycopg2-binary
+openpyxl
