@@ -112,10 +112,17 @@ class Category(MPTTModel):
     def get_absolute_url(self):
         return reverse('sub_categories', kwargs={'slug': self.slug})
     
+<<<<<<< HEAD
     # def save(self, args, **kwargs):
     #     if not self.slug or self.slug != slugify(unidecode(self.name)):
     #         self.slug = slugify(unidecode(self.name))
     #     super().save(args, kwargs)
+=======
+    def save(self, *args, **kwargs):
+        if not self.slug or self.slug != slugify(unidecode(self.name)):
+            self.slug = slugify(unidecode(self.name))
+        super().save(*args, **kwargs)
+>>>>>>> 9947387b3d6c00a614f66c41e3bd71754cf284be
 
 
 class Stocks(models.Model):
@@ -256,10 +263,17 @@ class Products(models.Model):
     def get_absolute_url(self):
         return reverse('detaile_product', kwargs={'id': self.id})
     
+<<<<<<< HEAD
     # def save(self, *args, kwargs):
     #     if not self.slug or self.slug != slugify(unidecode(self.name)):
     #         self.slug = slugify(unidecode(self.name))
     #     super().save(*args, **kwargs)
+=======
+    def save(self, *args, **kwargs):
+        if not self.slug or self.slug != slugify(unidecode(self.name)):
+            self.slug = slugify(unidecode(self.name))
+        super().save(*args, **kwargs)
+>>>>>>> 9947387b3d6c00a614f66c41e3bd71754cf284be
 
 
 class ProductToCategory(models.Model):

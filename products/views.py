@@ -154,7 +154,12 @@ def parent_categories(request):
     categories = Category.objects.filter(parent=None)
     stocks = Stocks.objects.all()
     carousel = Carousel.objects.all()
-    informations = Informations.objects.all()
+    informations = Informations.objects.first()
+    
+    if informations:
+        informations.description = (informations.description or '').replace('&nbsp;', '')
+
+
     return render(request, 'products/index.html', {'categories': categories, 'stocks': stocks, 'carousel': carousel, 'informations': informations})
 
 class SubCategoriesView(View):
@@ -163,7 +168,9 @@ class SubCategoriesView(View):
     def get(self, request, slug):
         try:
             parent_category = get_object_or_404(Category, slug=slug)
+            parent_category.description = (parent_category.description or '').replace('&nbsp;', '')
             sub_categories = parent_category.children.all()
+
             breadcrumbs = [
                 {'name': 'Головна', 'url': '/'},
                 {'name': parent_category.name, 'url': request.path},
@@ -223,6 +230,7 @@ class SubProductView(View):
 
         if slug != 'search':
             parent_category = get_object_or_404(Category, slug=slug)
+            parent_category.description = (parent_category.description or '').replace('&nbsp;', '')
             
 
         if parent_category:
@@ -242,7 +250,7 @@ class SubProductView(View):
                 {'name': 'Головна', 'url': '/'},
                 {'name': "Пошук", 'url': ''},  # Текущая категория
             ]
-        
+
         product_filter = ProductsFilter(request.GET, queryset=products)
         filtered_queryset = product_filter.qs()
         filtered_queryset = filtered_queryset.values('id', 'name', 'image', 'price', 'model')
@@ -352,6 +360,7 @@ class DetaileProductView(View):
     def get(self, request, id):        
         
         product = get_object_or_404(Products, id=id)
+        product.description = (product.description or '').replace('&nbsp;', '')
         product_attribute = ProductFilter.objects.filter(product_id=product.pk)
         
         attributes = get_sorted_product_attributes(product_attribute)
@@ -359,7 +368,7 @@ class DetaileProductView(View):
         images = ProductImage.objects.filter(product=product.pk)
         all_images = self.build_images(product, images)
         
-        categories = ProductToCategory.objects.filter(product_id=product).select_related('category_id')
+        categories = ProductToCategory.objects.filter(product_id=product.id).select_related('category_id')
         breadcrumbs = self.get_breadcrumbs(categories)
 
         if product.image:
@@ -374,7 +383,7 @@ class DetaileProductView(View):
 
         context = {
             'product': product,
-            'description': description.replace('&nbsp;', ''),
+            'description': description,
             'prod_quantity': prod_quantity,
             'attributes': attributes,
             'all_images': all_images,
