@@ -68,7 +68,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'middlewares.middlewares.RedirectInvalidURLsMiddleware',
-] 
+
+    
+]
 
 ROOT_URLCONF = 'artmagic.urls'
 
