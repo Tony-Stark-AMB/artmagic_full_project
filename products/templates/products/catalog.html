@@ -221,6 +221,22 @@
                     ]
                     }
                 </script>
+                <script type="application/ld+json">
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "CollectionPage",
+                        "name": "{{ breadcrumbs.2.name }}",
+                        {% if parent_category.description %}
+                        "description": "{{ parent_category.description|default:''|truncatechars:200|escapejs }}",
+                        {% endif %}
+                        "url": "https://artmagic.com.ua{{ breadcrumbs.2.url }}"
+                        {% if parent_category.image %}
+                        "image": "https://artmagic.com.ua/media/{{ parent_category.image }}"
+                        {% else %}
+                        "image": "https://artmagic.com.ua/static/product-placeholder.png"
+                        {% endif %}
+                    }
             {% endif %}
+            </script>
         {% endblock %}
             
