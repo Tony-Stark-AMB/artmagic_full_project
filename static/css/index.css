@@ -580,9 +580,6 @@
   width: 67%;
   height: 30%;
 }
-.call__modal__textarea::-moz-placeholder {
-  text-align: center;
-}
 .call__modal__textarea::placeholder {
   text-align: center;
 }
@@ -692,8 +689,7 @@
 
 .overlook__img {
   width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .overlook__img__wrap {
   width: 100px;
@@ -1178,8 +1174,7 @@
 }
 .products-index__item__img {
   width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .products-index__item__img__wrap {
   width: 160px;
@@ -1283,8 +1278,7 @@
 }
 .main-index__banner__slide__img {
   width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .main-index__banner__slide__img__wrap {
   width: 600px;

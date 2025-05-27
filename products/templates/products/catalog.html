@@ -107,6 +107,16 @@
                 </section>
             </aside>
         </div>
+        {% if parent_category.description %}
+                            <div class="card">
+                            <h5 class="card-header">
+                                Опис категорії
+                            </h5>
+                            <div class="card-body">
+                                <p class="card-text">{{ parent_category.description|striptags }}</p>
+                            </div>
+                            </div>
+                        {% endif %}
         <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
