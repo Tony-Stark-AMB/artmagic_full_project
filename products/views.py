@@ -634,14 +634,14 @@ def generate_google_merchant_feed(request):
     return response
 
 
-def tr_handler404(request, exception):
-    """
-    Обработка ошибки 404
-    """
-    return render(request=request, template_name='products/error_page.html', status=404, context={
-        'title': 'Сторінку не знайдено',
-        'error_message': 'Неправильно набрано адресу або такої сторінки на сайті більше не існує.',
-    })
+# def tr_handler404(request, exception):
+#     """
+#     Обработка ошибки 404
+#     """
+#     return render(request=request, template_name='products/error_page.html', status=404, context={
+#         'title': 'Сторінку не знайдено',
+#         'error_message': 'Неправильно набрано адресу або такої сторінки на сайті більше не існує.',
+#     })
 
 
 def tr_handler500(request):
