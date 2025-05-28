@@ -86,7 +86,7 @@
                         {{ informations.title }}
                     </h1>
                     <div class="card-body">
-                        <p class="card-text">{{ informations.description|striptags }}</p>
+                        <p class="card-text">{{ informations.description|safe }}</p>
                     </div>
                     </div>
                 {% endif %}

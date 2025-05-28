@@ -237,9 +237,8 @@
                     <div class="breadcrumb-nav">
                         {% for crumb in breadcrumbs %}
                             {% if not forloop.last %}
-                                <h2 class="breadcrumb-nav-item">
-                                    <a href="{{ crumb.url }}">{{ crumb.name }}</a>
-                                <h2 class="breadcrumb-nav-separator"> / </h2>
+                                <a class="breadcrumb-nav-item" href="{{ crumb.url }}">{{ crumb.name }}</a>
+                                <p class="breadcrumb-nav-separator"> / </p>
                             {% else %}
                                 <h1 class="breadcrumb-nav-item" aria-current="page">
                                     {{ crumb.name }}

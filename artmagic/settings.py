@@ -370,6 +370,7 @@ customColorPalette = [
 CKEDITOR_5_FILE_UPLOAD_PERMISSION = "staff"  # "staff", "authenticated", "any"
 
 
-USE_X_FORWARDED_HOST = True
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+
