@@ -614,13 +614,7 @@ def generate_google_merchant_feed(request):
             if category and category.category_id.parent
             else None
         )
-        try:
-            brand = ProductFilter.objects.filter(product_id=product.id, filter_category=4).first()
-        except Exception as e: 
-            print('----------------------------------------------------------', product.pk)
-            print('--', product.pk)
-            print('----------------------------------------------------------', product.pk)
-            brand = ''
+        brand = ProductFilter.objects.filter(product_id=product.id, filter_category=4).first()
         brand_name = brand.filter_value.value if brand else None
         
         ET.SubElement(item, "g:id").text = str(product.id)
