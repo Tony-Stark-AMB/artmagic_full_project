@@ -1,0 +1,33 @@
+// "editor.tabSize": 2,
+    // "files.autoSave": "off",
+    // "editor.minimap.enabled": false,
+    // "editor.detectIndentation": false,
+    
+    // "liveSassCompile.settings.formats": [
+    //   {
+    //     "format": "expanded",
+    //     "extensionName": ".css",
+    //     "savePath": "~/static/css",
+    //     "generateMap": false
+    //   }
+    // ],
+    // "liveSassCompile.settings.autoprefix": [
+      
+    // ],
+
+{
+  "liveSassCompile.settings.excludeList": [
+      "/**/node_modules/**"
+    ],
+  "liveSassCompile.settings.formats": [
+    {
+        "format": "expanded",
+        "extensionName": ".css",
+        "savePath": "/static/css",
+        "generateMap": false
+    }
+  ],
+  "liveSassCompile.settings.rootIsWorkspace": false,
+  "liveSassCompile.settings.generateMap": false,
+  "liveSassCompile.settings.autoprefix": []
+}

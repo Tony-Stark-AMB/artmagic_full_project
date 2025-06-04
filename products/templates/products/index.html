@@ -22,9 +22,9 @@
                     <div class="swiper-pagination"></div>
                 </section>
                 <section class="products-index">
-                    <h3 data-aos="fade-left" class="products-index__title">
+                    <p data-aos="fade-left" class="products-index__title">
                         Новинки
-                    </h3>
+                    </p>
                     <div class="swiper products-index__list__wrap"> 
                         <div class="swiper-wrapper products-index__content" id="productsIndexContainer">
                             <!-- <div class="swiper-slide products-index__list">
@@ -61,9 +61,9 @@
                 </section>
                 {%if stocks%}
                     <section class="main-index__promotion">
-                        <h3 data-aos="fade-down" class="promotion__title">
+                        <p data-aos="fade-down" class="promotion__title">
                             Акційні пропозиції
-                        </h3>
+                        </p>
                         <div class="promotion__content">
                             <div class="promotion__card">
                                 <div class="">
@@ -71,7 +71,7 @@
                                 </div>
                                 <div class="">
                                     <div class="card-body">
-                                    <h4 class="card-title">{{ stocks.0.title }}</h4>
+                                    <p class="card-title">{{ stocks.0.title }}</p>
                                     <p class="card-text">{{ stocks.0.description|safe }}</p>
                                     </div>
                                 </div>
