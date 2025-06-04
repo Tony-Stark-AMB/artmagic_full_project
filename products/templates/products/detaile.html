@@ -58,7 +58,7 @@
                 <p class="product-details__articul c8">Артикул: {{product.model}}</p>
                 <div class="product-details__info">
                     <p class="product-details__price">Ціна: <span class="fw-bold">{{product.price}} грн</span> </p>
-                    <h5 class="text-center">Характеристика товару</h5>
+                    <p class="text-center">Характеристика товару</p>
                     <table class="product-detailes__atributes">
                         {% for el in attributes %}
                             <tr>
@@ -75,7 +75,7 @@
             </div>
         </div>
         <div class="product-specs" data-aos-delay="200" data-aos-anchor="description" data-aos="fade-up">
-            <h3>Опис товару</h3>
+            <p>Опис товару</p>
             {% if product.description %}
                 <p class="product-description">{{ product.description|safe }}</p>
             {% else %}
