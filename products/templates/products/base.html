@@ -240,9 +240,13 @@
                                 <a class="breadcrumb-nav-item" href="{{ crumb.url }}">{{ crumb.name }}</a>
                                 <p class="breadcrumb-nav-separator"> / </p>
                             {% else %}
-                                <h1 class="breadcrumb-nav-item" aria-current="page">
-                                    {{ crumb.name }}
-                                </h1>
+                                {% if request.resolver_match.url_name == 'detaile_product' %}
+                                    <a class="breadcrumb-nav-item" href="{{ crumb.url }}">{{ crumb.name }}</a>
+                                {% else %}
+                                    <h1 class="breadcrumb-nav-item" aria-current="page">
+                                        {{ crumb.name }}
+                                    </h1>
+                                {% endif %}
                             {% endif %}
                         {% endfor %}
                     </div>

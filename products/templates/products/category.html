@@ -76,7 +76,7 @@
                                 Опис категорії
                             </h2>
                             <div class="card-body">
-                                <p class="card-text">{{ parent_category.description|striptags }}</p>
+                                <p class="card-text">{{ parent_category.description|safe }}</p>
                             </div>
                             </div>
                         {% endif %}

@@ -9,6 +9,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from unidecode import unidecode    
 from django.utils.text import slugify
+from django.utils.html import strip_tags
 from rest_framework.decorators import api_view
 from rest_framework.exceptions import PermissionDenied
 
@@ -425,11 +426,7 @@ class DetaileProductView(View):
                     'name': category.name,
                     'url': f'/product/{category.slug}/'
                 })
-        breadcrumbs.append({
-                    'name': '',
-                    'url': ''
-                })
-        print(breadcrumbs)        
+                    
         return breadcrumbs
 
 
@@ -588,7 +585,6 @@ def upsert_product(request):
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 from django.http import HttpResponse
-from django.utils.html import strip_tags
 import xml.etree.ElementTree as ET
 
 def generate_google_merchant_feed(request):
@@ -600,26 +596,38 @@ def generate_google_merchant_feed(request):
     ET.SubElement(channel, "link").text = "https://artmagic.com.ua"
     ET.SubElement(channel, "description").text = "Ми працюємо для вас з 2008 року і вже завоювали серця клієнтів по всій Україні. Ми найбільш цікавий продавець художніх матеріалів для всіх, хто займається творчістю. Ми можемо задовольнити всі творчі потреби художників, студентів, дизайнерів, аматорів, у нас є все для хобі. Ми надихаємо людей займатися улюбленою справою."
 
-    products = Products.objects.filter(quantity__isnull=False, quantity__gt=0)
+    products = Products.objects.filter(quantity__isnull=False, quantity__gt=0)    
+    product_ids = [p.id for p in products]
+
+    brand_filters = ProductFilter.objects.filter(filter_category_id=4).select_related('filter_value')
+    brand_dict = {pf.product_id: pf.filter_value.value for pf in brand_filters}
+
+
+    product_categories = ProductToCategory.objects.filter(
+        product_id__in=product_ids
+    ).select_related('category_id__parent')
+    category_dict = {}
+    for pc in product_categories:
+        if pc.product_id_id not in category_dict:
+            parent = pc.category_id.parent
+            category_dict[pc.product_id_id] = (
+                f"{parent.name} > {pc.category_id.name}" 
+                if parent 
+                else ''
+            )
 
     for product in products:
         item = ET.SubElement(channel, "item")
 
-        image = f'https://artmagic.com.ua/media/{product.image}'
+        image = f'https://artmagic.com.ua/media/{str(product.image)}'
         no_image = f'https://artmagic.com.ua/static/product-placeholder.png'
 
-        category = ProductToCategory.objects.filter(product_id=product.id).first()
-        result_category = (
-            f"{category.category_id.parent} > {category}"
-            if category and category.category_id.parent
-            else None
-        )
-        brand = ProductFilter.objects.filter(product_id=product.id, filter_category=4).first()
-        brand_name = brand.filter_value.value if brand else None
-        
+        brand_name = brand_dict.get(product.id, "")
+        result_category = category_dict.get(product.id, "")
+
         ET.SubElement(item, "g:id").text = str(product.id)
         ET.SubElement(item, "g:title").text = product.name
-        ET.SubElement(item, "g:description").text = strip_tags(product.description)[:500] if product.description else None
+        ET.SubElement(item, "g:description").text = str(strip_tags(product.description))[:500] if product.description else ''
         ET.SubElement(item, "g:link").text = f'https://artmagic.com.ua/product/detaile-product/{product.id}/'
         ET.SubElement(item, "g:image_link").text = image if product.image else no_image
         ET.SubElement(item, "g:price").text = f'{product.price} UAH'
