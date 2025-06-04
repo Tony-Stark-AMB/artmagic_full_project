@@ -71,7 +71,7 @@
                                 </div>
                                 <div class="">
                                     <div class="card-body">
-                                    <h5 class="card-title">{{ stocks.0.title }}</h5>
+                                    <h4 class="card-title">{{ stocks.0.title }}</h4>
                                     <p class="card-text">{{ stocks.0.description }}</p>
                                     </div>
                                 </div>
@@ -82,11 +82,11 @@
                 {%endif%}
                 {% if informations %}
                     <div class="card">
-                    <h5 class="card-header">
+                    <h1 class="card-header">
                         {{ informations.title }}
-                    </h5>
+                    </h1>
                     <div class="card-body">
-                        <p class="card-text">{{ informations.description|striptags }}</p>
+                        <p class="card-text">{{ informations.description|safe }}</p>
                     </div>
                     </div>
                 {% endif %}
