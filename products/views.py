@@ -344,7 +344,7 @@ def get_new_arrivals(request):
     ]
     for product in products_data:
         if not product['image']:
-            product['image']
+            product['image'] = "/static/product-placeholder.png"
         else:
             product['image'] = "/media/" + product['image']
     json_data = {

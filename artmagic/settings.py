@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
+from urllib.parse import urlparse
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -212,7 +213,18 @@ if DEBUG:
 
 # CORS_ALLOWED_ORIGINS = ["http://localhost:8000", "http://127.0.0.1:8000"]
     
-CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS').split(',')
+# Обрабатываем CORS_ALLOWED_ORIGINS: убираем пути, оставляем только схему://хост:порт
+_cors_origins = []
+for origin in os.getenv('CORS_ALLOWED_ORIGINS', '').split(','):
+    origin = origin.strip()
+    if origin:
+        # Парсим URL и собираем только схему, хост и порт
+        parsed = urlparse(origin)
+        # Собираем origin без пути: scheme://netloc (netloc уже содержит host:port)
+        clean_origin = f"{parsed.scheme}://{parsed.netloc}"
+        _cors_origins.append(clean_origin)
+
+CORS_ALLOWED_ORIGINS = _cors_origins
 
 CORS_ALLOW_METHODS = (
     "DELETE",
@@ -226,7 +238,7 @@ CORS_ALLOW_METHODS = (
 # CORS_ORIGIN_ALLOW_ALL=True
 
 
-CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS').split(',')
+CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in os.getenv('CSRF_TRUSTED_ORIGINS', '').split(',') if origin.strip()]
 
 
 ONEC_API_KEY = os.getenv('ONEC_API_KEY')

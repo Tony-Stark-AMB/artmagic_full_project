@@ -25,7 +25,10 @@ class CategorySitemap(Sitemap):
         return Category.objects.filter(parent=None, is_active=True)
 
     def lastmod(self, obj):
-        return obj.date_modified  
+        return obj.date_modified
+    
+    def location(self, item):
+        return reverse('sub_categories', kwargs={'slug': item.slug})  
     
 # Список подкатегорий
 class SubCategorySitemap(Sitemap):
@@ -34,13 +37,13 @@ class SubCategorySitemap(Sitemap):
     protocol = "https"
 
     def items(self):
-        return Category.objects.exclude(parent=None, is_active=True)
+        return Category.objects.exclude(parent=None).filter(is_active=True)
 
     def lastmod(self, obj):
         return obj.date_modified  
     
     def location(self, item):
-        return reverse('sub_product', args=[item.slug])
+        return reverse('sub_categories', kwargs={'slug': item.slug})
 
 # Список продуктов
 class ProductSitemap(Sitemap):
@@ -49,7 +52,10 @@ class ProductSitemap(Sitemap):
     protocol = "https"
 
     def items(self):
-        return Products.objects.all().order_by('id') 
+        return Products.objects.filter(status=True).order_by('id') 
 
     def lastmod(self, obj):
-        return obj.date_modified 
+        return obj.date_modified
+    
+    def location(self, item):
+        return reverse('detaile_product', kwargs={'id': item.id}) 

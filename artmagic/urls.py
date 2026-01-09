@@ -17,10 +17,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
+from django.http import HttpResponse
+from django.views.decorators.cache import cache_page
+import os
 
 from artmagic import settings
 
+def robots_txt(request):
+    robots_file_path = os.path.join(settings.BASE_DIR, 'robots.txt')
+    try:
+        with open(robots_file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        return HttpResponse(content, content_type='text/plain')
+    except FileNotFoundError:
+        return HttpResponse('User-agent: *\nDisallow:', content_type='text/plain')
+
 urlpatterns = [
+    path('robots.txt', cache_page(60 * 60 * 24)(robots_txt)),  # Кешируем на 24 часа
     path('art-admin/', admin.site.urls),
     path('', include('products.urls')),
     path('user/', include('users.urls')),
