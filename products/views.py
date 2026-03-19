@@ -165,10 +165,11 @@ def parent_categories(request):
 
 class SubCategoriesView(View):
     template_name = 'products/category.html'
-
+    
     def get(self, request, slug):
+        parent_category = get_object_or_404(Category, slug=slug)
         try:
-            parent_category = get_object_or_404(Category, slug=slug)
+            
             parent_category.description = (parent_category.description or '').replace('&nbsp;', '')
             sub_categories = parent_category.children.all()
 
@@ -455,13 +456,15 @@ def upsert_product(request):
             raw_data = raw_data.replace('\t', '')
             raw_data = re.sub(r'\s*,\s*]', ']', raw_data)  # Убираем запятую перед закрывающей скобкой
             raw_data = re.sub(r',\s*}', '}', raw_data)     # Убираем запятую перед закрывающей фигурной скобкой
-            
             # Проверяем, что JSON начинается и заканчивается правильно
             raw_data = raw_data.strip()
             if not raw_data.startswith('['):
                 raw_data = '[' + raw_data
             if not raw_data.endswith(']'):
                 raw_data = raw_data + ']'
+
+ 
+            raw_data = ''.join(ch for ch in raw_data if ord(ch) >= 32)
 
             logger.debug(f"Cleaned data: {raw_data[:200]}...")  # Логируем первые 200 символов
 
@@ -472,14 +475,57 @@ def upsert_product(request):
             except json.JSONDecodeError as e:
                 # Если не получилось, пробуем исправить возможные проблемы
                 logger.error(f"First JSON parse attempt failed: {str(e)}")
+
+                # Диагностика: покажем проблемный участок (символы + коды),
+                # чтобы можно было убрать их на стороне 1С.
+                try:
+                    pos = getattr(e, "pos", None)
+                    if isinstance(pos, int):
+                        window_before = 90
+                        window_after = 20
+                        start = max(0, pos - window_before)
+                        end = min(len(raw_data), pos + window_after)
+                        snippet = raw_data[start:end]
+                        logger.error(f"JSON error pos={pos}, context_range=[{start}:{end}]")
+                        logger.error(
+                            "JSON error context (repr): " + repr(snippet)
+                        )
+                        logger.error(
+                            "JSON error context (ord/hex): "
+                            + " ".join(f"{ord(c)}({hex(ord(c))})" for c in snippet)
+                        )
+                except Exception as diag_err:
+                    logger.error(f"Failed to build JSON error diagnostics: {diag_err}")
                 
                 # Попытка исправить проблемы с JSON
                 raw_data = re.sub(r'}\s*{', '},{', raw_data)  # Исправляем отсутствующие запятые между объектами
                 raw_data = re.sub(r'\}\s*\]', '}]', raw_data)  # Убираем пробелы перед закрывающей скобкой
                 
                 # Пробуем снова распарсить
-                data = json.loads(raw_data)
-                logger.debug("JSON parsed after cleanup")
+                try:
+                    data = json.loads(raw_data)
+                    logger.debug("JSON parsed after cleanup")
+                except json.JSONDecodeError as e2:
+                    logger.error(f"Second JSON parse attempt failed: {str(e2)}")
+                    try:
+                        pos2 = getattr(e2, "pos", None)
+                        if isinstance(pos2, int):
+                            window_before2 = 90
+                            window_after2 = 20
+                            start2 = max(0, pos2 - window_before2)
+                            end2 = min(len(raw_data), pos2 + window_after2)
+                            snippet2 = raw_data[start2:end2]
+                            logger.error(f"JSON error (2nd) pos={pos2}, context_range=[{start2}:{end2}]")
+                            logger.error(
+                                "JSON error (2nd) context (repr): " + repr(snippet2)
+                            )
+                            logger.error(
+                                "JSON error (2nd) context (ord/hex): "
+                                + " ".join(f"{ord(c)}({hex(ord(c))})" for c in snippet2)
+                            )
+                    except Exception as diag_err2:
+                        logger.error(f"Failed to build 2nd JSON error diagnostics: {diag_err2}")
+                    raise
 
         except UnicodeDecodeError as e:
             logger.error(f"Unicode decode error: {str(e)}")
