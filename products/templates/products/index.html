@@ -1,119 +1,111 @@
 {% extends "./base.html" %}
 {% load static %}
-{% load mptt_tags %}
 
-    {% block css %}
-        <link rel="stylesheet" href="{% static 'css/index.css' %}"> 
-    {% endblock %}
-    {% block content %}
+{% block css %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Manrope:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}?v=6">
+{% endblock %}
 
-        <div class="main-index__wrap container__custom__sidebar">
-            <main class="main-index">
-                <section class="swiper main-index__banner">
-                    <div class="swiper-wrapper main-index__banner__list">
-                        {% for slide in carousel %}
-                            <div class="swiper-slide main-index__banner__slide">
-                                <div class="main-index__banner__slide__img__wrap">                                
-                                    <img class="main-index__banner__slide__img" src="{{ slide.image.url }}" alt="">                                
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </section>
-                <section class="products-index">
-                    <p data-aos="fade-left" class="products-index__title fw-medium fs-2">
-                        Новинки
-                    </p>
-                    <div class="swiper products-index__list__wrap"> 
-                        <div class="swiper-wrapper products-index__content" id="productsIndexContainer">
-                            <!-- <div class="swiper-slide products-index__list">
-                                {% for product in products.first_half %}
-                                <div class="products-index__item product-item" id="{{ product.pk }}">
-                                    <div class="products-index__item__img__wrap">
-                                        <img class="products-index__item__img product" src="/media/{{ product.image }}" alt="">
-                                    </div>
-                                    <div class="products-index__item__content">
-                                        <p class="products-index__item__title">{{ product.name }}</p>
-                                        <span class="products-index__item__price">{{ product.price }} грн</span>
-                                        <button class="btn btn-primary products-index__item__btn" data-item="product_btn">Купити</button>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                            </div>
-                            <div class="swiper-slide products-index__list">
-                                {% for product in products.second_half %}
-                                <div class="products-index__item product-item" id="{{ product.pk }}">
-                                    <div class="products-index__item__img__wrap">
-                                        <img class="products-index__item__img" src="/media/{{ product.image }}" alt="">
-                                    </div>
-                                    <div class="products-index__item__content">
-                                        <p class="products-index__item__title">{{ product.name }}</p>
-                                        <span class="products-index__item__price">{{ product.price }} грн</span>
-                                        <button class="btn btn-primary products-index__item__btn" data-item="product_btn" >Купить</button>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                            </div> -->
-                        </div>
-                        <div class="pagination pagination-index"></div>
-                    </div>
-                </section>
-                {%if stocks%}
-                    <section class="main-index__promotion">
-                        <p data-aos="fade-down" class="promotion__title">
-                            Акційні пропозиції
-                        </p>
-                        <div class="promotion__content">
-                            <div class="promotion__card">
-                                <div class="">
-                                    <img src="{{ stocks.0.image.url }}" class="img-fluid rounded-start" alt="...">
-                                </div>
-                                <div class="">
-                                    <div class="card-body">
-                                    <p class="card-title">{{ stocks.0.title }}</p>
-                                    <p class="card-text">{{ stocks.0.description|safe }}</p>
-                                    </div>
-                                </div>
-                                    
-                            </div>
-                        </div>
-                    </section>
-                {%endif%}
-                {% if informations %}
-                    <div class="card mb-4">
-                    <h1 class="card-header">
-                        {{ informations.title }}
-                    </h1>
-                    <div class="card-body">
-                        <p class="card-text">{{ informations.description|safe }}</p>
-                    </div>
-                    </div>
+{% block content %}
+<div class="home">
+    <section class="home-hero">
+        <div class="home-hero__copy">
+            <p class="home-kicker">Майстерня з 2008</p>
+            <h1>Все, щоб продовжити малювати</h1>
+            <p class="home-hero__lead">Фарби, папір, полотна й інструменти — зібрані так, щоб їх було легко знайти і взяти в роботу.</p>
+            <div class="home-actions">
+                {% if categories %}
+                    <a class="home-btn" href="{{ categories.0.get_absolute_url }}">До каталогу</a>
                 {% endif %}
-            </main>
-            <aside class="aside-index__wrap">
-                    <section class="aside-index">
-                        <ul class="aside-index__list">
-                            {% recursetree categories %}
-                                <li class="aside-index__item">
-                                    <a class="aside-index__link" href="{% url 'sub_categories' node.slug %}">{{ node.name }}</a></li>
-                                <li class="aside-index__item">
-                            {% endrecursetree %}
-                        </ul>
-                        <!-- <div class="aside-index__login bg5 font__raleway">
-                            <h1 class="aside-index__login__title">Ласкаво просимо!</h1>
-                            <button class="aside-index__login__btn bg17">Увійти до особистого кабінету</button>
-                        </div> -->
-                    </section>
-            </aside>
+                <a class="home-textlink" href="#novynky">Новинки</a>
+            </div>
         </div>
-        
-    </div>
-    
-      {% endblock %}
-  {% block js %}
-    <script src="{% static 'js/index/index.js' %}"></script>
-    <script type="module" src="{% static 'js/index/index-carousel.js' %}"></script>
-  {% endblock %}
-    
-    
+        <div class="home-hero__visual">
+            <section class="swiper main-index__banner">
+                <div class="swiper-wrapper main-index__banner__list">
+                    {% for slide in carousel %}
+                        <div class="swiper-slide main-index__banner__slide">
+                            <div class="main-index__banner__slide__img__wrap">
+                                <img class="main-index__banner__slide__img" src="{{ slide.image.url }}" alt="{{ slide.title|default:'Артмагія' }}">
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="swiper-pagination"></div>
+            </section>
+            <p class="home-hero__hours">Дніпро · Пн–Пт 9:30–17:30</p>
+        </div>
+    </section>
+
+    {% if categories %}
+    <section class="home-explore" aria-labelledby="home-explore-title">
+        <div class="home-section__head">
+            <h2 id="home-explore-title">Зайти глибше</h2>
+            <p>Оберіть напрям — далі відкриються підрозділи з фото.</p>
+        </div>
+        <div class="home-explore__grid">
+            {% for category in categories %}
+                <a class="home-tile" href="{{ category.get_absolute_url }}">
+                    {% if category.home_image %}
+                        <img src="{{ category.home_image.url }}" alt="">
+                    {% else %}
+                        <span class="home-tile__fallback" aria-hidden="true"></span>
+                    {% endif %}
+                    <span class="home-tile__name">{{ category.name }}</span>
+                </a>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    <section class="products-index" id="novynky">
+        <div class="home-section__head">
+            <h2 class="products-index__title">Свіже на складі</h2>
+            <p>Те, що нещодавно з’явилося в магазині.</p>
+        </div>
+        <div class="swiper products-index__list__wrap">
+            <div class="swiper-wrapper products-index__content" id="productsIndexContainer"></div>
+            <div class="pagination pagination-index"></div>
+        </div>
+    </section>
+
+    {% if stocks %}
+        <section class="home-promo">
+            <h2>Акційні пропозиції</h2>
+            {% for stock in stocks %}
+                <article class="home-promo__card">
+                    {% if stock.image %}
+                        <img src="{{ stock.image.url }}" alt="">
+                    {% endif %}
+                    <div>
+                        <h3>{{ stock.title }}</h3>
+                        <div class="home-promo__text">{{ stock.description|safe }}</div>
+                    </div>
+                </article>
+            {% endfor %}
+        </section>
+    {% endif %}
+
+    {% if informations %}
+        <section class="home-note">
+            <h2>{{ informations.title }}</h2>
+            <div class="home-note__text">{{ informations.description|safe }}</div>
+        </section>
+    {% endif %}
+</div>
+
+<nav class="home-tabbar" aria-label="Швидка навігація">
+    <a href="/" class="is-active">Головна</a>
+    <button type="button" onclick="openNav()">Каталог</button>
+    <button type="button" data-home-focus="search">Пошук</button>
+    <button type="button" data-bs-toggle="modal" data-bs-target="#basket__modal">Кошик</button>
+</nav>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/index/index.js' %}?v=5"></script>
+    <script type="module" src="{% static 'js/index/index-carousel.js' %}?v=4"></script>
+{% endblock %}

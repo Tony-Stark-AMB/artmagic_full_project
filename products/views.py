@@ -152,7 +152,19 @@ def add_to_cart(request):
 
 
 def parent_categories(request):
-    categories = Category.objects.filter(parent=None)
+    categories = list(Category.objects.filter(parent=None).order_by('name'))
+    for category in categories:
+        image = category.image
+        if not image:
+            child = (
+                category.get_descendants()
+                .exclude(image='')
+                .exclude(image__isnull=True)
+                .order_by('lft')
+                .first()
+            )
+            image = child.image if child else None
+        category.home_image = image
     stocks = Stocks.objects.all()
     carousel = Carousel.objects.all()
     informations = Informations.objects.first()
@@ -330,7 +342,7 @@ class SubProductView(View):
 
 
 def get_new_arrivals(request):
-    products = list(Products.objects.order_by('-date_added')[:20].values('name', 'image', 'price', 'pk', 'model'))
+    products = list(Products.objects.order_by('-date_added')[:24].values('name', 'image', 'price', 'pk', 'model'))
 
     paginate_by = request.GET.get('productsPerPage', 10)
     page_number = request.GET.get('page', 1)

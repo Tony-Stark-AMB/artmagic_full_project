@@ -8,7 +8,7 @@ class IndexProducts extends PageProducts{
   constructor(pageName, containerId, swiper, basket){
     super(pageName, containerId, swiper, basket)
     this.basket.setPageName(pageName)
-    this.swiperPagination = {...this.swiperPagination, productsPerPage: 10};
+    this.swiperPagination = {...this.swiperPagination, productsPerPage: 12};
     this.initializePage();
   }
 
@@ -33,8 +33,8 @@ class IndexProducts extends PageProducts{
             </div>
             <div class="products-index__item__content">
                 <p class="products-${this.pageName}__item__title">${name}</p>
-                <span class="products-${this.pageName}__item__price">${price}</span>
-                <button class="btn btn-primary products-${this.pageName}__item__btn" data-item="product_btn">Купити</button>
+                <span class="products-${this.pageName}__item__price">${price} грн</span>
+                <button class="btn btn-primary products-${this.pageName}__item__btn" data-item="product_btn">До кошика</button>
             </div>
         </div>
     `;
@@ -59,22 +59,22 @@ class IndexProducts extends PageProducts{
     const width = window.innerWidth;
     switch(true){
       case width >= 1400:
-        this.defaultProductsAmount = 10;
+        this.defaultProductsAmount = 12;
         break;
       case width >= 1260:
-        this.defaultProductsAmount = 10;
+        this.defaultProductsAmount = 12;
         break;
       case width >= 992:
-        this.defaultProductsAmount = 10;
+        this.defaultProductsAmount = 12;
         break;
       case width >= 768:
-        this.defaultProductsAmount = 8;
+        this.defaultProductsAmount = 12;
         break;
       case width >= 576:
-        this.defaultProductsAmount = 6;
+        this.defaultProductsAmount = 12;
         break;
       case width >= 400:
-        this.defaultProductsAmount = 4;
+        this.defaultProductsAmount = 12;
         break;
     }
   }

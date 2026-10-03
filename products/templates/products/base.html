@@ -55,7 +55,7 @@
     <link rel="stylesheet" href="{% static 'css/breadcrumb.css' %}">
     {% block css %}{% endblock %}    
 </head>
-<body>
+<body class="{% if request.path == '/' %}page-home{% endif %}">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TTCR5DCX"
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -93,6 +93,13 @@
         </div>  
 {% block header %}
 <header class="header">
+            {% if request.path == '/' %}
+            <div class="home-utility">
+                <span>Дніпро</span>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#call__modal">{{ table_data.phone }}</button>
+                <span class="home-utility__wide">Доставка по Україні</span>
+            </div>
+            {% endif %}
             <div class="header-main">
                 <div class="container__custom">
                     <div class="header-main__content">
@@ -105,7 +112,7 @@
                                 <img class="logo" src="{% static 'assets/logo/artmagic.png' %}" alt="">
                                 <p class="logo__text">
                                     <span class="text-wrapper">
-                                        <span class="letters">Артмагія</span>
+                                        <span class="letters">АРТМАГІЯ</span>
                                         <span class="line"></span>
                                     </span>
                                 </p>
@@ -134,7 +141,7 @@
                             </div>
                             {% else %}
                                 <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#login__modal"><i class="fa fa-lock lock-small" aria-hidden="true"></i>
-                                    <p class="header-login__come-in">Авторизація</p>
+                                    <p class="header-login__come-in">{% if request.path == '/' %}Увійти{% else %}Авторизація{% endif %}</p>
                                 </button>
                             {% endif %}
                             <!--- Проверка на ошибки  -->
@@ -148,7 +155,7 @@
                         </div>
                         <div class="header-search">
                             <div class="header-search__input__wrap">
-                                <input class="header-search__input" name="query" placeholder="Пошук"/>
+                                <input class="header-search__input" name="query" placeholder="{% if request.path == '/' %}Фарби, папір, пензлі{% else %}Пошук{% endif %}"/>
                                 <button class="header-search__input__icon-wrap" name="query__btn" >
                                     <svg class="header-search__input__icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 512 512">
                                         <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
@@ -186,6 +193,7 @@
                         </div>
                         <div class="header-catalog">
                             <button class="header-catalog__btn bg15" onclick="openNav()">
+                                {% if request.path == '/' %}<span class="home-catalog-label">Каталог</span>{% endif %}
                                 <svg class="header-catalog__btn__icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 576 512">
                                     <path d="M264.5 5.2c14.9-6.9 32.1-6.9 47 0l218.6 101c8.5 3.9 13.9 12.4 13.9 21.8s-5.4
                                      17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 149.8C37.4 145.8 32 137.3 32
@@ -537,15 +545,15 @@
     <script src="{% static 'js/common/index.js' %}"></script>
     <script src="{% static 'js/common/regexp.js' %}"></script>
     <script type="module" src="{% static 'js/header/basket/basket.js' %}"></script>
-    <script type="module" src="{% static 'js/header/basket/order.js' %}"></script>
-    <script type="module" src="{% static 'js/header/basket/delivery.js' %}"></script>
+    <script type="module" src="{% static 'js/header/basket/order.js' %}?v=2"></script>
+    <script type="module" src="{% static 'js/header/basket/delivery.js' %}?v=2"></script>
     <script src="{% static 'js/header/feedback/feedback.js' %}"></script>
     <script src="{% static 'js/header/burger-menu/burger-menu.js' %}"></script>
     <script src="{% static 'js/header/sidenav/sidenav.js' %}"></script>
     <script type="module" src="{% static 'js/header/search/search.js' %}"></script>
     <script type="module" src="{% static 'js/import.js' %}"></script>
     <script type="module" src="{% static 'js/classes/page-products.js' %}"></script>
-    <script type="module" src="{% static 'js/header/header.js' %}"></script>
+    <script type="module" src="{% static 'js/header/header.js' %}?v=2"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const loginForm = document.querySelector('.login__modal__form');
